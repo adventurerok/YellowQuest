@@ -2,20 +2,23 @@ package com.ithinkrok.yellowquest;
 
 import static android.view.MotionEvent.*;
 
-import java.util.Collection;
-import java.util.HashMap;
+import java.util.*;
 
 import com.ithinkrok.yellowquest.util.Box;
 import com.ithinkrok.yellowquest.util.Vector2;
 
 import android.annotation.SuppressLint;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.graphics.*;
 import android.support.v4.view.MotionEventCompat;
 import android.util.Log;
 import android.view.*;
 
 public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Callback{
+	
+	private static Vector2 currentTouch;
+	
+	public static final double UPDATE_PERIOD = 1000/45d;
+	//public static final double UPDATE_PERIOD = 1000/5d; //so lower ups makes it start faster
 	
 	private MainActivity activity;
 	private CanvasThread _thread;
@@ -23,14 +26,24 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 	public int height;
 	public Canvas canvas;
 	public YellowQuest game;
-	private long lastUpdate;
+	private long lastUpdate = -1;
 	private double tickTime = 0;
 	public HashMap<Integer, Vector2> touches = new HashMap<>();
+	public ArrayList<Vector2> touchDowns = new ArrayList<>(10);
+	
+	public boolean paused = true;
+
+	private boolean screenOff = false;
+
+	//private boolean tapped = false;
 
 	public CanvasSurfaceView(MainActivity context) {
 		super(context);
-		width = getWidth();
-		height = getHeight();
+		Display display = context.getWindowManager().getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+		width = size.x;
+		height = size.y;
 		activity = context;
 		getHolder().addCallback(this);
 		setFocusable(true);
@@ -54,20 +67,41 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 	
 	@Override
 	protected void onDraw(Canvas canvas) {
-		if(lastUpdate == -1) lastUpdate = System.nanoTime();
-		long now = System.nanoTime();
-		double diff = (now - lastUpdate) / 1000000;
-		tickTime += diff;
-		while(tickTime > (1000/45d)){
-			tickTime -= (1000/45d);
-			game.update();
-		}
-		lastUpdate = now;
+		if(paused || screenOff) return;
+		//if(tapped){
+			if(lastUpdate == -1) lastUpdate = System.nanoTime();
+			long now = System.nanoTime();
+			double diff = (now - lastUpdate) / 1000000;
+			tickTime += diff;
+			while(tickTime > UPDATE_PERIOD){
+				tickTime -= UPDATE_PERIOD;
+				game.update();
+			}
+			lastUpdate = now;
+		//}
 		
 		this.canvas = canvas;
 		//canvas.drawColor(Color.BLACK, Mode.CLEAR);
 		game.draw(this);
 		this.canvas = null;
+	}
+	
+	public void onPause(){
+		paused = true;
+	}
+	
+	public void screenOff(){
+		screenOff = true;
+	}
+	
+	public void onResume(){
+		paused = false;
+		lastUpdate = -1;
+	}
+	
+	public void screenOn(){
+		screenOff = false;
+		lastUpdate = -1;
 	}
 
 	@Override
@@ -106,6 +140,7 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
+		//tapped  = true;
 		int actionIndex = MotionEventCompat.getActionIndex(event);
 		int id = MotionEventCompat.getPointerId(event, actionIndex);
 		switch(MotionEventCompat.getActionMasked(event)){
@@ -133,17 +168,28 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 	}
 	
 	private void setTouch(int id, double x, double y){
-		touches.put(id, new Vector2(x, y));
+		Vector2 touch = touches.get(id);
+		if(touch == null){
+			touch = new Vector2(x, y);
+			touches.put(id, touch);
+			touchDowns.add(touch);
+		} else {
+			touch.set(x, y);
+		}
 	}
 	
 	private void removeTouch(int id){
-		touches.remove(id);
+		Vector2 touch = touches.remove(id);
+		if(touch != null){
+			touchDowns.remove(touch);
+		}
 	}
 	
 	public boolean touchInBox(Box test){
-		for(Vector2 v : getTouches()){
-			if(v.x < test.sx || v.x > test.ex) continue;
-			if(v.y < test.sy || v.y > test.ey) continue;
+		for(int d = 0; d < touchDowns.size(); ++d){
+			currentTouch = touchDowns.get(d);
+			if(currentTouch.x < test.sx || currentTouch.x > test.ex) continue;
+			if(currentTouch.y < test.sy || currentTouch.y > test.ey) continue;
 			return true;
 		}
 		return false;

@@ -1,0 +1,5 @@
+debug: 1F:C7:3E:51:5B:E7:C7:AB:63:BC:B0:27:56:0B:2C:00:E0:E9:61:F4
+
+release: 64:6A:1E:0C:9B:84:A0:05:E9:4E:72:14:73:59:19:E7:8B:CB:12:81
+keyalias: YellowQuest
+keystore: paul/AndroidApps_Keystore...

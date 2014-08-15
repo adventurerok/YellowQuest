@@ -9,6 +9,9 @@ import com.ithinkrok.yellowquest.util.Box;
 import android.graphics.Paint;
 
 public abstract class Entity {
+	
+	private static ArrayList<Entity> test = new ArrayList<Entity>(4);
+	private static Box exp = new Box(0, 0, 1, 1);
 
 	
 	public static enum EntityType {
@@ -16,7 +19,6 @@ public abstract class Entity {
 	}
 
 	
-	private static Box DEFAULT = new Box(-16, 84, 16, 116);
 	
 	public YellowQuest game;
 	public EntityType type;
@@ -35,7 +37,7 @@ public abstract class Entity {
 	public int aiDir = 0;
 	public int aiMaxTime = 0;
 	public boolean remove = false;
-	public Box box = DEFAULT;
+	public Box box = new Box(-16, 84, 16, 116);
 
 	public Entity(YellowQuest game, EntityType type) {
 		super();
@@ -50,7 +52,7 @@ public abstract class Entity {
 		this.y = y;
 		this.width = w;
 		this.height = h;
-		this.box = new Box(x - w / 2, y - h / 2, x + w / 2, y + h / 2);
+		this.box.set(x - w / 2, y - h / 2, x + w / 2, y + h / 2);
 		return this;
 	}
 
@@ -64,8 +66,8 @@ public abstract class Entity {
 			this.y_velocity_old = 0;
 			return;
 		}
-		Box exp = this.box.include(xv, yv);
-		ArrayList<Entity> test = new ArrayList<Entity>();
+		this.box.include(xv, yv, exp);
+		test.clear();
 		int d;
 		Entity cur;
 		for (d = 0; d < game.boxes.size(); ++d) {
@@ -82,7 +84,7 @@ public abstract class Entity {
 			}
 			this.y_velocity_old = yv;
 			// Game.renderText(yv);
-			this.box = this.box.move(0, yv);
+			this.box.move(0, yv, this.box);
 		}
 		
 		if(Math.abs(xv) > 0.001){
@@ -91,7 +93,7 @@ public abstract class Entity {
 			}
 			this.x_velocity_old = xv;
 			// Game.renderText(xv);
-			this.box = this.box.move(xv, 0);
+			this.box.move(xv, 0, this.box);
 		}
 		
 		if (this.type == EntityType.PLAYER) {
@@ -125,7 +127,7 @@ public abstract class Entity {
 		aiDir = 0;
 		aiMaxTime = 0;
 		remove = false;
-		box = new Box(this.x - this.width / 2, this.y - this.height / 2, this.x + this.width / 2, this.y + this.height / 2);
+		box.set(this.x - this.width / 2, this.y - this.height / 2, this.x + this.width / 2, this.y + this.height / 2);
 	}
 	
 	public abstract void update();

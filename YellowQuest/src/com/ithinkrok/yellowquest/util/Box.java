@@ -23,12 +23,39 @@ public class Box {
 		return new Box(mix, miy, max, may);
 	}
 	
+	public Box include(double x, double y, Box out) {
+		out.sx = this.sx;
+		out.sy = this.sy;
+		out.ex = this.ex;
+		out.ey = this.ey;
+		if (x < 0) out.sx += x;
+		else if (x > 0) out.ex += x;
+		if (y < 0) out.sy += y;
+		else if (y > 0) out.ey += y;
+		return out;
+	}
+	
+	public void set(double sx, double sy, double ex, double ey){
+		this.sx = sx;
+		this.sy = sy;
+		this.ex = ex;
+		this.ey = ey;
+	}
+	
 	public Box expand(double x, double y) {
 	    return new Box(this.sx - x, this.sy - y, this.ex + x, this.ey + y);
 	}
 
 	public Box move(double x, double y) {
 	    return new Box(this.sx + x, this.sy + y, this.ex + x, this.ey + y);
+	}
+	
+	public Box move(double x, double y, Box out) {
+		out.sx = this.sx + x;
+		out.sy = this.sy + y;
+		out.ex = this.ex + x;
+		out.ey = this.ey + y;
+	    return out;
 	}
 	
 	public double calcXOffset(Box box, double x) {

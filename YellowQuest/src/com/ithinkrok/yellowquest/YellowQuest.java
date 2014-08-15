@@ -14,7 +14,7 @@ public class YellowQuest {
 	//public static final double DEFAULT_ACCEL = 2;
 	//public static final double DEFAULT_JUMP = 10;
 	
-	public static final double DEFAULT_SLIP = 0.82; //20 ups versions
+	public static final double DEFAULT_SLIP = 0.82; //45 ups versions
 	public static final double DEFAULT_ACCEL = 2;
 	public static final double DEFAULT_JUMP = 10; //Doesn't change
 	
@@ -47,7 +47,7 @@ public class YellowQuest {
 		this.canvas = canvas;
 		createButtons();
 		white = new Paint();
-		white.setColor(0x66ffffff);
+		white.setColor(0x33ffffff);
 	}
 	
 	public void createButtons(){
@@ -160,8 +160,8 @@ public class YellowQuest {
 		gameOver = null;
 	    boxes.clear();
 	    playerLives = 3;
-	    level.number = 10;
-	    level.size = 80;
+	    level.number = 0;
+	    level.size = 8;
 	    nextBox = 0;
 	    playerBox = 0;
 	    bgenX = -32;
@@ -184,7 +184,7 @@ public class YellowQuest {
 		boxes.clear();
 	    level.lastBoxType = null;
 	    level.number += 1;
-	    level.size = 10 + (level.number * 4);
+	    level.size = 8 + (level.number * 4);
 	    nextBox = 0;
 	    bgenX = -32;
 	    bgenY = 0;
@@ -201,7 +201,7 @@ public class YellowQuest {
 	public void restartLevel() {
 		boxes.clear();
 	    level.lastBoxType = null;
-	    level.size = 10 + (level.number * 4);
+	    level.size = 8 + (level.number * 4);
 	    nextBox = 0;
 	    bgenX = -32;
 	    bgenY = 0;
