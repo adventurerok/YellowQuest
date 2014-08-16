@@ -4,5 +4,6 @@
     <string name="app_name">Yellow Quest</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="canvas_view">Camvas View</string>
 
 </resources>
