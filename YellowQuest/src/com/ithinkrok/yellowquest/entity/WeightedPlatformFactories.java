@@ -6,19 +6,6 @@ import com.ithinkrok.yellowquest.YellowQuest;
 
 public class WeightedPlatformFactories {
 
-	private static class WPFUp implements WeightedPlatformFactory {
-
-		@Override
-		public EntityPlatform create(YellowQuest game) {
-			return new EntityPlatformUp(game);
-		}
-
-		@Override
-		public int getWeight(YellowQuest game) {
-			return game.level.number > 0 ? 1 : 0;
-		}
-		
-	}
 	
 	private static class WPFDown implements WeightedPlatformFactory {
 
@@ -34,21 +21,6 @@ public class WeightedPlatformFactories {
 		
 	}
 	
-	private static class WPFMoving implements WeightedPlatformFactory {
-
-		@Override
-		public EntityPlatform create(YellowQuest game) {
-			return new EntityPlatformMoving(game);
-		}
-
-		@Override
-		public int getWeight(YellowQuest game) {
-			if(game.level.number < 10 && game.level.lastBoxType instanceof EntityPlatformDown) return 0;
-			//return 10000;
-			return game.level.number > 1 ? 1 : 0;
-		}
-		
-	}
 	
 	private static class WPFBounce implements WeightedPlatformFactory {
 
@@ -120,25 +92,11 @@ public class WeightedPlatformFactories {
 		
 	}
 	
-	private static class WPFTroll implements WeightedPlatformFactory {
-
-		@Override
-		public EntityPlatform create(YellowQuest game) {
-			return new EntityPlatformTroll(game);
-		}
-
-		@Override
-		public int getWeight(YellowQuest game) {
-			return game.level.number > 9 ? 1 : 0;
-		}
-		
-	}
-	
 	private static class WPFDefault implements WeightedPlatformFactory {
 
 		@Override
 		public EntityPlatform create(YellowQuest game) {
-			return new EntityPlatform(game);
+			return new EntityPlatformDefault(game);
 		}
 
 		@Override
@@ -152,13 +110,10 @@ public class WeightedPlatformFactories {
 	
 	static{
 		factories.add(new WPFDefault());
-		factories.add(new WPFUp());
 		factories.add(new WPFDown());
 		factories.add(new WPFConveyor());
-		factories.add(new WPFMoving());
 		factories.add(new WPFBounce());
 		factories.add(new WPFJumpHide());
-		factories.add(new WPFTroll());
 		factories.add(new WPFSpeed());
 		factories.add(new WPFBoost());
 	}
@@ -174,7 +129,7 @@ public class WeightedPlatformFactories {
 		weight = game.random(weight);
 		for(d = 0; d < factories.size(); ++d) {
 			weight -= factories.get(d).getWeight(game);
-			if(weight <= 0) return factories.get(d).create(game);
+			if(weight < 0) return factories.get(d).create(game);
 		}
 		return factories.get(0).create(game);
 	}

@@ -8,6 +8,7 @@ import com.ithinkrok.yellowquest.util.Box;
 import com.ithinkrok.yellowquest.util.Vector2;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.*;
 import android.support.v4.view.MotionEventCompat;
 import android.util.Log;
@@ -20,7 +21,6 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 	public static final double UPDATE_PERIOD = 1000/45d;
 	//public static final double UPDATE_PERIOD = 1000/5d; //so lower ups makes it start faster
 	
-	private MainActivity activity;
 	private CanvasThread _thread;
 	public int width;
 	public int height;
@@ -37,14 +37,13 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 
 	//private boolean tapped = false;
 
-	public CanvasSurfaceView(MainActivity context) {
+	public CanvasSurfaceView(Context context) {
 		super(context);
-		Display display = context.getWindowManager().getDefaultDisplay();
+		Display display = getActivity().getWindowManager().getDefaultDisplay();
 		Point size = new Point();
 		display.getSize(size);
 		width = size.x;
 		height = size.y;
-		activity = context;
 		getHolder().addCallback(this);
 		setFocusable(true);
 		game = new YellowQuest(this);
@@ -62,7 +61,7 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 	}
 	
 	public MainActivity getActivity() {
-		return activity;
+		return (MainActivity)getContext();
 	}
 	
 	@Override
@@ -73,9 +72,17 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 			long now = System.nanoTime();
 			double diff = (now - lastUpdate) / 1000000;
 			tickTime += diff;
+			int updatesDone = 0;
 			while(tickTime > UPDATE_PERIOD){
 				tickTime -= UPDATE_PERIOD;
 				game.update();
+				updatesDone++;
+				if(updatesDone > 5){
+					
+					//Attempt to prevent annoying things happening if there is a lag spike
+					tickTime = 0;
+					//touchDowns.clear();
+				}
 			}
 			lastUpdate = now;
 		//}

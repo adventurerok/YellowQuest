@@ -3,10 +3,11 @@ package com.ithinkrok.yellowquest;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import com.ithinkrok.yellowquest.entity.*;
-import com.ithinkrok.yellowquest.util.Box;
-
 import android.graphics.Paint;
+
+import com.ithinkrok.yellowquest.entity.*;
+import com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory;
+import com.ithinkrok.yellowquest.util.Box;
 
 public class YellowQuest {
 
@@ -224,7 +225,9 @@ public class YellowQuest {
 			if (nextBox >= level.size) break;
 			xe = 64 + random(128);
 			ye = 16 + random(32);
-			ent = (EntityPlatform) WeightedPlatformFactories.randomPlatform(this).calcBounds(bgenX + xe / 2, bgenY - ye / 2, xe, ye);
+			//ent = (EntityPlatform) WeightedPlatformFactories.randomPlatform(this).calcBounds(bgenX + xe / 2, bgenY - ye / 2, xe, ye);
+			ent = (EntityPlatform) WeightedTraitFactory.randomPlatform(this).calcBounds(bgenX, bgenY - ye / 2, xe, ye);
+//			ent.setupMove(nextBox != 1 && nextBox != level.size);
 			ent.install();
 			level.lastBoxType = ent;
 			boxes.add(ent);
