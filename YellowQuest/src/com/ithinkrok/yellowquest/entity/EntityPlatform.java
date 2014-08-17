@@ -19,7 +19,7 @@ public class EntityPlatform extends Entity {
 		this.color = PAINT_BLUE;
 	}
 	
-	public Trait[] traits;
+	public Trait[] traits = new Trait[0];
 	
 
 	@Override
