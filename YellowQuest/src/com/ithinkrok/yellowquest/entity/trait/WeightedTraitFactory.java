@@ -81,12 +81,53 @@ public class WeightedTraitFactory {
 
 		@Override
 		public int getWeight(EntityPlatform parent) {
+			if(parent.hasTrait("down") || parent.hasTrait("bounce")) return 0;
 			return parent.game.level.number > 0 ? 1 : 0;
 		}
 
 		@Override
 		public String getName() {
 			return "up";
+		}
+		
+	}
+	
+	private static class WeightDown implements Weight {
+
+		@Override
+		public Trait create(EntityPlatform parent) {
+			return new TraitDown(parent);
+		}
+
+		@Override
+		public int getWeight(EntityPlatform parent) {
+			if(parent.hasTrait("up")) return 0;
+			return parent.game.level.number > 2 ? 1 : 0;
+		}
+
+		@Override
+		public String getName() {
+			return "down";
+		}
+		
+	}
+	
+	private static class WeightBounce implements Weight {
+
+		@Override
+		public Trait create(EntityPlatform parent) {
+			return new TraitBounce(parent);
+		}
+
+		@Override
+		public int getWeight(EntityPlatform parent) {
+			if(parent.hasTrait("up")) return 0;
+			return parent.game.level.number > 1 ? 1 : 0;
+		}
+
+		@Override
+		public String getName() {
+			return "bounce";
 		}
 		
 	}
@@ -98,6 +139,8 @@ public class WeightedTraitFactory {
 		weights.add(new WeightMoving());
 		weights.add(new WeightTroll());
 		weights.add(new WeightUp());
+		weights.add(new WeightDown());
+		weights.add(new WeightBounce());
 	}
 	
 	public static EntityPlatform randomPlatform(YellowQuest game){

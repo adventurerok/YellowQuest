@@ -172,7 +172,6 @@ public class YellowQuest {
 	    player.reset();
 	    boxes.add(player);
 	    generateBoxes(BOX_BUFFER);
-	    //Game.generateLife();
 	    timer = 0;
 	}
 	
@@ -195,7 +194,6 @@ public class YellowQuest {
 	    player.reset();
 	    boxes.add(player);
 	    generateBoxes(BOX_BUFFER);
-	    //Game.generateLife();
 	    timer = 0;  
 	}
 
@@ -212,7 +210,6 @@ public class YellowQuest {
 	    player.reset();
 	    boxes.add(player);
 	    generateBoxes(BOX_BUFFER);
-	    //Game.generateLife();
 	    timer = 0;
 	}
 
@@ -225,13 +222,10 @@ public class YellowQuest {
 			if (nextBox >= level.size) break;
 			xe = 64 + random(128);
 			ye = 16 + random(32);
-			//ent = (EntityPlatform) WeightedPlatformFactories.randomPlatform(this).calcBounds(bgenX + xe / 2, bgenY - ye / 2, xe, ye);
-			ent = (EntityPlatform) WeightedTraitFactory.randomPlatform(this).calcBounds(bgenX, bgenY - ye / 2, xe, ye);
-//			ent.setupMove(nextBox != 1 && nextBox != level.size);
+			ent = (EntityPlatform) WeightedTraitFactory.randomPlatform(this).calcBounds(bgenX + xe / 2, bgenY - ye / 2, xe, ye);
 			ent.install();
 			level.lastBoxType = ent;
 			boxes.add(ent);
-			//boxes.add(ent);
 			level.finalBox = ent;
 			bgenX += xe;
 			bgenX += 10;
