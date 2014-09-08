@@ -5,17 +5,20 @@ import android.media.*;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.os.Bundle;
 import android.view.*;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.google.example.games.basegameutils.BaseGameActivity;
 
 
-public class MainActivity extends BaseGameActivity implements View.OnTouchListener{
+public class MainActivity extends BaseGameActivity implements View.OnClickListener{
 
 	private TextView menu_play;
 	private TextView menu_achievements;
 	private TextView menu_leaderboards;
 	private TextView menu_settings;
+	private CheckBox settings_music;
+	private TextView settings_back;
 	
 	
 	private CanvasSurfaceView view;
@@ -35,19 +38,9 @@ public class MainActivity extends BaseGameActivity implements View.OnTouchListen
 		super.onCreate(savedInstanceState);
 
 		//menu = findViewById(R.layout.game);
-		setContentView(R.layout.menu);
+		loadMenuView();
 		
-		menu_play = (TextView) findViewById(R.id.menu_play);
-		menu_achievements = (TextView) findViewById(R.id.menu_achievements);
-		menu_leaderboards = (TextView) findViewById(R.id.menu_leaderboards);
-		menu_settings = (TextView) findViewById(R.id.menu_settings);
-		
-		menu_play.setOnTouchListener(this);
-		menu_achievements.setOnTouchListener(this);
-		menu_leaderboards.setOnTouchListener(this);
-		menu_settings.setOnTouchListener(this);
-		
-		view = new CanvasSurfaceView(this);
+		//view = new CanvasSurfaceView(this);
 		//setContentView(view);
 
 		if (audioEnabled) {
@@ -134,12 +127,38 @@ public class MainActivity extends BaseGameActivity implements View.OnTouchListen
 	}
 
 	@Override
-	public boolean onTouch(View v, MotionEvent event) {
-		v.performClick();
+	public void onClick(View v) {
+		if(v == menu_settings){
+			loadSettingsView();
+		} else if(v == settings_back){
+			loadMenuView();
+		}
 		
-		return true;
 	}
 	
+	
+	public void loadMenuView(){
+		setContentView(R.layout.menu);
+		
+		menu_play = (TextView) findViewById(R.id.menu_play);
+		menu_achievements = (TextView) findViewById(R.id.menu_achievements);
+		menu_leaderboards = (TextView) findViewById(R.id.menu_leaderboards);
+		menu_settings = (TextView) findViewById(R.id.menu_settings);
+		
+		menu_play.setOnClickListener(this);
+		menu_achievements.setOnClickListener(this);
+		menu_leaderboards.setOnClickListener(this);
+		menu_settings.setOnClickListener(this);
+	}
+	
+	public void loadSettingsView(){
+		setContentView(R.layout.settings);
+		
+		settings_music = (CheckBox) findViewById(R.id.settings_music);
+		settings_back = (TextView) findViewById(R.id.settings_back);
+		
+		settings_back.setOnClickListener(this);
+	}
 	
 
 

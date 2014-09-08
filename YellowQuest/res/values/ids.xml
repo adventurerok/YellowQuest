@@ -6,5 +6,7 @@
     <item type="id" name="menu_achievements"/>
     <item type="id" name="menu_leaderboards"/>
     <item type="id" name="menu_settings"/>
+    <item type="id" name="settings_music"/>
+    <item type="id" name="settings_back"/>
 
 </resources>
