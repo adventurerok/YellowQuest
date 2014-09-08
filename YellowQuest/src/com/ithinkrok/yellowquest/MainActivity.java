@@ -1,6 +1,7 @@
 package com.ithinkrok.yellowquest;
 
 import android.content.*;
+import android.content.SharedPreferences.Editor;
 import android.media.*;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.os.Bundle;
@@ -13,6 +14,14 @@ import com.google.example.games.basegameutils.BaseGameActivity;
 
 public class MainActivity extends BaseGameActivity implements View.OnClickListener{
 
+	private static enum GameState {
+		MENU,
+		SETTINGS,
+		GAME;
+	}
+	
+	private GameState state;
+	
 	private TextView menu_play;
 	private TextView menu_achievements;
 	private TextView menu_leaderboards;
@@ -24,11 +33,14 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private CanvasSurfaceView view;
 	private AudioManager am;
 	private MediaPlayer media;
+	OnAudioFocusChangeListener audioListener;
 	public boolean[] wasdKeys = new boolean[4];
 	private boolean audioEnabled = false;
 
 	private boolean paused = false;
 	private boolean screenOff = false;
+	
+	private SharedPreferences settings;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,45 +48,18 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		
 		super.onCreate(savedInstanceState);
+		
+		settings = getSharedPreferences("com.ithinkrok.yellowquest", Context.MODE_PRIVATE);
 
 		//menu = findViewById(R.layout.game);
 		loadMenuView();
 		
-		//view = new CanvasSurfaceView(this);
+		view = new CanvasSurfaceView(this);
 		//setContentView(view);
 
+		audioEnabled = settings.getBoolean("music", true);
 		if (audioEnabled) {
-
-			media = MediaPlayer.create(this, R.raw.boxgameloop);
-			media.setLooping(true);
-
-			setVolumeControlStream(AudioManager.STREAM_MUSIC);
-			am = (AudioManager) getSystemService(AUDIO_SERVICE);
-
-			OnAudioFocusChangeListener audioListener = new OnAudioFocusChangeListener() {
-
-				@Override
-				public void onAudioFocusChange(int focusChange) {
-					if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
-						media.pause();
-					} else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
-						media.start();
-					} else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
-						// am.unregisterMediaButtonEventReceiver(RemoteControlReceiver);
-						am.abandonAudioFocus(this);
-						media.stop();
-						media.release();
-						media = null;
-					}
-				}
-			};
-
-			int result = am.requestAudioFocus(audioListener, AudioManager.STREAM_MUSIC,
-					AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK);
-			if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-				media.start();
-			}
-
+			audioStart();
 		}
 		
 		IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
@@ -128,16 +113,27 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 	@Override
 	public void onClick(View v) {
-		if(v == menu_settings){
+		if(v == menu_play){
+			loadGameView();
+		} else if(v == menu_settings){
 			loadSettingsView();
 		} else if(v == settings_back){
 			loadMenuView();
+		} else if(v == settings_music){
+			audioEnabled = settings_music.isChecked();
+			if(audioEnabled){
+				audioStart();
+			} else audioStop();
+			Editor editor = settings.edit();
+			editor.putBoolean("music", audioEnabled);
+			editor.commit();
 		}
 		
 	}
 	
 	
 	public void loadMenuView(){
+		state = GameState.MENU;
 		setContentView(R.layout.menu);
 		
 		menu_play = (TextView) findViewById(R.id.menu_play);
@@ -152,12 +148,71 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	}
 	
 	public void loadSettingsView(){
+		state = GameState.SETTINGS;
 		setContentView(R.layout.settings);
 		
 		settings_music = (CheckBox) findViewById(R.id.settings_music);
 		settings_back = (TextView) findViewById(R.id.settings_back);
 		
+		settings_music.setOnClickListener(this);
 		settings_back.setOnClickListener(this);
+		
+		settings_music.setChecked(audioEnabled);
+	}
+	
+	public void loadGameView(){
+		state = GameState.GAME;
+		setContentView(view);
+	}
+	
+	@Override
+	public void onBackPressed() {
+		if(state == GameState.GAME || state == GameState.SETTINGS){
+			loadMenuView();
+		} else super.onBackPressed();
+	}
+	
+	public void audioStart(){
+		media = MediaPlayer.create(this, R.raw.boxgameloop);
+		media.setLooping(true);
+
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
+		am = (AudioManager) getSystemService(AUDIO_SERVICE);
+
+		audioListener = new OnAudioFocusChangeListener() {
+
+			@Override
+			public void onAudioFocusChange(int focusChange) {
+				if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
+					media.pause();
+				} else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+					media.start();
+				} else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+					// am.unregisterMediaButtonEventReceiver(RemoteControlReceiver);
+					am.abandonAudioFocus(this);
+					media.stop();
+					media.release();
+					media = null;
+				}
+			}
+		};
+
+		int result = am.requestAudioFocus(audioListener, AudioManager.STREAM_MUSIC,
+				AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK);
+		if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+			media.start();
+		}
+	}
+	
+	public void audioStop(){
+		if(media == null) return;
+		media.stop();
+		media.release();
+		media = null;
+		if(audioListener != null){
+			am.abandonAudioFocus(audioListener);
+			audioListener = null;
+		}
 	}
 	
 
