@@ -122,7 +122,6 @@ public class YellowQuest {
 			if (goRight()) this.player.x_velocity += acell;
 			if (this.player.x_velocity > maxSpeed) this.player.x_velocity = maxSpeed;
 			if (doJump() && this.player.onGround){
-				//Log.d("YellowQuest", "We try to jump");
 				this.player.y_velocity = DEFAULT_JUMP;
 			}
 			if (this.player.fallDist > 1000) {

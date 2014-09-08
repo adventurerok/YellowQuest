@@ -1,5 +1,6 @@
 package com.ithinkrok.yellowquest.entity;
 
+import com.ithinkrok.yellowquest.BoxMath;
 import com.ithinkrok.yellowquest.YellowQuest;
 
 import android.graphics.Paint;
@@ -26,15 +27,12 @@ public class EntityPlayer extends Entity {
 	    }
 	    this.x_velocity *= aSlip;
 	    if (this.y_velocity > 0 && game.doJump()){
-	    	this.y_velocity -= 0.4; // 45 ups
-	    	//this.y_velocity -= 0.9; // 20 ups
+	    	this.y_velocity += BoxMath.JUMP_GRAVITY;
 	    } else{
-	    	this.y_velocity -= 0.8; // 45 ups
-	    	//this.y_velocity -= 1.8; // 20 ups
+	    	this.y_velocity += BoxMath.FALL_GRAVITY;
 	    }
 	    
-	    if (this.y_velocity < -21) this.y_velocity = -21; // 45 ups
-	    //if(this.y_velocity < -47.25) this.y_velocity = -47.25; // 20 ups
+	    if (this.y_velocity < BoxMath.FALL_VELOCITY_MAX) this.y_velocity = BoxMath.FALL_VELOCITY_MAX;
 	    
 	    if (this.intersecting != null && !this.box.intersects(this.intersecting.box)) this.intersecting = null;
 	    this.move(this.x_velocity, this.y_velocity);

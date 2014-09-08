@@ -28,8 +28,9 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 	public YellowQuest game;
 	private long lastUpdate = -1;
 	private double tickTime = 0;
-	public HashMap<Integer, Vector2> touches = new HashMap<>();
-	public ArrayList<Vector2> touchDowns = new ArrayList<>(10);
+	@SuppressLint("UseSparseArrays")
+	public HashMap<Integer, Vector2> touches = new HashMap<Integer, Vector2>();
+	public ArrayList<Vector2> touchDowns = new ArrayList<Vector2>(10);
 	
 	public boolean paused = true;
 

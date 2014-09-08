@@ -24,7 +24,7 @@ public class WeightedTraitFactory {
 
 		@Override
 		public int getWeight(EntityPlatform parent) {
-			return parent.game.level.number > 1 ? 1 : 0;
+			return parent.game.level.number > 1 ? 10 : 0;
 		}
 
 		@Override
@@ -43,7 +43,7 @@ public class WeightedTraitFactory {
 
 		@Override
 		public int getWeight(EntityPlatform parent) {
-			return 2;
+			return 20;
 		}
 
 		@Override
@@ -62,7 +62,7 @@ public class WeightedTraitFactory {
 
 		@Override
 		public int getWeight(EntityPlatform parent) {
-			return parent.game.level.number > 9 ? 1 : 0;
+			return parent.game.level.number > 9 ? 4 : 0;
 		}
 
 		@Override
@@ -82,7 +82,7 @@ public class WeightedTraitFactory {
 		@Override
 		public int getWeight(EntityPlatform parent) {
 			if(parent.hasTrait("down") || parent.hasTrait("bounce")) return 0;
-			return parent.game.level.number > 0 ? 1 : 0;
+			return parent.game.level.number > 0 ? 10 : 0;
 		}
 
 		@Override
@@ -102,7 +102,7 @@ public class WeightedTraitFactory {
 		@Override
 		public int getWeight(EntityPlatform parent) {
 			if(parent.hasTrait("up")) return 0;
-			return parent.game.level.number > 2 ? 1 : 0;
+			return parent.game.level.number > 2 ? 10 : 0;
 		}
 
 		@Override
@@ -122,7 +122,7 @@ public class WeightedTraitFactory {
 		@Override
 		public int getWeight(EntityPlatform parent) {
 			if(parent.hasTrait("up")) return 0;
-			return parent.game.level.number > 1 ? 1 : 0;
+			return parent.game.level.number > 4 ? 10 : 0;
 		}
 
 		@Override
@@ -132,7 +132,64 @@ public class WeightedTraitFactory {
 		
 	}
 	
-	private static ArrayList<Weight> weights = new ArrayList<>();
+	private static class WeightConveyor implements Weight {
+
+		@Override
+		public Trait create(EntityPlatform parent) {
+			return new TraitConveyor(parent);
+		}
+
+		@Override
+		public int getWeight(EntityPlatform parent) {
+			return parent.game.level.number > 6 ? 10 : 0;
+		}
+
+		@Override
+		public String getName() {
+			return "conveyor";
+		}
+		
+	}
+	
+	private static class WeightSpeed implements Weight {
+
+		@Override
+		public Trait create(EntityPlatform parent) {
+			return new TraitSpeed(parent);
+		}
+
+		@Override
+		public int getWeight(EntityPlatform parent) {
+			return parent.game.level.number > 7 ? 10 : 0;
+		}
+
+		@Override
+		public String getName() {
+			return "speed";
+		}
+		
+	}
+	
+	private static class WeightBoost implements Weight {
+
+		@Override
+		public Trait create(EntityPlatform parent) {
+			return new TraitBoost(parent);
+		}
+
+		@Override
+		public int getWeight(EntityPlatform parent) {
+			return parent.game.level.number > 8 ? 10 : 0;
+		}
+
+		@Override
+		public String getName() {
+			return "boost";
+		}
+		
+	}
+	
+	private static ArrayList<Weight> weights = new ArrayList<Weight>();
 	
 	static {
 		weights.add(new WeightNone());
@@ -141,6 +198,9 @@ public class WeightedTraitFactory {
 		weights.add(new WeightUp());
 		weights.add(new WeightDown());
 		weights.add(new WeightBounce());
+		weights.add(new WeightConveyor());
+		weights.add(new WeightSpeed());
+		weights.add(new WeightBoost());
 	}
 	
 	public static EntityPlatform randomPlatform(YellowQuest game){

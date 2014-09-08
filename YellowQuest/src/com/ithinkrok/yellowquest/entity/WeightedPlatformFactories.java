@@ -21,20 +21,6 @@ public class WeightedPlatformFactories {
 		
 	}
 	
-	private static class WPFConveyor implements WeightedPlatformFactory {
-
-		@Override
-		public EntityPlatform create(YellowQuest game) {
-			return new EntityPlatformConveyor(game);
-		}
-
-		@Override
-		public int getWeight(YellowQuest game) {
-			return game.level.number > 6 ? 1 : 0;
-		}
-		
-	}
-	
 	private static class WPFSpeed implements WeightedPlatformFactory {
 
 		@Override
@@ -49,26 +35,11 @@ public class WeightedPlatformFactories {
 		
 	}
 	
-	private static class WPFJumpHide implements WeightedPlatformFactory {
-
-		@Override
-		public EntityPlatform create(YellowQuest game) {
-			return new EntityPlatformJumpHide(game);
-		}
-
-		@Override
-		public int getWeight(YellowQuest game) {
-			return game.level.number > 7 ? 1 : 0;
-		}
-		
-	}
 	
 	
 	private static ArrayList<WeightedPlatformFactory> factories = new ArrayList<WeightedPlatformFactory>();
 	
 	static{
-		factories.add(new WPFConveyor());
-		factories.add(new WPFJumpHide());
 		factories.add(new WPFSpeed());
 		factories.add(new WPFBoost());
 	}
