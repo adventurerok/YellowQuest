@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/black">
+    
+    <LinearLayout 
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        
+        <TextView 
+            android:text="@string/play"
+            android:layout_gravity="start"
+            android:id="@+id/menu_play"
+            style="@style/MenuFont"/>
+        
+        <TextView 
+            android:text="@string/achievements"
+            android:layout_gravity="start"
+            android:id="@+id/menu_achievements"
+            style="@style/MenuFont"/>
+        
+        <TextView 
+            android:text="@string/leaderboards"
+            android:layout_gravity="start"
+            android:id="@+id/menu_leaderboards"
+            style="@style/MenuFont"/>
+        
+        <TextView 
+            android:text="@string/settings"
+            android:layout_gravity="start"
+            android:id="@+id/menu_settings"
+            style="@style/MenuFont"/>"
+    </LinearLayout>
+    
+</RelativeLayout>

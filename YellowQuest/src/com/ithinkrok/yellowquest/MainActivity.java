@@ -4,19 +4,25 @@ import android.content.*;
 import android.media.*;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.*;
+import android.widget.TextView;
 
 import com.google.example.games.basegameutils.BaseGameActivity;
 
 
-public class MainActivity extends BaseGameActivity {
+public class MainActivity extends BaseGameActivity implements View.OnTouchListener{
 
+	private TextView menu_play;
+	private TextView menu_achievements;
+	private TextView menu_leaderboards;
+	private TextView menu_settings;
+	
+	
 	private CanvasSurfaceView view;
 	private AudioManager am;
 	private MediaPlayer media;
 	public boolean[] wasdKeys = new boolean[4];
-	private boolean audioEnabled = true;
+	private boolean audioEnabled = false;
 
 	private boolean paused = false;
 	private boolean screenOff = false;
@@ -28,8 +34,21 @@ public class MainActivity extends BaseGameActivity {
 		
 		super.onCreate(savedInstanceState);
 
+		//menu = findViewById(R.layout.game);
+		setContentView(R.layout.menu);
+		
+		menu_play = (TextView) findViewById(R.id.menu_play);
+		menu_achievements = (TextView) findViewById(R.id.menu_achievements);
+		menu_leaderboards = (TextView) findViewById(R.id.menu_leaderboards);
+		menu_settings = (TextView) findViewById(R.id.menu_settings);
+		
+		menu_play.setOnTouchListener(this);
+		menu_achievements.setOnTouchListener(this);
+		menu_leaderboards.setOnTouchListener(this);
+		menu_settings.setOnTouchListener(this);
+		
 		view = new CanvasSurfaceView(this);
-		setContentView(view);
+		//setContentView(view);
 
 		if (audioEnabled) {
 
@@ -77,14 +96,14 @@ public class MainActivity extends BaseGameActivity {
 		super.onPause();
 		if (audioEnabled)
 			media.pause();
-		view.onPause();
+		if(view != null) view.onPause();
 	}
 
 	public void screenOff() {
 		screenOff = true;
 		if (audioEnabled)
 			media.pause();
-		view.screenOff();
+		if(view != null) view.screenOff();
 	}
 
 	@Override
@@ -92,14 +111,14 @@ public class MainActivity extends BaseGameActivity {
 		super.onResume();
 		if (audioEnabled && !screenOff)
 			media.start();
-		view.onResume();
+		if(view != null) view.onResume();
 	}
 
 	public void screenOn() {
 		screenOff = false;
 		if (audioEnabled && !paused)
 			media.start();
-		view.screenOn();
+		if(view != null) view.screenOn();
 	}
 
 	@Override
@@ -113,6 +132,15 @@ public class MainActivity extends BaseGameActivity {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		v.performClick();
+		
+		return true;
+	}
+	
+	
 
 
 }
