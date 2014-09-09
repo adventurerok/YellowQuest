@@ -22,7 +22,7 @@ public class GameProgress {
 
 
 	public void addAchievement(String achievement){
-		if(achievement.contains(achievement)) return;
+		if(achievements.contains(achievement)) return;
 		client = activity.getApiClient();
 		Games.Achievements.unlock(client, achievement);
 		achievements.add(achievement);
