@@ -158,6 +158,23 @@ public class YellowQuest {
 				if(Math.abs(player.box.sx - level.finalBox.box.ex) < 1){
 					addAchievement(R.string.achievement_overshot);
 				}
+				switch(level.number){
+				case 2:
+					addAchievement(R.string.achievement_easy);
+					break;
+				case 4:
+					addAchievement(R.string.achievement_medium);
+					break;
+				case 9:
+					addAchievement(R.string.achievement_hard);
+					break;
+				case 11:
+					addAchievement(R.string.achievement_expert);
+					break;
+				case 14:
+					addAchievement(R.string.achievement_impossible);
+					break;
+				}
 			}
 		} else {
 			--gameOver.time;

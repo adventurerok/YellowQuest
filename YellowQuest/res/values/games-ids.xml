@@ -5,6 +5,11 @@ Save this file as res/values/games-ids.xml in your project.
 -->
 <resources>
   <string name="app_id">596492711628</string>
+  <string name="achievement_easy">CgkIzO3xja4REAIQBQ</string>
+  <string name="achievement_medium">CgkIzO3xja4REAIQBg</string>
+  <string name="achievement_hard">CgkIzO3xja4REAIQBw</string>
+  <string name="achievement_expert">CgkIzO3xja4REAIQCA</string>
+  <string name="achievement_impossible">CgkIzO3xja4REAIQCQ</string>
   <string name="achievement_big_failure">CgkIzO3xja4REAIQAg</string>
   <string name="achievement_almost">CgkIzO3xja4REAIQAw</string>
   <string name="achievement_overshot">CgkIzO3xja4REAIQBA</string>
