@@ -10,6 +10,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.Games;
 import com.google.example.games.basegameutils.BaseGameActivity;
 
 
@@ -56,7 +57,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		
 		super.onCreate(savedInstanceState);
 		
-		progress = new GameProgress();
+		progress = new GameProgress(this);
 		
 		settings = getSharedPreferences("com.ithinkrok.yellowquest", Context.MODE_PRIVATE);
 
@@ -137,6 +138,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			loadGameView();
 			break;
 		case R.id.menu_achievements:
+			startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), 1);
 			break;
 		case R.id.menu_leaderboards:
 			break;
