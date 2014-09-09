@@ -9,6 +9,7 @@ import android.view.*;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.example.games.basegameutils.BaseGameActivity;
 
 
@@ -22,6 +23,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	
 	private GameState state;
 	
+	private GameProgress progress;
 	private TextView menu_play;
 	private TextView menu_achievements;
 	private TextView menu_leaderboards;
@@ -44,6 +46,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	
 	private SharedPreferences settings;
 	
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		
 		super.onCreate(savedInstanceState);
+		
+		progress = new GameProgress();
 		
 		settings = getSharedPreferences("com.ithinkrok.yellowquest", Context.MODE_PRIVATE);
 
@@ -78,6 +84,16 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		if (audioEnabled)
 			media.pause();
 		if(view != null) view.onPause();
+		
+	}
+	
+	public GameProgress getProgress() {
+		return progress;
+	}
+	
+	@Override
+	public GoogleApiClient getApiClient() {
+		return super.getApiClient();
 	}
 
 	public void screenOff() {

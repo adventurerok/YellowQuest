@@ -22,6 +22,9 @@ public class YellowQuest {
 	public static final int BOX_BUFFER = 6;
 
 	long randomSeed = Calendar.getInstance().getTimeInMillis();
+	
+	public GameProgress progress;
+	public MainActivity activity;
 
 	public GameOver gameOver = null;
 	public Level level = new Level();
@@ -46,6 +49,8 @@ public class YellowQuest {
 	
 	public YellowQuest(CanvasSurfaceView canvas) {
 		this.canvas = canvas;
+		activity = canvas.getActivity();
+		progress = canvas.getActivity().getProgress();
 		createButtons();
 		white = new Paint();
 		white.setColor(0x33ffffff);
@@ -125,6 +130,9 @@ public class YellowQuest {
 				this.player.y_velocity = DEFAULT_JUMP;
 			}
 			if (this.player.fallDist > 1000) {
+				if(playerBox == 0 && level.number == 0){
+					addAchievement(R.string.achievement_big_failure);
+				}
 				if (this.playerLives > 1) {
 					this.playerLives -= 1;
 					gameOver = new GameOver(2, "Level Failed");
@@ -233,6 +241,14 @@ public class YellowQuest {
 			if (bgenY > bgenYMax) bgenYMax = bgenY;
 			else if (bgenY < bgenYMin) bgenYMin = bgenY;
 		}
+	}
+	
+	public void addAchievement(String achievement){
+		progress.addAchievement(achievement);
+	}
+	
+	public void addAchievement(int achievement){
+		progress.addAchievement(activity.getString(achievement));
 	}
 	
 	public void draw(CanvasSurfaceView rend){
