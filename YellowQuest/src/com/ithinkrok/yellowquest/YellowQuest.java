@@ -155,7 +155,7 @@ public class YellowQuest {
 			if (this.playerBox + 1 >= level.size) {
 				gameOver = new GameOver(1, "Next Level");
 				
-				if(player.box.sx == level.finalBox.box.ex){
+				if(Math.abs(player.box.sx - level.finalBox.box.ex) < 1){
 					addAchievement(R.string.achievement_overshot);
 				}
 			}
