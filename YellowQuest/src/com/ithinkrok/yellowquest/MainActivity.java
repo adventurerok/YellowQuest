@@ -26,6 +26,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private TextView menu_achievements;
 	private TextView menu_leaderboards;
 	private TextView menu_settings;
+	private View sign_in_button;
+	private View sign_out_button;
 	private CheckBox settings_music;
 	private TextView settings_back;
 	
@@ -41,6 +43,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private boolean screenOff = false;
 	
 	private SharedPreferences settings;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -101,14 +104,14 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 	@Override
 	public void onSignInFailed() {
-		// TODO Auto-generated method stub
-		
+		findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
+	    findViewById(R.id.sign_out_button).setVisibility(View.GONE);
 	}
 
 	@Override
 	public void onSignInSucceeded() {
-		// TODO Auto-generated method stub
-		
+		findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+	    findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
 	}
 
 	@Override
@@ -136,6 +139,14 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		case R.id.settings_back:
 			loadMenuView();
 			break;
+		case R.id.sign_in_button:
+			beginUserInitiatedSignIn();
+			break;
+		case R.id.sign_out_button:
+			signOut();
+			sign_out_button.setVisibility(View.GONE);
+			sign_in_button.setVisibility(View.VISIBLE);
+			break;
 		}
 		
 	}
@@ -149,11 +160,21 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		menu_achievements = (TextView) findViewById(R.id.menu_achievements);
 		menu_leaderboards = (TextView) findViewById(R.id.menu_leaderboards);
 		menu_settings = (TextView) findViewById(R.id.menu_settings);
+		sign_in_button = findViewById(R.id.sign_in_button);
+		sign_out_button = findViewById(R.id.sign_out_button);
 		
 		menu_play.setOnClickListener(this);
 		menu_achievements.setOnClickListener(this);
 		menu_leaderboards.setOnClickListener(this);
 		menu_settings.setOnClickListener(this);
+		
+		sign_in_button.setOnClickListener(this);
+		sign_out_button.setOnClickListener(this);
+		
+		if(isSignedIn()){
+			sign_in_button.setVisibility(View.GONE);
+			sign_out_button.setVisibility(View.VISIBLE);
+		}
 	}
 	
 	public void loadSettingsView(){

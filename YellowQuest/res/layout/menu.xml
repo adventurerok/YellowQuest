@@ -36,4 +36,19 @@
             style="@style/MenuFont"/>"
     </LinearLayout>
     
+    <com.google.android.gms.common.SignInButton
+    android:id="@+id/sign_in_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" 
+    android:layout_gravity="bottom|end"/>
+    
+    !-- sign-out button -->
+<Button
+    android:id="@+id/sign_out_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/sign_out"
+    android:visibility="gone"
+    android:layout_gravity="bottom|end" />
+    
 </RelativeLayout>
