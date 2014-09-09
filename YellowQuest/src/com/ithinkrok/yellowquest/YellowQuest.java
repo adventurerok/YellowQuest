@@ -132,6 +132,8 @@ public class YellowQuest {
 			if (this.player.fallDist > 1000) {
 				if(playerBox == 0 && level.number == 0){
 					addAchievement(R.string.achievement_big_failure);
+				} else if(playerBox + 2 >= level.size){
+					addAchievement(R.string.achievement_almost);
 				}
 				if (this.playerLives > 1) {
 					this.playerLives -= 1;
@@ -152,6 +154,10 @@ public class YellowQuest {
 			player.update();
 			if (this.playerBox + 1 >= level.size) {
 				gameOver = new GameOver(1, "Next Level");
+				
+				if(player.box.sx == level.finalBox.box.ex){
+					addAchievement(R.string.achievement_overshot);
+				}
 			}
 		} else {
 			--gameOver.time;
