@@ -113,13 +113,18 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 	@Override
 	public void onClick(View v) {
-		if(v == menu_play){
+		switch(v.getId()){
+		case R.id.menu_play:
 			loadGameView();
-		} else if(v == menu_settings){
+			break;
+		case R.id.menu_achievements:
+			break;
+		case R.id.menu_leaderboards:
+			break;
+		case R.id.menu_settings:
 			loadSettingsView();
-		} else if(v == settings_back){
-			loadMenuView();
-		} else if(v == settings_music){
+			break;
+		case R.id.settings_music:
 			audioEnabled = settings_music.isChecked();
 			if(audioEnabled){
 				audioStart();
@@ -127,6 +132,10 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			Editor editor = settings.edit();
 			editor.putBoolean("music", audioEnabled);
 			editor.commit();
+			break;
+		case R.id.settings_back:
+			loadMenuView();
+			break;
 		}
 		
 	}
