@@ -40,6 +40,12 @@ public class YellowQuest {
 	public static final double DEFAULT_ACCEL = 2;
 	public static final double DEFAULT_JUMP = 10; //Doesn't change
 	
+	public static final int TIMER_MAX = 8999;
+	public static final int TIMER_SECOND = 45;
+	public static final int TIMER_START = TIMER_SECOND * 4;
+	public static final int TIMER_BOX = (int) ((2/3d) * TIMER_SECOND) + 1;
+	
+	
 	public static int BOX_BUFFER = 6;
 
 	long randomSeed = Calendar.getInstance().getTimeInMillis();
@@ -55,6 +61,7 @@ public class YellowQuest {
 	public int playerBox = 0;
 	public int playerLives = 3;
 	public int timer = 0;
+	public int totalTimer = 0;
 	public int bgenX = -32, bgenY = 0;
 	public int bgenYMax = 0, bgenYMin = 0;
 	private CanvasSurfaceView canvas;
@@ -72,6 +79,8 @@ public class YellowQuest {
 	private int tPos = 0;
 	
 	private Paint white;
+	
+	private boolean timerStarted = false;
 	
 	public YellowQuest(CanvasSurfaceView canvas) {
 		this.canvas = canvas;
@@ -129,22 +138,30 @@ public class YellowQuest {
 			if (this.playerBox + BOX_BUFFER > this.nextBox) {
 				this.generateBoxes(1);
 			}
-			// if (keys[82]) {
-			// thisOver.time = 20;
-			// thisOver.message = "this Reset";
-			// }
-			if (this.timer > 3999) {
+			
+			if(this.timerStarted){
+				++this.timer;
+				++this.totalTimer;
+			}
+			if (this.timer > TIMER_MAX) {
 				if (this.playerLives > 1) {
 					this.playerLives -= 1;
 					gameOver = new GameOver(2, "Time's Out");
 				} else gameOver = new GameOver(0, "Time's Up");
 			}
-			if (goLeft()) this.player.x_velocity -= acell;
+			if (goLeft()){
+				this.player.x_velocity -= acell;
+				timerStarted = true;
+			}
 			if (this.player.x_velocity < -maxSpeed) this.player.x_velocity = -maxSpeed;
-			if (goRight()) this.player.x_velocity += acell;
+			if (goRight()){
+				this.player.x_velocity += acell;
+				timerStarted = true;
+			}
 			if (this.player.x_velocity > maxSpeed) this.player.x_velocity = maxSpeed;
 			if (doJump() && this.player.onGround){
 				this.player.y_velocity = DEFAULT_JUMP;
+				timerStarted = true;
 			}
 			if (this.player.fallDist > 1000) {
 				if(playerBox == 0 && level.number == 0){
@@ -220,6 +237,7 @@ public class YellowQuest {
 	    boxes.add(player);
 	    generateBoxes(BOX_BUFFER);
 	    timer = 0;
+	    totalTimer = 0;
 	}
 	
 	public void load() {
@@ -316,6 +334,7 @@ public class YellowQuest {
 			drawBox(rightButton);
 			drawBox(jumpButton);
 			statsText(rend, "Level: " + (level.number + 1) + "." + (playerBox + 1));
+			statsText(rend, "Timer: " + ((TIMER_MAX - timer) / TIMER_SECOND) + " (Total: " + (totalTimer / TIMER_SECOND) + ")");
 			statsText(rend, "Lives: " + playerLives);
 		} else {
 			rend.canvas.drawText(gameOver.message, (canvas.width / 2) - (PAINT_GAMEOVER.measureText(gameOver.message) / 2), canvas.height / 2 - (canvas.density * 30) / 2, PAINT_GAMEOVER);
