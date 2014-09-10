@@ -73,15 +73,16 @@ public class YellowQuest {
 		this.canvas = canvas;
 		activity = canvas.getActivity();
 		progress = canvas.getActivity().getProgress();
-		createButtons();
+		createButtons(canvas);
 		white = new Paint();
 		white.setColor(0x33ffffff);
 		BOX_BUFFER = (canvas.width / 148) + 1;
+		PAINT_WHITE.setTextSize(canvas.density * 12);
 	}
 	
-	public void createButtons(){
+	public void createButtons(CanvasSurfaceView canvas){
 		if(lastWidth == canvas.width && lastHeight == canvas.height) return;
-		double bsm = 2;
+		double bsm = canvas.density;
 		leftButton = new Box(20 * bsm, canvas.height - 120 * bsm, 80 * bsm, canvas.height - 20 * bsm);
 		rightButton = new Box(100 * bsm, canvas.height - 120 * bsm, 200 * bsm, canvas.height - 20 * bsm);
 		jumpButton = new Box(canvas.width - 120 * bsm, canvas.height - 120 * bsm, canvas.width - 20 * bsm, canvas.height - 20 * bsm);

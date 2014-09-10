@@ -48,8 +48,8 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 		height = size.y;
 		getHolder().addCallback(this);
 		setFocusable(true);
-		game = new YellowQuest(this);
 		density = getResources().getDisplayMetrics().density;
+		game = new YellowQuest(this);
 	}
 	
 	private int floor(float f){
@@ -133,7 +133,7 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 		Log.i("CSV", "New Size: [" + width + "," + height + "]");
 		this.width = width;
 		this.height = height;
-		game.createButtons();
+		game.createButtons(this);
 		//_thread.setPause(false);
 	}
 
