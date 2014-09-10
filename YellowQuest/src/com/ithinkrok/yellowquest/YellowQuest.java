@@ -15,16 +15,20 @@ public class YellowQuest {
 
 	private static final Paint PAINT_RED = new Paint();
 	private static final Paint PAINT_BROWN = new Paint();
-	private static final Paint PAINT_WHITE = new Paint();
+	private static final Paint PAINT_STATS = new Paint();
+	private static final Paint PAINT_GAMEOVER = new Paint();
 	
 	static {
 		PAINT_RED.setColor(0xFFFF0000);
 		PAINT_BROWN.setColor(0xFF556644);
-		PAINT_WHITE.setColor(0xFFFFFFFF);
+		PAINT_STATS.setColor(0xFFFFFFFF);
+		PAINT_GAMEOVER.setColor(0xFFFFFFFF);
 		
 		Typeface tf = Typeface.create("sans-serif", Typeface.BOLD);
-		PAINT_WHITE.setTypeface(tf);
-		PAINT_WHITE.setTextSize(12);
+		PAINT_STATS.setTypeface(tf);
+		PAINT_GAMEOVER.setTypeface(tf);
+		PAINT_STATS.setTextSize(12);
+		PAINT_GAMEOVER.setTextSize(20);
 	}
 	
 	
@@ -77,7 +81,8 @@ public class YellowQuest {
 		white = new Paint();
 		white.setColor(0x33ffffff);
 		BOX_BUFFER = (canvas.width / 148) + 1;
-		PAINT_WHITE.setTextSize(canvas.density * 12);
+		PAINT_STATS.setTextSize(canvas.density * 12);
+		PAINT_GAMEOVER.setTextSize(canvas.density * 12);
 	}
 	
 	public void createButtons(CanvasSurfaceView canvas){
@@ -119,20 +124,8 @@ public class YellowQuest {
 		double acell = DEFAULT_ACCEL;
 		if (this.player.intersecting != null) acell = this.player.intersecting.accel;
 		int maxSpeed = 250; //45 ups
+		if(gameOver != null && gameOver.time == 0) gameOver = null;
 		if (gameOver == null) {
-			// if (this.cheats) {
-			// for (var k = 57; k > 47; --k) {
-			// if (keys[k]) {
-			// var lvl = k - 50;
-			// if (lvl == -2) lvl = 8;
-			// if (keys[16]) lvl += 10;
-			// if (keys[17]) lvl += 10;
-			// Level.number = lvl;
-			// this.nextLevel();
-			// break;
-			// }
-			// }
-			// }
 			if (this.playerBox + BOX_BUFFER > this.nextBox) {
 				this.generateBoxes(1);
 			}
@@ -308,20 +301,25 @@ public class YellowQuest {
 	}
 	
 	public void statsText(CanvasSurfaceView rend, String text){
-		rend.canvas.drawText(text, 10 * rend.density, tPos += (20 * rend.density), PAINT_WHITE);
+		rend.canvas.drawText(text, 10 * rend.density, tPos += (20 * rend.density), PAINT_STATS);
 	}
 	
 	public void draw(CanvasSurfaceView rend){
-		tPos = 0;
-		drawFlag(rend, (float)level.finalBox.x, (float)level.finalBox.box.ey);
-		for(int d = 0; d < boxes.size(); ++d){
-			boxes.get(d).draw(rend);
+		if(gameOver != null && gameOver.time == 0) gameOver = null;
+		if(gameOver == null){
+			tPos = 0;
+			drawFlag(rend, (float)level.finalBox.x, (float)level.finalBox.box.ey);
+			for(int d = 0; d < boxes.size(); ++d){
+				boxes.get(d).draw(rend);
+			}
+			drawBox(leftButton);
+			drawBox(rightButton);
+			drawBox(jumpButton);
+			statsText(rend, "Level: " + (level.number + 1) + "." + (playerBox + 1));
+			statsText(rend, "Lives: " + playerLives);
+		} else {
+			rend.canvas.drawText(gameOver.message, (canvas.width / 2) - (PAINT_GAMEOVER.measureText(gameOver.message) / 2), canvas.height / 2 - (canvas.density * 20) / 2, PAINT_GAMEOVER);
 		}
-		drawBox(leftButton);
-		drawBox(rightButton);
-		drawBox(jumpButton);
-		statsText(rend, "Level: " + (level.number + 1) + "." + (playerBox + 1));
-		statsText(rend, "Lives: " + playerLives);
 	}
 	
 	public void drawBox(Box box){
