@@ -24,6 +24,7 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 	private CanvasThread _thread;
 	public int width;
 	public int height;
+	public float density;
 	public Canvas canvas;
 	public YellowQuest game;
 	private long lastUpdate = -1;
@@ -48,6 +49,7 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 		getHolder().addCallback(this);
 		setFocusable(true);
 		game = new YellowQuest(this);
+		density = getResources().getDisplayMetrics().density;
 	}
 	
 	private int floor(float f){

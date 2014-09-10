@@ -36,7 +36,7 @@ public class YellowQuest {
 	public static final double DEFAULT_ACCEL = 2;
 	public static final double DEFAULT_JUMP = 10; //Doesn't change
 	
-	public static final int BOX_BUFFER = 6;
+	public static int BOX_BUFFER = 6;
 
 	long randomSeed = Calendar.getInstance().getTimeInMillis();
 	
@@ -76,6 +76,7 @@ public class YellowQuest {
 		createButtons();
 		white = new Paint();
 		white.setColor(0x33ffffff);
+		BOX_BUFFER = (canvas.width / 148) + 1;
 	}
 	
 	public void createButtons(){
@@ -306,7 +307,7 @@ public class YellowQuest {
 	}
 	
 	public void statsText(CanvasSurfaceView rend, String text){
-		rend.canvas.drawText(text, 10, tPos += 20, PAINT_WHITE);
+		rend.canvas.drawText(text, 10 * rend.density, tPos += (20 * rend.density), PAINT_WHITE);
 	}
 	
 	public void draw(CanvasSurfaceView rend){
