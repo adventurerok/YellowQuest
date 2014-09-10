@@ -6,11 +6,21 @@ import java.util.Calendar;
 import android.graphics.Paint;
 
 import com.ithinkrok.yellowquest.entity.*;
+import com.ithinkrok.yellowquest.entity.trait.TraitDown;
 import com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory;
 import com.ithinkrok.yellowquest.util.Box;
 
 public class YellowQuest {
 
+	private static final Paint PAINT_RED = new Paint();
+	private static final Paint PAINT_BROWN = new Paint();
+	
+	static {
+		PAINT_RED.setColor(0xFFFF0000);
+		PAINT_BROWN.setColor(0xFF556644);
+	}
+	
+	
 	//public static final double DEFAULT_SLIP = 0.82;  //45 ups versions
 	//public static final double DEFAULT_ACCEL = 2;
 	//public static final double DEFAULT_JUMP = 10;
@@ -44,6 +54,9 @@ public class YellowQuest {
 	private Box leftButton;
 	private Box rightButton;
 	private Box jumpButton;
+	
+	private boolean shadow;
+	private boolean timed;
 	
 	private Paint white;
 	
@@ -162,10 +175,10 @@ public class YellowQuest {
 				case 2:
 					addAchievement(R.string.achievement_easy);
 					break;
-				case 4:
+				case 5:
 					addAchievement(R.string.achievement_medium);
 					break;
-				case 9:
+				case 8:
 					addAchievement(R.string.achievement_hard);
 					break;
 				case 11:
@@ -274,7 +287,17 @@ public class YellowQuest {
 		progress.addAchievement(activity.getString(achievement));
 	}
 	
+	private void drawFlag(CanvasSurfaceView rend, float x, float y){
+		x -= player.x;
+		y -= player.y;
+		x += rend.width / 2;
+		y += rend.height / 2;
+		rend.fillRect(x - 30, y + 30, 30, 30, PAINT_RED);
+		rend.fillRect(x, y, 5, 60, PAINT_BROWN);
+	}
+	
 	public void draw(CanvasSurfaceView rend){
+		drawFlag(rend, (float)level.finalBox.x, (float)level.finalBox.box.ey);
 		for(int d = 0; d < boxes.size(); ++d){
 			boxes.get(d).draw(rend);
 		}
