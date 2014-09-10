@@ -127,8 +127,10 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 	@Override
 	public void onSignInSucceeded() {
-		findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-	    findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
+		View signIn = findViewById(R.id.sign_in_button);
+	    View signOut = findViewById(R.id.sign_out_button);
+	    if(signIn != null) signIn.setVisibility(View.GONE);
+	    if(signOut != null) signOut.setVisibility(View.VISIBLE);
 	}
 
 	@Override

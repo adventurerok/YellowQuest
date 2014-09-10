@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.graphics.Paint;
+import android.graphics.Typeface;
 
 import com.ithinkrok.yellowquest.entity.*;
 import com.ithinkrok.yellowquest.entity.trait.TraitDown;
@@ -14,10 +15,16 @@ public class YellowQuest {
 
 	private static final Paint PAINT_RED = new Paint();
 	private static final Paint PAINT_BROWN = new Paint();
+	private static final Paint PAINT_WHITE = new Paint();
 	
 	static {
 		PAINT_RED.setColor(0xFFFF0000);
 		PAINT_BROWN.setColor(0xFF556644);
+		PAINT_WHITE.setColor(0xFFFFFFFF);
+		
+		Typeface tf = Typeface.create("sans-serif", Typeface.BOLD);
+		PAINT_WHITE.setTypeface(tf);
+		PAINT_WHITE.setTextSize(12);
 	}
 	
 	
@@ -57,6 +64,8 @@ public class YellowQuest {
 	
 	private boolean shadow;
 	private boolean timed;
+	
+	private int tPos = 0;
 	
 	private Paint white;
 	
@@ -296,7 +305,12 @@ public class YellowQuest {
 		rend.fillRect(x, y, 5, 60, PAINT_BROWN);
 	}
 	
+	public void statsText(CanvasSurfaceView rend, String text){
+		rend.canvas.drawText(text, 10, tPos += 20, PAINT_WHITE);
+	}
+	
 	public void draw(CanvasSurfaceView rend){
+		tPos = 0;
 		drawFlag(rend, (float)level.finalBox.x, (float)level.finalBox.box.ey);
 		for(int d = 0; d < boxes.size(); ++d){
 			boxes.get(d).draw(rend);
@@ -304,6 +318,8 @@ public class YellowQuest {
 		drawBox(leftButton);
 		drawBox(rightButton);
 		drawBox(jumpButton);
+		statsText(rend, "Level: " + (level.number + 1) + "." + (playerBox + 1));
+		statsText(rend, "Lives: " + playerLives);
 	}
 	
 	public void drawBox(Box box){
