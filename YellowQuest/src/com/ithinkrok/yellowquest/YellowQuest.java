@@ -28,7 +28,7 @@ public class YellowQuest {
 		PAINT_STATS.setTypeface(tf);
 		PAINT_GAMEOVER.setTypeface(tf);
 		PAINT_STATS.setTextSize(12);
-		PAINT_GAMEOVER.setTextSize(20);
+		PAINT_GAMEOVER.setTextSize(30);
 	}
 	
 	
@@ -82,7 +82,7 @@ public class YellowQuest {
 		white.setColor(0x33ffffff);
 		BOX_BUFFER = (canvas.width / 148) + 1;
 		PAINT_STATS.setTextSize(canvas.density * 12);
-		PAINT_GAMEOVER.setTextSize(canvas.density * 12);
+		PAINT_GAMEOVER.setTextSize(canvas.density * 30);
 	}
 	
 	public void createButtons(CanvasSurfaceView canvas){
@@ -318,7 +318,7 @@ public class YellowQuest {
 			statsText(rend, "Level: " + (level.number + 1) + "." + (playerBox + 1));
 			statsText(rend, "Lives: " + playerLives);
 		} else {
-			rend.canvas.drawText(gameOver.message, (canvas.width / 2) - (PAINT_GAMEOVER.measureText(gameOver.message) / 2), canvas.height / 2 - (canvas.density * 20) / 2, PAINT_GAMEOVER);
+			rend.canvas.drawText(gameOver.message, (canvas.width / 2) - (PAINT_GAMEOVER.measureText(gameOver.message) / 2), canvas.height / 2 - (canvas.density * 30) / 2, PAINT_GAMEOVER);
 		}
 	}
 	
