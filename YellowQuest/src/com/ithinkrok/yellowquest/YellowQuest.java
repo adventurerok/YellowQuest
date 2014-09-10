@@ -238,6 +238,7 @@ public class YellowQuest {
 	    generateBoxes(BOX_BUFFER);
 	    timer = 0;
 	    totalTimer = 0;
+	    timerStarted = false;
 	}
 	
 	public void load() {
@@ -259,7 +260,8 @@ public class YellowQuest {
 	    player.reset();
 	    boxes.add(player);
 	    generateBoxes(BOX_BUFFER);
-	    timer = 0;  
+	    timer = 0;
+	    timerStarted = false;
 	}
 
 	public void restartLevel() {
@@ -276,6 +278,7 @@ public class YellowQuest {
 	    boxes.add(player);
 	    generateBoxes(BOX_BUFFER);
 	    timer = 0;
+	    timerStarted = false;
 	}
 
 	public void generateBoxes(int amount) {
