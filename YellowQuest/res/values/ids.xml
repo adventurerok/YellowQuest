@@ -8,5 +8,6 @@
     <item type="id" name="menu_settings"/>
     <item type="id" name="settings_music"/>
     <item type="id" name="settings_back"/>
+    <item type="id" name="settings_gameover_time"/>
 
 </resources>
