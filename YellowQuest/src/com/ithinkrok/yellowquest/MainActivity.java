@@ -48,6 +48,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	OnAudioFocusChangeListener audioListener;
 	public boolean[] wasdKeys = new boolean[4];
 	private boolean audioEnabled = false;
+	private boolean shadowMode = false;
+	private boolean timeMode = false;
 
 	private boolean paused = false;
 	private boolean screenOff = false;
@@ -75,6 +77,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		//setContentView(view);
 
 		audioEnabled = settings.getBoolean("music", true);
+		shadowMode = settings.getBoolean("shadow", false);
+		timeMode = settings.getBoolean("time", false);
 		if (audioEnabled) {
 			audioStart();
 		}
@@ -179,9 +183,9 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			if(audioEnabled){
 				audioStart();
 			} else audioStop();
-			Editor editor = settings.edit();
-			editor.putBoolean("music", audioEnabled);
-			editor.commit();
+			Editor editorMusic = settings.edit();
+			editorMusic.putBoolean("music", audioEnabled);
+			editorMusic.commit();
 			break;
 		case R.id.play_back:
 		case R.id.settings_back:
@@ -194,6 +198,18 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			signOut();
 			sign_out_button.setVisibility(View.GONE);
 			sign_in_button.setVisibility(View.VISIBLE);
+			break;
+		case R.id.play_shadow:
+			shadowMode = play_shadow.isChecked();
+			Editor editorShadow = settings.edit();
+			editorShadow.putBoolean("shadow", shadowMode);
+			editorShadow.commit();
+			break;
+		case R.id.play_time:
+			shadowMode = play_shadow.isChecked();
+			Editor editorTime = settings.edit();
+			editorTime.putBoolean("time", timeMode);
+			editorTime.commit();
 			break;
 		}
 		
@@ -238,6 +254,9 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		play_back.setOnClickListener(this);
 		play_shadow.setOnClickListener(this);
 		play_time.setOnClickListener(this);
+		
+		play_shadow.setChecked(shadowMode);
+		play_time.setChecked(timeMode);
 	}
 	
 	public void loadSettingsView(){
