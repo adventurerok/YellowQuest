@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/black">
+    
+    <LinearLayout 
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        
+        <CheckBox 
+            android:text="@string/shadow_mode"
+            android:layout_gravity="start"
+            android:id="@+id/play_shadow"
+            style="@style/MenuFont"/>
+        
+        <CheckBox
+            android:text="@string/time_mode"
+            android:layout_gravity="start"
+            android:id="@+id/play_time"
+            style="@style/MenuFont"/>
+        
+        <TextView 
+            android:text="@string/play"
+            android:layout_gravity="start|bottom"
+            android:id="@+id/play_play"
+            style="@style/MenuFont"/>
+        
+        <TextView 
+            android:text="@string/back"
+            android:layout_gravity="end|bottom"
+            android:id="@+id/play_back"
+            style="@style/MenuFont"/>
+        
+        
+    </LinearLayout>
+    
+
+    
+</RelativeLayout>

@@ -35,6 +35,11 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private CheckBox settings_music;
 	private TextView settings_back;
 	
+	private TextView play_play;
+	private TextView play_back;
+	private CheckBox play_shadow;
+	private CheckBox play_time;
+	
 	
 	private CanvasSurfaceView view;
 	private AudioManager am;
@@ -138,6 +143,9 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.menu_play:
+			loadPlayView();
+		case R.id.play_play:
+			view.game.setGameMode(play_shadow.isChecked(), play_time.isChecked());
 			loadGameView();
 			break;
 		case R.id.menu_achievements:
@@ -173,6 +181,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			editor.putBoolean("music", audioEnabled);
 			editor.commit();
 			break;
+		case R.id.play_back:
 		case R.id.settings_back:
 			loadMenuView();
 			break;
@@ -212,6 +221,18 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			sign_in_button.setVisibility(View.GONE);
 			sign_out_button.setVisibility(View.VISIBLE);
 		}
+	}
+	
+	public void loadPlayView(){
+		play_play = (TextView) findViewById(R.id.play_play);
+		play_back = (TextView) findViewById(R.id.play_back);
+		play_shadow = (CheckBox) findViewById(R.id.play_shadow);
+		play_time = (CheckBox) findViewById(R.id.play_time);
+		
+		play_play.setOnClickListener(this);
+		play_back.setOnClickListener(this);
+		play_shadow.setOnClickListener(this);
+		play_time.setOnClickListener(this);
 	}
 	
 	public void loadSettingsView(){

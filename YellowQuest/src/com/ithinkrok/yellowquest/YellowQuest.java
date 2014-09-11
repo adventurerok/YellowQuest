@@ -345,6 +345,11 @@ public class YellowQuest {
 		return timed;
 	}
 	
+	public void setGameMode(boolean shadow, boolean time){
+		shadow = shadow;
+		time = time;
+	}
+	
 	public void statsText(CanvasSurfaceView rend, String text){
 		rend.canvas.drawText(text, 10 * rend.density, tPos += (20 * rend.density), PAINT_STATS);
 	}

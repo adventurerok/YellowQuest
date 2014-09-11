@@ -18,7 +18,8 @@
     <string name="ok">OK</string>
     <string name="cant_view_achievements">Can\'t view achievements</string>
     <string name="cant_connect_to_google">Can\'t connect to Google Play. Are you connected to the internet and signed in to your google account?</string>
-    
+    <string name="shadow_mode">Shadow mode</string>
+	<string name="time_mode">Time mode</string>   
     
 
 </resources>
