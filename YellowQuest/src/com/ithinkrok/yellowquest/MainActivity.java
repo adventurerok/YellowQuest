@@ -142,9 +142,9 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			break;
 		case R.id.menu_achievements:
 			if(getApiClient() == null || !getApiClient().isConnected()){
-				AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-				builder.setMessage("Can't connect to Google PLay");
-				builder.setTitle("Can't view achievements");
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setMessage(R.string.cant_connect_to_google);
+				builder.setTitle(R.string.cant_view_achievements);
 				builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 					
 					@Override

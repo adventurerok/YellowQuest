@@ -73,7 +73,7 @@ public class YellowQuest {
 	private Box rightButton;
 	private Box jumpButton;
 	
-	private boolean shadow;
+	private boolean shadow = true;
 	private boolean timed;
 	
 	private int tPos = 0;
@@ -319,6 +319,14 @@ public class YellowQuest {
 		y += rend.height / 2;
 		rend.fillRect(x - 30, y + 30, 30, 30, PAINT_RED);
 		rend.fillRect(x, y, 5, 60, PAINT_BROWN);
+	}
+	
+	public boolean shadowMode(){
+		return shadow;
+	}
+	
+	public boolean timeMode(){
+		return timed;
 	}
 	
 	public void statsText(CanvasSurfaceView rend, String text){

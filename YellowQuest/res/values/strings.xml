@@ -16,6 +16,8 @@
     <string name="sign_out">Sign Out</string>
     <string name="gameover_time">GameOver Time</string>
     <string name="ok">OK</string>
+    <string name="cant_view_achievements">Can\'t view achievements</string>
+    <string name="cant_connect_to_google">Can\'t connect to Google Play. Are you connected to the internet and signed in to your google account?</string>
     
     
 

@@ -9,14 +9,19 @@ import com.ithinkrok.yellowquest.entity.trait.Trait;
 public class EntityPlatform extends Entity {
 
 	private static final Paint PAINT_BLUE = new Paint();
+	private static final Paint PAINT_WHITE = new Paint();
+	
+	public boolean revealed = true;
 	
 	static {
 		PAINT_BLUE.setColor(0xff0000ff);
+		PAINT_WHITE.setColor(0xffffffff);
 	}
 	
 	public EntityPlatform(YellowQuest game) {
 		super(game, EntityType.PLATFORM);
 		this.color = PAINT_BLUE;
+		if(game.shadowMode()) revealed = false;
 	}
 	
 	public Trait[] traits = new Trait[0];
@@ -30,6 +35,7 @@ public class EntityPlatform extends Entity {
 	    if (game.player.box.intersects(this.box)) {
 	        pis = true;
 	        game.player.intersecting = this;
+	        revealed = true;
 	        this.intersectsPlayer(game.player);
 	    } else{
 	    	this.noPlayer(game.player);
@@ -104,7 +110,8 @@ public class EntityPlatform extends Entity {
 	@Override
 	public void draw(CanvasSurfaceView rend) {
 		Paint paint;
-		if(traits.length == 0) paint = this.color;
+		if(!revealed) paint = PAINT_WHITE;
+		else if(traits.length == 0) paint = this.color;
 		else if(traits.length == 1) paint = traits[0].color;
 		else paint = traits[1].color;
         float xp = (float) (box.sx - game.player.x + rend.width / 2);
@@ -114,7 +121,7 @@ public class EntityPlatform extends Entity {
         float h = (float) (box.ey - box.sy);
         if ((xp + w) < 0 || (yp + h) < 0) return;
         rend.fillRect(xp, yp, w, h, paint);
-        if(traits.length < 2) return;
+        if(traits.length < 2 || !revealed) return;
         int bonusBorder = (int) (Math.min(width, height) / 4d);
         xp = (float) ((box.sx - game.player.x + rend.width / 2) + bonusBorder);
         yp = (float) ((box.sy - game.player.y + rend.height / 2) + bonusBorder);
