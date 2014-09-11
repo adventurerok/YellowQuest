@@ -145,7 +145,16 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 				AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
 				builder.setMessage("Can't connect to Google PLay");
 				builder.setTitle("Can't view achievements");
+				builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+						
+					}
+				});
 				AlertDialog dialog = builder.create();
+				dialog.show();
 				return;
 			}
 			startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), 1);
