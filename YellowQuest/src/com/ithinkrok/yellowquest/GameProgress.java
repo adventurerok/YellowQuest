@@ -24,7 +24,7 @@ public class GameProgress {
 	public void addAchievement(String achievement){
 		if(achievements.contains(achievement)) return;
 		client = activity.getApiClient();
-		if(client == null) return;
+		if(client == null || !client.isConnected()) return;
 		Games.Achievements.unlock(client, achievement);
 		achievements.add(achievement);
 	}

@@ -141,7 +141,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			loadGameView();
 			break;
 		case R.id.menu_achievements:
-			if(getApiClient() == null){
+			if(getApiClient() == null || !getApiClient().isConnected()){
 				AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
 				builder.setMessage("Can't connect to Google PLay");
 				builder.setTitle("Can't view achievements");
