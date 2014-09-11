@@ -74,7 +74,7 @@ public class YellowQuest {
 	private Box jumpButton;
 	
 	private boolean shadow = true;
-	private boolean timed;
+	private boolean timed = true;
 	
 	private int tPos = 0;
 	
@@ -236,7 +236,8 @@ public class YellowQuest {
 	    player.reset();
 	    boxes.add(player);
 	    generateBoxes(BOX_BUFFER);
-	    timer = 0;
+	    if(timed) timer = TIMER_MAX - TIMER_START;
+	    else timer = 0;
 	    totalTimer = 0;
 	    timerStarted = false;
 	}
@@ -260,7 +261,8 @@ public class YellowQuest {
 	    player.reset();
 	    boxes.add(player);
 	    generateBoxes(BOX_BUFFER);
-	    timer = 0;
+	    if(timed) timer = TIMER_MAX - TIMER_START;
+	    else timer = 0;
 	    timerStarted = false;
 	}
 
@@ -277,7 +279,8 @@ public class YellowQuest {
 	    player.reset();
 	    boxes.add(player);
 	    generateBoxes(BOX_BUFFER);
-	    timer = 0;
+	    if(timed) timer = TIMER_MAX - TIMER_START;
+	    else timer = 0;
 	    timerStarted = false;
 	}
 
