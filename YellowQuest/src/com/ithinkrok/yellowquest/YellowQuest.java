@@ -346,8 +346,8 @@ public class YellowQuest {
 	}
 	
 	public void setGameMode(boolean shadow, boolean time){
-		shadow = shadow;
-		time = time;
+		this.shadow = shadow;
+		this.timed = time;
 	}
 	
 	public void statsText(CanvasSurfaceView rend, String text){
