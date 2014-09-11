@@ -1,5 +1,6 @@
 package com.ithinkrok.yellowquest;
 
+import android.app.AlertDialog;
 import android.content.*;
 import android.content.SharedPreferences.Editor;
 import android.media.*;
@@ -140,6 +141,13 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			loadGameView();
 			break;
 		case R.id.menu_achievements:
+			if(getApiClient() == null){
+				AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+				builder.setMessage("Can't connect to Google PLay");
+				builder.setTitle("Can't view achievements");
+				AlertDialog dialog = builder.create();
+				return;
+			}
 			startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), 1);
 			break;
 		case R.id.menu_leaderboards:

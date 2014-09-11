@@ -17,13 +17,6 @@
             android:id="@+id/settings_music"
             style="@style/MenuFont"/>
         
-        <SeekBar
-            android:text="@string/gameover_time"
-            android:layout_gravity="start"
-            android:id="@+id/settings_gameover_time"
-            android:max="100"
-            style="@style/MenuFont"/>
-        
         <TextView 
             android:text="@string/back"
             android:layout_gravity="start"

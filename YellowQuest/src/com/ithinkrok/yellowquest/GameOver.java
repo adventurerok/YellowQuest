@@ -2,7 +2,7 @@ package com.ithinkrok.yellowquest;
 
 public class GameOver {
 
-	public int time = 45;
+	public int time = 25;
 	public int type = 0;
 	public String message = "Game Over";
 	
