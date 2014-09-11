@@ -20,6 +20,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private static enum GameState {
 		MENU,
 		SETTINGS,
+		SETUP,
 		GAME;
 	}
 	
@@ -144,6 +145,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		switch(v.getId()){
 		case R.id.menu_play:
 			loadPlayView();
+			break;
 		case R.id.play_play:
 			view.game.setGameMode(play_shadow.isChecked(), play_time.isChecked());
 			loadGameView();
@@ -224,6 +226,9 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	}
 	
 	public void loadPlayView(){
+		state = GameState.SETUP;
+		setContentView(R.layout.play);
+		
 		play_play = (TextView) findViewById(R.id.play_play);
 		play_back = (TextView) findViewById(R.id.play_back);
 		play_shadow = (CheckBox) findViewById(R.id.play_shadow);
