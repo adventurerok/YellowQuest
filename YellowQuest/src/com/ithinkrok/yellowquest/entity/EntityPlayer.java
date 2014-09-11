@@ -38,7 +38,17 @@ public class EntityPlayer extends Entity {
 	    this.move(this.x_velocity, this.y_velocity);
 	    if (this.intersecting != null) {
 	        if (this.intersecting.boxNumber > game.playerBox) {
-	        	if(game.timeMode()) game.timer -= YellowQuest.TIMER_BOX * (this.intersecting.boxNumber - game.playerBox);
+	        	int skipped = this.intersecting.boxNumber - game.playerBox;
+	        	if(game.timeMode()) game.timer -= YellowQuest.TIMER_BOX * skipped;
+	        	int boxMult = 10;
+	        	if(game.timeMode()) boxMult = 20;
+	        	else if(game.shadowMode()) boxMult = 15;
+	        	game.addScore(skipped * boxMult);
+	        	--skipped;
+	        	while(skipped > 0){
+	        		game.addScore(skipped * 10);
+	        		--skipped;
+	        	}
 	            game.playerBox = this.intersecting.boxNumber;
 	            
 	        }

@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 
 import com.ithinkrok.yellowquest.entity.*;
-import com.ithinkrok.yellowquest.entity.trait.TraitDown;
 import com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory;
 import com.ithinkrok.yellowquest.util.Box;
 
@@ -81,6 +80,8 @@ public class YellowQuest {
 	private Paint white;
 	
 	private boolean timerStarted = false;
+	
+	private int score;
 	
 	public YellowQuest(CanvasSurfaceView canvas) {
 		this.canvas = canvas;
@@ -188,6 +189,17 @@ public class YellowQuest {
 			player.update();
 			if (this.playerBox + 1 >= level.size) {
 				gameOver = new GameOver(1, "Next Level");
+				int mult = 10;
+				if(shadow){
+					if(timed) mult = 25;
+					else mult = 15;
+				} else if(timed) mult = 20;
+				addScore((level.number + 1) * mult);
+				if(timed){
+					addScore(((TIMER_MAX - timer) / TIMER_SECOND) * 75);
+				} else {
+					addScore(((TIMER_MAX - timer) / TIMER_SECOND));
+				}
 				
 				if(Math.abs(player.box.sx - level.finalBox.box.ex) < 1){
 					addAchievement(R.string.achievement_overshot);
@@ -240,6 +252,7 @@ public class YellowQuest {
 	    else timer = 0;
 	    totalTimer = 0;
 	    timerStarted = false;
+	    score = 0;
 	}
 	
 	public void load() {
@@ -348,6 +361,7 @@ public class YellowQuest {
 			drawBox(rightButton);
 			drawBox(jumpButton);
 			statsText(rend, "Level: " + (level.number + 1) + "." + (playerBox + 1));
+			statsText(rend, "Score: " + score);
 			statsText(rend, "Timer: " + ((TIMER_MAX - timer) / TIMER_SECOND) + " (Total: " + (totalTimer / TIMER_SECOND) + ")");
 			statsText(rend, "Lives: " + playerLives);
 		} else {
@@ -357,5 +371,13 @@ public class YellowQuest {
 	
 	public void drawBox(Box box){
 		canvas.canvas.drawRect((float)box.sx, (float)box.sy, (float)(box.ex), (float)(box.ey), white);
+	}
+	
+	public void addScore(int score){
+		this.score += score;
+	}
+	
+	public int getScore() {
+		return score;
 	}
 }
