@@ -82,6 +82,7 @@ public class YellowQuest {
 	private boolean timerStarted = false;
 	
 	private int score;
+	private int levelScore;
 	
 	public YellowQuest(CanvasSurfaceView canvas) {
 		this.canvas = canvas;
@@ -253,6 +254,7 @@ public class YellowQuest {
 	    totalTimer = 0;
 	    timerStarted = false;
 	    score = 0;
+	    levelScore = 0;
 	}
 	
 	public void load() {
@@ -277,6 +279,7 @@ public class YellowQuest {
 	    if(timed) timer = TIMER_MAX - TIMER_START;
 	    else timer = 0;
 	    timerStarted = false;
+	    levelScore = 0;
 	}
 
 	public void restartLevel() {
@@ -295,6 +298,7 @@ public class YellowQuest {
 	    if(timed) timer = TIMER_MAX - TIMER_START;
 	    else timer = 0;
 	    timerStarted = false;
+	    levelScore = 0;
 	}
 
 	public void generateBoxes(int amount) {
@@ -380,6 +384,7 @@ public class YellowQuest {
 	
 	public void addScore(int score){
 		this.score += score;
+		this.levelScore += score;
 	}
 	
 	public int getScore() {

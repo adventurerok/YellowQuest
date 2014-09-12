@@ -13,7 +13,10 @@ public class GameProgress {
 	private ArrayList<String> achievements = new ArrayList<String>();
 	
 	
-	
+	//Use gamedata to save achievements
+	//0 = not got
+	//1 = got, but only offline
+	//2 = got online
 	
 	public GameProgress(MainActivity activity) {
 		super();
