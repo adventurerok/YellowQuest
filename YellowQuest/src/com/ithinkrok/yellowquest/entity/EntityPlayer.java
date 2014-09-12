@@ -21,7 +21,7 @@ public class EntityPlayer extends Entity {
 	@Override
 	public void update() {
 		if (Math.abs(this.x_velocity) < 0.01) this.x_velocity = 0;
-	    double aSlip = YellowQuest.DEFAULT_SLIP;
+	    double aSlip = YellowQuest.AIR_SLIP;
 	    if (this.intersecting != null) {
 	        aSlip = this.intersecting.slip;
 	    }

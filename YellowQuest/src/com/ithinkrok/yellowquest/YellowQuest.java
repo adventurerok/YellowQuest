@@ -36,8 +36,10 @@ public class YellowQuest {
 	//public static final double DEFAULT_JUMP = 10;
 	
 	public static final double DEFAULT_SLIP = 0.82; //45 ups versions
-	public static final double DEFAULT_ACCEL = 2;
+	public static final double DEFAULT_ACCEL = 3;
 	public static final double DEFAULT_JUMP = 10; //Doesn't change
+	public static final double AIR_SLIP = 0.75;
+	public static final double AIR_ACCEL = 3;
 	
 	public static final int TIMER_MAX = 8999;
 	public static final int TIMER_SECOND = 45;
@@ -49,7 +51,7 @@ public class YellowQuest {
 
 	long randomSeed = Calendar.getInstance().getTimeInMillis();
 	
-	public GameProgress progress;
+	public GameData gameData;
 	public MainActivity activity;
 
 	public GameOver gameOver = null;
@@ -87,7 +89,7 @@ public class YellowQuest {
 	public YellowQuest(CanvasSurfaceView canvas) {
 		this.canvas = canvas;
 		activity = canvas.getActivity();
-		progress = canvas.getActivity().getProgress();
+		gameData = canvas.getActivity().getGameData();
 		createButtons(canvas);
 		white = new Paint();
 		white.setColor(0x33ffffff);
@@ -132,7 +134,7 @@ public class YellowQuest {
 	}
 
 	public void update() {
-		double acell = DEFAULT_ACCEL;
+		double acell = AIR_ACCEL;
 		if (this.player.intersecting != null) acell = this.player.intersecting.accel;
 		int maxSpeed = 250; //45 ups
 		if(gameOver != null && gameOver.time == 0) gameOver = null;
@@ -226,7 +228,9 @@ public class YellowQuest {
 		} else {
 			--gameOver.time;
 			if (gameOver.time == 0) {
-				if (gameOver.type == 0) this.reload();
+				if (gameOver.type == 0){
+					this.reload();
+				}
 				else if (gameOver.type == 1) this.nextLevel();
 				else if (gameOver.type == 2) this.restartLevel();
 				gameOver = null;
@@ -325,11 +329,11 @@ public class YellowQuest {
 	}
 	
 	public void addAchievement(String achievement){
-		progress.addAchievement(achievement);
+		gameData.addAchievement(achievement);
 	}
 	
 	public void addAchievement(int achievement){
-		progress.addAchievement(activity.getString(achievement));
+		gameData.addAchievement(activity.getString(achievement));
 	}
 	
 	private void drawFlag(CanvasSurfaceView rend, float x, float y){

@@ -7,16 +7,60 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.support.v4.util.LongSparseArray;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.Games;
+
 public class GameData {
 	
+	public static long hash(String string) {
+		  long h = 1125899906842597L; // prime
+		  int len = string.length();
+
+		  for (int i = 0; i < len; i++) {
+		    h = 31*h + string.charAt(i);
+		  }
+		  return h;
+		}
+	private MainActivity activity;
+	
+	private GoogleApiClient client;
+	
+	
+	//Use gamedata to save achievements
+	//0 = not got
+	//1 = got, but only offline
+	//2 = got online
+	
+
 	private LongSparseArray<Object> data = new LongSparseArray<Object>();
 	
-	public int getScore(int level, boolean shadow, boolean time){
-		String base = "score_" + level + "_shad_" + shadow + "_time_" + time + "_end";
-		Integer res = (Integer) data.get(hash(base));
-		if(res == null) return 0;
-		return res;
+	public GameData(MainActivity activity) {
+		super();
+		this.activity = activity;
 	}
+	
+	public void addAchievement(String achievement){
+		if(hasAchievement(achievement)) return;
+		client = activity.getApiClient();
+		if(client == null || !client.isConnected()){
+			data.put(getAchievementHash(achievement), 1);
+			return;
+		}
+		Games.Achievements.unlock(client, achievement);
+		data.put(getAchievementHash(achievement), 2);
+	}
+	
+	public boolean hasAchievement(String achievement){
+		Object obj = data.get(getAchievementHash(achievement));
+		if(obj == null || !(obj instanceof Number)) return false;
+		return ((Number)obj).intValue() > 0;
+	}
+	
+	
+	private long getAchievementHash(String achievement){
+		return hash("achievement_" + achievement);
+	}
+	
 	
 	public int getScore(int level){
 		String base = "score_" + level + "_all";
@@ -25,8 +69,8 @@ public class GameData {
 		return res;
 	}
 	
-	public int getTime(int level, boolean shadow, boolean time){
-		String base = "time_" + level + "_shad_" + shadow + "_time_" + time + "_end";
+	public int getScore(int level, boolean shadow, boolean time){
+		String base = "score_" + level + "_shad_" + shadow + "_time_" + time + "_end";
 		Integer res = (Integer) data.get(hash(base));
 		if(res == null) return 0;
 		return res;
@@ -39,14 +83,11 @@ public class GameData {
 		return res;
 	}
 	
-	public void save(Editor editor){
-		Integer i;
-		for(int d = 0; d < data.size(); ++d){
-			i = (Integer) data.valueAt(d);
-			if(i == null) continue;
-			editor.putInt("data_" + data.keyAt(d), i);
-		}
-		editor.commit();
+	public int getTime(int level, boolean shadow, boolean time){
+		String base = "time_" + level + "_shad_" + shadow + "_time_" + time + "_end";
+		Integer res = (Integer) data.get(hash(base));
+		if(res == null) return 0;
+		return res;
 	}
 	
 	public void load(SharedPreferences prefs){
@@ -60,14 +101,14 @@ public class GameData {
 		}
 	}
 	
-	public static long hash(String string) {
-		  long h = 1125899906842597L; // prime
-		  int len = string.length();
-
-		  for (int i = 0; i < len; i++) {
-		    h = 31*h + string.charAt(i);
-		  }
-		  return h;
+	public void save(Editor editor){
+		Integer i;
+		for(int d = 0; d < data.size(); ++d){
+			i = (Integer) data.valueAt(d);
+			if(i == null) continue;
+			editor.putInt("data_" + data.keyAt(d), i);
 		}
+		editor.commit();
+	}
 
 }

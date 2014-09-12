@@ -26,7 +26,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	
 	private GameState state;
 	
-	private GameProgress progress;
+	private GameData gameData;
 	private TextView menu_play;
 	private TextView menu_achievements;
 	private TextView menu_leaderboards;
@@ -66,7 +66,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		
 		super.onCreate(savedInstanceState);
 		
-		progress = new GameProgress(this);
+		gameData = new GameData(this);
 		
 		settings = getSharedPreferences("com.ithinkrok.yellowquest", Context.MODE_PRIVATE);
 
@@ -99,8 +99,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		
 	}
 	
-	public GameProgress getProgress() {
-		return progress;
+	public GameData getGameData() {
+		return gameData;
 	}
 	
 	@Override
