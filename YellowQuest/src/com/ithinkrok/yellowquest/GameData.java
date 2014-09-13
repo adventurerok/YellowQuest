@@ -61,16 +61,19 @@ public class GameData {
 		return hash("achievement_" + achievement);
 	}
 	
+	public boolean addScore(int level, int score){
+		String base = "score_" + level + "_all";
+		long hash = hash(base);
+		Integer res = (Integer) data.get(hash);
+		if(res == null || res < score){
+			data.put(hash, score);
+			return true;
+		} else return false;
+	}
+	
 	
 	public int getScore(int level){
 		String base = "score_" + level + "_all";
-		Integer res = (Integer) data.get(hash(base));
-		if(res == null) return 0;
-		return res;
-	}
-	
-	public int getScore(int level, boolean shadow, boolean time){
-		String base = "score_" + level + "_shad_" + shadow + "_time_" + time + "_end";
 		Integer res = (Integer) data.get(hash(base));
 		if(res == null) return 0;
 		return res;
@@ -83,12 +86,6 @@ public class GameData {
 		return res;
 	}
 	
-	public int getTime(int level, boolean shadow, boolean time){
-		String base = "time_" + level + "_shad_" + shadow + "_time_" + time + "_end";
-		Integer res = (Integer) data.get(hash(base));
-		if(res == null) return 0;
-		return res;
-	}
 	
 	public void load(SharedPreferences prefs){
 		Map<String, ?> data = prefs.getAll();
