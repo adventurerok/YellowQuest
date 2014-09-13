@@ -70,6 +70,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		gameData = new GameData(this);
 		
 		settings = getSharedPreferences("com.ithinkrok.yellowquest", Context.MODE_PRIVATE);
+		
+		gameData.load(settings);
 
 		//menu = findViewById(R.layout.game);
 		loadMenuView();
@@ -98,6 +100,10 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			media.pause();
 		if(view != null) view.onPause();
 		
+	}
+	
+	public SharedPreferences getSettings() {
+		return settings;
 	}
 	
 	public GameData getGameData() {

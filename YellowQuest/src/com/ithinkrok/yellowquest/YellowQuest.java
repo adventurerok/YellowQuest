@@ -330,6 +330,7 @@ public class YellowQuest {
 	
 	public void gameOver(){
 		gameData.addHiScore(score);
+		gameData.save(canvas.getActivity().getSettings().edit());
 		this.reload();
 	}
 	
