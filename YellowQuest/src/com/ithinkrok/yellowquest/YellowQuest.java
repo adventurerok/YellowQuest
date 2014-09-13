@@ -328,6 +328,11 @@ public class YellowQuest {
 		return timed;
 	}
 	
+	public void gameOver(){
+		gameData.addHiScore(score);
+		this.reload();
+	}
+	
 	public void update() {
 		if(gameOver != null && gameOver.time == 0) gameOver = null;
 		if (gameOver == null) {
@@ -381,8 +386,7 @@ public class YellowQuest {
 		--gameOver.time;
 		if (gameOver.time == 0) {
 			if (gameOver.type == 0){
-				gameData.addHiScore(score);
-				this.reload();
+				gameOver();
 			}
 			else if (gameOver.type == 1) this.nextLevel();
 			else if (gameOver.type == 2) this.restartLevel();

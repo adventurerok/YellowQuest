@@ -40,6 +40,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private TextView play_back;
 	private CheckBox play_shadow;
 	private CheckBox play_time;
+	private TextView play_score;
 	
 	
 	private CanvasSurfaceView view;
@@ -249,6 +250,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		play_back = (TextView) findViewById(R.id.play_back);
 		play_shadow = (CheckBox) findViewById(R.id.play_shadow);
 		play_time = (CheckBox) findViewById(R.id.play_time);
+		play_score = (TextView) findViewById(R.id.play_score);
 		
 		play_play.setOnClickListener(this);
 		play_back.setOnClickListener(this);
@@ -257,6 +259,13 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		
 		play_shadow.setChecked(shadowMode);
 		play_time.setChecked(timeMode);
+		
+		
+		int hiscore = gameData.getHiScore();
+		int previous = gameData.getPreviousScore();
+		String text = getString(R.string.hiscore_x_previous_y);
+		text = String.format(text, hiscore, previous);
+		play_score.setText(text);
 	}
 	
 	public void loadSettingsView(){
@@ -279,7 +288,10 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	
 	@Override
 	public void onBackPressed() {
-		if(state == GameState.GAME || state == GameState.SETTINGS){
+		if(state == GameState.GAME){
+			view.game.gameOver();
+			loadPlayView();
+		} else if(state == GameState.SETTINGS || state == GameState.SETUP){
 			loadMenuView();
 		} else super.onBackPressed();
 	}

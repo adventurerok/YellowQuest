@@ -23,6 +23,12 @@
             android:id="@+id/play_time"
             style="@style/MenuFont"/>
         
+        <TextView
+            android:text="@string/hiscore_x_previous_y"
+            android:layout_gravity="start"
+            android:id="@+id/play_score"
+            style="@style/MenuFont"/>
+        
         <TextView 
             android:text="@string/play"
             android:layout_gravity="start|bottom"
