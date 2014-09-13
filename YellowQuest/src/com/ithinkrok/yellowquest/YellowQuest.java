@@ -273,7 +273,7 @@ public class YellowQuest {
 		gameOver = null;
 	    boxes.clear();
 	    playerLives = 3;
-	    level.number = 8;
+	    level.number = 0;
 	    level.size = 8;
 	    nextBox = 0;
 	    playerBox = 0;
