@@ -381,6 +381,7 @@ public class YellowQuest {
 		--gameOver.time;
 		if (gameOver.time == 0) {
 			if (gameOver.type == 0){
+				gameData.addHiScore(score);
 				this.reload();
 			}
 			else if (gameOver.type == 1) this.nextLevel();

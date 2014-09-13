@@ -61,6 +61,33 @@ public class GameData {
 		return hash("achievement_" + achievement);
 	}
 	
+	public boolean addHiScore(int score){
+		data.put(hash("score_previous"), score);
+		String base = "score_total";
+		long hash = hash(base);
+		Integer res = (Integer) data.get(hash);
+		if(res == null || res < score){
+			data.put(hash, score);
+			return true;
+		} else return false;
+	}
+	
+	public int getHiScore(){
+		String base = "score_total";
+		long hash = hash(base);
+		Integer res = (Integer) data.get(hash);
+		if(res == null) return 0;
+		else return res;
+	}
+	
+	public int getPreviousScore(){
+		String base = "score_previous";
+		long hash = hash(base);
+		Integer res = (Integer) data.get(hash);
+		if(res == null) return 0;
+		else return res;
+	}
+	
 	public boolean addScore(int level, int score){
 		String base = "score_" + level + "_all";
 		long hash = hash(base);
