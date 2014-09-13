@@ -20,7 +20,7 @@ public class TraitBounce extends Trait {
 	
 	@Override
 	public void intersectsPlayer(EntityPlayer player) {
-		if(player.onGround) player.y_velocity = 13;
+		if(player.onGround) player.y_velocity = 13 * player.getJumpMultiplier() + player.getJumpIncrease();
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.ithinkrok.yellowquest.entity;
 
 import com.ithinkrok.yellowquest.BoxMath;
 import com.ithinkrok.yellowquest.YellowQuest;
+import com.ithinkrok.yellowquest.entity.power.Power;
 
 import android.graphics.Paint;
 
@@ -12,6 +13,8 @@ public class EntityPlayer extends Entity {
 	static {
 		PAINT_YELLOW.setColor(0xffffff00);
 	}
+	
+	protected Power power;
 	
 	public EntityPlayer(YellowQuest game) {
 		super(game, EntityType.PLAYER);
@@ -53,6 +56,22 @@ public class EntityPlayer extends Entity {
 	            
 	        }
 	    }
+	}
+	
+	public float getAccelMultiplier(){
+		return power != null ? power.accelMultiplier : 1.0f;
+	}
+	
+	public float getJumpMultiplier(){
+		return power != null ? power.accelMultiplier : 1.0f;
+	}
+	
+	public float getAccelIncrease(){
+		return power != null ? power.accelMultiplier : 1.0f;
+	}
+	
+	public float getJumpIncrease(){
+		return power != null ? power.accelMultiplier : 1.0f;
 	}
 	
 

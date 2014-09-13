@@ -396,21 +396,21 @@ public class YellowQuest {
 	}
 	
 	private void updateInput(){
-		double acell = AIR_ACCEL;
-		if (this.player.intersecting != null) acell = this.player.intersecting.accel;
+		double accel = AIR_ACCEL;
+		if (this.player.intersecting != null) accel = this.player.intersecting.accel;
 		int maxSpeed = 250; //45 ups
 		if (goLeft()){
-			this.player.x_velocity -= acell;
+			this.player.x_velocity -= (accel * player.getAccelMultiplier() + player.getAccelIncrease());
 			timerStarted = true;
 		}
 		if (this.player.x_velocity < -maxSpeed) this.player.x_velocity = -maxSpeed;
 		if (goRight()){
-			this.player.x_velocity += acell;
+			this.player.x_velocity += (accel * player.getAccelMultiplier() + player.getAccelIncrease());
 			timerStarted = true;
 		}
 		if (this.player.x_velocity > maxSpeed) this.player.x_velocity = maxSpeed;
 		if (doJump() && this.player.onGround){
-			this.player.y_velocity = DEFAULT_JUMP;
+			this.player.y_velocity = DEFAULT_JUMP * player.getJumpMultiplier() + player.getJumpIncrease();
 			timerStarted = true;
 		}
 	}
