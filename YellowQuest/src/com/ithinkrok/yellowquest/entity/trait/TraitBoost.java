@@ -19,7 +19,8 @@ public class TraitBoost extends Trait {
 	
 	@Override
 	public void install() {
-		parent.slip = 1.2;
+		parent.accel = 25;
+		parent.slip = 1.1;
 	}
 
 	@Override
