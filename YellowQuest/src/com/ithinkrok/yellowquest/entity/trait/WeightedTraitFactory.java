@@ -141,6 +141,7 @@ public class WeightedTraitFactory {
 
 		@Override
 		public int getWeight(EntityPlatform parent) {
+			if(parent.hasTrait("boost")) return parent.game.level.number > 11 ? 5 : 0;
 			return parent.game.level.number > 5 ? 10 : 0;
 		}
 
@@ -161,6 +162,7 @@ public class WeightedTraitFactory {
 
 		@Override
 		public int getWeight(EntityPlatform parent) {
+			if(parent.hasTrait("boost")) return parent.game.level.number > 11 ? 5 : 0;
 			return parent.game.level.number > 7 ? 10 : 0;
 		}
 
