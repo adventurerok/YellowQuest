@@ -20,7 +20,8 @@ public class TraitConveyor extends Trait {
 	
 	@Override
 	public void intersectsPlayer(EntityPlayer player) {
-		player.x_velocity -= 1.6;
+		if(player.hasPower("troll")) player.x_velocity += 1.6;
+		else player.x_velocity -= 1.6;
 	}
 
 	@Override
