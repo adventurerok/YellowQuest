@@ -1,8 +1,7 @@
 package com.ithinkrok.yellowquest.entity;
 
 import com.ithinkrok.yellowquest.*;
-import com.ithinkrok.yellowquest.entity.power.Power;
-import com.ithinkrok.yellowquest.entity.power.PowerBounce;
+import com.ithinkrok.yellowquest.entity.power.*;
 
 import android.graphics.Paint;
 
@@ -14,7 +13,7 @@ public class EntityPlayer extends Entity {
 		PAINT_YELLOW.setColor(0xffffff00);
 	}
 
-	protected Power power = new PowerBounce(this);
+	protected Power power = new PowerSlip(this);
 
 	public EntityPlayer(YellowQuest game) {
 		super(game, EntityType.PLAYER);
@@ -37,7 +36,8 @@ public class EntityPlayer extends Entity {
 		double aSlip = YellowQuest.AIR_SLIP;
 		if (this.intersecting != null) {
 			aSlip = this.intersecting.slip;
-		} else if (this.power != null) {
+		}
+		if (aSlip == YellowQuest.DEFAULT_SLIP && this.power != null) {
 			double alt = power.getAlternateSlip();
 			if (alt > 0.01)
 				aSlip = alt;
