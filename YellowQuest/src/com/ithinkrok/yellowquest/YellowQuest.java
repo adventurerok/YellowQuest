@@ -151,9 +151,15 @@ public class YellowQuest {
 			for (int d = 0; d < boxes.size(); ++d) {
 				boxes.get(d).draw(rend);
 			}
-			drawBox(leftButton);
-			drawBox(rightButton);
-			drawBox(jumpButton);
+			if(reverse){
+				drawBox(leftButtonR);
+				drawBox(rightButtonR);
+				drawBox(jumpButtonR);
+			} else {
+				drawBox(leftButton);
+				drawBox(rightButton);
+				drawBox(jumpButton);
+			}
 			statsText(rend, "Level: " + (level.number + 1) + "." + (playerBox + 1));
 			statsText(rend, "Score: " + score);
 			statsText(rend, "Timer: " + ((TIMER_MAX - timer) / TIMER_SECOND) + " (Total: "
