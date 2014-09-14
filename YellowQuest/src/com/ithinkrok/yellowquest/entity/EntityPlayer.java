@@ -1,8 +1,8 @@
 package com.ithinkrok.yellowquest.entity;
 
-import com.ithinkrok.yellowquest.BoxMath;
-import com.ithinkrok.yellowquest.YellowQuest;
+import com.ithinkrok.yellowquest.*;
 import com.ithinkrok.yellowquest.entity.power.Power;
+import com.ithinkrok.yellowquest.entity.power.PowerJump;
 
 import android.graphics.Paint;
 
@@ -14,7 +14,7 @@ public class EntityPlayer extends Entity {
 		PAINT_YELLOW.setColor(0xffffff00);
 	}
 	
-	protected Power power;
+	protected Power power = new PowerJump(this);
 	
 	public EntityPlayer(YellowQuest game) {
 		super(game, EntityType.PLAYER);
@@ -72,6 +72,27 @@ public class EntityPlayer extends Entity {
 	
 	public float getJumpIncrease(){
 		return power != null ? power.accelMultiplier : 1.0f;
+	}
+	
+	@Override
+	public void draw(CanvasSurfaceView rend) {
+		Paint paint;
+		if(power == null) paint = this.color;
+		else paint = power.paint;
+        float xp = (float) (box.sx - game.player.x + rend.width / 2);
+        float yp = (float) (box.sy - game.player.y + rend.height / 2);
+        if (xp > rend.width || yp > rend.height) return;
+        float w = (float) (box.ex - box.sx);
+        float h = (float) (box.ey - box.sy);
+        if ((xp + w) < 0 || (yp + h) < 0) return;
+        rend.fillRect(xp, yp, w, h, paint);
+        if(power == null) return;
+        int bonusBorder = (int) (Math.min(width, height) / 4d);
+        xp = (float) ((box.sx - game.player.x + rend.width / 2) + bonusBorder);
+        yp = (float) ((box.sy - game.player.y + rend.height / 2) + bonusBorder);
+        w = (float) ((box.ex - box.sx) - (bonusBorder * 2));
+        h = (float) ((box.ey - box.sy) - (bonusBorder * 2));
+        rend.fillRect(xp, yp, w, h, color);
 	}
 	
 

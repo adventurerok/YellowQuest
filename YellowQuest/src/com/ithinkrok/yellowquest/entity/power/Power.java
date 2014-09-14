@@ -1,5 +1,7 @@
 package com.ithinkrok.yellowquest.entity.power;
 
+import android.graphics.Paint;
+
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
 
 public class Power {
@@ -10,6 +12,7 @@ public class Power {
 	public float accelMultiplier = 1.0f;
 	public float jumpIncrease = 0.0f; //increase applied after multiplication
 	public float accelIncrease = 0.0f;
+	public Paint paint;
 	
 	
 	public Power(EntityPlayer player) {

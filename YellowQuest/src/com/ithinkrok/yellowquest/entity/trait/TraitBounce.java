@@ -7,7 +7,7 @@ import com.ithinkrok.yellowquest.entity.EntityPlayer;
 
 public class TraitBounce extends Trait {
 	
-	private static final Paint PAINT_MAGENTA = new Paint();
+	public static final Paint PAINT_MAGENTA = new Paint();
 	
 	static {
 		PAINT_MAGENTA.setColor(0xffff00ff);
