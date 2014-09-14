@@ -431,9 +431,9 @@ public class YellowQuest {
 		--gameOver.time;
 		if (gameOver.time == 0) {
 			if (gameOver.type == 0) {
-				canvas.getActivity().loadPlayView();
 				gameOver();
 				setDisplaying(false);
+				canvas.getActivity().loadPlayView();
 			} else if (gameOver.type == 1)
 				this.nextLevel();
 			else if (gameOver.type == 2)
