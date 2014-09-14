@@ -7,7 +7,7 @@ public class PowerSlip extends Power {
 
 	public PowerSlip(EntityPlayer player) {
 		super(player);
-		alternateSlip = 0.92f;
+		alternateSlip = 0.96f;
 		paint = TraitBoost.PAINT_FABDAD;
 	}
 
