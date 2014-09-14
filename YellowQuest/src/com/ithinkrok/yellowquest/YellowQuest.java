@@ -125,12 +125,18 @@ public class YellowQuest {
 		rightButton = new Box(100 * bsm, canvas.height - 120 * bsm, 200 * bsm, canvas.height - 20 * bsm);
 		jumpButton = new Box(canvas.width - 120 * bsm, canvas.height - 120 * bsm, canvas.width - 20 * bsm,
 				canvas.height - 20 * bsm);
+		
+		rightButtonR = new Box(20 * bsm, canvas.height - 120 * bsm, 120 * bsm, canvas.height - 20 * bsm);
+		leftButtonR = new Box(140 * bsm, canvas.height - 120 * bsm, 200 * bsm, canvas.height - 20 * bsm);
+		jumpButtonR = new Box(canvas.width - 120 * bsm, canvas.height - 120 * bsm, canvas.width - 20 * bsm,
+				canvas.height - 20 * bsm);
 
-		leftButtonR = new Box(canvas.width - 80 * bsm, canvas.height - 120 * bsm, canvas.width - 20 * bsm,
-				canvas.height - 20 * bsm);
-		rightButtonR = new Box(canvas.width - 200 * bsm, canvas.height - 120 * bsm, canvas.width - 100 * bsm,
-				canvas.height - 20 * bsm);
-		jumpButtonR = new Box(20 * bsm, canvas.height - 120 * bsm, 120 * bsm, canvas.height - 20 * bsm);
+//		leftButtonR = new Box(canvas.width - 80 * bsm, canvas.height - 120 * bsm, canvas.width - 20 * bsm,
+//				canvas.height - 20 * bsm);
+//		rightButtonR = new Box(canvas.width - 200 * bsm, canvas.height - 120 * bsm, canvas.width - 100 * bsm,
+//				canvas.height - 20 * bsm);
+//		jumpButtonR = new Box(20 * bsm, canvas.height - 120 * bsm, 120 * bsm, canvas.height - 20 * bsm);
+		
 		lastWidth = canvas.width;
 		lastHeight = canvas.height;
 	}
