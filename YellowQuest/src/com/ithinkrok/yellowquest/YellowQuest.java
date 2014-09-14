@@ -83,6 +83,8 @@ public class YellowQuest {
 
 	private int score;
 	private int levelScore;
+	
+	private boolean display = false;
 
 	public YellowQuest(CanvasSurfaceView canvas) {
 		this.canvas = canvas;
@@ -127,6 +129,7 @@ public class YellowQuest {
 	}
 
 	public void draw(CanvasSurfaceView rend) {
+		if(!display) return;
 		if (gameOver != null && gameOver.time == 0)
 			gameOver = null;
 		if (gameOver == null) {
@@ -406,13 +409,12 @@ public class YellowQuest {
 
 	private void updateGameOver(){
 		--gameOver.time;
-		if(gameOver.time == 3){
+		if (gameOver.time == 0) {
 			if (gameOver.type == 0){
 				canvas.getActivity().loadPlayView();
 				gameOver();
-			}
-		} else if (gameOver.time == 0) {
-			if (gameOver.type == 1) this.nextLevel();
+				setDisplaying(false);
+			} else if (gameOver.type == 1) this.nextLevel();
 			else if (gameOver.type == 2) this.restartLevel();
 			gameOver = null;
 		}
@@ -440,6 +442,14 @@ public class YellowQuest {
 			player.onGround = false;
 			timerStarted = true;
 		}
+	}
+	
+	public void setDisplaying(boolean display) {
+		this.display = display;
+	}
+	
+	public boolean isDisplaying() {
+		return display;
 	}
 
 	private void updateTimer() {

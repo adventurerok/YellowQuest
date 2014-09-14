@@ -290,6 +290,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	public void loadGameView(){
 		state = GameState.GAME;
 		setContentView(view);
+		view.game.setDisplaying(true);
 	}
 	
 	@Override
