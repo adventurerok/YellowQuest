@@ -62,6 +62,7 @@ public class GameData {
 	}
 	
 	public boolean addHiScore(int score){
+		if(score < 1) return false;
 		data.put(hash("score_previous"), score);
 		String base = "score_total";
 		long hash = hash(base);
