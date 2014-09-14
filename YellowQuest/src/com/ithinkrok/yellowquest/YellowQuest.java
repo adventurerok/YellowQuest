@@ -72,6 +72,10 @@ public class YellowQuest {
 	private Box rightButton;
 	private Box jumpButton;
 
+	private Box leftButtonR;
+	private Box rightButtonR;
+	private Box jumpButtonR;
+
 	private boolean shadow = true;
 	private boolean timed = true;
 
@@ -83,8 +87,10 @@ public class YellowQuest {
 
 	private int score;
 	private int levelScore;
-	
+
 	private boolean display = false;
+	
+	private boolean reverse = false;
 
 	public YellowQuest(CanvasSurfaceView canvas) {
 		this.canvas = canvas;
@@ -119,18 +125,24 @@ public class YellowQuest {
 		rightButton = new Box(100 * bsm, canvas.height - 120 * bsm, 200 * bsm, canvas.height - 20 * bsm);
 		jumpButton = new Box(canvas.width - 120 * bsm, canvas.height - 120 * bsm, canvas.width - 20 * bsm,
 				canvas.height - 20 * bsm);
+
+		leftButtonR = new Box(canvas.width - 80 * bsm, canvas.height - 120 * bsm, canvas.width - 20 * bsm,
+				canvas.height - 20 * bsm);
+		rightButtonR = new Box(canvas.width - 200 * bsm, canvas.height - 120 * bsm, canvas.width - 100 * bsm,
+				canvas.height - 20 * bsm);
+		jumpButtonR = new Box(20 * bsm, canvas.height - 120 * bsm, 120 * bsm, canvas.height - 20 * bsm);
 		lastWidth = canvas.width;
 		lastHeight = canvas.height;
 	}
 
 	public boolean doJump() {
-		return canvas.touchInBox(jumpButton);
+		return reverse ? canvas.touchInBox(jumpButtonR) : canvas.touchInBox(jumpButton);
 		// return wasdKeys[0];
 	}
 
 	public void draw(CanvasSurfaceView rend) {
-		if(!display) return;
-		rend.setReversed(player.hasPower("troll"));
+		if (!display)
+			return;
 		if (gameOver != null && gameOver.time == 0)
 			gameOver = null;
 		if (gameOver == null) {
@@ -200,12 +212,12 @@ public class YellowQuest {
 	}
 
 	public boolean goLeft() {
-		return canvas.touchInBox(leftButton);
+		return reverse ? canvas.touchInBox(leftButtonR) : canvas.touchInBox(leftButton);
 		// return wasdKeys[1];
 	}
 
 	public boolean goRight() {
-		return canvas.touchInBox(rightButton);
+		return reverse ? canvas.touchInBox(rightButtonR) : canvas.touchInBox(rightButton);
 		// return wasdKeys[3];
 	}
 
@@ -359,6 +371,7 @@ public class YellowQuest {
 	public void update() {
 		if (gameOver != null && gameOver.time == 0)
 			gameOver = null;
+		canvas.setReversed(reverse = player.hasPower("troll"));
 		if (gameOver == null) {
 			if (this.playerBox + BOX_BUFFER > this.nextBox) {
 				this.generateBoxes(1);
@@ -408,15 +421,17 @@ public class YellowQuest {
 		}
 	}
 
-	private void updateGameOver(){
+	private void updateGameOver() {
 		--gameOver.time;
 		if (gameOver.time == 0) {
-			if (gameOver.type == 0){
+			if (gameOver.type == 0) {
 				canvas.getActivity().loadPlayView();
 				gameOver();
 				setDisplaying(false);
-			} else if (gameOver.type == 1) this.nextLevel();
-			else if (gameOver.type == 2) this.restartLevel();
+			} else if (gameOver.type == 1)
+				this.nextLevel();
+			else if (gameOver.type == 2)
+				this.restartLevel();
 			gameOver = null;
 		}
 	}
@@ -444,11 +459,11 @@ public class YellowQuest {
 			timerStarted = true;
 		}
 	}
-	
+
 	public void setDisplaying(boolean display) {
 		this.display = display;
 	}
-	
+
 	public boolean isDisplaying() {
 		return display;
 	}
