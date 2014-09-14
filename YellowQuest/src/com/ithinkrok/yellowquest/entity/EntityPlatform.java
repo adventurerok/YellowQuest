@@ -48,7 +48,9 @@ public class EntityPlatform extends Entity {
 	            this.move(0, this.y_velocity);
 	        } else if (this.y_velocity < 0) {
 	            this.move(0, this.y_velocity);
+	            boolean ground = game.player.onGround;
 	            game.player.move(0, this.y_velocity);
+	            game.player.onGround = ground;
 	        }
 	        game.player.move(this.x_velocity, 0);
 	        this.move(this.x_velocity, 0);
