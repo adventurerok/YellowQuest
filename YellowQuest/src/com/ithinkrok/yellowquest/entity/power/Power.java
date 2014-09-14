@@ -4,7 +4,7 @@ import android.graphics.Paint;
 
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
 
-public class Power {
+public abstract class Power {
 
 	protected EntityPlayer player;
 	
@@ -43,6 +43,8 @@ public class Power {
 	public void update(EntityPlayer player){
 		
 	}
+	
+	public abstract String getName();
 	
 	
 }

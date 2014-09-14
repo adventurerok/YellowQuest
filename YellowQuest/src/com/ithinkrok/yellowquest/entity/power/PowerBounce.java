@@ -21,6 +21,12 @@ public class PowerBounce extends Power {
 			if(((EntityPlatform)player.intersecting).hasTrait("bounce")) return;
 		}
 		player.y_velocity += 13;
+		player.onGround = false;
+	}
+
+	@Override
+	public String getName() {
+		return "bounce";
 	}
 
 }

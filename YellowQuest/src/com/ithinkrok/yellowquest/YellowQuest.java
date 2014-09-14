@@ -411,6 +411,7 @@ public class YellowQuest {
 		if (this.player.x_velocity > maxSpeed) this.player.x_velocity = maxSpeed;
 		if (doJump() && this.player.onGround){
 			this.player.y_velocity = DEFAULT_JUMP * player.getJumpMultiplier() + player.getJumpIncrease();
+			player.onGround = false;
 			timerStarted = true;
 		}
 	}

@@ -20,6 +20,11 @@ public class EntityPlayer extends Entity {
 		super(game, EntityType.PLAYER);
 		this.color = PAINT_YELLOW;
 	}
+	
+	public boolean hasPower(String power){
+		if(this.power == null) return false;
+		return this.power.getName().equals(power);
+	}
 
 	@Override
 	public void update() {
