@@ -12,6 +12,7 @@ public abstract class Power {
 	protected float accelMultiplier = 1.0f;
 	protected float jumpIncrease = 0.0f; //increase applied after multiplication
 	protected float accelIncrease = 0.0f;
+	protected float alternateSlip = 0;
 	protected Paint paint;
 	
 	
@@ -38,6 +39,10 @@ public abstract class Power {
 	
 	public Paint getPaint() {
 		return paint;
+	}
+	
+	public float getAlternateSlip() {
+		return alternateSlip;
 	}
 	
 	public void update(EntityPlayer player){

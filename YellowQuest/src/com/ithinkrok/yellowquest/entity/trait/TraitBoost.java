@@ -6,7 +6,7 @@ import com.ithinkrok.yellowquest.entity.EntityPlatform;
 
 public class TraitBoost extends Trait {
 	
-	private static final Paint PAINT_FABDAD = new Paint();
+	public static final Paint PAINT_FABDAD = new Paint();
 	
 	static {
 		PAINT_FABDAD.setColor(0xfffabdad);
