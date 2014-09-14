@@ -2,7 +2,7 @@ package com.ithinkrok.yellowquest.entity;
 
 import com.ithinkrok.yellowquest.*;
 import com.ithinkrok.yellowquest.entity.power.Power;
-import com.ithinkrok.yellowquest.entity.power.PowerJump;
+import com.ithinkrok.yellowquest.entity.power.PowerBounce;
 
 import android.graphics.Paint;
 
@@ -14,7 +14,7 @@ public class EntityPlayer extends Entity {
 		PAINT_YELLOW.setColor(0xffffff00);
 	}
 	
-	protected Power power = new PowerJump(this);
+	protected Power power = new PowerBounce(this);
 	
 	public EntityPlayer(YellowQuest game) {
 		super(game, EntityType.PLAYER);
@@ -23,6 +23,8 @@ public class EntityPlayer extends Entity {
 
 	@Override
 	public void update() {
+		 if(power != null) power.update(this);
+		
 		if (Math.abs(this.x_velocity) < 0.01) this.x_velocity = 0;
 	    double aSlip = YellowQuest.AIR_SLIP;
 	    if (this.intersecting != null) {
@@ -34,6 +36,7 @@ public class EntityPlayer extends Entity {
 	    } else{
 	    	this.y_velocity += BoxMath.FALL_GRAVITY;
 	    }
+	    
 	    
 	    if (this.y_velocity < BoxMath.FALL_VELOCITY_MAX) this.y_velocity = BoxMath.FALL_VELOCITY_MAX;
 	    
@@ -59,26 +62,26 @@ public class EntityPlayer extends Entity {
 	}
 	
 	public float getAccelMultiplier(){
-		return power != null ? power.accelMultiplier : 1.0f;
+		return power != null ? power.getAccelMultiplier() : 1.0f;
 	}
 	
 	public float getJumpMultiplier(){
-		return power != null ? power.accelMultiplier : 1.0f;
+		return power != null ? power.getJumpMultiplier() : 1.0f;
 	}
 	
 	public float getAccelIncrease(){
-		return power != null ? power.accelMultiplier : 1.0f;
+		return power != null ? power.getAccelIncrease() : 1.0f;
 	}
 	
 	public float getJumpIncrease(){
-		return power != null ? power.accelMultiplier : 1.0f;
+		return power != null ? power.getJumpIncrease() : 1.0f;
 	}
 	
 	@Override
 	public void draw(CanvasSurfaceView rend) {
 		Paint paint;
 		if(power == null) paint = this.color;
-		else paint = power.paint;
+		else paint = power.getPaint();
         float xp = (float) (box.sx - game.player.x + rend.width / 2);
         float yp = (float) (box.sy - game.player.y + rend.height / 2);
         if (xp > rend.width || yp > rend.height) return;

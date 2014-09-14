@@ -8,11 +8,11 @@ public class Power {
 
 	protected EntityPlayer player;
 	
-	public float jumpMultiplier = 1.0f;
-	public float accelMultiplier = 1.0f;
-	public float jumpIncrease = 0.0f; //increase applied after multiplication
-	public float accelIncrease = 0.0f;
-	public Paint paint;
+	protected float jumpMultiplier = 1.0f;
+	protected float accelMultiplier = 1.0f;
+	protected float jumpIncrease = 0.0f; //increase applied after multiplication
+	protected float accelIncrease = 0.0f;
+	protected Paint paint;
 	
 	
 	public Power(EntityPlayer player) {
@@ -20,6 +20,29 @@ public class Power {
 		this.player = player;
 	}
 	
+	public float getJumpIncrease() {
+		return jumpIncrease;
+	}
+	
+	public float getJumpMultiplier() {
+		return jumpMultiplier;
+	}
+	
+	public float getAccelIncrease() {
+		return accelIncrease;
+	}
+	
+	public float getAccelMultiplier() {
+		return accelMultiplier;
+	}
+	
+	public Paint getPaint() {
+		return paint;
+	}
+	
+	public void update(EntityPlayer player){
+		
+	}
 	
 	
 }
