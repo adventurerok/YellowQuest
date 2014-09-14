@@ -7,9 +7,9 @@ import com.ithinkrok.yellowquest.entity.EntityPlatform;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
 
 public class TraitTroll extends Trait {
-	
-	private static final Paint PAINT_TROLL = new Paint();
-	
+
+	public static final Paint PAINT_TROLL = new Paint();
+
 	static {
 		PAINT_TROLL.setColor(0xff95aeff);
 	}
@@ -28,17 +28,20 @@ public class TraitTroll extends Trait {
 	public int getIndex() {
 		return 99;
 	}
-	
+
 	@Override
 	public void intersectsPlayer(EntityPlayer player) {
-		if (player.x_velocity > 0) {
-            if (parent.game.playerLives > 1) {
-            	parent.game.playerLives -= 1;
-            	parent.game.gameOver = new GameOver(2, "Level Failed");
-            } else {
-            	parent.game.gameOver = new GameOver(0, "Don't go right!");
-            }
-        }
+		boolean pow = player.hasPower("troll");
+		if (pow && player.x_velocity >= 0)
+			return;
+		if (!pow && player.x_velocity <= 0)
+			return;
+		if (parent.game.playerLives > 1) {
+			parent.game.playerLives -= 1;
+			parent.game.gameOver = new GameOver(2, "Level Failed");
+		} else {
+			parent.game.gameOver = new GameOver(0, "Don't go right!");
+		}
 	}
 
 }

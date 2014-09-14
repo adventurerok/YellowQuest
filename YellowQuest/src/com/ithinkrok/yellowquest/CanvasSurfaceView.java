@@ -36,6 +36,17 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 	public boolean paused = true;
 
 	private boolean screenOff = false;
+	
+	private boolean reverse = false;
+	
+	public void setReversed(boolean reverse) {
+		this.reverse = reverse;
+	}
+	
+	public boolean isReversed() {
+		return reverse;
+	}
+	
 
 	//private boolean tapped = false;
 
@@ -59,8 +70,11 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 	}
 	
 	public void fillRect(float x, float y, float w, float h, Paint paint) {
-	    //canvas.drawRect(x, height - y - h, x + w, height - y, paint);
-		canvas.drawRect(floor(x), floor(height - y - h), floor(x + w), floor(height - y), paint);
+	    if(!reverse){
+	    	canvas.drawRect(floor(x), floor(height - y - h), floor(x + w), floor(height - y), paint);
+	    } else {
+	    	canvas.drawRect(width - floor(x + w), floor(height - y - h), width - floor(x), floor(height - y), paint);
+	    }
 	}
 	
 	public MainActivity getActivity() {

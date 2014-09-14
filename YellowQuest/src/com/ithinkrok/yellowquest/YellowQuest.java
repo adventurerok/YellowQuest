@@ -130,6 +130,7 @@ public class YellowQuest {
 
 	public void draw(CanvasSurfaceView rend) {
 		if(!display) return;
+		rend.setReversed(player.hasPower("troll"));
 		if (gameOver != null && gameOver.time == 0)
 			gameOver = null;
 		if (gameOver == null) {
