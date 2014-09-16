@@ -13,7 +13,7 @@ public class EntityPlayer extends Entity {
 		PAINT_YELLOW.setColor(0xffffff00);
 	}
 
-	protected Power power = new PowerTroll(this);
+	protected Power power = null;
 
 	public EntityPlayer(YellowQuest game) {
 		super(game, EntityType.PLAYER);
