@@ -1,57 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_margin="10dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/black">
-    
-    <LinearLayout 
-        android:orientation="vertical"
-        android:layout_margin="10dp"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-        
-        <TextView 
-            android:text="@string/play"
-            android:layout_gravity="start"
-            android:id="@+id/menu_play"
-            style="@style/MenuFont"/>
-        
-        <TextView 
-            android:text="@string/achievements"
-            android:layout_gravity="start"
-            android:id="@+id/menu_achievements"
-            style="@style/MenuFont"/>
-        
-        <TextView 
-            android:text="@string/leaderboards"
-            android:layout_gravity="start"
-            android:id="@+id/menu_leaderboards"
-            style="@style/MenuFont"/>
-        
-        <TextView 
-            android:text="@string/settings"
-            android:layout_gravity="start"
-            android:id="@+id/menu_settings"
-            style="@style/MenuFont"/>
-        
-        <com.google.android.gms.common.SignInButton
-	    android:id="@+id/sign_in_button"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content" 
-	    android:layout_gravity="bottom|end"/>
-	    
-	    <!-- sign-out button -->
-		<Button
-	    android:id="@+id/sign_out_button"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="@string/sign_out"
-	    android:visibility="gone"
-	    android:layout_gravity="bottom|end" />
-    </LinearLayout>
-    
+    android:layout_margin="10dp"
+    android:background="@color/black" >
 
+    <TextView
+        android:id="@+id/menu_play"
+        style="@style/RelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="end"
+        android:text="@string/play" />
     
+    <TextView
+        android:id="@+id/menu_settings"
+        style="@style/RelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="end"
+        android:text="@string/prefs" />
+    
+    <TextView
+        android:id="@+id/menu_leaderboards"
+        style="@style/RelFont"
+        android:layout_toLeftOf="@+id/menu_settings"
+        android:layout_toStartOf="@+id/menu_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="@string/lbs" />
+
+    <TextView
+        android:id="@+id/menu_achievements"
+        style="@style/RelFont"
+        android:layout_toLeftOf="@+id/menu_leaderboards"
+        android:layout_toStartOf="@+id/menu_leaderboards"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="@string/ach" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="top|start" />
+
+    <!-- sign-out button -->
+
+    <Button
+        android:id="@+id/sign_out_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="top|start"
+        android:text="@string/sign_out"
+        android:visibility="gone" />
+
 </RelativeLayout>

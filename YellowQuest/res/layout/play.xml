@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:background="@color/black" >
+    
+    <CheckBox
+        android:id="@+id/play_time"
+        style="@style/RelFont"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time" />
 
     <CheckBox
         android:id="@+id/play_shadow"
         style="@style/RelFont"
         android:layout_gravity="start"
         android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/play_time"
+        android:layout_toLeftOf="@+id/play_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/shadow_mode" />
+        android:text="@string/shadow" />
 
-    <CheckBox
-        android:id="@+id/play_time"
-        style="@style/RelFont"
-        android:layout_below="@+id/play_shadow"
-        android:layout_gravity="start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/time_mode" />
+    
 
     <TextView
         android:id="@+id/play_score"
         style="@style/RelText"
         android:layout_gravity="start"
-        android:layout_below="@+id/play_time"
+        android:layout_alignParentTop="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hiscore_x_previous_y" />
@@ -35,12 +40,10 @@
     <TextView
         android:id="@+id/play_play"
         style="@style/RelFont"
-        android:layout_toStartOf="@+id/play_back"
-        android:layout_toLeftOf="@+id/play_back"
         android:layout_gravity="bottom|start"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/play" />
@@ -49,8 +52,8 @@
         android:id="@+id/play_back"
         style="@style/RelFont"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/back" />
