@@ -30,7 +30,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private TextView menu_play;
 	private TextView menu_achievements;
 	private TextView menu_leaderboards;
-	private TextView menu_settings;
+	private View menu_settings;
 	private View sign_in_button;
 	private View sign_out_button;
 	private CheckBox settings_music;
@@ -230,7 +230,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		menu_play = (TextView) findViewById(R.id.menu_play);
 		menu_achievements = (TextView) findViewById(R.id.menu_achievements);
 		menu_leaderboards = (TextView) findViewById(R.id.menu_leaderboards);
-		menu_settings = (TextView) findViewById(R.id.menu_settings);
+		menu_settings = findViewById(R.id.menu_settings);
 		sign_in_button = findViewById(R.id.sign_in_button);
 		sign_out_button = findViewById(R.id.sign_out_button);
 		
