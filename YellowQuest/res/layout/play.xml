@@ -26,7 +26,6 @@
         android:layout_height="wrap_content"
         android:text="@string/shadow" />
 
-    
 
     <TextView
         android:id="@+id/play_score"
@@ -57,5 +56,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/back" />
+    
+    <ListView
+        android:id="@+id/play_powers"
+        style="@style/RelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/play_shadow"
+        android:layout_above="@+id/play_back"
+        />
 
 </RelativeLayout>

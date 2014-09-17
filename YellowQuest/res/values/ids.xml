@@ -14,5 +14,6 @@
     <item type="id" name="play_play"/>
     <item type="id" name="play_score"/>
     <item type="id" name="play_back"/>
+    <item type="id" name="play_powers"/>
 
 </resources>
