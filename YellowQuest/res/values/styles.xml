@@ -34,7 +34,7 @@
     </style>
     
     <style name="MenuFont">
-        <item name="android:textSize">24dp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textStyle">bold</item>
         <item name="android:clickable">true</item>
@@ -45,7 +45,7 @@
     </style>
     
     <style name="RelFont">
-        <item name="android:textSize">24dp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textStyle">bold</item>
         <item name="android:clickable">true</item>
@@ -53,7 +53,7 @@
     </style>
     
     <style name="RelText">
-        <item name="android:textSize">24dp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
         <item name="android:clickable">true</item>

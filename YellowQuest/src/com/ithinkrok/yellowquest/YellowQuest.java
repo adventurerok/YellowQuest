@@ -283,7 +283,7 @@ public class YellowQuest {
 		boxes.clear();
 		level.lastBoxType = null;
 		level.number += 1;
-		level.size = 8 + (level.number * 4);
+		level.size = 8 + (level.number * 3);
 		nextBox = 0;
 		bgenX = -32;
 		bgenY = 0;
