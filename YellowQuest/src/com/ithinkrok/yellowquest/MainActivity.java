@@ -28,8 +28,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	
 	private GameData gameData;
 	private TextView menu_play;
-	private TextView menu_achievements;
-	private TextView menu_leaderboards;
+	private View menu_achievements;
+	private View menu_leaderboards;
 	private View menu_settings;
 	private View sign_in_button;
 	private View sign_out_button;
@@ -228,8 +228,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		setContentView(R.layout.menu);
 		
 		menu_play = (TextView) findViewById(R.id.menu_play);
-		menu_achievements = (TextView) findViewById(R.id.menu_achievements);
-		menu_leaderboards = (TextView) findViewById(R.id.menu_leaderboards);
+		menu_achievements = findViewById(R.id.menu_achievements);
+		menu_leaderboards = findViewById(R.id.menu_leaderboards);
 		menu_settings = findViewById(R.id.menu_settings);
 		sign_in_button = findViewById(R.id.sign_in_button);
 		sign_out_button = findViewById(R.id.sign_out_button);
