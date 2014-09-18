@@ -209,8 +209,14 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			break;
 		case R.id.play_shadow:
 			shadowMode = !shadowMode;
-			if(shadowMode) play_shadow.setImageResource(R.drawable.shadow_on);
-			else play_shadow.setImageResource(R.drawable.shadow_off);
+			if(shadowMode){
+				Toast.makeText(this, R.string.shadow_on, Toast.LENGTH_SHORT).show();
+				play_shadow.setImageResource(R.drawable.shadow_on);
+			}
+			else{
+				Toast.makeText(this, R.string.shadow_off, Toast.LENGTH_SHORT).show();;
+				play_shadow.setImageResource(R.drawable.shadow_off);
+			}
 			Editor editorShadow = settings.edit();
 			editorShadow.putBoolean("shadow", shadowMode);
 			editorShadow.commit();

@@ -35,6 +35,9 @@
 	<string name="power_troll">Backwards</string>
 	<string name="power_troll_desc">Makes levels right to left</string>
 	<string name="power_troll_upgrade">Enables toggling between backwards and normal</string>
+	
+	<string name="shadow_off">Shadow mode disabled</string>
+	<string name="shadow_on">Shadow mode enabled</string>
     
 
 </resources>
