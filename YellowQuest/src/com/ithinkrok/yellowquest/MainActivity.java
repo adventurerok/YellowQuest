@@ -12,7 +12,6 @@ import android.widget.*;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 import com.google.example.games.basegameutils.BaseGameActivity;
-import com.ithinkrok.yellowquest.entity.power.Power;
 import com.ithinkrok.yellowquest.ui.PowerAdapter;
 
 

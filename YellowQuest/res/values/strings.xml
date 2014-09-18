@@ -32,6 +32,9 @@
 	<string name="power_bounce">Bounce</string>
 	<string name="power_bounce_desc">Makes you bounce off platforms</string>
 	<string name="power_bounce_upgrade">Makes you move faster in air and bounce higher</string>
+	<string name="power_troll">Backwards</string>
+	<string name="power_troll_desc">Makes levels right to left</string>
+	<string name="power_troll_upgrade">Enables toggling between backwards and normal</string>
     
 
 </resources>

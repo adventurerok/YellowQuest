@@ -1,11 +1,7 @@
 package com.ithinkrok.yellowquest.entity.power;
 
 import android.graphics.Paint;
-import android.view.View;
-import android.widget.*;
 
-import com.ithinkrok.yellowquest.MainActivity;
-import com.ithinkrok.yellowquest.R;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
 
 public abstract class Power {

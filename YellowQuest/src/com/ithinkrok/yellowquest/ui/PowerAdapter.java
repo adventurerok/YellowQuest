@@ -7,6 +7,7 @@ import com.ithinkrok.yellowquest.R;
 import com.ithinkrok.yellowquest.entity.power.Power;
 import com.ithinkrok.yellowquest.entity.power.PowerBounce;
 import com.ithinkrok.yellowquest.entity.trait.TraitBounce;
+import com.ithinkrok.yellowquest.entity.trait.TraitTroll;
 
 import android.view.*;
 import android.widget.*;
@@ -50,6 +51,7 @@ public class PowerAdapter extends BaseAdapter {
 		super();
 		this.context = context;
 		data.add(new PowerInfo(PowerBounce.class, "bounce", TraitBounce.PAINT_MAGENTA.getColor(), 5000, 50000, R.string.power_bounce, R.string.power_bounce_desc, R.string.power_bounce_upgrade));
+		data.add(new PowerInfo(PowerBounce.class, "troll", TraitTroll.PAINT_TROLL.getColor(), 5000, 50000, R.string.power_troll, R.string.power_troll_desc, R.string.power_troll_upgrade));
 	}
 
 	@Override
