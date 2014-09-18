@@ -39,7 +39,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	
 	private TextView play_play;
 	private TextView play_back;
-	private CheckBox play_shadow;
+	private ImageButton play_shadow;
 	private CheckBox play_time;
 	private TextView play_score;
 	
@@ -159,7 +159,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			loadPlayView();
 			break;
 		case R.id.play_play:
-			view.game.setGameMode(play_shadow.isChecked(), play_time.isChecked());
+			view.game.setGameMode(shadowMode, timeMode);
 			loadGameView();
 			break;
 		case R.id.menu_achievements:
@@ -208,13 +208,13 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			sign_in_button.setVisibility(View.VISIBLE);
 			break;
 		case R.id.play_shadow:
-			shadowMode = play_shadow.isChecked();
+			shadowMode = !shadowMode;
 			Editor editorShadow = settings.edit();
 			editorShadow.putBoolean("shadow", shadowMode);
 			editorShadow.commit();
 			break;
 		case R.id.play_time:
-			shadowMode = play_shadow.isChecked();
+			shadowMode = !timeMode;
 			Editor editorTime = settings.edit();
 			editorTime.putBoolean("time", timeMode);
 			editorTime.commit();
@@ -255,7 +255,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		
 		play_play = (TextView) findViewById(R.id.play_play);
 		play_back = (TextView) findViewById(R.id.play_back);
-		play_shadow = (CheckBox) findViewById(R.id.play_shadow);
+		play_shadow = (ImageButton) findViewById(R.id.play_shadow);
 		play_time = (CheckBox) findViewById(R.id.play_time);
 		play_score = (TextView) findViewById(R.id.play_score);
 		play_powers = (ListView) findViewById(R.id.play_powers);
@@ -265,7 +265,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		play_shadow.setOnClickListener(this);
 		play_time.setOnClickListener(this);
 		
-		play_shadow.setChecked(shadowMode);
+		if(shadowMode) play_shadow.setImageResource(R.drawable.shadow_on);
+		else play_shadow.setImageResource(R.drawable.shadow_off);
 		play_time.setChecked(timeMode);
 		
 		
