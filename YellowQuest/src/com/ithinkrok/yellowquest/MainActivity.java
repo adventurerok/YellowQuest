@@ -7,12 +7,13 @@ import android.media.*;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.os.Bundle;
 import android.view.*;
-import android.widget.CheckBox;
-import android.widget.TextView;
+import android.widget.*;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 import com.google.example.games.basegameutils.BaseGameActivity;
+import com.ithinkrok.yellowquest.entity.power.Power;
+import com.ithinkrok.yellowquest.ui.PowerAdapter;
 
 
 public class MainActivity extends BaseGameActivity implements View.OnClickListener{
@@ -35,6 +36,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private View sign_out_button;
 	private CheckBox settings_music;
 	private TextView settings_back;
+	private ListView play_powers;
 	
 	private TextView play_play;
 	private TextView play_back;
@@ -257,6 +259,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		play_shadow = (CheckBox) findViewById(R.id.play_shadow);
 		play_time = (CheckBox) findViewById(R.id.play_time);
 		play_score = (TextView) findViewById(R.id.play_score);
+		play_powers = (ListView) findViewById(R.id.play_powers);
 		
 		play_play.setOnClickListener(this);
 		play_back.setOnClickListener(this);
@@ -265,6 +268,10 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		
 		play_shadow.setChecked(shadowMode);
 		play_time.setChecked(timeMode);
+		
+		
+		PowerAdapter adapter = new PowerAdapter(this);
+		play_powers.setAdapter(adapter);
 		
 		
 		int hiscore = gameData.getHiScore();

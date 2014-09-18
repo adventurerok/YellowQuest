@@ -15,5 +15,9 @@
     <item type="id" name="play_score"/>
     <item type="id" name="play_back"/>
     <item type="id" name="play_powers"/>
+    <item type="id" name="power_color"/>
+    <item type="id" name="power_name"/>
+    <item type="id" name="power_buy"/>
+    <item type="id" name="power_upgrade"/>
 
 </resources>
