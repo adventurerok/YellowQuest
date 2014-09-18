@@ -14,6 +14,7 @@
         android:layout_centerVertical="true" />
 
     <TextView
+        android:id="@+id/power_name"
         style="@style/RelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
