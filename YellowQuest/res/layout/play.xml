@@ -5,7 +5,7 @@
     android:layout_margin="10dp"
     android:background="@color/black" >
     
-    <CheckBox
+    <ImageButton
         android:id="@+id/play_time"
         style="@style/RelFont"
         android:layout_alignParentEnd="true"
@@ -13,7 +13,8 @@
         android:layout_gravity="end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/time" />
+        android:contentDescription="@string/time" 
+        android:src="@drawable/time_off"/>
 
     <ImageButton
         android:id="@+id/play_shadow"
@@ -24,7 +25,8 @@
         android:layout_toLeftOf="@+id/play_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/shadow_off"/>
+        android:src="@drawable/shadow_off"
+        android:contentDescription="@string/shadow"/>
 
 
     <TextView

@@ -40,7 +40,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private TextView play_play;
 	private TextView play_back;
 	private ImageButton play_shadow;
-	private CheckBox play_time;
+	private ImageButton play_time;
 	private TextView play_score;
 	
 	
@@ -222,7 +222,15 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			editorShadow.commit();
 			break;
 		case R.id.play_time:
-			shadowMode = !timeMode;
+			timeMode = !timeMode;
+			if(timeMode){
+				Toast.makeText(this, R.string.time_on, Toast.LENGTH_SHORT).show();
+				play_time.setImageResource(R.drawable.time_on);
+			}
+			else{
+				Toast.makeText(this, R.string.time_off, Toast.LENGTH_SHORT).show();
+				play_time.setImageResource(R.drawable.time_off);
+			}
 			Editor editorTime = settings.edit();
 			editorTime.putBoolean("time", timeMode);
 			editorTime.commit();
@@ -264,7 +272,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		play_play = (TextView) findViewById(R.id.play_play);
 		play_back = (TextView) findViewById(R.id.play_back);
 		play_shadow = (ImageButton) findViewById(R.id.play_shadow);
-		play_time = (CheckBox) findViewById(R.id.play_time);
+		play_time = (ImageButton) findViewById(R.id.play_time);
 		play_score = (TextView) findViewById(R.id.play_score);
 		play_powers = (ListView) findViewById(R.id.play_powers);
 		
@@ -275,7 +283,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		
 		if(shadowMode) play_shadow.setImageResource(R.drawable.shadow_on);
 		else play_shadow.setImageResource(R.drawable.shadow_off);
-		play_time.setChecked(timeMode);
+		if(timeMode) play_time.setImageResource(R.drawable.time_on);
+		else play_time.setImageResource(R.drawable.time_off);
 		
 		
 		PowerAdapter adapter = new PowerAdapter(this);
