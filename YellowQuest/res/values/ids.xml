@@ -19,5 +19,6 @@
     <item type="id" name="power_name"/>
     <item type="id" name="power_buy"/>
     <item type="id" name="power_upgrade"/>
+    <item type="id" name="power_space0"/>
 
 </resources>
