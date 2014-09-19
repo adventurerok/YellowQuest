@@ -225,11 +225,11 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			timeMode = !timeMode;
 			if(timeMode){
 				Toast.makeText(this, R.string.time_on, Toast.LENGTH_SHORT).show();
-				play_time.setImageResource(R.drawable.time_on);
+				play_time.setImageResource(R.drawable.time_off);
 			}
 			else{
 				Toast.makeText(this, R.string.time_off, Toast.LENGTH_SHORT).show();
-				play_time.setImageResource(R.drawable.time_off);
+				play_time.setImageResource(R.drawable.time_on);
 			}
 			Editor editorTime = settings.edit();
 			editorTime.putBoolean("time", timeMode);
@@ -283,8 +283,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		
 		if(shadowMode) play_shadow.setImageResource(R.drawable.shadow_on);
 		else play_shadow.setImageResource(R.drawable.shadow_off);
-		if(timeMode) play_time.setImageResource(R.drawable.time_on);
-		else play_time.setImageResource(R.drawable.time_off);
+		if(timeMode) play_time.setImageResource(R.drawable.time_off);
+		else play_time.setImageResource(R.drawable.time_on);
 		
 		
 		PowerAdapter adapter = new PowerAdapter(this);
