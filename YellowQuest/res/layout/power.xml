@@ -12,8 +12,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true" />
-    
-    <View 
+
+    <View
         android:id="@+id/power_space0"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -29,5 +29,25 @@
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/power_space0"
         android:layout_toRightOf="@+id/power_space0" />
+
+    <ImageButton
+        android:id="@+id/power_upgrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/upgrade"
+        android:src="@drawable/upgrade" />
+
+    <ImageButton
+        android:id="@+id/power_buy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/power_upgrade"
+        android:layout_toStartOf="@+id/power_upgrade"
+        android:contentDescription="@string/buy"
+        android:src="@drawable/dollar"/>
 
 </RelativeLayout>

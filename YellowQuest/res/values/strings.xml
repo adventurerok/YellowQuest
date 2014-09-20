@@ -28,6 +28,8 @@
 	<string name="ach">Ach</string>
 	<string name="lbs">LBs</string>
 	<string name="prefs">prefs</string>
+	<string name="buy">Buy</string>
+	<string name="upgrade">Upgrade</string>
 	
 	<string name="power_bounce">Bounce</string>
 	<string name="power_bounce_desc">Makes you bounce off platforms</string>
