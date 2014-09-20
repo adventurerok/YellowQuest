@@ -61,6 +61,7 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 		setFocusable(true);
 		density = getResources().getDisplayMetrics().density;
 		game = new YellowQuest(this);
+		game.load();
 	}
 	
 	private int floor(float f){
@@ -132,7 +133,6 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 	public void surfaceCreated(SurfaceHolder holder) {
 		setWillNotDraw(false);
 		
-		game.load();
 		
 		_thread = new CanvasThread(getHolder(), this);
 		_thread.setRunning(true);

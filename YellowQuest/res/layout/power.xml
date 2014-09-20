@@ -3,44 +3,48 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:layout_margin="5dp"
-    android:background="@color/black" >
+    android:background="@color/black"
+    android:id="@+id/power" >
 
     <Button
         android:id="@+id/power_color"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:layout_margin="5dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true" />
 
     <View
         android:id="@+id/power_space0"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/power_color"
         android:layout_toRightOf="@+id/power_color" />
 
 
-    <ImageButton
+    <Button
         android:id="@+id/power_upgrade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:contentDescription="@string/upgrade"
-        android:src="@drawable/upgrade" />
+        android:text="@string/upgrade"
+        android:drawableLeft="@drawable/upgrade"
+        android:drawableStart="@drawable/upgrade"/>
 
-    <ImageButton
+    <Button
         android:id="@+id/power_buy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/power_upgrade"
         android:layout_toStartOf="@+id/power_upgrade"
-        android:contentDescription="@string/buy"
-        android:src="@drawable/dollar"/>
+        android:text="@string/buy"
+        android:drawableLeft="@drawable/dollar"
+        android:drawableStart="@drawable/dollar"/>
     
     <TextView
         android:id="@+id/power_name"

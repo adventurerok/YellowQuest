@@ -1,10 +1,14 @@
 package com.ithinkrok.yellowquest;
 
+import java.text.DecimalFormat;
+
 public class BoxMath {
 	
 	public static double JUMP_GRAVITY = -0.4;
 	public static double FALL_GRAVITY = -0.8;
 	public static double FALL_VELOCITY_MAX = -21;
+	
+	private static DecimalFormat numberFormat = new DecimalFormat("#,###");
 	
 
 	public static double maxJumpHeight(double jumpVelocity){
@@ -72,5 +76,15 @@ public class BoxMath {
 		double part2 = ((accel*slip)*(pow - 1)) / (slip-1);
 		return part1 + part2;
 		//return (initial + (accel * powerSequence(slip, time))) / Math.pow(slip, time);
+	}
+	
+	public static String formatNumber(int i){
+		String res;
+		if(i < 1000) res = i + "";
+		else if(i < 10000) res = numberFormat.format(i);
+		else if(i < 1000000) res = numberFormat.format(i / 1000) + "k";
+		else if(i < 10000000) res = numberFormat.format((i % 1000000) / 1000) + "k";
+		else res = numberFormat.format(i / 1000000) + "M";
+		return res;
 	}
 }

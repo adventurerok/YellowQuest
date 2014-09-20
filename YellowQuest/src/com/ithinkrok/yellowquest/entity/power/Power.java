@@ -5,6 +5,8 @@ import android.graphics.Paint;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
 
 public abstract class Power {
+	
+	int upgradeLevel = 0;
 
 	protected EntityPlayer player;
 
@@ -16,9 +18,10 @@ public abstract class Power {
 	protected float alternateSlip = 0;
 	protected Paint paint;
 
-	public Power(EntityPlayer player) {
+	public Power(EntityPlayer player, int upgradeLevel) {
 		super();
 		this.player = player;
+		this.upgradeLevel = upgradeLevel;
 	}
 
 	public float getJumpIncrease() {

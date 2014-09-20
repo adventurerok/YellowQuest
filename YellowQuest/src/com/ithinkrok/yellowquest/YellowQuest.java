@@ -5,9 +5,12 @@ import java.util.Calendar;
 
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.widget.Toast;
 
 import com.ithinkrok.yellowquest.entity.*;
+import com.ithinkrok.yellowquest.entity.power.*;
 import com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory;
+import com.ithinkrok.yellowquest.ui.PowerInfo;
 import com.ithinkrok.yellowquest.util.Box;
 
 public class YellowQuest {
@@ -76,8 +79,8 @@ public class YellowQuest {
 	private Box rightButtonR;
 	private Box jumpButtonR;
 
-	private boolean shadow = true;
-	private boolean timed = true;
+	private boolean shadow = false;
+	private boolean timed = false;
 
 	private int tPos = 0;
 
@@ -334,6 +337,8 @@ public class YellowQuest {
 		timerStarted = false;
 		score = 0;
 		levelScore = 0;
+		player.setPower(null);
+		
 	}
 
 	public void restartLevel() {
@@ -470,6 +475,24 @@ public class YellowQuest {
 			player.onGround = false;
 			timerStarted = true;
 		}
+	}
+	
+	public void loadData(){
+		String pName = gameData.getNextPower();
+		if(pName == null || pName.trim().isEmpty()) return;
+		if(pName.equals("bounce")){
+			if(gameData.subtractScorePoints(5000))player.setPower(new PowerBounce(player));
+			else Toast.makeText(canvas.getContext(), R.string.not_enough, Toast.LENGTH_SHORT).show();
+		}
+		if(pName.equals("troll")){
+			if(gameData.subtractScorePoints(10000))player.setPower(new PowerTroll(player));
+			else Toast.makeText(canvas.getContext(), R.string.not_enough, Toast.LENGTH_SHORT).show();
+			
+		}
+		if(gameData.subtractScorePoints(PowerInfo.buyCost(pName))){
+			
+		}
+		gameData.setNextPower("");
 	}
 
 	public void setDisplaying(boolean display) {

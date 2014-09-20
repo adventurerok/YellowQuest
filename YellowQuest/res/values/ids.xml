@@ -15,10 +15,15 @@
     <item type="id" name="play_score"/>
     <item type="id" name="play_back"/>
     <item type="id" name="play_powers"/>
+    <item type="id" name="play_title"/>
+    <item type="id" name="play_money"/>
     <item type="id" name="power_color"/>
     <item type="id" name="power_name"/>
     <item type="id" name="power_buy"/>
     <item type="id" name="power_upgrade"/>
     <item type="id" name="power_space0"/>
+    <item type="id" name="power"/>
+    <item type="id" name="power_expanded"/>
+    <item type="id" name="power_info"/>
 
 </resources>

@@ -25,6 +25,10 @@ public class EntityPlayer extends Entity {
 			return false;
 		return this.power.getName().equals(power);
 	}
+	
+	public void setPower(Power power) {
+		this.power = power;
+	}
 
 	@Override
 	public void update() {

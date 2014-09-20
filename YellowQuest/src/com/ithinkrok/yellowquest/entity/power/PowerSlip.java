@@ -5,8 +5,8 @@ import com.ithinkrok.yellowquest.entity.trait.TraitBoost;
 
 public class PowerSlip extends Power {
 
-	public PowerSlip(EntityPlayer player) {
-		super(player);
+	public PowerSlip(EntityPlayer player, int upgradeLevel) {
+		super(player, upgradeLevel);
 		alternateSlip = 0.96f;
 		paint = TraitBoost.PAINT_FABDAD;
 	}

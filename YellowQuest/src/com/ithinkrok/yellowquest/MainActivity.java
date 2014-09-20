@@ -36,12 +36,15 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private CheckBox settings_music;
 	private TextView settings_back;
 	private ListView play_powers;
+	private Button play_money;
 	
 	private TextView play_play;
 	private TextView play_back;
 	private ImageButton play_shadow;
 	private ImageButton play_time;
 	private TextView play_score;
+	
+	private PowerAdapter powerAdapter;
 	
 	
 	private CanvasSurfaceView view;
@@ -265,6 +268,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		}
 	}
 	
+	
 	public void loadPlayView(){
 		state = GameState.SETUP;
 		setContentView(R.layout.play);
@@ -275,20 +279,25 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		play_time = (ImageButton) findViewById(R.id.play_time);
 		play_score = (TextView) findViewById(R.id.play_score);
 		play_powers = (ListView) findViewById(R.id.play_powers);
+		play_money = (Button) findViewById(R.id.play_money);
 		
 		play_play.setOnClickListener(this);
 		play_back.setOnClickListener(this);
 		play_shadow.setOnClickListener(this);
 		play_time.setOnClickListener(this);
+		play_money.setOnClickListener(this);
 		
 		if(shadowMode) play_shadow.setImageResource(R.drawable.shadow_on);
 		else play_shadow.setImageResource(R.drawable.shadow_off);
 		if(timeMode) play_time.setImageResource(R.drawable.time_off);
 		else play_time.setImageResource(R.drawable.time_on);
 		
+		play_money.setText(BoxMath.formatNumber(gameData.getScorePoints()) + " SP");
 		
-		PowerAdapter adapter = new PowerAdapter(this);
-		play_powers.setAdapter(adapter);
+		
+		if(powerAdapter == null) powerAdapter = new PowerAdapter(this);
+		play_powers.setAdapter(powerAdapter);
+		powerAdapter.setView(play_powers);
 		
 		
 		int hiscore = gameData.getHiScore();
@@ -314,7 +323,9 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	public void loadGameView(){
 		state = GameState.GAME;
 		setContentView(view);
+		view.game.setGameMode(shadowMode, timeMode);
 		view.game.setDisplaying(true);
+		view.game.loadData();
 	}
 	
 	@Override

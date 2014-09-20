@@ -4,68 +4,89 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:background="@color/black" >
-    
+
     <ImageButton
         android:id="@+id/play_time"
         style="@style/RelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_gravity="end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/time" 
-        android:src="@drawable/time_on"/>
+        android:contentDescription="@string/time"
+        android:src="@drawable/time_on" />
 
     <ImageButton
         android:id="@+id/play_shadow"
         style="@style/RelFont"
-        android:layout_gravity="start"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/play_time"
-        android:layout_toLeftOf="@+id/play_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/shadow_off"
-        android:contentDescription="@string/shadow"/>
+        android:layout_alignParentTop="true"
+        android:layout_gravity="start"
+        android:layout_toLeftOf="@+id/play_time"
+        android:layout_toStartOf="@+id/play_time"
+        android:contentDescription="@string/shadow"
+        android:src="@drawable/shadow_off" />
+    
+    <Button 
+        android:id="@+id/play_money"
+        style="@style/RelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="start"
+        android:layout_toLeftOf="@+id/play_shadow"
+        android:layout_toStartOf="@+id/play_shadow"
+        />
 
+    <TextView
+        android:id="@+id/play_title"
+        style="@style/RelText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/powers_and_upgrades" />
 
     <TextView
         android:id="@+id/play_score"
-        style="@style/RelText"
-        android:layout_gravity="start"
-        android:layout_alignParentTop="true"
+        style="@style/RelSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/play_title"
+        android:layout_gravity="start"
         android:text="@string/hiscore_x_previous_y" />
 
     <TextView
         android:id="@+id/play_play"
         style="@style/RelFont"
-        android:layout_gravity="bottom|start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
         android:text="@string/play" />
 
     <TextView
         android:id="@+id/play_back"
         style="@style/RelFont"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:text="@string/back" />
-    
+
     <ListView
         android:id="@+id/play_powers"
         style="@style/RelFont"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/play_shadow"
         android:layout_above="@+id/play_back"
-        />
+        android:layout_below="@+id/play_score" />
 
 </RelativeLayout>
