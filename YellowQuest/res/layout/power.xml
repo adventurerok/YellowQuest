@@ -21,14 +21,6 @@
         android:layout_toEndOf="@+id/power_color"
         android:layout_toRightOf="@+id/power_color" />
 
-    <TextView
-        android:id="@+id/power_name"
-        style="@style/RelText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/power_space0"
-        android:layout_toRightOf="@+id/power_space0" />
 
     <ImageButton
         android:id="@+id/power_upgrade"
@@ -49,5 +41,16 @@
         android:layout_toStartOf="@+id/power_upgrade"
         android:contentDescription="@string/buy"
         android:src="@drawable/dollar"/>
+    
+    <TextView
+        android:id="@+id/power_name"
+        style="@style/RelText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/power_space0"
+        android:layout_toRightOf="@+id/power_space0"
+        android:layout_toLeftOf="@+id/power_buy"
+        android:layout_toStartOf="@+id/power_buy"/>
 
 </RelativeLayout>
