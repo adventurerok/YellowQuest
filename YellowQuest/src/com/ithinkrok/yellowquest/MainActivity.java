@@ -80,7 +80,6 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		//menu = findViewById(R.layout.game);
 		loadMenuView();
 		
-		view = new CanvasSurfaceView(this);
 		//setContentView(view);
 
 		audioEnabled = settings.getBoolean("music", true);
@@ -89,6 +88,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		if (audioEnabled) {
 			audioStart();
 		}
+		
+		view = new CanvasSurfaceView(this);
 		
 		IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
 		filter.addAction(Intent.ACTION_SCREEN_ON);
@@ -185,6 +186,24 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), 1);
 			break;
 		case R.id.menu_leaderboards:
+			if(getApiClient() == null || !getApiClient().isConnected()){
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setMessage(R.string.cant_connect_to_google);
+				builder.setTitle(R.string.cant_view_achievements);
+				builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+						
+					}
+				});
+				AlertDialog dialog = builder.create();
+				dialog.show();
+				return;
+			}
+			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(getApiClient(),
+			        getString(R.string.leaderboard_yellowquest_hiscores)), 1);
 			break;
 		case R.id.menu_settings:
 			loadSettingsView();

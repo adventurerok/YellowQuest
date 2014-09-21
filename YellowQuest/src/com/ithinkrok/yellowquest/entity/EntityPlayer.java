@@ -122,5 +122,9 @@ public class EntityPlayer extends Entity {
 		h = (float) ((box.ey - box.sy) - (bonusBorder * 2));
 		rend.fillRect(xp, yp, w, h, color);
 	}
+	
+	public Power getPower() {
+		return power;
+	}
 
 }

@@ -89,6 +89,10 @@ public class GameData {
 		Integer res = (Integer) data.get(hash);
 		if (res == null || res < score) {
 			data.put(hash, score);
+			client = activity.getApiClient();
+			if (client != null && client.isConnected()) {
+				Games.Leaderboards.submitScore(client, activity.getString(R.string.leaderboard_yellowquest_hiscores), score);
+			}
 			return true;
 		} else
 			return false;

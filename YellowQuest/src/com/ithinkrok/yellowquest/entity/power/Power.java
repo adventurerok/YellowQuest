@@ -53,5 +53,17 @@ public abstract class Power {
 	}
 
 	public abstract String getName();
+	
+	public boolean showPowerButton(){
+		return false;
+	}
+	
+	public float cooldownPercent(){
+		return 100;
+	}
+	
+	public void powerButtonPressed(){
+		
+	}
 
 }

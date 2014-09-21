@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.widget.Toast;
 
 import com.ithinkrok.yellowquest.entity.*;
+import com.ithinkrok.yellowquest.entity.power.PowerTroll;
 import com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory;
 import com.ithinkrok.yellowquest.ui.PowerInfo;
 import com.ithinkrok.yellowquest.util.Box;
@@ -80,7 +81,7 @@ public class YellowQuest {
 
 	private Box leftButtonR;
 	private Box rightButtonR;
-	
+
 	private Box powerButton;
 
 	private boolean shadow = false;
@@ -96,6 +97,10 @@ public class YellowQuest {
 	private boolean display = false;
 
 	private boolean reverse = false;
+
+	private Box coolBox = new Box(0, 0, 0, 0);
+
+	private boolean wasPowerPressed = false;
 
 	public YellowQuest(CanvasSurfaceView canvas) {
 		this.canvas = canvas;
@@ -131,18 +136,17 @@ public class YellowQuest {
 
 		rightButtonR = new Box(20 * bsm, canvas.height - 120 * bsm, 120 * bsm, canvas.height - 20 * bsm);
 		leftButtonR = new Box(140 * bsm, canvas.height - 120 * bsm, 200 * bsm, canvas.height - 20 * bsm);
-		
-		
-//		int left = (int) (200 * bsm);
-//		int right = (int) (canvas.width - 120 * bsm);
-//		int diff = right - left;
-//		int start = (int) (left + (diff / 2) - 50 * bsm);
-//		powerButton = new Box(start, canvas.height - 120 * bsm, start + 100 * bsm, canvas.height - 20 * bsm);
 
+		// int left = (int) (200 * bsm);
+		// int right = (int) (canvas.width - 120 * bsm);
+		// int diff = right - left;
+		// int start = (int) (left + (diff / 2) - 50 * bsm);
+		// powerButton = new Box(start, canvas.height - 120 * bsm, start + 100 *
+		// bsm, canvas.height - 20 * bsm);
 
-		powerButton = new Box(canvas.width - 240 * bsm, canvas.height - 140 * bsm, canvas.width - 20 * bsm,
+		powerButton = new Box(canvas.width - 240 * bsm, canvas.height - 120 * bsm, canvas.width - 140 * bsm,
 				canvas.height - 20 * bsm);
-		
+
 		lastWidth = canvas.width;
 		lastHeight = canvas.height;
 	}
@@ -171,7 +175,24 @@ public class YellowQuest {
 				drawBox(rightButton);
 			}
 			drawBox(jumpButton);
-			drawBox(powerButton);
+
+			if (player.getPower() != null && player.getPower().showPowerButton()) {
+				float cooldown = 1f;
+				cooldown = (player.getPower().cooldownPercent() / 100);
+
+				if (cooldown == 1)
+					drawBox(powerButton);
+				else if (cooldown == 0)
+					drawBox(powerButton, PAINT_COOLDOWN);
+				else {
+					double diff = powerButton.ex - powerButton.sx;
+					coolBox.set(powerButton.sx, powerButton.sy, powerButton.sx + diff * cooldown, powerButton.ey);
+					drawBox(coolBox);
+					coolBox.set(powerButton.sx + diff * cooldown, powerButton.sy, powerButton.ex, powerButton.ey);
+					drawBox(coolBox, PAINT_COOLDOWN);
+				}
+			}
+
 			statsText(rend, "Level: " + (level.number + 1) + "." + (playerBox + 1));
 			statsText(rend, "Score: " + score);
 			statsText(rend, "Timer: " + ((TIMER_MAX - timer) / TIMER_SECOND) + " (Total: "
@@ -185,7 +206,11 @@ public class YellowQuest {
 	}
 
 	public void drawBox(Box box) {
-		canvas.canvas.drawRect((float) box.sx, (float) box.sy, (float) (box.ex), (float) (box.ey), PAINT_BUTTON);
+		drawBox(box, PAINT_BUTTON);
+	}
+
+	public void drawBox(Box box, Paint paint) {
+		canvas.canvas.drawRect((float) box.sx, (float) box.sy, (float) (box.ex), (float) (box.ey), paint);
 	}
 
 	private void drawFlag(CanvasSurfaceView rend, float x, float y) {
@@ -237,6 +262,15 @@ public class YellowQuest {
 	public boolean goRight() {
 		return reverse ? canvas.touchInBox(rightButtonR) : canvas.touchInBox(rightButton);
 		// return wasdKeys[3];
+	}
+
+	private void updatePowerButton() {
+		if (player.getPower() == null || !player.getPower().showPowerButton())
+			return;
+		boolean pressed = canvas.touchInBox(powerButton);
+		if (pressed && !wasPowerPressed)
+			player.getPower().powerButtonPressed();
+		wasPowerPressed = pressed;
 	}
 
 	private void levelUp() {
@@ -391,7 +425,7 @@ public class YellowQuest {
 	public void update() {
 		if (gameOver != null && gameOver.time == 0)
 			gameOver = null;
-		canvas.setReversed(reverse = player.hasPower("troll"));
+		canvas.setReversed(reverse = (player.hasPower("troll") && ((PowerTroll) player.getPower()).isEnabled()));
 		if (gameOver == null) {
 			if (this.playerBox + BOX_BUFFER > this.nextBox) {
 				this.generateBoxes(1);
@@ -399,6 +433,7 @@ public class YellowQuest {
 
 			updateTimer();
 			updateInput();
+			updatePowerButton();
 			updateFalling();
 			updateEntities();
 
