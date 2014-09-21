@@ -1,5 +1,7 @@
 package com.ithinkrok.yellowquest.ui;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.*;
 import android.widget.*;
 
@@ -17,6 +19,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 	public PowerAdapter(MainActivity context) {
 		super();
 		this.context = context;
+		context.getGameData().addScorePoints(1000000);
 	}
 
 	@Override
@@ -60,9 +63,16 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 			row.setBackgroundColor(0xFF666666);
 		else row.setBackgroundColor(0xFF000000);
 		power_color.setBackgroundColor(info.color);
-		power_name.setText(info.displayName);
+		
+		String displayName = context.getString(info.displayName);
+		String lvl = "";
+		int lvlNum = context.getGameData().getPowerUpgradeLevel(info.name);
+		if(lvlNum > 0) lvl = Integer.toString(lvlNum + 1);
+		displayName = String.format(displayName, lvl);
+		
+		power_name.setText(displayName);
 		power_buy.setText(BoxMath.formatNumber(info.buyCost));
-		power_upgrade.setText(BoxMath.formatNumber(info.upgradeCost));
+		power_upgrade.setText(BoxMath.formatNumber(info.upgradeCost(lvlNum)));
 
 		power_name.setOnClickListener(this);
 		power_buy.setOnClickListener(this);
@@ -70,8 +80,10 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 
 		power_name.setTag(position);
 		power_buy.setTag(position);
+		power_upgrade.setTag(position);
 
 		power_buy.setEnabled(!using);
+		if(lvlNum >= info.maxUpgrade) power_upgrade.setEnabled(false);
 
 		if (position == expanded) {
 			TextView power_info = (TextView) row.findViewById(R.id.power_info);
@@ -88,10 +100,44 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 	public void setView(ListView view) {
 		// this.view = view;
 	}
+	
+	public void showUpgradeDialog(final PowerInfo info){
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		String msg = context.getString(info.warnInfo);
+		msg = String.format(msg, context.getGameData().getPowerUpgradeLevel(info.name) + 2);
+		builder.setMessage(msg);
+		builder.setPositiveButton(R.string.upgrade, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				GameData data = context.getGameData();
+				int lvl = data.getPowerUpgradeLevel(info.name);
+				if(!data.subtractScorePoints(info.upgradeCost(lvl))){
+					Toast.makeText(context, R.string.not_enough, Toast.LENGTH_SHORT).show();
+					return;
+				}
+				data.setNextPower("");
+				data.setPowerUpgradeLevel(info.name, ++lvl);
+				notifyDataSetChanged();
+			}
+		});
+		
+		builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				//do nothing
+			}
+		});
+		
+		builder.create().show();
+	}
 
 	@Override
 	public void onClick(View v) {
-		int pos;
+		if(!v.isEnabled()) return;
+		int pos = (Integer) v.getTag();
+		PowerInfo info = PowerInfo.getData(pos);
 		switch (v.getId()) {
 		case R.id.power_name:
 			pos = (Integer) v.getTag();
@@ -101,15 +147,19 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 				expanded = pos;
 			break;
 		case R.id.power_buy:
-			if(!v.isEnabled()) return;
-			pos = (Integer) v.getTag();
-			PowerInfo info = PowerInfo.getData(pos);
 			if(info.buyCost > context.getGameData().getScorePoints()){
 				Toast.makeText(context, R.string.not_enough, Toast.LENGTH_SHORT).show();
 				return;
 			}
-			context.getGameData().setNextPower(PowerInfo.getData((Integer) v.getTag()).name);
+			context.getGameData().setNextPower(info.name);
 			break;
+		case R.id.power_upgrade:
+			int lvlNum = context.getGameData().getPowerUpgradeLevel(info.name);
+			if(info.upgradeCost(lvlNum) > context.getGameData().getScorePoints()){
+				Toast.makeText(context, R.string.not_enough, Toast.LENGTH_SHORT).show();
+				return;
+			}
+			showUpgradeDialog(info);
 		}
 
 		notifyDataSetChanged();

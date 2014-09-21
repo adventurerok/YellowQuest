@@ -8,7 +8,6 @@ import android.graphics.Typeface;
 import android.widget.Toast;
 
 import com.ithinkrok.yellowquest.entity.*;
-import com.ithinkrok.yellowquest.entity.power.*;
 import com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory;
 import com.ithinkrok.yellowquest.ui.PowerInfo;
 import com.ithinkrok.yellowquest.util.Box;
@@ -19,12 +18,16 @@ public class YellowQuest {
 	private static final Paint PAINT_BROWN = new Paint();
 	private static final Paint PAINT_STATS = new Paint();
 	private static final Paint PAINT_GAMEOVER = new Paint();
+	private static final Paint PAINT_BUTTON = new Paint();
+	private static final Paint PAINT_COOLDOWN = new Paint();
 
 	static {
 		PAINT_RED.setColor(0xFFFF0000);
 		PAINT_BROWN.setColor(0xFF556644);
 		PAINT_STATS.setColor(0xFFFFFFFF);
 		PAINT_GAMEOVER.setColor(0xFFFFFFFF);
+		PAINT_BUTTON.setColor(0x55ffffff);
+		PAINT_COOLDOWN.setColor(0x55ffeeee);
 
 		Typeface tf = Typeface.create("sans-serif", Typeface.BOLD);
 		PAINT_STATS.setTypeface(tf);
@@ -77,14 +80,13 @@ public class YellowQuest {
 
 	private Box leftButtonR;
 	private Box rightButtonR;
-	private Box jumpButtonR;
+	
+	private Box powerButton;
 
 	private boolean shadow = false;
 	private boolean timed = false;
 
 	private int tPos = 0;
-
-	private Paint white;
 
 	private boolean timerStarted = false;
 
@@ -92,7 +94,7 @@ public class YellowQuest {
 	private int levelScore;
 
 	private boolean display = false;
-	
+
 	private boolean reverse = false;
 
 	public YellowQuest(CanvasSurfaceView canvas) {
@@ -100,8 +102,6 @@ public class YellowQuest {
 		activity = canvas.getActivity();
 		gameData = canvas.getActivity().getGameData();
 		createButtons(canvas);
-		white = new Paint();
-		white.setColor(0x33ffffff);
 		BOX_BUFFER = (canvas.width / 148) + 1;
 		PAINT_STATS.setTextSize(canvas.density * 12);
 		PAINT_GAMEOVER.setTextSize(canvas.density * 30);
@@ -128,24 +128,27 @@ public class YellowQuest {
 		rightButton = new Box(100 * bsm, canvas.height - 120 * bsm, 200 * bsm, canvas.height - 20 * bsm);
 		jumpButton = new Box(canvas.width - 120 * bsm, canvas.height - 120 * bsm, canvas.width - 20 * bsm,
 				canvas.height - 20 * bsm);
-		
+
 		rightButtonR = new Box(20 * bsm, canvas.height - 120 * bsm, 120 * bsm, canvas.height - 20 * bsm);
 		leftButtonR = new Box(140 * bsm, canvas.height - 120 * bsm, 200 * bsm, canvas.height - 20 * bsm);
-		jumpButtonR = new Box(canvas.width - 120 * bsm, canvas.height - 120 * bsm, canvas.width - 20 * bsm,
-				canvas.height - 20 * bsm);
+		
+		
+//		int left = (int) (200 * bsm);
+//		int right = (int) (canvas.width - 120 * bsm);
+//		int diff = right - left;
+//		int start = (int) (left + (diff / 2) - 50 * bsm);
+//		powerButton = new Box(start, canvas.height - 120 * bsm, start + 100 * bsm, canvas.height - 20 * bsm);
 
-//		leftButtonR = new Box(canvas.width - 80 * bsm, canvas.height - 120 * bsm, canvas.width - 20 * bsm,
-//				canvas.height - 20 * bsm);
-//		rightButtonR = new Box(canvas.width - 200 * bsm, canvas.height - 120 * bsm, canvas.width - 100 * bsm,
-//				canvas.height - 20 * bsm);
-//		jumpButtonR = new Box(20 * bsm, canvas.height - 120 * bsm, 120 * bsm, canvas.height - 20 * bsm);
+
+		powerButton = new Box(canvas.width - 240 * bsm, canvas.height - 140 * bsm, canvas.width - 20 * bsm,
+				canvas.height - 20 * bsm);
 		
 		lastWidth = canvas.width;
 		lastHeight = canvas.height;
 	}
 
 	public boolean doJump() {
-		return reverse ? canvas.touchInBox(jumpButtonR) : canvas.touchInBox(jumpButton);
+		return canvas.touchInBox(jumpButton);
 		// return wasdKeys[0];
 	}
 
@@ -160,15 +163,15 @@ public class YellowQuest {
 			for (int d = 0; d < boxes.size(); ++d) {
 				boxes.get(d).draw(rend);
 			}
-			if(reverse){
+			if (reverse) {
 				drawBox(leftButtonR);
 				drawBox(rightButtonR);
-				drawBox(jumpButtonR);
 			} else {
 				drawBox(leftButton);
 				drawBox(rightButton);
-				drawBox(jumpButton);
 			}
+			drawBox(jumpButton);
+			drawBox(powerButton);
 			statsText(rend, "Level: " + (level.number + 1) + "." + (playerBox + 1));
 			statsText(rend, "Score: " + score);
 			statsText(rend, "Timer: " + ((TIMER_MAX - timer) / TIMER_SECOND) + " (Total: "
@@ -182,7 +185,7 @@ public class YellowQuest {
 	}
 
 	public void drawBox(Box box) {
-		canvas.canvas.drawRect((float) box.sx, (float) box.sy, (float) (box.ex), (float) (box.ey), white);
+		canvas.canvas.drawRect((float) box.sx, (float) box.sy, (float) (box.ex), (float) (box.ey), PAINT_BUTTON);
 	}
 
 	private void drawFlag(CanvasSurfaceView rend, float x, float y) {
@@ -338,7 +341,7 @@ public class YellowQuest {
 		score = 0;
 		levelScore = 0;
 		player.setPower(null);
-		
+
 	}
 
 	public void restartLevel() {
@@ -476,22 +479,15 @@ public class YellowQuest {
 			timerStarted = true;
 		}
 	}
-	
-	public void loadData(){
+
+	public void loadData() {
 		String pName = gameData.getNextPower();
-		if(pName == null || pName.trim().isEmpty()) return;
-		if(pName.equals("bounce")){
-			if(gameData.subtractScorePoints(5000))player.setPower(new PowerBounce(player));
-			else Toast.makeText(canvas.getContext(), R.string.not_enough, Toast.LENGTH_SHORT).show();
-		}
-		if(pName.equals("troll")){
-			if(gameData.subtractScorePoints(10000))player.setPower(new PowerTroll(player));
-			else Toast.makeText(canvas.getContext(), R.string.not_enough, Toast.LENGTH_SHORT).show();
-			
-		}
-		if(gameData.subtractScorePoints(PowerInfo.buyCost(pName))){
-			
-		}
+		if (pName == null || pName.trim().isEmpty())
+			return;
+		if (gameData.subtractScorePoints(PowerInfo.buyCost(pName))) {
+			player.setPower(PowerInfo.getData(pName).newInstance(player, gameData.getPowerUpgradeLevel(pName)));
+		} else
+			Toast.makeText(canvas.getContext(), R.string.not_enough, Toast.LENGTH_SHORT).show();
 		gameData.setNextPower("");
 	}
 

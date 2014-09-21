@@ -68,6 +68,16 @@ public class GameData {
 	public String getNextPower(){
 		return (String) data.get(hash("power_next"));
 	}
+	
+	public int getPowerUpgradeLevel(String power){
+		Integer amt = (Integer) data.get(hash("power_" + power + "upgrade"));
+		if(amt == null) return 0;
+		return amt;
+	}
+	
+	public void setPowerUpgradeLevel(String power, int lvl){
+		data.put(hash("power_" + power + "upgrade"), lvl);
+	}
 
 	public boolean addHiScore(int score) {
 		if (score < 1)

@@ -80,10 +80,8 @@ public class BoxMath {
 	
 	public static String formatNumber(int i){
 		String res;
-		if(i < 1000) res = i + "";
-		else if(i < 10000) res = numberFormat.format(i);
-		else if(i < 1000000) res = numberFormat.format(i / 1000) + "k";
-		else if(i < 10000000) res = numberFormat.format((i % 1000000) / 1000) + "k";
+		if(i < 10000) res = numberFormat.format(i);
+		else if(i < 10000000) res = numberFormat.format(i / 1000) + "k";
 		else res = numberFormat.format(i / 1000000) + "M";
 		return res;
 	}
