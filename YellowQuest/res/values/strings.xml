@@ -51,6 +51,7 @@
 	<string name="time_on">Timer challenge mode enabled</string>
 	
 	<string name="hiscore_beat">Unbelievable! You beat your hiscore! Your new record is %1$d</string>
+	<string name="achievement_reward">You have been rewarded %1$d SP!</string>
     
 
 </resources>

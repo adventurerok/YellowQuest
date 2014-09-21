@@ -39,16 +39,30 @@ public class GameData {
 		this.context = context;
 	}
 
-	public void addAchievement(String achievement) {
+	public boolean addAchievement(String achievement) {
+		return addAchievement(achievement, 500);
+	}
+	
+	public boolean addAchievement(String achievement, int reward) {
 		if (hasAchievement(achievement))
-			return;
+			return false;
 		client = context.getApiClient();
 		if (client == null || !client.isConnected()) {
 			data.put(getAchievementHash(achievement), 1);
-			return;
+		} else {
+			Games.Achievements.unlock(client, achievement);
+			data.put(getAchievementHash(achievement), 2);
 		}
-		Games.Achievements.unlock(client, achievement);
-		data.put(getAchievementHash(achievement), 2);
+		
+		if(reward < 1) return true;
+		
+		addScorePoints(reward);
+		String text = context.getString(R.string.achievement_reward);
+		text = String.format(text, reward);
+		Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
+		
+		
+		return true;
 	}
 
 	public boolean hasAchievement(String achievement) {
