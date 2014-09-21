@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.support.v4.util.LongSparseArray;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
@@ -22,7 +23,7 @@ public class GameData {
 		return h;
 	}
 
-	private MainActivity activity;
+	private MainActivity context;
 
 	private GoogleApiClient client;
 
@@ -33,15 +34,15 @@ public class GameData {
 
 	private LongSparseArray<Object> data = new LongSparseArray<Object>();
 
-	public GameData(MainActivity activity) {
+	public GameData(MainActivity context) {
 		super();
-		this.activity = activity;
+		this.context = context;
 	}
 
 	public void addAchievement(String achievement) {
 		if (hasAchievement(achievement))
 			return;
-		client = activity.getApiClient();
+		client = context.getApiClient();
 		if (client == null || !client.isConnected()) {
 			data.put(getAchievementHash(achievement), 1);
 			return;
@@ -89,9 +90,12 @@ public class GameData {
 		Integer res = (Integer) data.get(hash);
 		if (res == null || res < score) {
 			data.put(hash, score);
-			client = activity.getApiClient();
+			String text = context.getString(R.string.hiscore_beat);
+			text = String.format(text, score);
+			Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
+			client = context.getApiClient();
 			if (client != null && client.isConnected()) {
-				Games.Leaderboards.submitScore(client, activity.getString(R.string.leaderboard_yellowquest_hiscores), score);
+				Games.Leaderboards.submitScore(client, context.getString(R.string.leaderboard_yellowquest_hiscores), score);
 			}
 			return true;
 		} else

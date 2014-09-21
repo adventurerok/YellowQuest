@@ -49,6 +49,8 @@
 	<string name="shadow_on">Shadow mode enabled</string>
 	<string name="time_off">Timer challenge mode disabled</string>
 	<string name="time_on">Timer challenge mode enabled</string>
+	
+	<string name="hiscore_beat">Unbelievable! You beat your hiscore! Your new record is %1$d</string>
     
 
 </resources>
