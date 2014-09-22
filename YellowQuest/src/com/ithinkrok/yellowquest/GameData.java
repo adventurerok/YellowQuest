@@ -1,5 +1,6 @@
 package com.ithinkrok.yellowquest;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -12,6 +13,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 
 public class GameData {
+	
 
 	public static long hash(String string) {
 		long h = 1125899906842597L; // prime
@@ -43,6 +45,29 @@ public class GameData {
 		return addAchievement(achievement, 500);
 	}
 	
+	public void addOfflineAchievements(){
+		GoogleApiClient client = context.getApiClient();
+		if(client == null || !client.isConnected()) return;
+		
+		ArrayList<String> check = new ArrayList<String>();
+		check.add(context.getString(R.string.achievement_almost));
+		check.add(context.getString(R.string.achievement_big_failure));
+		check.add(context.getString(R.string.achievement_easy));
+		check.add(context.getString(R.string.achievement_expert));
+		check.add(context.getString(R.string.achievement_hard));
+		check.add(context.getString(R.string.achievement_impossible));
+		check.add(context.getString(R.string.achievement_medium));
+		check.add(context.getString(R.string.achievement_overshot));
+		
+		
+		
+		for(String s : check){
+			if(getAchievementLevel(s) != 1) continue;
+			Games.Achievements.unlock(client, s);
+			data.put(getAchievementHash(s), 2);
+		}
+	}
+	
 	public boolean addAchievement(String achievement, int reward) {
 		if (hasAchievement(achievement))
 			return false;
@@ -70,6 +95,13 @@ public class GameData {
 		if (obj == null || !(obj instanceof Number))
 			return false;
 		return ((Number) obj).intValue() > 0;
+	}
+	
+	public int getAchievementLevel(String achievement) {
+		Object obj = data.get(getAchievementHash(achievement));
+		if (obj == null || !(obj instanceof Number))
+			return 0;
+		return ((Number) obj).intValue();
 	}
 
 	private long getAchievementHash(String achievement) {

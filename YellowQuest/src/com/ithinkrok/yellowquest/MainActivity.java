@@ -154,6 +154,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	    View signOut = findViewById(R.id.sign_out_button);
 	    if(signIn != null) signIn.setVisibility(View.GONE);
 	    if(signOut != null) signOut.setVisibility(View.VISIBLE);
+	    gameData.addOfflineAchievements();
 	}
 
 	@Override
