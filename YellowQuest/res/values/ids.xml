@@ -25,5 +25,10 @@
     <item type="id" name="power"/>
     <item type="id" name="power_expanded"/>
     <item type="id" name="power_info"/>
+    <item type="id" name="buy_title"/>
+    <item type="id" name="settings_title"/>
+    <item type="id" name="buy_money"/>
+    <item type="id" name="buy_back"/>
+    <item type="id" name="buy_list"/>
 
 </resources>

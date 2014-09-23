@@ -35,6 +35,9 @@
 	<string name="upgrades">Upgrades</string>
 	<string name="powers_and_upgrades">Powers and Upgrades</string>
 	<string name="not_enough">You don\'t have enough Score Points!\nPlay more games or buy more by pressing the Score Point counter!</string>
+	<string name="buy_more_scorepoints">Buy More Score Points</string>
+	<string name="buy_success">Success! %1$s Score points have been added to your total!</string>
+	<string name="buy_failure">Failed. No score points have been purchased.</string>
 	
 	<string name="power_bounce">Bounce %1$s</string>
 	<string name="power_bounce_desc">Makes you bounce off platforms</string>
