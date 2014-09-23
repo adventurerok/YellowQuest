@@ -345,6 +345,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		setContentView(view);
 		view.game.setGameMode(shadowMode, timeMode);
 		view.game.setDisplaying(true);
+		view.game.reload();
 		view.game.loadData();
 	}
 	
