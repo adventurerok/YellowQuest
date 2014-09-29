@@ -30,5 +30,8 @@
     <item type="id" name="buy_money"/>
     <item type="id" name="buy_back"/>
     <item type="id" name="buy_list"/>
+    <item type="id" name="purchase"/>
+    <item type="id" name="purchase_name"/>
+    <item type="id" name="purchase_buy"/>
 
 </resources>

@@ -19,7 +19,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 	public PowerAdapter(MainActivity context) {
 		super();
 		this.context = context;
-		context.getGameData().addScorePoints(1000000);
+		//context.getGameData().addScorePoints(1000000);
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 		power_upgrade.setTag(position);
 
 		power_buy.setEnabled(!using);
-		if(lvlNum >= info.maxUpgrade) power_upgrade.setEnabled(false);
+		power_upgrade.setEnabled(lvlNum < info.maxUpgrade);
 
 		if (position == expanded) {
 			TextView power_info = (TextView) row.findViewById(R.id.power_info);

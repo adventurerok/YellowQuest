@@ -13,6 +13,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 
 public class GameData {
+	
+	private static final int MOD = 1436862197;
 
 	public static long hash(String string) {
 		long h = 1125899906842597L; // prime
@@ -157,7 +159,7 @@ public class GameData {
 			return cheat;
 		int i1 = (Integer) o1;
 		int i2 = (Integer) o2;
-		if ((i1 & i2) == 0)
+		if ((i1 ^ MOD) == i2)
 			return i1;
 		else
 			return cheat;
@@ -264,7 +266,7 @@ public class GameData {
 
 	private void setInt(long key, int val) {
 		data.put(key, val);
-		data.put(~key, ~val);
+		data.put(~key, val ^ MOD);
 	}
 
 	public void setNextPower(String power) {
