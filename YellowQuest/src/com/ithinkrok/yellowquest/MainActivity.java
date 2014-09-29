@@ -65,6 +65,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		@Override
 		public void onServiceConnected(ComponentName name, IBinder service) {
 			buyService = IInAppBillingService.Stub.asInterface(service);
+			if(buyAdapter == null) buyAdapter = new BuyAdapter(MainActivity.this);
+			else buyAdapter.query();
 			checkPurchases();
 		}
 	};
@@ -125,9 +127,9 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		registerReceiver(receiver, filter);
 
 		powerAdapter = new PowerAdapter(this);
-		buyAdapter = new BuyAdapter(this);
+		//buyAdapter = new BuyAdapter(this);
 
-		checkPurchases();
+		//checkPurchases();
 
 	}
 
@@ -518,7 +520,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 						for (int i = 0; i < purchaseDataList.size(); ++i) {
 							String purchaseData = purchaseDataList.get(i);
-							String signature = signatureList.get(i);
+							//String signature = signatureList.get(i);
 							String sku = ownedSkus.get(i);
 							
 							if(!alerted){
@@ -542,9 +544,10 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	protected void onActivityResult(int request, int response, Intent data) {
 		if (request != 1001)
 			return;
+		buyAdapter.toast("Yo! You tried to make a purchase!");
 		int responseCode = data.getIntExtra("RESPONSE_CODE", 0);
 		String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
-		String dataSignature = data.getStringExtra("INAPP_DATA_SIGNATURE");
+		//String dataSignature = data.getStringExtra("INAPP_DATA_SIGNATURE");
 		if (responseCode == RESULT_OK) {
 			try {
 				JSONObject jo = new JSONObject(purchaseData);

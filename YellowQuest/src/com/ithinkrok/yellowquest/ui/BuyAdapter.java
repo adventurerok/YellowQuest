@@ -28,77 +28,80 @@ public class BuyAdapter extends BaseAdapter implements View.OnClickListener {
 
 	public BuyAdapter(final MainActivity context) {
 		this.context = context;
-		if(items.isEmpty()){
+		if (items.isEmpty()) {
 			items.add("scorepoints50");
 			items.add("scorepoints100");
 			items.add("scorepoints200");
 			items.add("scorepoints500");
 		}
-		if(rewards.isEmpty()){
+		if (rewards.isEmpty()) {
 			rewards.put("scorepoints50", 50000);
 			rewards.put("scorepoints100", 100000);
 			rewards.put("scorepoints200", 200000);
 			rewards.put("scorepoints500", 500000);
 		}
-		if (prices[0] == null) {
-			final Bundle querySkus = new Bundle();
-			querySkus.putStringArrayList("ITEM_ID_LIST", items);
+		query();
+	}
 
-			Thread skuFetch = new Thread() {
+	public void query() {
+		if (prices[0] != null)
+			return;
+		final Bundle querySkus = new Bundle();
+		querySkus.putStringArrayList("ITEM_ID_LIST", items);
 
-				@Override
-				public void run() {
-					if (context.buyService == null) {
-						Log.i("YellowQuest", "No buy service");
-						return;
-					}
-					Bundle details;
-					try {
-						details = context.buyService.getSkuDetails(3, context.getPackageName(), "inapp", querySkus);
-					} catch (RemoteException e) {
-						e.printStackTrace();
-						Toast.makeText(context, R.string.error_getting_purchase_details, Toast.LENGTH_SHORT).show();
-						return;
-					}
+		Thread skuFetch = new Thread() {
 
-					int response = details.getInt("RESPONSE_CODE");
-					if (response == 0) {
-						ArrayList<String> responseList = details.getStringArrayList("DETAILS_LIST");
-
-						for (String thisResponse : responseList) {
-							try {
-								JSONObject object = new JSONObject(thisResponse);
-								String sku = object.getString("productId");
-								String title = object.getString("title");
-								String price = object.getString("price");
-								// Log.i("YellowQuest", "A price: " + price);
-								for (int d = 0; d < items.size(); ++d) {
-									if (sku.equals(items.get(d))) {
-										prices[d] = price;
-										titles[d] = title;
-									}
-								}
-							} catch (JSONException e) {
-								Log.w("YellowQuest", "InAppBilling", e);
-								Toast.makeText(context, R.string.error_getting_purchase_details, Toast.LENGTH_SHORT)
-										.show();
-								return;
-							}
-						}
-						// Log.i("YellowQuest", "Recieved data");
-						// Log.i("YellowQuest", "prices[0]: " + prices[0]);
-						// Log.i("YellowQuest", "prices[1]: " + prices[1]);
-						// Log.i("YellowQuest", "prices[2]: " + prices[2]);
-						// Log.i("YellowQuest", "prices[3]: " + prices[3]);
-						dataChanged();
-					} else {
-						// Log.i("YelloqQuest", "Response not 0");
-					}
+			@Override
+			public void run() {
+				if (context.buyService == null) {
+					Log.i("YellowQuest", "No buy service");
+					return;
 				}
-			};
+				Bundle details;
+				try {
+					details = context.buyService.getSkuDetails(3, context.getPackageName(), "inapp", querySkus);
+				} catch (RemoteException e) {
+					e.printStackTrace();
+					Toast.makeText(context, R.string.error_getting_purchase_details, Toast.LENGTH_SHORT).show();
+					return;
+				}
 
-			skuFetch.start();
-		}
+				int response = details.getInt("RESPONSE_CODE");
+				if (response == 0) {
+					ArrayList<String> responseList = details.getStringArrayList("DETAILS_LIST");
+
+					for (String thisResponse : responseList) {
+						try {
+							JSONObject object = new JSONObject(thisResponse);
+							String sku = object.getString("productId");
+							String title = object.getString("title");
+							String price = object.getString("price");
+							// Log.i("YellowQuest", "A price: " + price);
+							for (int d = 0; d < items.size(); ++d) {
+								if (sku.equals(items.get(d))) {
+									prices[d] = price;
+									titles[d] = title;
+								}
+							}
+						} catch (JSONException e) {
+							Log.w("YellowQuest", "InAppBilling", e);
+							Toast.makeText(context, R.string.error_getting_purchase_details, Toast.LENGTH_SHORT).show();
+							return;
+						}
+					}
+					// Log.i("YellowQuest", "Recieved data");
+					// Log.i("YellowQuest", "prices[0]: " + prices[0]);
+					// Log.i("YellowQuest", "prices[1]: " + prices[1]);
+					// Log.i("YellowQuest", "prices[2]: " + prices[2]);
+					// Log.i("YellowQuest", "prices[3]: " + prices[3]);
+					dataChanged();
+				} else {
+					// Log.i("YelloqQuest", "Response not 0");
+				}
+			}
+		};
+
+		skuFetch.start();
 	}
 
 	public void dataChanged() {
@@ -107,13 +110,13 @@ public class BuyAdapter extends BaseAdapter implements View.OnClickListener {
 			@Override
 			public void run() {
 				notifyDataSetChanged();
-				//Log.i("YellowQuest", "Updated UI");
+				// Log.i("YellowQuest", "Updated UI");
 
 			}
 		};
 		context.runOnUiThread(run);
 	}
-	
+
 	public void invalidateAll() {
 		Runnable run = new Runnable() {
 
@@ -126,8 +129,8 @@ public class BuyAdapter extends BaseAdapter implements View.OnClickListener {
 		};
 		context.runOnUiThread(run);
 	}
-	
-	public void toast(final String toastText){
+
+	public void toast(final String toastText) {
 		Runnable run = new Runnable() {
 
 			@Override
@@ -192,26 +195,35 @@ public class BuyAdapter extends BaseAdapter implements View.OnClickListener {
 			Log.w("YellowQuest", e);
 		}
 	}
-	
-	public void consume(final String productId){
-		if(context.buyService == null) return;
-		Thread consumer = new Thread(){
-			
+
+	public void consume(final String productId) {
+		if (context.buyService == null)
+			return;
+		Thread consumer = new Thread() {
+
 			@Override
 			public void run() {
 				try {
 					int response = context.buyService.consumePurchase(3, context.getPackageName(), productId);
-					if(response == 0){
-						int reward = rewards.get(productId);
-						context.getGameData().addScorePoints(reward);
-						String text = context.getString(R.string.achievement_reward);
-						text = String.format(text, reward);
-						toast(text);
+					if (response == 0) {
+						final int reward = rewards.get(productId);
+						context.runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								context.getGameData().addScorePoints(reward);
+								String text = context.getString(R.string.achievement_reward);
+								text = String.format(text, reward);
+								toast(text);
+							}
+						});
+
 						invalidateAll();
 					} else {
+						toast("Error code: " + response + "PID: " + productId);
 						Log.w("YellowQuest", "Failed to consume purchase");
 					}
-				} catch (RemoteException e) {
+				} catch (Exception e) {
+					toast("Dang: " + e.getMessage());
 					Log.w("YellowQuest", e);
 				}
 			}
