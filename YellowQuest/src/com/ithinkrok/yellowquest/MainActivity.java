@@ -146,6 +146,16 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		}
 
 	}
+	
+	public void saveData(){
+		runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				gameData.save(settings.edit());
+			}
+		});
+	}
 
 	public SharedPreferences getSettings() {
 		return settings;
@@ -516,23 +526,26 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 					if (response == 0) {
 						ArrayList<String> ownedSkus = ownedItems.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
 						ArrayList<String> purchaseDataList = ownedItems.getStringArrayList("INAPP_PURCHASE_DATA_LIST");
-						ArrayList<String> signatureList = ownedItems.getStringArrayList("INAPP_DATA_SIGNATURE");
+						//ArrayList<String> signatureList = ownedItems.getStringArrayList("INAPP_DATA_SIGNATURE");
 
 						for (int i = 0; i < purchaseDataList.size(); ++i) {
 							String purchaseData = purchaseDataList.get(i);
+							JSONObject jo = new JSONObject(purchaseData);
 							//String signature = signatureList.get(i);
 							String sku = ownedSkus.get(i);
 							
 							if(!alerted){
-								buyAdapter.toast("You had some unconsumed purchases. Trying to consume");
+								//buyAdapter.toast("You had some unconsumed purchases. Trying to consume");
 								alerted = true;
 							}
 							
-							buyAdapter.consume(sku);
+							buyAdapter.consume(sku, jo.getString("purchaseToken"));
 						}
 
 					}
 				} catch (RemoteException e) {
+					Log.w("YellowQuest", e);
+				} catch (JSONException e) {
 					Log.w("YellowQuest", e);
 				}
 			}
@@ -544,21 +557,26 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	protected void onActivityResult(int request, int response, Intent data) {
 		if (request != 1001)
 			return;
-		buyAdapter.toast("Yo! You tried to make a purchase!");
+		//buyAdapter.toast("Yo! You tried to make a purchase!");
 		int responseCode = data.getIntExtra("RESPONSE_CODE", 0);
 		String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
 		//String dataSignature = data.getStringExtra("INAPP_DATA_SIGNATURE");
-		if (responseCode == RESULT_OK) {
+		//int i = RESULT_CANCELED;
+		if (response == RESULT_OK && responseCode == 0) {
 			try {
 				JSONObject jo = new JSONObject(purchaseData);
 				String sku = jo.getString("productId");
+				String token = jo.getString("purchaseToken");
 				if (buyAdapter != null)
-					buyAdapter.consume(sku);
-				Log.i("YellowQuest", "You have bought the " + sku + ". Excellent choice, adventurer!");
+					//buyAdapter.toast("consummer");
+					buyAdapter.consume(sku, token);
+				//Log.i("YellowQuest", "You have bought the " + sku + ". Excellent choice, adventurer!");
 			} catch (JSONException e) {
-				Log.i("YellowQuest", "Failed to parse purchase data.");
-				e.printStackTrace();
+				//Log.i("YellowQuest", "Failed to parse purchase data.");
+				//e.printStackTrace();
 			}
+		} else {
+			//buyAdapter.toast("Other response: " + responseCode);
 		}
 	}
 }

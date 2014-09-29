@@ -528,6 +528,7 @@ public class YellowQuest {
 		} else
 			Toast.makeText(canvas.getContext(), R.string.not_enough, Toast.LENGTH_SHORT).show();
 		gameData.setNextPower("");
+		canvas.getActivity().saveData();
 	}
 
 	public void setDisplaying(boolean display) {

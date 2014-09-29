@@ -118,6 +118,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 				}
 				data.setNextPower("");
 				data.setPowerUpgradeLevel(info.name, ++lvl);
+				context.saveData();
 				notifyDataSetChanged();
 			}
 		});

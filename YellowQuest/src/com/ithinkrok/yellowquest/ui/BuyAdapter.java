@@ -36,9 +36,9 @@ public class BuyAdapter extends BaseAdapter implements View.OnClickListener {
 		}
 		if (rewards.isEmpty()) {
 			rewards.put("scorepoints50", 50000);
-			rewards.put("scorepoints100", 100000);
-			rewards.put("scorepoints200", 200000);
-			rewards.put("scorepoints500", 500000);
+			rewards.put("scorepoints100", 110000);
+			rewards.put("scorepoints200", 230000);
+			rewards.put("scorepoints500", 600000);
 		}
 		query();
 	}
@@ -123,7 +123,7 @@ public class BuyAdapter extends BaseAdapter implements View.OnClickListener {
 			@Override
 			public void run() {
 				context.invalidateUI();
-				Log.i("YellowQuest", "Invalidate All");
+				//Log.i("YellowQuest", "Invalidate All");
 
 			}
 		};
@@ -190,13 +190,13 @@ public class BuyAdapter extends BaseAdapter implements View.OnClickListener {
 				context.startIntentSenderForResult(pendingIntent.getIntentSender(), 1001, new Intent(), 0, 0, 0);
 			}
 		} catch (RemoteException e) {
-			Log.w("YellowQuest", e);
+			//Log.w("YellowQuest", e);
 		} catch (SendIntentException e) {
-			Log.w("YellowQuest", e);
+			//Log.w("YellowQuest", e);
 		}
 	}
 
-	public void consume(final String productId) {
+	public void consume(final String productId, final String purchaseToken) {
 		if (context.buyService == null)
 			return;
 		Thread consumer = new Thread() {
@@ -204,13 +204,14 @@ public class BuyAdapter extends BaseAdapter implements View.OnClickListener {
 			@Override
 			public void run() {
 				try {
-					int response = context.buyService.consumePurchase(3, context.getPackageName(), productId);
+					int response = context.buyService.consumePurchase(3, context.getPackageName(), purchaseToken);
 					if (response == 0) {
 						final int reward = rewards.get(productId);
 						context.runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
 								context.getGameData().addScorePoints(reward);
+								context.saveData();
 								String text = context.getString(R.string.achievement_reward);
 								text = String.format(text, reward);
 								toast(text);
@@ -219,12 +220,12 @@ public class BuyAdapter extends BaseAdapter implements View.OnClickListener {
 
 						invalidateAll();
 					} else {
-						toast("Error code: " + response + "PID: " + productId);
-						Log.w("YellowQuest", "Failed to consume purchase");
+						//toast("Error code: " + response + "PID: " + productId);
+						//Log.w("YellowQuest", "Failed to consume purchase");
 					}
 				} catch (Exception e) {
-					toast("Dang: " + e.getMessage());
-					Log.w("YellowQuest", e);
+					//toast("Dang: " + e.getMessage());
+					//Log.w("YellowQuest", e);
 				}
 			}
 		};
