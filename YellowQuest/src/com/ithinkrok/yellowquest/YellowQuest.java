@@ -281,8 +281,10 @@ public class YellowQuest {
 		if (player.getPower() == null || !player.getPower().showPowerButton())
 			return;
 		boolean pressed = canvas.touchInBox(powerButton);
-		if (pressed && !wasPowerPressed)
+		if (pressed && !wasPowerPressed){
+			timerStarted = true;
 			player.getPower().powerButtonPressed();
+		}
 		wasPowerPressed = pressed;
 	}
 
