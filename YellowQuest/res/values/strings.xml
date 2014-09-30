@@ -48,6 +48,10 @@
 	<string name="power_troll_upgrade">Upgrade: Enables toggling between backwards and normal</string>
 	<string name="power_bounce_warn">Upgrade bounce power to level %1$d?</string>
 	<string name="power_troll_warn">Upgrade backwards power to level %1$d?</string>
+	<string name="power_teleport">Teleport %1$s</string>
+	<string name="power_teleport_desc">Allows a teleport to the next box, with a cooldown</string>
+	<string name="power_teleport_upgrade">Upgrade: Decreases the cooldown between teleporting by 15 seconds</string>
+	<string name="power_teleport_warn">Upgrade teleport power to level %1$d?</string>
 	
 	<string name="shadow_off">Shadow mode disabled</string>
 	<string name="shadow_on">Shadow mode enabled</string>

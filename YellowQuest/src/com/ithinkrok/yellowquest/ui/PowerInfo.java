@@ -9,12 +9,11 @@ import android.util.Log;
 import com.ithinkrok.yellowquest.R;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
 import com.ithinkrok.yellowquest.entity.power.*;
-import com.ithinkrok.yellowquest.entity.trait.TraitBounce;
-import com.ithinkrok.yellowquest.entity.trait.TraitTroll;
+import com.ithinkrok.yellowquest.entity.trait.*;
 
 public class PowerInfo {
-	
-	static int mult[] = new int[]{1, 2, 4, 8, 16, 32, 64, 128, 256};
+
+	static int mult[] = new int[] { 1, 2, 4, 8, 16, 32, 64, 128, 256 };
 
 	Class<? extends Power> clazz;
 	String name;
@@ -40,10 +39,10 @@ public class PowerInfo {
 		this.displayUpgradeInfo = displayUpgradeInfo;
 		this.maxUpgrade = maxUpgrade;
 		this.warnInfo = warnInfo;
-		
+
 	}
-	
-	public Power newInstance(EntityPlayer player, int upgradeLevel){
+
+	public Power newInstance(EntityPlayer player, int upgradeLevel) {
 		try {
 			return clazz.getConstructor(EntityPlayer.class, int.class).newInstance(player, upgradeLevel);
 		} catch (InstantiationException e) {
@@ -64,42 +63,47 @@ public class PowerInfo {
 		}
 		throw new RuntimeException("You need to take a closer look at some of da code!");
 	}
-	
-	public int upgradeCost(int lvl){
+
+	public int upgradeCost(int lvl) {
 		return upgradeCost * mult[lvl];
 	}
-	
+
 	private static ArrayList<PowerInfo> data = new ArrayList<PowerInfo>();
 	private static HashMap<String, PowerInfo> named = new HashMap<String, PowerInfo>();
-	
+
 	static {
 		data.add(new PowerInfo(PowerBounce.class, "bounce", TraitBounce.PAINT_MAGENTA.getColor(), 1000, 10000,
-				R.string.power_bounce, R.string.power_bounce_desc, R.string.power_bounce_upgrade, 2, R.string.power_bounce_warn));
+				R.string.power_bounce, R.string.power_bounce_desc, R.string.power_bounce_upgrade, 2,
+				R.string.power_bounce_warn));
 		data.add(new PowerInfo(PowerTroll.class, "troll", TraitTroll.PAINT_TROLL.getColor(), 2000, 20000,
-				R.string.power_troll, R.string.power_troll_desc, R.string.power_troll_upgrade, 1, R.string.power_troll_warn));
-		
-		for(PowerInfo info : data){
+				R.string.power_troll, R.string.power_troll_desc, R.string.power_troll_upgrade, 1,
+				R.string.power_troll_warn));
+		data.add(new PowerInfo(PowerTeleport.class, "teleport", TraitConveyor.PAINT_GREY.getColor(), 1, 2,
+				R.string.power_teleport, R.string.power_teleport_desc, R.string.power_teleport_upgrade, 4,
+				R.string.power_teleport_warn));
+
+		for (PowerInfo info : data) {
 			named.put(info.name, info);
 		}
 	}
-	
-	public static PowerInfo getData(int index){
+
+	public static PowerInfo getData(int index) {
 		return data.get(index);
 	}
-	
-	public static int buyCost(int index){
+
+	public static int buyCost(int index) {
 		return getData(index).buyCost;
 	}
-	
-	public static int buyCost(String index){
+
+	public static int buyCost(String index) {
 		return getData(index).buyCost;
 	}
-	
-	public static int getPowerCount(){
+
+	public static int getPowerCount() {
 		return data.size();
 	}
-	
-	public static PowerInfo getData(String name){
+
+	public static PowerInfo getData(String name) {
 		return named.get(name);
 	}
 

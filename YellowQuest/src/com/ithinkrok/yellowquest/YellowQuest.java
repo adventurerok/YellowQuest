@@ -119,6 +119,15 @@ public class YellowQuest {
 	public void addAchievement(int achievement, int score) {
 		gameData.addAchievement(activity.getString(achievement), score);
 	}
+	
+	public EntityPlatform getPlatform(int num){
+		for(int d = 0; d < boxes.size(); ++d){
+			if(!(boxes.get(d) instanceof EntityPlatform)) continue;
+			if(boxes.get(d).boxNumber == num) return (EntityPlatform) boxes.get(d);
+			
+		}
+		return null;
+	}
 
 	public void addAchievement(String achievement) {
 		gameData.addAchievement(achievement);

@@ -7,7 +7,7 @@ import com.ithinkrok.yellowquest.entity.EntityPlayer;
 
 public class TraitConveyor extends Trait {
 	
-	private static final Paint PAINT_GREY = new Paint();
+	public static final Paint PAINT_GREY = new Paint();
 	
 	static {
 		PAINT_GREY.setColor(0xff888888);
