@@ -72,7 +72,7 @@ public class GameData {
 		if (score < 1)
 			return false;
 		addScorePoints(score);
-		data.put(hash("score_previous"), score);
+		setInt(hash("score_previous"), score);
 		String base = "score_total";
 		long hash = hash(base);
 		int res = getInt(hash, 0);

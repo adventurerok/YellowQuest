@@ -78,6 +78,9 @@ public class PowerInfo {
 		data.add(new PowerInfo(PowerTroll.class, "troll", TraitTroll.PAINT_TROLL.getColor(), 2000, 10000,
 				R.string.power_troll, R.string.power_troll_desc, R.string.power_troll_upgrade, 1,
 				R.string.power_troll_warn));
+		data.add(new PowerInfo(PowerUp.class, "up", TraitUp.PAINT_GREEN.getColor(), 5000, 25000,
+				R.string.power_up, R.string.power_up_desc, R.string.power_up_upgrade, 2,
+				R.string.power_up_warn));
 		data.add(new PowerInfo(PowerTeleport.class, "teleport", TraitConveyor.PAINT_GREY.getColor(), 10000, 50000,
 				R.string.power_teleport, R.string.power_teleport_desc, R.string.power_teleport_upgrade, 4,
 				R.string.power_teleport_warn));

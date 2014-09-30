@@ -7,7 +7,7 @@ import com.ithinkrok.yellowquest.entity.EntityPlayer;
 
 public class TraitUp extends Trait {
 	
-	private static final Paint PAINT_GREEN = new Paint();
+	public static final Paint PAINT_GREEN = new Paint();
 	
 	static {
 		PAINT_GREEN.setColor(0xff00ff00);

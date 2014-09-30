@@ -13,7 +13,7 @@ public class PowerTeleport extends Power {
 
 	public PowerTeleport(EntityPlayer player, int upgradeLevel) {
 		super(player, upgradeLevel);
-		cooldown = 45 * (100 - (upgradeLevel * 15));
+		cooldown = 45 * (100 - (upgradeLevel * 20));
 		paint = TraitConveyor.PAINT_GREY;
 	}
 
@@ -25,7 +25,7 @@ public class PowerTeleport extends Power {
 	
 	@Override
 	public float cooldownPercent() {
-		return (1 - (cooling /cooldown)) * 100;
+		return (1 - ((float)cooling/(float)cooldown)) * 100f;
 	}
 	
 	@Override
@@ -48,8 +48,8 @@ public class PowerTeleport extends Power {
 		int tx = (int) box.x;
 		int ty = (int) (box.box.ey + 32);
 		player.calcBounds(tx, ty, player.width, player.height);
-		//cooling = cooldown;
-		cooling = 45;
+		cooling = cooldown;
+		//cooling = 45;
 	}
 	
 	

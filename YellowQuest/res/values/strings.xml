@@ -50,8 +50,13 @@
 	<string name="power_troll_warn">Upgrade backwards power to level %1$d?</string>
 	<string name="power_teleport">Teleport %1$s</string>
 	<string name="power_teleport_desc">Allows a teleport to the next box, with a cooldown</string>
-	<string name="power_teleport_upgrade">Upgrade: Decreases the cooldown between teleporting by 15 seconds</string>
+	<string name="power_teleport_upgrade">Upgrade: Decreases the cooldown between teleporting by 20 seconds</string>
 	<string name="power_teleport_warn">Upgrade teleport power to level %1$d?</string>
+	<string name="power_up">Upwards %1$s</string>
+	<string name="power_up_desc">Makes all boxes move upwards when landed on</string>
+	<string name="power_up_upgrade">Upgrade: Increases the speed that boxes move upwards</string>
+	<string name="power_up_warn">Upgrade upwards power to level %1$d?</string>
+	
 	
 	<string name="shadow_off">Shadow mode disabled</string>
 	<string name="shadow_on">Shadow mode enabled</string>

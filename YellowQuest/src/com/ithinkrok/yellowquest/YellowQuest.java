@@ -28,7 +28,7 @@ public class YellowQuest {
 		PAINT_STATS.setColor(0xFFFFFFFF);
 		PAINT_GAMEOVER.setColor(0xFFFFFFFF);
 		PAINT_BUTTON.setColor(0x55ffffff);
-		PAINT_COOLDOWN.setColor(0x55ffeeee);
+		PAINT_COOLDOWN.setColor(0x55ffcccc);
 
 		Typeface tf = Typeface.create("sans-serif", Typeface.BOLD);
 		PAINT_STATS.setTypeface(tf);
