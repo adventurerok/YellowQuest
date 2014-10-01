@@ -56,6 +56,10 @@
 	<string name="power_up_desc">Makes all boxes move upwards when landed on</string>
 	<string name="power_up_upgrade">Upgrade: Increases the speed that boxes move upwards</string>
 	<string name="power_up_warn">Upgrade upwards power to level %1$d?</string>
+	<string name="power_time">Time Stop %1$s</string>
+	<string name="power_time_desc">Allows the timer to be temporarily stopped</string>
+	<string name="power_time_upgrade">Upgrade: Increases the time stopped and decreases the cooldown</string>
+	<string name="power_time_warn">Upgrade time stop power to level %1$d?</string>
 	
 	
 	<string name="shadow_off">Shadow mode disabled</string>

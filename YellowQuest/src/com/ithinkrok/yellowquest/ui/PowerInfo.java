@@ -7,6 +7,7 @@ import java.util.HashMap;
 import android.util.Log;
 
 import com.ithinkrok.yellowquest.R;
+import com.ithinkrok.yellowquest.YellowQuest;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
 import com.ithinkrok.yellowquest.entity.power.*;
 import com.ithinkrok.yellowquest.entity.trait.*;
@@ -81,6 +82,9 @@ public class PowerInfo {
 		data.add(new PowerInfo(PowerUp.class, "up", TraitUp.PAINT_GREEN.getColor(), 5000, 25000,
 				R.string.power_up, R.string.power_up_desc, R.string.power_up_upgrade, 2,
 				R.string.power_up_warn));
+		data.add(new PowerInfo(PowerTimeStop.class, "time", YellowQuest.PAINT_GAMEOVER.getColor(), 7500, 37500,
+				R.string.power_time, R.string.power_time_desc, R.string.power_time_upgrade, 2,
+				R.string.power_time_warn));
 		data.add(new PowerInfo(PowerTeleport.class, "teleport", TraitConveyor.PAINT_GREY.getColor(), 10000, 50000,
 				R.string.power_teleport, R.string.power_teleport_desc, R.string.power_teleport_upgrade, 4,
 				R.string.power_teleport_warn));

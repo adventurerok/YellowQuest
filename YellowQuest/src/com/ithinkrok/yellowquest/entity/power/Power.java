@@ -65,5 +65,9 @@ public abstract class Power {
 	public void powerButtonPressed(){
 		
 	}
+	
+	public Paint getCooldownPaint(){
+		return null;
+	}
 
 }

@@ -17,8 +17,8 @@ public class YellowQuest {
 
 	private static final Paint PAINT_RED = new Paint();
 	private static final Paint PAINT_BROWN = new Paint();
-	private static final Paint PAINT_STATS = new Paint();
-	private static final Paint PAINT_GAMEOVER = new Paint();
+	public static final Paint PAINT_STATS = new Paint();
+	public static final Paint PAINT_GAMEOVER = new Paint();
 	private static final Paint PAINT_BUTTON = new Paint();
 	private static final Paint PAINT_COOLDOWN = new Paint();
 
@@ -192,17 +192,20 @@ public class YellowQuest {
 			if (player.getPower() != null && player.getPower().showPowerButton()) {
 				float cooldown = 1f;
 				cooldown = (player.getPower().cooldownPercent() / 100);
+				
+				Paint cd = player.getPower().getCooldownPaint();
+				if(cd == null) cd = PAINT_COOLDOWN;
 
 				if (cooldown == 1)
 					drawBox(powerButton);
 				else if (cooldown == 0)
-					drawBox(powerButton, PAINT_COOLDOWN);
+					drawBox(powerButton, cd);
 				else {
 					double diff = powerButton.ex - powerButton.sx;
 					coolBox.set(powerButton.sx, powerButton.sy, powerButton.sx + diff * cooldown, powerButton.ey);
 					drawBox(coolBox);
 					coolBox.set(powerButton.sx + diff * cooldown, powerButton.sy, powerButton.ex, powerButton.ey);
-					drawBox(coolBox, PAINT_COOLDOWN);
+					drawBox(coolBox, cd);
 				}
 			}
 
