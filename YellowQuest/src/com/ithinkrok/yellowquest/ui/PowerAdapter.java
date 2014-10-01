@@ -2,7 +2,6 @@ package com.ithinkrok.yellowquest.ui;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.util.Log;
 import android.view.*;
 import android.widget.*;
 
@@ -103,6 +102,8 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 			infoText.append(context.getString(info.displayInfo));
 			infoText.append("\n");
 			infoText.append(context.getString(info.displayUpgradeInfo));
+			infoText.append("\n\n");
+			infoText.append(context.getString(info.displayUnlock));
 			power_info.setText(infoText.toString());
 		}
 
