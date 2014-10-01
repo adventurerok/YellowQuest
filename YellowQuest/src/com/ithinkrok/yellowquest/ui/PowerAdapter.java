@@ -2,6 +2,7 @@ package com.ithinkrok.yellowquest.ui;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.*;
 import android.widget.*;
 
@@ -42,7 +43,10 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if(!context.getGameData().hasPowerUnlock(position)){
-			if(blanks[position] == null) blanks[position] = new View(context);
+			if(blanks[position] == null){
+				blanks[position] = new View(context);
+				blanks[position].setBackgroundColor(0x00000000);
+			}
 			return blanks[position];
 		}
 		PowerInfo info = PowerInfo.getData(position);
@@ -50,9 +54,11 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 		LayoutInflater inflater = context.getLayoutInflater();
 		View row = null;
 		if (convertView != null) {
-			boolean wasExpanded = convertView.getId() == R.id.power_expanded;
-			if (wasExpanded == (position == expanded))
-				row = convertView;
+			if(convertView.getId() == R.id.power_expanded || convertView.getId() == R.id.power){
+				boolean wasExpanded = convertView.getId() == R.id.power_expanded;
+				if (wasExpanded == (position == expanded))
+					row = convertView;
+			}
 		}
 		if (row == null) {
 			if (position != expanded)
