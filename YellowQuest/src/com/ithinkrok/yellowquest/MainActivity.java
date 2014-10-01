@@ -117,7 +117,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		audioEnabled = settings.getBoolean("music", true);
 		shadowMode = settings.getBoolean("shadow", false);
 		timeMode = settings.getBoolean("time", false);
-		passedOne = settings.getBoolean("passed", false);
+		//passedOne = settings.getBoolean("passed", false);
 		if (audioEnabled) {
 			audioStart();
 		}
@@ -139,6 +139,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	public void setPassedOne() {
 		if(!this.passedOne){
 			settings.edit().putBoolean("passed", true).commit();
+			Toast.makeText(this, R.string.powers_view_unlock, Toast.LENGTH_SHORT).show();
 		}
 		this.passedOne = true;
 	}
@@ -396,19 +397,22 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		else
 			play_time.setImageResource(R.drawable.time_on);
 
-		if(gameData.getPowerUnlocks() != 0) play_money.setText(BoxMath.formatNumber(gameData.getScorePoints()) + " SP");
-		else play_money.setText(R.string.no_powers);
+		play_money.setText(BoxMath.formatNumber(gameData.getScorePoints()) + " SP");
 
 		if (powerAdapter == null)
 			powerAdapter = new PowerAdapter(this);
 		play_powers.setAdapter(powerAdapter);
 		powerAdapter.setView(play_powers);
 
-		int hiscore = gameData.getHiScore();
-		int previous = gameData.getPreviousScore();
-		String text = getString(R.string.hiscore_x_previous_y);
-		text = String.format(text, hiscore, previous);
-		play_score.setText(text);
+		if(gameData.getPowerUnlocks() != 0){
+			int hiscore = gameData.getHiScore();
+			int previous = gameData.getPreviousScore();
+			String text = getString(R.string.hiscore_x_previous_y);
+			text = String.format(text, hiscore, previous);
+			play_score.setText(text);
+		} else {
+			play_score.setText(R.string.no_powers);
+		}
 	}
 
 	public void loadSettingsView() {
