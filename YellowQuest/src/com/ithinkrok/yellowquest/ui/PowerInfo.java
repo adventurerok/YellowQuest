@@ -76,20 +76,20 @@ public class PowerInfo {
 		data.add(new PowerInfo(PowerBounce.class, "bounce", TraitBounce.PAINT_MAGENTA.getColor(), 1000, 5000,
 				R.string.power_bounce, R.string.power_bounce_desc, R.string.power_bounce_upgrade, 2,
 				R.string.power_bounce_warn));
-		data.add(new PowerInfo(PowerTroll.class, "troll", TraitTroll.PAINT_TROLL.getColor(), 2000, 10000,
+		data.add(new PowerInfo(PowerTroll.class, "troll", TraitTroll.PAINT_TROLL.getColor(), 2500, 12000,
 				R.string.power_troll, R.string.power_troll_desc, R.string.power_troll_upgrade, 1,
 				R.string.power_troll_warn));
 		data.add(new PowerInfo(PowerUp.class, "up", TraitUp.PAINT_GREEN.getColor(), 5000, 25000,
 				R.string.power_up, R.string.power_up_desc, R.string.power_up_upgrade, 2,
 				R.string.power_up_warn));
-		data.add(new PowerInfo(PowerTimeStop.class, "time", YellowQuest.PAINT_GAMEOVER.getColor(), 7500, 37500,
-				R.string.power_time, R.string.power_time_desc, R.string.power_time_upgrade, 4,
+		data.add(new PowerInfo(PowerTimeStop.class, "time", YellowQuest.PAINT_GAMEOVER.getColor(), 7500, 37000,
+				R.string.power_time, R.string.power_time_desc, R.string.power_time_upgrade, 2,
 				R.string.power_time_warn));
 		data.add(new PowerInfo(PowerTeleport.class, "teleport", TraitConveyor.PAINT_GREY.getColor(), 10000, 50000,
-				R.string.power_teleport, R.string.power_teleport_desc, R.string.power_teleport_upgrade, 4,
+				R.string.power_teleport, R.string.power_teleport_desc, R.string.power_teleport_upgrade, 2,
 				R.string.power_teleport_warn));
 		data.add(new PowerInfo(PowerLife.class, "life", EntityPlayer.PAINT_YELLOW.getColor(), 15000, 75000,
-				R.string.power_life, R.string.power_life_desc, R.string.power_life_upgrade, 4,
+				R.string.power_life, R.string.power_life_desc, R.string.power_life_upgrade, 2,
 				R.string.power_life_warn));
 
 		for (PowerInfo info : data) {

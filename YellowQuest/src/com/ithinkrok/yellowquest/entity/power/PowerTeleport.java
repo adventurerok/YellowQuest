@@ -13,7 +13,7 @@ public class PowerTeleport extends Power {
 
 	public PowerTeleport(EntityPlayer player, int upgradeLevel) {
 		super(player, upgradeLevel);
-		cooldown = 45 * (100 - (upgradeLevel * 20));
+		cooldown = 45 * (100 - (upgradeLevel * 40));
 		paint = TraitConveyor.PAINT_GREY;
 	}
 
