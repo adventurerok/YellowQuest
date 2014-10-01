@@ -44,8 +44,10 @@ public class EntityPlatform extends Entity {
 	    this.aiUpdate();
 	    if (pis) {
 	        if (this.y_velocity > 0) {
+	        	boolean ground = game.player.onGround;
 	            game.player.move(0, this.y_velocity);
 	            this.move(0, this.y_velocity);
+	            game.player.onGround = ground;
 	        } else if (this.y_velocity < 0) {
 	            this.move(0, this.y_velocity);
 	            boolean ground = game.player.onGround;
