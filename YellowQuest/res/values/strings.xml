@@ -60,6 +60,10 @@
 	<string name="power_time_desc">Allows the timer to be temporarily stopped</string>
 	<string name="power_time_upgrade">Upgrade: Increases the time stopped and decreases the cooldown</string>
 	<string name="power_time_warn">Upgrade time stop power to level %1$d?</string>
+	<string name="power_life">Extra Life %1$s</string>
+	<string name="power_life_desc">Increases the number of lives you have</string>
+	<string name="power_life_upgrade">Upgrade: Adds 1 extra life per level</string>
+	<string name="power_life_warn">Upgrade extra life power to level %1$d?</string>
 	
 	
 	<string name="shadow_off">Shadow mode disabled</string>

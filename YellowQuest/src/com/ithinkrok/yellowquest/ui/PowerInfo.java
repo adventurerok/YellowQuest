@@ -83,11 +83,14 @@ public class PowerInfo {
 				R.string.power_up, R.string.power_up_desc, R.string.power_up_upgrade, 2,
 				R.string.power_up_warn));
 		data.add(new PowerInfo(PowerTimeStop.class, "time", YellowQuest.PAINT_GAMEOVER.getColor(), 7500, 37500,
-				R.string.power_time, R.string.power_time_desc, R.string.power_time_upgrade, 2,
+				R.string.power_time, R.string.power_time_desc, R.string.power_time_upgrade, 4,
 				R.string.power_time_warn));
 		data.add(new PowerInfo(PowerTeleport.class, "teleport", TraitConveyor.PAINT_GREY.getColor(), 10000, 50000,
 				R.string.power_teleport, R.string.power_teleport_desc, R.string.power_teleport_upgrade, 4,
 				R.string.power_teleport_warn));
+		data.add(new PowerInfo(PowerLife.class, "life", EntityPlayer.PAINT_YELLOW.getColor(), 15000, 75000,
+				R.string.power_life, R.string.power_life_desc, R.string.power_life_upgrade, 4,
+				R.string.power_life_warn));
 
 		for (PowerInfo info : data) {
 			named.put(info.name, info);

@@ -7,7 +7,7 @@ import android.graphics.Paint;
 
 public class EntityPlayer extends Entity {
 
-	private static final Paint PAINT_YELLOW = new Paint();
+	public static final Paint PAINT_YELLOW = new Paint();
 
 	static {
 		PAINT_YELLOW.setColor(0xffffff00);

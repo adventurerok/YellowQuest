@@ -21,8 +21,8 @@ public class PowerTimeStop extends Power {
 	public PowerTimeStop(EntityPlayer player, int upgradeLevel) {
 		super(player, upgradeLevel);
 		paint = YellowQuest.PAINT_GAMEOVER;
-		stopTime = 45 * (3 + 3 * upgradeLevel);
-		cooldown = 45 * (50 - 5 * upgradeLevel);
+		stopTime = 45 * (3 + 2 * upgradeLevel);
+		cooldown = 45 * (50 - 4 * upgradeLevel);
 	}
 	
 	@Override
@@ -49,7 +49,7 @@ public class PowerTimeStop extends Power {
 	
 	@Override
 	public float cooldownPercent() {
-		if(coolup > 0)	return (1 - ((float)coolup/(float)cooldown)) * 100f;
+		if(coolup > 0)	return (1 - ((float)coolup/(float)stopTime)) * 100f;
 		if(cooling > 0) return (1 - ((float)cooling/(float)cooldown)) * 100f;
 		return super.cooldownPercent();
 	}
