@@ -5,10 +5,13 @@ import android.graphics.Paint;
 import com.ithinkrok.yellowquest.GameOver;
 import com.ithinkrok.yellowquest.entity.EntityPlatform;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
+import com.ithinkrok.yellowquest.ui.PowerInfo;
 
 public class TraitTroll extends Trait {
 
 	public static final Paint PAINT_TROLL = new Paint();
+	
+	private static boolean powerUnlock = false;
 
 	static {
 		PAINT_TROLL.setColor(0xff95aeff);
@@ -31,6 +34,10 @@ public class TraitTroll extends Trait {
 
 	@Override
 	public void intersectsPlayer(EntityPlayer player) {
+		if(!powerUnlock){
+			PowerInfo.getData("troll").unlock(player.game.getContext());
+			powerUnlock = true;
+		}
 		boolean pow = player.hasPower("troll");
 		if (pow && player.x_velocity >= 0)
 			return;

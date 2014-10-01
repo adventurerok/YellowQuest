@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.util.Log;
+import android.widget.Toast;
 
-import com.ithinkrok.yellowquest.R;
-import com.ithinkrok.yellowquest.YellowQuest;
+import com.ithinkrok.yellowquest.*;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
 import com.ithinkrok.yellowquest.entity.power.*;
 import com.ithinkrok.yellowquest.entity.trait.*;
@@ -71,6 +71,12 @@ public class PowerInfo {
 
 	public int upgradeCost(int lvl) {
 		return upgradeCost * mult[lvl];
+	}
+	
+	public void unlock(MainActivity context){
+		if(context.getGameData().hasPowerUnlock(powerNum)) return;
+		context.getGameData().addPowerUnlock(powerNum);
+		Toast.makeText(context, displayUnlock, Toast.LENGTH_SHORT).show();;
 	}
 
 	private static ArrayList<PowerInfo> data = new ArrayList<PowerInfo>();

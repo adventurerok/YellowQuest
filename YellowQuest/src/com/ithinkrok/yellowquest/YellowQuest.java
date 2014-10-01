@@ -317,6 +317,9 @@ public class YellowQuest {
 		case 2:
 			addAchievement(R.string.achievement_easy, 1000);
 			break;
+		case 4:
+			PowerInfo.getData("life").unlock(getContext());
+			break;
 		case 5:
 			addAchievement(R.string.achievement_medium, 3000);
 			break;
@@ -358,6 +361,10 @@ public class YellowQuest {
 		timerStarted = false;
 		levelScore = 0;
 		canvas.getActivity().setPassedOne();
+	}
+	
+	public MainActivity getContext(){
+		return canvas.getActivity();
 	}
 
 	public int random(int max) {
@@ -535,6 +542,10 @@ public class YellowQuest {
 	}
 
 	public void loadData() {
+		if(timed){
+			PowerInfo.getData("time").unlock(getContext());
+		}
+		
 		String pName = gameData.getNextPower();
 		if (pName == null || pName.trim().isEmpty())
 			return;

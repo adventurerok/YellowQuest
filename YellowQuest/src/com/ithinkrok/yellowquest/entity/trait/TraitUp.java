@@ -4,10 +4,13 @@ import android.graphics.Paint;
 
 import com.ithinkrok.yellowquest.entity.EntityPlatform;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
+import com.ithinkrok.yellowquest.ui.PowerInfo;
 
 public class TraitUp extends Trait {
 	
 	public static final Paint PAINT_GREEN = new Paint();
+	
+	private static boolean powerUnlock = false;
 	
 	static {
 		PAINT_GREEN.setColor(0xff00ff00);
@@ -21,6 +24,10 @@ public class TraitUp extends Trait {
 	@Override
 	public void intersectsPlayer(EntityPlayer player) {
 		parent.y_velocity = 5; // 45 ups
+		if(!powerUnlock){
+			PowerInfo.getData("up").unlock(player.game.getContext());
+			powerUnlock = true;
+		}
 	}
 	
 	@Override

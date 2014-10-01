@@ -117,7 +117,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		audioEnabled = settings.getBoolean("music", true);
 		shadowMode = settings.getBoolean("shadow", false);
 		timeMode = settings.getBoolean("time", false);
-		//passedOne = settings.getBoolean("passed", false);
+		passedOne = settings.getBoolean("passed", false);
 		if (audioEnabled) {
 			audioStart();
 		}
@@ -397,7 +397,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		else
 			play_time.setImageResource(R.drawable.time_on);
 
-		play_money.setText(BoxMath.formatNumber(gameData.getScorePoints()) + " SP");
+		if(gameData.getPowerUnlocks() != 0) play_money.setText(BoxMath.formatNumber(gameData.getScorePoints()) + " SP");
+		else play_money.setVisibility(View.GONE);
 
 		if (powerAdapter == null)
 			powerAdapter = new PowerAdapter(this);
