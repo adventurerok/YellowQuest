@@ -13,6 +13,8 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 
 
 	private int expanded = -1;
+	
+	private View[] blanks = new View[10];
 
 	// private ListView view;
 
@@ -39,6 +41,10 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		if(!context.getGameData().hasPowerUnlock(position)){
+			if(blanks[position] == null) blanks[position] = new View(context);
+			return blanks[position];
+		}
 		PowerInfo info = PowerInfo.getData(position);
 		boolean using = info.name.equals(context.getGameData().getNextPower());
 		LayoutInflater inflater = context.getLayoutInflater();

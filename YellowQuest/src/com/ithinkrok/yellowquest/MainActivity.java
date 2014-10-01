@@ -54,6 +54,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 	public IInAppBillingService buyService;
 	public Intent buyIntent;
+	
+	private boolean passedOne = false;
 
 	ServiceConnection buyConnection = new ServiceConnection() {
 
@@ -115,6 +117,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		audioEnabled = settings.getBoolean("music", true);
 		shadowMode = settings.getBoolean("shadow", false);
 		timeMode = settings.getBoolean("time", false);
+		passedOne = settings.getBoolean("passed", false);
 		if (audioEnabled) {
 			audioStart();
 		}
@@ -131,6 +134,13 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 		//checkPurchases();
 
+	}
+	
+	public void setPassedOne() {
+		if(!this.passedOne){
+			settings.edit().putBoolean("passed", true).commit();
+		}
+		this.passedOne = true;
 	}
 
 	@Override
@@ -230,7 +240,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		switch (v.getId()) {
 		case R.id.menu_play:
 		case R.id.buy_back:
-			loadPlayView();
+			if(passedOne) loadPlayView();
+			else loadGameView();
 			break;
 		case R.id.play_play:
 			view.game.setGameMode(shadowMode, timeMode);
@@ -385,7 +396,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		else
 			play_time.setImageResource(R.drawable.time_on);
 
-		play_money.setText(BoxMath.formatNumber(gameData.getScorePoints()) + " SP");
+		if(gameData.getPowerUnlocks() != 0) play_money.setText(BoxMath.formatNumber(gameData.getScorePoints()) + " SP");
+		else play_money.setText(R.string.no_powers);
 
 		if (powerAdapter == null)
 			powerAdapter = new PowerAdapter(this);
@@ -443,7 +455,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	public void onBackPressed() {
 		if (state == GameState.GAME) {
 			view.game.gameOver();
-			loadPlayView();
+			if(passedOne) loadPlayView();
+			else loadMenuView();
 		} else if (state == GameState.BUY) {
 			loadPlayView();
 		} else if (state == GameState.SETTINGS || state == GameState.SETUP) {

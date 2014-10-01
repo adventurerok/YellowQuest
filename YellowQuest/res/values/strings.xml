@@ -4,7 +4,7 @@
     <string name="app_name">Yellow Quest</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="canvas_view">Camvas View</string>
+    <string name="canvas_view">Canvas View</string>
     
     <string name="play">Play</string>
     <string name="achievements">Achievements</string>
@@ -64,6 +64,12 @@
 	<string name="power_life_desc">Increases the number of lives you have</string>
 	<string name="power_life_upgrade">Upgrade: Adds 1 extra life per level</string>
 	<string name="power_life_warn">Upgrade extra life power to level %1$d?</string>
+	<string name="power_life_unlock">You have passed level 5! You have learned the secrets of extra lives!</string>
+	<string name="power_bounce_unlock">Finding a bouncy platform has led you to discover bounciness!</string>
+	<string name="power_troll_unlock">Finding a troll platform has revealed the secrets of going left!</string>
+	<string name="power_teleport_unlock">Finding a conveyor platform has made you consider teleporting!</string>
+	<string name="power_up_unlock">Using a green platform has made you realise the secrets of rising up!</string>
+	<string name="power_time_unlock">Using time mode has made you realise you need to stop time!</string>
 	
 	
 	<string name="shadow_off">Shadow mode disabled</string>
@@ -73,6 +79,8 @@
 	
 	<string name="hiscore_beat">Unbelievable! You beat your hiscore! Your new record is %1$d</string>
 	<string name="achievement_reward">You have been rewarded %1$d SP!</string>
+	<string name="powers_view_unlock">You have passed level 1! You have unlocked the powers menu!</string>
+	<string name="no_powers">You have not unlocked any powers yet. Go forth and unlock them!</string>
     
 
 </resources>

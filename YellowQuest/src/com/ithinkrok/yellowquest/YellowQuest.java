@@ -357,6 +357,7 @@ public class YellowQuest {
 			timer = 0;
 		timerStarted = false;
 		levelScore = 0;
+		canvas.getActivity().setPassedOne();
 	}
 
 	public int random(int max) {

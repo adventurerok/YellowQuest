@@ -67,6 +67,23 @@ public class GameData {
 
 		return true;
 	}
+	
+	public int getPowerUnlocks(){
+		return getInt(hash("unlockedpowers"), 0);
+	}
+	
+	public void setPowerUnlocks(int n){
+		setInt(hash("unlockedpowers"), n);
+	}
+	
+	public void addPowerUnlock(int n){
+		setInt(hash("unlockedpowers"), getPowerUnlocks() | (1 << n));
+	}
+	
+	public boolean hasPowerUnlock(int power){
+		int lks = getPowerUnlocks();
+		return ((lks >> power) & 1) == 1;
+	}
 
 	public boolean addHiScore(int score) {
 		if (score < 1)
@@ -90,6 +107,7 @@ public class GameData {
 		} else
 			return false;
 	}
+	
 
 	public void addOfflineAchievements() {
 		GoogleApiClient client = context.getApiClient();

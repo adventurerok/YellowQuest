@@ -26,9 +26,11 @@ public class PowerInfo {
 	int displayUpgradeInfo;
 	int maxUpgrade;
 	int warnInfo;
+	int powerNum;
+	int displayUnlock;
 
 	public PowerInfo(Class<? extends Power> clazz, String name, int color, int buyCost, int upgradeCost,
-			int displayName, int displayInfo, int displayUpgradeInfo, int maxUpgrade, int warnInfo) {
+			int displayName, int displayInfo, int displayUpgradeInfo, int maxUpgrade, int warnInfo, int powerNum, int displayUnlock) {
 		super();
 		this.clazz = clazz;
 		this.name = name;
@@ -40,6 +42,8 @@ public class PowerInfo {
 		this.displayUpgradeInfo = displayUpgradeInfo;
 		this.maxUpgrade = maxUpgrade;
 		this.warnInfo = warnInfo;
+		this.powerNum = powerNum;
+		this.displayUnlock = displayUnlock;
 
 	}
 
@@ -75,22 +79,22 @@ public class PowerInfo {
 	static {
 		data.add(new PowerInfo(PowerBounce.class, "bounce", TraitBounce.PAINT_MAGENTA.getColor(), 1000, 5000,
 				R.string.power_bounce, R.string.power_bounce_desc, R.string.power_bounce_upgrade, 2,
-				R.string.power_bounce_warn));
+				R.string.power_bounce_warn, 0, R.string.power_bounce_unlock));
 		data.add(new PowerInfo(PowerTroll.class, "troll", TraitTroll.PAINT_TROLL.getColor(), 2500, 12000,
 				R.string.power_troll, R.string.power_troll_desc, R.string.power_troll_upgrade, 1,
-				R.string.power_troll_warn));
+				R.string.power_troll_warn, 1, R.string.power_troll_unlock));
 		data.add(new PowerInfo(PowerUp.class, "up", TraitUp.PAINT_GREEN.getColor(), 5000, 25000,
 				R.string.power_up, R.string.power_up_desc, R.string.power_up_upgrade, 2,
-				R.string.power_up_warn));
+				R.string.power_up_warn, 2, R.string.power_up_unlock));
 		data.add(new PowerInfo(PowerTimeStop.class, "time", YellowQuest.PAINT_GAMEOVER.getColor(), 7500, 37000,
 				R.string.power_time, R.string.power_time_desc, R.string.power_time_upgrade, 2,
-				R.string.power_time_warn));
+				R.string.power_time_warn, 3, R.string.power_time_unlock));
 		data.add(new PowerInfo(PowerTeleport.class, "teleport", TraitConveyor.PAINT_GREY.getColor(), 10000, 50000,
 				R.string.power_teleport, R.string.power_teleport_desc, R.string.power_teleport_upgrade, 2,
-				R.string.power_teleport_warn));
+				R.string.power_teleport_warn, 4, R.string.power_teleport_unlock));
 		data.add(new PowerInfo(PowerLife.class, "life", EntityPlayer.PAINT_YELLOW.getColor(), 15000, 75000,
 				R.string.power_life, R.string.power_life_desc, R.string.power_life_upgrade, 2,
-				R.string.power_life_warn));
+				R.string.power_life_warn, 5, R.string.power_life_unlock));
 
 		for (PowerInfo info : data) {
 			named.put(info.name, info);
