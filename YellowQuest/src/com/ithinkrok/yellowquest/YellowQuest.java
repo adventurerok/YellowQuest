@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.ithinkrok.yellowquest.entity.*;
@@ -243,14 +244,26 @@ public class YellowQuest {
 			return;
 		double xe;
 		double ye;
+		double hs;
 		EntityPlatform ent;
 		for (int d = 0; d < amount; ++d) {
 			if (nextBox >= level.size)
 				break;
 			xe = 64 + random(128);
 			ye = 16 + random(32);
+			if(level.lastBoxType != null){
+				hs = level.lastBoxType.getMaxYWithJump();
+				hs -= bgenY;
+				hs -= ye / 2d;
+				
+				if(hs < 0){
+					bgenY += hs - random(32); //Boxes cannot be out of reach
+					Log.i("YellowQuest", "hs: " + hs);
+				}
+			}
 			ent = (EntityPlatform) WeightedTraitFactory.randomPlatform(this).calcBounds(bgenX + xe / 2, bgenY - ye / 2,
 					xe, ye);
+			
 			ent.install();
 			level.lastBoxType = ent;
 			boxes.add(ent);
@@ -519,8 +532,11 @@ public class YellowQuest {
 
 	private void updateInput() {
 		double accel = AIR_ACCEL;
-		if (this.player.intersecting != null)
+		double jump = DEFAULT_JUMP;
+		if (this.player.intersecting != null){
 			accel = this.player.intersecting.accel;
+			jump = this.player.intersecting.jump;
+		}
 		int maxSpeed = 250; // 45 ups
 		if (goLeft()) {
 			this.player.x_velocity -= (accel * player.getAccelMultiplier() + player.getAccelIncrease());
@@ -535,7 +551,7 @@ public class YellowQuest {
 		if (this.player.x_velocity > maxSpeed)
 			this.player.x_velocity = maxSpeed;
 		if (doJump() && this.player.onGround) {
-			this.player.y_velocity = DEFAULT_JUMP * player.getJumpMultiplier() + player.getJumpIncrease();
+			this.player.y_velocity = jump * player.getJumpMultiplier() + player.getJumpIncrease();
 			player.onGround = false;
 			timerStarted = true;
 		}

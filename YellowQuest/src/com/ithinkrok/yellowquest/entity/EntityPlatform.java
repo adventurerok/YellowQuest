@@ -2,8 +2,7 @@ package com.ithinkrok.yellowquest.entity;
 
 import android.graphics.Paint;
 
-import com.ithinkrok.yellowquest.CanvasSurfaceView;
-import com.ithinkrok.yellowquest.YellowQuest;
+import com.ithinkrok.yellowquest.*;
 import com.ithinkrok.yellowquest.entity.trait.Trait;
 
 public class EntityPlatform extends Entity {
@@ -106,6 +105,21 @@ public class EntityPlatform extends Entity {
 			if(traits[d].getName().equals(name)) return true;
 		}
 		return false;
+	}
+	
+	public double getMaxYPos(){
+		double max = box.ey;
+		double t;
+		for(int d = 0; d < traits.length; ++d){
+			t = traits[d].getMaxYPos();
+			if(t > max) max = t;
+		}
+		return max;
+	}
+	
+	public double getMaxYWithJump(){
+		double max = getMaxYPos();
+		return max + BoxMath.maxJumpHeight(jump) - 1; // -1 for luck!
 	}
 	
 	

@@ -39,5 +39,9 @@ public abstract class Trait {
 	public void install(){
 		
 	}
+	
+	public double getMaxYPos(){
+		return parent.box.ey;
+	}
 
 }

@@ -28,6 +28,7 @@ public abstract class Entity {
 	public boolean collidable = true;
 	public double slip = YellowQuest.DEFAULT_SLIP;
 	public double accel = YellowQuest.DEFAULT_ACCEL;
+	public double jump = YellowQuest.DEFAULT_JUMP;
 	public Entity intersecting = null;
 	public double x = 0, y = 100, width = 32, height = 32;
 	public double x_velocity = 0, y_velocity = 0, x_velocity_old = 0, y_velocity_old = 0;

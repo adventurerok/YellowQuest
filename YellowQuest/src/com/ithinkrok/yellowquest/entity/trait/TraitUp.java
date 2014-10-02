@@ -49,5 +49,10 @@ public class TraitUp extends Trait {
 	public int getIndex() {
 		return 0;
 	}
+	
+	@Override
+	public double getMaxYPos() {
+		return super.getMaxYPos() + 1000;
+	}
 
 }

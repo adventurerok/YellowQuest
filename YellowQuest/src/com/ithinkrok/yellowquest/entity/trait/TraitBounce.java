@@ -46,6 +46,7 @@ public class TraitBounce extends Trait {
 	@Override
 	public void install() {
 		parent.game.bgenY += 2 + parent.game.random(100);
+		parent.jump = 13;
 	}
 
 }

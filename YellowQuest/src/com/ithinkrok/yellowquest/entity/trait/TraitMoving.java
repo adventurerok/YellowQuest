@@ -92,5 +92,14 @@ public class TraitMoving extends Trait {
 	public int getIndex() {
 		return 100;
 	}
+	
+	@Override
+	public double getMaxYPos() {
+		if(aiDir == 0){
+			return super.getMaxYPos() + (aiMaxTime - aiTimer) * 3;
+		} else {
+			return super.getMaxYPos() + aiTimer * 3;
+		}
+	}
 
 }
