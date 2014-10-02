@@ -78,10 +78,14 @@ public abstract class Entity {
 		// Game.renderText(test.length);
 		double xc = xv;
 		double yc = yv;
+		double ys = yv;
+		double xs = xv;
 		
 		if(Math.abs(yv) > 0.001){
 			for (d = 0; d < test.size(); ++d) {
+				ys = yv;
 				yv = test.get(d).box.calcYOffset(this.box, yv);
+				if(this.type == EntityType.PLAYER && ys != yv) this.intersecting = test.get(d);
 			}
 			this.y_velocity_old = yv;
 			// Game.renderText(yv);
@@ -90,7 +94,9 @@ public abstract class Entity {
 		
 		if(Math.abs(xv) > 0.001){
 			for (d = 0; d < test.size(); ++d) {
+				xs = xv;
 				xv = test.get(d).box.calcXOffset(this.box, xv);
+				if(this.type == EntityType.PLAYER && xs != xv) this.intersecting = test.get(d);
 			}
 			this.x_velocity_old = xv;
 			// Game.renderText(xv);
