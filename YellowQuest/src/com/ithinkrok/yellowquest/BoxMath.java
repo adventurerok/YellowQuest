@@ -12,8 +12,11 @@ public class BoxMath {
 	
 
 	public static double maxJumpHeight(double jumpVelocity){
-		double time = -jumpVelocity/JUMP_GRAVITY;
-		return (jumpVelocity * time) + ((JUMP_GRAVITY * time * time) / 2d);
+		double time = Math.floor(-jumpVelocity/JUMP_GRAVITY);
+		double bef = (jumpVelocity * time) + ((JUMP_GRAVITY * time * (time + 1)) / 2d);
+		time = Math.ceil(-jumpVelocity/JUMP_GRAVITY);
+		double aft = (jumpVelocity * time) + ((JUMP_GRAVITY * time * (time + 1)) / 2d);
+		return Math.max(bef, aft);
 	}
 	
 	//The highest a box can be placed relative to the last box if it is (distance) away from the last box

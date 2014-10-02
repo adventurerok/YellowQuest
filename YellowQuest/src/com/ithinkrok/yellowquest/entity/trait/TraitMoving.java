@@ -20,7 +20,7 @@ public class TraitMoving extends Trait {
 
 	private int aiTimer;
 
-	private int aiDir;
+	private int aiDir = 0;
 	
 	private boolean stopOnPlayer = false;
 	private boolean startNoPlayer = true;

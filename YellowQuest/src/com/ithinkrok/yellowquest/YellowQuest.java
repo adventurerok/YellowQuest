@@ -254,11 +254,11 @@ public class YellowQuest {
 			if(level.lastBoxType != null){
 				hs = level.lastBoxType.getMaxYWithJump();
 				hs -= bgenY;
-				hs -= ye / 2d;
+				//hs -= ye / 2d;
 				
 				if(hs < 0){
-					bgenY += hs - random(32); //Boxes cannot be out of reach
-					Log.i("YellowQuest", "hs: " + hs);
+					bgenY += hs - random(5); //Boxes cannot be out of reach
+					Log.i("YellowQuest", "hs: " + hs + ", bn: " + nextBox);
 				}
 			}
 			ent = (EntityPlatform) WeightedTraitFactory.randomPlatform(this).calcBounds(bgenX + xe / 2, bgenY - ye / 2,
