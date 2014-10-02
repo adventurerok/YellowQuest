@@ -31,9 +31,9 @@ public class EntityPlatform extends Entity {
 		if (this.boxNumber + YellowQuest.BOX_BUFFER < game.playerBox) this.remove = true;
 	    if (Math.abs(this.x_velocity) < 0.01) this.x_velocity = 0;
 	    boolean pis = false;
-	    if (game.player.box.intersects(this.box)) {
+	    if (game.player.intersecting == this) {
 	        pis = true;
-	        game.player.intersecting = this;
+	        //game.player.intersecting = this;
 	        revealed = true;
 	        this.intersectsPlayer(game.player);
 	    } else{
