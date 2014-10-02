@@ -595,4 +595,8 @@ public class YellowQuest {
 				gameOver = new GameOver(0, "Time's Up");
 		}
 	}
+
+	public void setCanvas(CanvasSurfaceView canvas) {
+		this.canvas = canvas;
+	}
 }

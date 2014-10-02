@@ -56,6 +56,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	public Intent buyIntent;
 	
 	private boolean passedOne = false;
+	
+	public YellowQuest gameHolder = null;
 
 	ServiceConnection buyConnection = new ServiceConnection() {
 
@@ -75,7 +77,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 	private PowerAdapter powerAdapter;
 
-	private CanvasSurfaceView view;
+	public CanvasSurfaceView view;
 	private AudioManager am;
 	private MediaPlayer media;
 	OnAudioFocusChangeListener audioListener;

@@ -8,8 +8,10 @@ import com.ithinkrok.yellowquest.util.Box;
 import com.ithinkrok.yellowquest.util.Vector2;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.*;
+import android.os.Build;
 import android.support.v4.view.MotionEventCompat;
 import android.util.Log;
 import android.view.*;
@@ -54,14 +56,36 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 		super(context);
 		Display display = getActivity().getWindowManager().getDefaultDisplay();
 		Point size = new Point();
-		display.getSize(size);
+		if(Build.VERSION.SDK_INT > 12){
+			getDisplaySize(size, display);
+		} else {
+			getOldSize(size, display);
+		}
 		width = size.x;
 		height = size.y;
 		getHolder().addCallback(this);
 		setFocusable(true);
 		density = getResources().getDisplayMetrics().density;
-		game = new YellowQuest(this);
-		game.load();
+		if(getActivity().gameHolder != null){
+			game = getActivity().gameHolder;
+			game.setCanvas(this);
+		} else {
+			game = new YellowQuest(this);
+			game.load();
+			getActivity().gameHolder = game;
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	private void getOldSize(Point size, Display display) {
+		int w = display.getWidth();
+		int h = display.getHeight();
+		size.set(w, h);
+	}
+
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+	private void getDisplaySize(Point size, Display display){
+		display.getSize(size);
 	}
 	
 	private int floor(float f){
@@ -154,6 +178,7 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
 		try {
+			getActivity().view = null;
 			_thread.setRunning(false);
 			_thread.join();
 		} catch (InterruptedException e) {
