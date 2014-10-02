@@ -42,10 +42,10 @@ public class YellowQuest {
 	// public static final double DEFAULT_JUMP = 10;
 
 	public static final double DEFAULT_SLIP = 0.82; // 45 ups versions
-	public static final double DEFAULT_ACCEL = 3;
+	public static final double DEFAULT_ACCEL = 2.5;
 	public static final double DEFAULT_JUMP = 10; // Doesn't change
 	public static final double AIR_SLIP = 0.75;
-	public static final double AIR_ACCEL = 3;
+	public static final double AIR_ACCEL = 2.5;
 
 	public static final int TIMER_MAX = 8999;
 	public static final int TIMER_SECOND = 45;

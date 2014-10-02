@@ -81,6 +81,8 @@
 	<string name="achievement_reward">You have been rewarded %1$d SP!</string>
 	<string name="powers_view_unlock">You have passed level 1! You have unlocked the powers menu!</string>
 	<string name="no_powers">You have not unlocked any powers yet. Go forth and unlock them!</string>
+	<string name="reset">Reset Progress</string>
+	<string name="reset_confirm">After you reset your progress you have to start again. You will lose all your Score Points and your unlocked Powers. Do you want to continue?</string>
     
 
 </resources>
