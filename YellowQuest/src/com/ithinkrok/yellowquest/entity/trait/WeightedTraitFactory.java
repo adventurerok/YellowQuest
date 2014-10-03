@@ -10,7 +10,7 @@ public class WeightedTraitFactory {
 	private static interface Weight{
 		
 		public Trait create(EntityPlatform parent);
-		public int getWeight(EntityPlatform parent);
+		public int getWeight(EntityPlatform parent, int level);
 		public String getName();
 		
 	}
@@ -23,8 +23,8 @@ public class WeightedTraitFactory {
 		}
 
 		@Override
-		public int getWeight(EntityPlatform parent) {
-			return parent.game.level.number > 1 ? 10 : 0;
+		public int getWeight(EntityPlatform parent, int level) {
+			return level > 1 ? 10 : 0;
 		}
 
 		@Override
@@ -42,7 +42,7 @@ public class WeightedTraitFactory {
 		}
 
 		@Override
-		public int getWeight(EntityPlatform parent) {
+		public int getWeight(EntityPlatform parent, int level) {
 			return 20;
 		}
 
@@ -61,8 +61,8 @@ public class WeightedTraitFactory {
 		}
 
 		@Override
-		public int getWeight(EntityPlatform parent) {
-			return parent.game.level.number > 8 ? 4 : 0;
+		public int getWeight(EntityPlatform parent, int level) {
+			return level > 8 ? 4 : 0;
 		}
 
 		@Override
@@ -80,9 +80,9 @@ public class WeightedTraitFactory {
 		}
 
 		@Override
-		public int getWeight(EntityPlatform parent) {
+		public int getWeight(EntityPlatform parent, int level) {
 			if(parent.hasTrait("down") || parent.hasTrait("bounce")) return 0;
-			return parent.game.level.number > 0 ? 10 : 0;
+			return level > 0 ? 10 : 0;
 		}
 
 		@Override
@@ -100,9 +100,9 @@ public class WeightedTraitFactory {
 		}
 
 		@Override
-		public int getWeight(EntityPlatform parent) {
+		public int getWeight(EntityPlatform parent, int level) {
 			if(parent.hasTrait("up")) return 0;
-			return parent.game.level.number > 2 ? 10 : 0;
+			return level > 2 ? 10 : 0;
 		}
 
 		@Override
@@ -120,9 +120,10 @@ public class WeightedTraitFactory {
 		}
 
 		@Override
-		public int getWeight(EntityPlatform parent) {
+		public int getWeight(EntityPlatform parent, int level) {
 			if(parent.hasTrait("up")) return 0;
-			return parent.game.level.number > 4 ? 10 : 0;
+			if(level == 5) return 15;
+			return level > 4 ? 10 : 0;
 		}
 
 		@Override
@@ -140,9 +141,10 @@ public class WeightedTraitFactory {
 		}
 
 		@Override
-		public int getWeight(EntityPlatform parent) {
-			if(parent.hasTrait("boost")) return parent.game.level.number > 11 ? 5 : 0;
-			return parent.game.level.number > 5 ? 10 : 0;
+		public int getWeight(EntityPlatform parent, int level) {
+			if(parent.hasTrait("boost")) return level > 11 ? 5 : 0;
+			if(level == 6) return 15;
+			return level > 5 ? 10 : 0;
 		}
 
 		@Override
@@ -161,9 +163,10 @@ public class WeightedTraitFactory {
 		}
 
 		@Override
-		public int getWeight(EntityPlatform parent) {
-			if(parent.hasTrait("boost")) return parent.game.level.number > 11 ? 5 : 0;
-			return parent.game.level.number > 7 ? 10 : 0;
+		public int getWeight(EntityPlatform parent, int level) {
+			if(parent.hasTrait("boost")) return level > 11 ? 5 : 0;
+			if(level == 8) return 11;
+			return level > 7 ? 10 : 0;
 		}
 
 		@Override
@@ -190,17 +193,19 @@ public class WeightedTraitFactory {
 		if(game.nextBox == 0) return new EntityPlatform(game);
 		if(game.nextBox == game.level.size - 1) return new EntityPlatform(game);
 		
+		int level = game.level.number;
+		
 		EntityPlatform ent = new EntityPlatform(game);
 		Trait first = null;
 		
 		int weight = 0;
 		int d = 0;
 		for(d = 0; d < weights.size(); ++d){
-			weight += weights.get(d).getWeight(ent);
+			weight += weights.get(d).getWeight(ent, level);
 		}
 		weight = game.random(weight);
 		for(d = 0; d < weights.size(); ++d) {
-			weight -= weights.get(d).getWeight(ent);
+			weight -= weights.get(d).getWeight(ent, level);
 			if(weight < 0){
 				first = weights.get(d).create(ent);
 				break;
@@ -217,12 +222,12 @@ public class WeightedTraitFactory {
 		d = 0;
 		for(d = 0; d < weights.size(); ++d){
 			if(weights.get(d).getName().equals(first.getName())) continue;
-			weight += weights.get(d).getWeight(ent);
+			weight += weights.get(d).getWeight(ent, level);
 		}
 		weight = game.random(weight);
 		for(d = 0; d < weights.size(); ++d) {
 			if(weights.get(d).getName().equals(first.getName())) continue;
-			weight -= weights.get(d).getWeight(ent);
+			weight -= weights.get(d).getWeight(ent, level);
 			if(weight < 0){
 				second = weights.get(d).create(ent);
 				break;

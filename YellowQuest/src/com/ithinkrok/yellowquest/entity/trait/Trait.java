@@ -40,6 +40,10 @@ public abstract class Trait {
 		
 	}
 	
+	public boolean canDualTrait(){
+		return true;
+	}
+	
 	public double getMaxYPos(){
 		return parent.box.ey;
 	}

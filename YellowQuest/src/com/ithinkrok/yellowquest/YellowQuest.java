@@ -5,7 +5,6 @@ import java.util.Calendar;
 
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.os.Debug;
 import android.util.Log;
 import android.widget.Toast;
 
