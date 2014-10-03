@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.support.v4.util.LongSparseArray;
+import android.view.Gravity;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -63,7 +64,9 @@ public class GameData {
 		addScorePoints(reward);
 		String text = context.getString(R.string.achievement_reward);
 		text = String.format(text, reward);
-		Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
+		Toast t = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+		t.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, (int) (context.view.width * 0.1), 0);
+		t.show();
 
 		return true;
 	}

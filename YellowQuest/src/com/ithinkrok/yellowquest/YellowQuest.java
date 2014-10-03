@@ -6,6 +6,7 @@ import java.util.Calendar;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.util.Log;
+import android.view.Gravity;
 import android.widget.Toast;
 
 import com.ithinkrok.yellowquest.entity.*;
@@ -374,6 +375,7 @@ public class YellowQuest {
 		timerStarted = false;
 		levelScore = 0;
 		canvas.getActivity().setPassedOne();
+		//toastText("Next Level");
 	}
 	
 	public MainActivity getContext(){
@@ -582,6 +584,16 @@ public class YellowQuest {
 
 	public boolean isDisplaying() {
 		return display;
+	}
+	
+	public void toastText(String text){
+		Toast toast = Toast.makeText(getContext(), text, Toast.LENGTH_SHORT);
+		toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, (int) (canvas.height * 0.2));
+		toast.show();
+	}
+	
+	public void toastText(int resId){
+		toastText(getContext().getString(resId));
 	}
 
 	private void updateTimer() {

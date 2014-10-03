@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import com.ithinkrok.yellowquest.*;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
@@ -76,7 +75,7 @@ public class PowerInfo {
 	public void unlock(MainActivity context){
 		if(context.getGameData().hasPowerUnlock(powerNum)) return;
 		context.getGameData().addPowerUnlock(powerNum);
-		Toast.makeText(context, displayUnlock, Toast.LENGTH_SHORT).show();;
+		context.view.game.toastText(displayUnlock);
 	}
 
 	private static ArrayList<PowerInfo> data = new ArrayList<PowerInfo>();
