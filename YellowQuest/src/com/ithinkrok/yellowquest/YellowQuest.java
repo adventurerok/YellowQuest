@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.os.Debug;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -520,6 +521,7 @@ public class YellowQuest {
 		--gameOver.time;
 		if (gameOver.time == 0) {
 			if (gameOver.type == 0) {
+				//Debug.stopMethodTracing();
 				gameOver();
 				setDisplaying(false);
 				canvas.getActivity().loadPlayView();
@@ -528,7 +530,7 @@ public class YellowQuest {
 			else if (gameOver.type == 2)
 				this.restartLevel();
 			gameOver = null;
-		}
+		} 
 	}
 
 	private void updateInput() {
@@ -559,6 +561,7 @@ public class YellowQuest {
 	}
 
 	public void loadData() {
+		//Debug.startMethodTracing("game");
 		if(timed){
 			PowerInfo.getData("time").unlock(getContext());
 		}

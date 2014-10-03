@@ -247,6 +247,9 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			else loadGameView();
 			break;
 		case R.id.play_play:
+			if(view == null){
+				Log.i("YellowQuest", "View is null");
+			}
 			view.game.setGameMode(shadowMode, timeMode);
 			loadGameView();
 			break;

@@ -178,7 +178,7 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
 		try {
-			getActivity().view = null;
+			//getActivity().view = null;
 			_thread.setRunning(false);
 			_thread.join();
 		} catch (InterruptedException e) {
