@@ -23,6 +23,8 @@ import com.ithinkrok.yellowquest.ui.BuyAdapter;
 import com.ithinkrok.yellowquest.ui.PowerAdapter;
 
 public class MainActivity extends BaseGameActivity implements View.OnClickListener {
+	
+	public static final boolean DEBUG = false;
 
 	private static enum GameState {
 		MENU, SETTINGS, SETUP, GAME, BUY;
