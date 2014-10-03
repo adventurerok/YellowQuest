@@ -21,7 +21,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 	public PowerAdapter(MainActivity context) {
 		super();
 		this.context = context;
-		context.getGameData().addScorePoints(1000000);
+		//context.getGameData().addScorePoints(1000000);
 	}
 
 	@Override
