@@ -98,6 +98,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private SharedPreferences settings;
 
 	private BuyAdapter buyAdapter;
+	
+	private ScreenReceiver screenReciever;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -134,8 +136,10 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 		IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
 		filter.addAction(Intent.ACTION_SCREEN_ON);
-		BroadcastReceiver receiver = new ScreenReceiver(this);
-		registerReceiver(receiver, filter);
+		screenReciever = new ScreenReceiver(this);
+		screenReciever.filter = filter;
+		registerReceiver(screenReciever, filter);
+		screenReciever.registered = true;
 
 		powerAdapter = new PowerAdapter(this);
 		//buyAdapter = new BuyAdapter(this);
@@ -186,6 +190,10 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 	@Override
 	protected void onDestroy() {
+		if(screenReciever.registered){
+			unregisterReceiver(screenReciever);
+			screenReciever.registered = false;
+		}
 		super.onDestroy();
 		if (buyConnected) {
 			try{

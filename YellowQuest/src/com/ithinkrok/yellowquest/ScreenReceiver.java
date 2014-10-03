@@ -8,6 +8,9 @@ public class ScreenReceiver extends BroadcastReceiver {
 	
 	WeakReference<MainActivity> activity;
 	
+	public IntentFilter filter;
+	public boolean registered = false;
+	
 	public ScreenReceiver(MainActivity activity) {
 		this.activity = new WeakReference<MainActivity>(activity);
 	}
