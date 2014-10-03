@@ -258,7 +258,7 @@ public class YellowQuest {
 				
 				if(hs < 0){
 					bgenY += hs - random(5); //Boxes cannot be out of reach
-					Log.i("YellowQuest", "hs: " + hs + ", bn: " + nextBox);
+					if(MainActivity.DEBUG) Log.i("YellowQuest", "hs: " + hs + ", bn: " + nextBox);
 				}
 			}
 			ent = (EntityPlatform) WeightedTraitFactory.randomPlatform(this).calcBounds(bgenX + xe / 2, bgenY - ye / 2,

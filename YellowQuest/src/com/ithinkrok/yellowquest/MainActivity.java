@@ -60,16 +60,20 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private boolean passedOne = false;
 	
 	public YellowQuest gameHolder = null;
+	
+	public boolean buyConnected = false;
 
 	ServiceConnection buyConnection = new ServiceConnection() {
 
 		@Override
 		public void onServiceDisconnected(ComponentName name) {
+			buyConnected = false;
 			buyService = null;
 		}
 
 		@Override
 		public void onServiceConnected(ComponentName name, IBinder service) {
+			buyConnected = true;
 			buyService = IInAppBillingService.Stub.asInterface(service);
 			if(buyAdapter == null) buyAdapter = new BuyAdapter(MainActivity.this);
 			else buyAdapter.query();
@@ -183,8 +187,12 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		if (buyService != null) {
-			unbindService(buyConnection);
+		if (buyConnected) {
+			try{
+				unbindService(buyConnection);
+			} catch(Exception e){
+				Log.w("YellowQuest", "Failed ton unbind buyConnection");
+			}
 		}
 	}
 
@@ -249,9 +257,6 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			else loadGameView();
 			break;
 		case R.id.play_play:
-			if(view == null){
-				Log.i("YellowQuest", "View is null");
-			}
 			view.game.setGameMode(shadowMode, timeMode);
 			loadGameView();
 			break;

@@ -168,7 +168,7 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 		//_thread.setRunning(false);
 		//_thread.setPause(true);
-		Log.i("CSV", "New Size: [" + width + "," + height + "]");
+		if(MainActivity.DEBUG) Log.i("CSV", "New Size: [" + width + "," + height + "]");
 		this.width = width;
 		this.height = height;
 		game.createButtons(this);

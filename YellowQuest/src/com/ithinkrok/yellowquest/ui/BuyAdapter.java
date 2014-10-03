@@ -53,10 +53,6 @@ public class BuyAdapter extends BaseAdapter implements View.OnClickListener {
 
 			@Override
 			public void run() {
-				if (context.buyService == null) {
-					Log.i("YellowQuest", "No buy service");
-					return;
-				}
 				Bundle details;
 				try {
 					details = context.buyService.getSkuDetails(3, context.getPackageName(), "inapp", querySkus);
