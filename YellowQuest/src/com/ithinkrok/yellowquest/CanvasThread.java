@@ -5,7 +5,7 @@ import android.view.SurfaceHolder;
 
 public class CanvasThread extends Thread {
 
-	private final static int FRAME_PERIOD = 1000 / 70;
+	private final static int FRAME_PERIOD = 1000 / 80;
 	
 	private SurfaceHolder _surfaceHolder;
 	private CanvasSurfaceView _panel;
@@ -51,11 +51,12 @@ public class CanvasThread extends Thread {
 			}
 			timeDiff = (System.nanoTime() - beginTime) / 1000000;
 			sleepTime = FRAME_PERIOD - timeDiff;
-			if(sleepTime < 3) sleepTime = 3;
-			try {
-				Thread.sleep(sleepTime);
-			} catch (InterruptedException e) {
-				
+			if(sleepTime > 0) {
+				try {
+					Thread.sleep(sleepTime);
+				} catch (InterruptedException e) {
+					
+				}
 			}
 		}
 	}
