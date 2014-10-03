@@ -65,7 +65,7 @@ public class GameData {
 		String text = context.getString(R.string.achievement_reward);
 		text = String.format(text, reward);
 		Toast t = Toast.makeText(context, text, Toast.LENGTH_SHORT);
-		t.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, (int) (context.view.width * 0.1), 0);
+		t.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, (int) (context.view.width * 0.05), (int) (context.view.height * 0.1));
 		t.show();
 
 		return true;

@@ -5,7 +5,7 @@ import android.view.SurfaceHolder;
 
 public class CanvasThread extends Thread {
 
-//	private final static int FRAME_PERIOD = 1000 / 50;
+	private final static int FRAME_PERIOD = 1000 / 70;
 	
 	private SurfaceHolder _surfaceHolder;
 	private CanvasSurfaceView _panel;
@@ -28,15 +28,15 @@ public class CanvasThread extends Thread {
 	@Override
 	public void run() {
 		Canvas c;
-//		long beginTime = 0;
-//		long timeDiff = 0;
-//		long sleepTime = 0;
+		long beginTime = 0;
+		long timeDiff = 0;
+		long sleepTime = 0;
 		while (_run) { // When setRunning(false) occurs, _run is
 			if(_pause) continue;
 			c = null; // set to false and loop ends, stopping thread
 
 			try {
-//				beginTime = System.nanoTime();
+				beginTime = System.nanoTime();
 				c = _surfaceHolder.lockCanvas(null);
 				synchronized (_surfaceHolder) {
 
@@ -49,14 +49,14 @@ public class CanvasThread extends Thread {
 					_surfaceHolder.unlockCanvasAndPost(c);
 				}
 			}
-//			timeDiff = (System.nanoTime() - beginTime) / 1000000;
-//			sleepTime = FRAME_PERIOD - timeDiff;
-//			if(sleepTime < 3) sleepTime = 3;
-//			try {
-//				Thread.sleep(sleepTime);
-//			} catch (InterruptedException e) {
-//				
-//			}
+			timeDiff = (System.nanoTime() - beginTime) / 1000000;
+			sleepTime = FRAME_PERIOD - timeDiff;
+			if(sleepTime < 3) sleepTime = 3;
+			try {
+				Thread.sleep(sleepTime);
+			} catch (InterruptedException e) {
+				
+			}
 		}
 	}
 }
