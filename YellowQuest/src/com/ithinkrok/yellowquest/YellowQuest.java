@@ -109,7 +109,7 @@ public class YellowQuest {
 		activity = canvas.getActivity();
 		gameData = canvas.getActivity().getGameData();
 		createButtons(canvas);
-		BOX_BUFFER = (canvas.width / 148) + 1;
+		BOX_BUFFER = (canvas.width / 148) + 2;
 		PAINT_STATS.setTextSize(canvas.density * 12);
 		PAINT_GAMEOVER.setTextSize(canvas.density * 30);
 	}
