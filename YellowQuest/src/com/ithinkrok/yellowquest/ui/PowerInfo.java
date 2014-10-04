@@ -82,10 +82,10 @@ public class PowerInfo {
 	private static HashMap<String, PowerInfo> named = new HashMap<String, PowerInfo>();
 
 	static {
-		data.add(new PowerInfo(PowerUp.class, "up", TraitUp.PAINT_GREEN.getColor(), 1500, 8000,
+		data.add(new PowerInfo(PowerUp.class, "up", TraitUp.PAINT_GREEN.getColor(), 2000, 10000,
 				R.string.power_up, R.string.power_up_desc, R.string.power_up_upgrade, 2,
 				R.string.power_up_warn, 0, R.string.power_up_unlock));
-		data.add(new PowerInfo(PowerBounce.class, "bounce", TraitBounce.PAINT_MAGENTA.getColor(), 3000, 15000,
+		data.add(new PowerInfo(PowerBounce.class, "bounce", TraitBounce.PAINT_MAGENTA.getColor(), 3500, 18000,
 				R.string.power_bounce, R.string.power_bounce_desc, R.string.power_bounce_upgrade, 2,
 				R.string.power_bounce_warn, 1, R.string.power_bounce_unlock));
 		data.add(new PowerInfo(PowerTroll.class, "troll", TraitTroll.PAINT_TROLL.getColor(), 5000, 25000,
