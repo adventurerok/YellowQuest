@@ -57,7 +57,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	public IInAppBillingService buyService;
 	public Intent buyIntent;
 	
-	private boolean passedOne = false;
+	public boolean passedOne = false;
 	
 	public YellowQuest gameHolder = null;
 	

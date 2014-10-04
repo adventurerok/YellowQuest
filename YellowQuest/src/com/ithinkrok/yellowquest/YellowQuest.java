@@ -525,7 +525,8 @@ public class YellowQuest {
 				//Debug.stopMethodTracing();
 				gameOver();
 				setDisplaying(false);
-				canvas.getActivity().loadPlayView();
+				if(canvas.getActivity().passedOne) canvas.getActivity().loadPlayView();
+				else canvas.getActivity().loadMenuView();
 			} else if (gameOver.type == 1)
 				this.nextLevel();
 			else if (gameOver.type == 2)
