@@ -82,15 +82,15 @@ public class PowerInfo {
 	private static HashMap<String, PowerInfo> named = new HashMap<String, PowerInfo>();
 
 	static {
-		data.add(new PowerInfo(PowerBounce.class, "bounce", TraitBounce.PAINT_MAGENTA.getColor(), 1000, 5000,
-				R.string.power_bounce, R.string.power_bounce_desc, R.string.power_bounce_upgrade, 2,
-				R.string.power_bounce_warn, 0, R.string.power_bounce_unlock));
-		data.add(new PowerInfo(PowerTroll.class, "troll", TraitTroll.PAINT_TROLL.getColor(), 2500, 12000,
-				R.string.power_troll, R.string.power_troll_desc, R.string.power_troll_upgrade, 1,
-				R.string.power_troll_warn, 1, R.string.power_troll_unlock));
-		data.add(new PowerInfo(PowerUp.class, "up", TraitUp.PAINT_GREEN.getColor(), 5000, 25000,
+		data.add(new PowerInfo(PowerUp.class, "up", TraitUp.PAINT_GREEN.getColor(), 1000, 5000,
 				R.string.power_up, R.string.power_up_desc, R.string.power_up_upgrade, 2,
-				R.string.power_up_warn, 2, R.string.power_up_unlock));
+				R.string.power_up_warn, 0, R.string.power_up_unlock));
+		data.add(new PowerInfo(PowerBounce.class, "bounce", TraitBounce.PAINT_MAGENTA.getColor(), 2500, 12000,
+				R.string.power_bounce, R.string.power_bounce_desc, R.string.power_bounce_upgrade, 2,
+				R.string.power_bounce_warn, 1, R.string.power_bounce_unlock));
+		data.add(new PowerInfo(PowerTroll.class, "troll", TraitTroll.PAINT_TROLL.getColor(), 5000, 25000,
+				R.string.power_troll, R.string.power_troll_desc, R.string.power_troll_upgrade, 1,
+				R.string.power_troll_warn, 2, R.string.power_troll_unlock));
 		data.add(new PowerInfo(PowerTimeStop.class, "time", YellowQuest.PAINT_GAMEOVER.getColor(), 7500, 37000,
 				R.string.power_time, R.string.power_time_desc, R.string.power_time_upgrade, 2,
 				R.string.power_time_warn, 3, R.string.power_time_unlock));
