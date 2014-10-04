@@ -10,6 +10,7 @@
     <item type="id" name="settings_back"/>
     <item type="id" name="settings_gameover_time"/>
     <item type="id" name="settings_reset"/>
+    <item type="id" name="settings_leftbutton"/>
     <item type="id" name="play_shadow"/>
     <item type="id" name="play_time"/>
     <item type="id" name="play_play"/>

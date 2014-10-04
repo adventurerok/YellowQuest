@@ -40,6 +40,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private View sign_in_button;
 	private View sign_out_button;
 	private CheckBox settings_music;
+	private CheckBox settings_leftbutton;
 	private TextView settings_back;
 	private ListView play_powers;
 	private Button play_money;
@@ -89,6 +90,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	OnAudioFocusChangeListener audioListener;
 	public boolean[] wasdKeys = new boolean[4];
 	private boolean audioEnabled = false;
+	public boolean fullSizeLeftButton = false;
 	private boolean shadowMode = false;
 	private boolean timeMode = false;
 
@@ -129,6 +131,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		// setContentView(view);
 
 		audioEnabled = settings.getBoolean("music", true);
+		fullSizeLeftButton = settings.getBoolean("fullsizeleft", false);
 		shadowMode = settings.getBoolean("shadow", false);
 		timeMode = settings.getBoolean("time", false);
 		passedOne = settings.getBoolean("passed", false);
@@ -327,6 +330,13 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			editorMusic.putBoolean("music", audioEnabled);
 			editorMusic.commit();
 			break;
+		case R.id.settings_leftbutton:
+			fullSizeLeftButton = settings_leftbutton.isChecked();
+			view.game.setFullSizeLeftButton(fullSizeLeftButton);
+			Editor editorLeft = settings.edit();
+			editorLeft.putBoolean("fullsizeleft", fullSizeLeftButton);
+			editorLeft.commit();
+			break;
 		case R.id.play_back:
 		case R.id.settings_back:
 			loadMenuView();
@@ -449,12 +459,15 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		setContentView(R.layout.settings);
 
 		settings_music = (CheckBox) findViewById(R.id.settings_music);
+		settings_leftbutton = (CheckBox) findViewById(R.id.settings_leftbutton);
 		settings_back = (TextView) findViewById(R.id.settings_back);
 
 		settings_music.setOnClickListener(this);
+		settings_leftbutton.setOnClickListener(this);
 		settings_back.setOnClickListener(this);
 
 		settings_music.setChecked(audioEnabled);
+		settings_leftbutton.setChecked(fullSizeLeftButton);
 	}
 
 	public void loadBuyView() {

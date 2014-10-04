@@ -12,9 +12,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
         android:layout_gravity="start"
         android:text="@string/music" />
+    
+    <CheckBox 
+        android:id="@+id/settings_leftbutton"
+        style="@style/RelFont"
+         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/settings_music"
+        android:text="@string/full_size_left_button"/>
 
     <TextView
         android:id="@+id/settings_back"

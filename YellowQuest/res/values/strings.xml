@@ -39,6 +39,7 @@
 	<string name="buy_success">Success! %1$s Score points have been added to your total!</string>
 	<string name="buy_failure">Failed. No score points have been purchased.</string>
 	<string name="error_getting_purchase_details">Error getting in-app purchase details</string>
+	<string name="full_size_left_button">Full size left button</string>
 	
 	<string name="power_bounce">Bounce %1$s</string>
 	<string name="power_bounce_desc">Makes you bounce off platforms</string>

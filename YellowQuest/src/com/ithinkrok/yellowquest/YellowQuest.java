@@ -76,6 +76,7 @@ public class YellowQuest {
 
 	private int lastWidth = 0;
 	private int lastHeight = 0;
+	private boolean lastFullSizedLeft = false;
 
 	private Box leftButton;
 	private Box rightButton;
@@ -103,9 +104,12 @@ public class YellowQuest {
 	private Box coolBox = new Box(0, 0, 0, 0);
 
 	private boolean wasPowerPressed = false;
+	
+	private boolean fullSizeLeftButton = false;
 
 	public YellowQuest(CanvasSurfaceView canvas) {
 		this.canvas = canvas;
+		fullSizeLeftButton = canvas.getActivity().fullSizeLeftButton;
 		activity = canvas.getActivity();
 		gameData = canvas.getActivity().getGameData();
 		createButtons(canvas);
@@ -140,17 +144,24 @@ public class YellowQuest {
 		this.levelScore += score;
 	}
 
+	public void setFullSizeLeftButton(boolean fullSizeLeftButton) {
+		this.fullSizeLeftButton = fullSizeLeftButton;
+		createButtons(canvas);
+	}
+	
 	public void createButtons(CanvasSurfaceView canvas) {
-		if (lastWidth == canvas.width && lastHeight == canvas.height)
+		if (lastWidth == canvas.width && lastHeight == canvas.height && fullSizeLeftButton == lastFullSizedLeft)
 			return;
 		double bsm = canvas.density;
-		leftButton = new Box(20 * bsm, canvas.height - 120 * bsm, 80 * bsm, canvas.height - 20 * bsm);
-		rightButton = new Box(100 * bsm, canvas.height - 120 * bsm, 200 * bsm, canvas.height - 20 * bsm);
+		double leftExtra = 0;
+		if(fullSizeLeftButton) leftExtra = 40;
+		leftButton = new Box(20 * bsm, canvas.height - 120 * bsm, (80 + leftExtra) * bsm, canvas.height - 20 * bsm);
+		rightButton = new Box((100 + leftExtra) * bsm, canvas.height - 120 * bsm, (200 + leftExtra) * bsm, canvas.height - 20 * bsm);
 		jumpButton = new Box(canvas.width - 120 * bsm, canvas.height - 120 * bsm, canvas.width - 20 * bsm,
 				canvas.height - 20 * bsm);
 
 		rightButtonR = new Box(20 * bsm, canvas.height - 120 * bsm, 120 * bsm, canvas.height - 20 * bsm);
-		leftButtonR = new Box(140 * bsm, canvas.height - 120 * bsm, 200 * bsm, canvas.height - 20 * bsm);
+		leftButtonR = new Box(140 * bsm, canvas.height - 120 * bsm, (200 + leftExtra) * bsm, canvas.height - 20 * bsm);
 
 		// int left = (int) (200 * bsm);
 		// int right = (int) (canvas.width - 120 * bsm);
@@ -164,6 +175,7 @@ public class YellowQuest {
 
 		lastWidth = canvas.width;
 		lastHeight = canvas.height;
+		lastFullSizedLeft = fullSizeLeftButton;
 	}
 
 	public boolean doJump() {
