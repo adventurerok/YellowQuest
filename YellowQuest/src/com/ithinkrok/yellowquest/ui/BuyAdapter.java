@@ -58,7 +58,7 @@ public class BuyAdapter extends BaseAdapter implements View.OnClickListener {
 					details = context.buyService.getSkuDetails(3, context.getPackageName(), "inapp", querySkus);
 				} catch (RemoteException e) {
 					e.printStackTrace();
-					Toast.makeText(context, R.string.error_getting_purchase_details, Toast.LENGTH_SHORT).show();
+					toast(R.string.error_getting_purchase_details);
 					return;
 				}
 
@@ -81,7 +81,7 @@ public class BuyAdapter extends BaseAdapter implements View.OnClickListener {
 							}
 						} catch (JSONException e) {
 							Log.w("YellowQuest", "InAppBilling", e);
-							Toast.makeText(context, R.string.error_getting_purchase_details, Toast.LENGTH_SHORT).show();
+							toast(R.string.error_getting_purchase_details);
 							return;
 						}
 					}
@@ -125,13 +125,34 @@ public class BuyAdapter extends BaseAdapter implements View.OnClickListener {
 		};
 		context.runOnUiThread(run);
 	}
+	
+	
+	public void toast(final int resId){
+		Runnable run = new Runnable() {
+
+			@Override
+			public void run() {
+				try{
+					Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
+				} catch (Exception e){
+					//Someone called toast from the wrong location
+				}
+
+			}
+		};
+		context.runOnUiThread(run);
+	}
 
 	public void toast(final String toastText) {
 		Runnable run = new Runnable() {
 
 			@Override
 			public void run() {
-				Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show();
+				try{
+					Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show();
+				} catch (Exception e){
+					//Someone called toast from the wrong location
+				}
 
 			}
 		};
