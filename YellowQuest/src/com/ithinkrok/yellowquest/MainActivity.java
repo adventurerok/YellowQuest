@@ -120,7 +120,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 		// menu = findViewById(R.layout.game);
 		
-		enableDebugLog(true);
+		//enableDebugLog(true);
 		setRequestedClients(BaseGameActivity.CLIENT_GAMES);
 		super.onCreate(savedInstanceState);
 		
@@ -242,7 +242,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 	@Override
 	public void onSignInFailed() {
-		Toast.makeText(this, "Failed to sign in", Toast.LENGTH_SHORT).show();
+		//Toast.makeText(this, "Failed to sign in", Toast.LENGTH_SHORT).show();
 		View signIn = findViewById(R.id.sign_in_button);
 		View signOut = findViewById(R.id.sign_out_button);
 		if (signIn != null)
@@ -253,7 +253,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 	@Override
 	public void onSignInSucceeded() {
-		Toast.makeText(this, "Sign in success", Toast.LENGTH_SHORT).show();
+		//Toast.makeText(this, "Sign in success", Toast.LENGTH_SHORT).show();
 		View signIn = findViewById(R.id.sign_in_button);
 		View signOut = findViewById(R.id.sign_out_button);
 		if (signIn != null)
