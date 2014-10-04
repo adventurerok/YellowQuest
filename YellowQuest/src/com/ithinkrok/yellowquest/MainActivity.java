@@ -106,7 +106,6 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-		super.onCreate(savedInstanceState);
 
 		gameData = new GameData(this);
 
@@ -120,6 +119,11 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		bindService(buyIntent, buyConnection, Context.BIND_AUTO_CREATE);
 
 		// menu = findViewById(R.layout.game);
+		
+		enableDebugLog(true);
+		setRequestedClients(BaseGameActivity.CLIENT_GAMES);
+		super.onCreate(savedInstanceState);
+		
 		loadMenuView();
 
 		// setContentView(view);
@@ -238,6 +242,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 	@Override
 	public void onSignInFailed() {
+		Toast.makeText(this, "Failed to sign in", Toast.LENGTH_SHORT).show();
 		View signIn = findViewById(R.id.sign_in_button);
 		View signOut = findViewById(R.id.sign_out_button);
 		if (signIn != null)
@@ -248,6 +253,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 	@Override
 	public void onSignInSucceeded() {
+		Toast.makeText(this, "Sign in success", Toast.LENGTH_SHORT).show();
 		View signIn = findViewById(R.id.sign_in_button);
 		View signOut = findViewById(R.id.sign_out_button);
 		if (signIn != null)
@@ -327,6 +333,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			break;
 		case R.id.sign_in_button:
 			beginUserInitiatedSignIn();
+			sign_in_button.setVisibility(View.GONE);
 			break;
 		case R.id.sign_out_button:
 			signOut();
@@ -594,8 +601,10 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 	@Override
 	protected void onActivityResult(int request, int response, Intent data) {
-		if (request != 1001)
+		if (request != 1001){
+			super.onActivityResult(request, response, data);
 			return;
+		}
 		//buyAdapter.toast("Yo! You tried to make a purchase!");
 		int responseCode = data.getIntExtra("RESPONSE_CODE", 0);
 		String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");

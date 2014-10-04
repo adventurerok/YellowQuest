@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ithinkrok.yellowquest"
     android:versionCode="5"
-    android:versionName="1.0-rc3" >
+    android:versionName="1.0-rc3">
     
     <uses-permission android:name="com.android.vending.BILLING" />
 
