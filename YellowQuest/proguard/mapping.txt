@@ -4816,43 +4816,59 @@ com.ithinkrok.yellowquest.entity.EntityPlayer -> com.ithinkrok.yellowquest.a.d:
     void draw(com.ithinkrok.yellowquest.CanvasSurfaceView) -> a
     com.ithinkrok.yellowquest.entity.power.Power getPower() -> g
 com.ithinkrok.yellowquest.entity.power.Power -> com.ithinkrok.yellowquest.a.a.a:
+    int upgradeLevel -> a
+    com.ithinkrok.yellowquest.entity.EntityPlayer player -> b
+    float jumpMultiplier -> e
+    float accelMultiplier -> f
+    float jumpIncrease -> c
+    float accelIncrease -> g
+    float alternateSlip -> h
+    android.graphics.Paint paint -> d
+    float getJumpIncrease() -> a
+    float getJumpMultiplier() -> b
+    float getAccelMultiplier() -> c
+    android.graphics.Paint getPaint() -> d
     void update(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
-    java.lang.String getName() -> a
-    boolean showPowerButton() -> b
-    float cooldownPercent() -> c
-    void powerButtonPressed() -> d
-    android.graphics.Paint getCooldownPaint() -> e
+    java.lang.String getName() -> e
+    boolean showPowerButton() -> f
+    float cooldownPercent() -> g
+    void powerButtonPressed() -> h
+    android.graphics.Paint getCooldownPaint() -> i
 com.ithinkrok.yellowquest.entity.power.PowerBounce -> com.ithinkrok.yellowquest.a.a.b:
     void update(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
-    java.lang.String getName() -> a
+    java.lang.String getName() -> e
 com.ithinkrok.yellowquest.entity.power.PowerLife -> com.ithinkrok.yellowquest.a.a.c:
-    java.lang.String getName() -> a
+    java.lang.String getName() -> e
     void update(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
 com.ithinkrok.yellowquest.entity.power.PowerTeleport -> com.ithinkrok.yellowquest.a.a.d:
-    int cooling -> a
-    java.lang.String getName() -> a
-    float cooldownPercent() -> c
-    boolean showPowerButton() -> b
+    int cooldown -> e
+    int cooling -> f
+    java.lang.String getName() -> e
+    float cooldownPercent() -> g
+    boolean showPowerButton() -> f
     void update(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
-    void powerButtonPressed() -> d
+    void powerButtonPressed() -> h
 com.ithinkrok.yellowquest.entity.power.PowerTimeStop -> com.ithinkrok.yellowquest.a.a.e:
-    android.graphics.Paint PAINT_TIME_STOP -> a
-    int cooling -> b
-    int coolup -> c
+    android.graphics.Paint PAINT_TIME_STOP -> e
+    int stopTime -> f
+    int cooldown -> g
+    int cooling -> h
+    int coolup -> i
     void update(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
-    boolean showPowerButton() -> b
-    void powerButtonPressed() -> d
-    float cooldownPercent() -> c
-    android.graphics.Paint getCooldownPaint() -> e
-    java.lang.String getName() -> a
+    boolean showPowerButton() -> f
+    void powerButtonPressed() -> h
+    float cooldownPercent() -> g
+    android.graphics.Paint getCooldownPaint() -> i
+    java.lang.String getName() -> e
 com.ithinkrok.yellowquest.entity.power.PowerTroll -> com.ithinkrok.yellowquest.a.a.f:
-    boolean enabled -> a
-    java.lang.String getName() -> a
-    boolean showPowerButton() -> b
-    void powerButtonPressed() -> d
-    boolean isEnabled() -> f
+    boolean enabled -> e
+    java.lang.String getName() -> e
+    boolean showPowerButton() -> f
+    void powerButtonPressed() -> h
+    boolean isEnabled() -> j
 com.ithinkrok.yellowquest.entity.power.PowerUp -> com.ithinkrok.yellowquest.a.a.g:
-    java.lang.String getName() -> a
+    int up -> e
+    java.lang.String getName() -> e
     void update(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
 com.ithinkrok.yellowquest.entity.trait.Trait -> com.ithinkrok.yellowquest.a.b.a:
     com.ithinkrok.yellowquest.entity.EntityPlatform parent -> a
@@ -5025,18 +5041,18 @@ com.ithinkrok.yellowquest.ui.PowerAdapter$2 -> com.ithinkrok.yellowquest.b.k:
     void onClick(android.content.DialogInterface,int) -> onClick
 com.ithinkrok.yellowquest.ui.PowerInfo -> com.ithinkrok.yellowquest.b.l:
     int[] mult -> j
-    java.lang.Class clazz -> k
     java.lang.String name -> a
     int color -> b
     int buyCost -> c
-    int upgradeCost -> l
+    int upgradeCost -> k
     int displayName -> d
     int displayInfo -> e
     int displayUpgradeInfo -> f
     int maxUpgrade -> g
     int warnInfo -> h
-    int powerNum -> m
+    int powerNum -> l
     int displayUnlock -> i
+    com.ithinkrok.yellowquest.ui.PowerInfo$PowerCreator creator -> m
     java.util.ArrayList data -> n
     java.util.HashMap named -> o
     com.ithinkrok.yellowquest.entity.power.Power newInstance(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
@@ -5046,6 +5062,20 @@ com.ithinkrok.yellowquest.ui.PowerInfo -> com.ithinkrok.yellowquest.b.l:
     int buyCost(java.lang.String) -> a
     int getPowerCount() -> a
     com.ithinkrok.yellowquest.ui.PowerInfo getData(java.lang.String) -> b
+com.ithinkrok.yellowquest.ui.PowerInfo$1 -> com.ithinkrok.yellowquest.b.m:
+    com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
+com.ithinkrok.yellowquest.ui.PowerInfo$2 -> com.ithinkrok.yellowquest.b.n:
+    com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
+com.ithinkrok.yellowquest.ui.PowerInfo$3 -> com.ithinkrok.yellowquest.b.o:
+    com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
+com.ithinkrok.yellowquest.ui.PowerInfo$4 -> com.ithinkrok.yellowquest.b.p:
+    com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
+com.ithinkrok.yellowquest.ui.PowerInfo$5 -> com.ithinkrok.yellowquest.b.q:
+    com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
+com.ithinkrok.yellowquest.ui.PowerInfo$6 -> com.ithinkrok.yellowquest.b.r:
+    com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
+com.ithinkrok.yellowquest.ui.PowerInfo$PowerCreator -> com.ithinkrok.yellowquest.b.s:
+    com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
 com.ithinkrok.yellowquest.util.Box -> com.ithinkrok.yellowquest.c.a:
     double sx -> a
     double sy -> b

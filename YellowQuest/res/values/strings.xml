@@ -84,6 +84,11 @@
 	<string name="no_powers">You have not unlocked any powers yet. Go forth and unlock them!</string>
 	<string name="reset">Reset Progress</string>
 	<string name="reset_confirm">After you reset your progress you have to start again. You will lose all your Score Points and your unlocked Powers. Do you want to continue?</string>
+	<string name="rate_message">If you enjoy using YellowQuest, please take a moment to rate the app. Thank you for your support!</string>
+	<string name="rate_title">Rate YellowQuest</string>
+	<string name="rate_positive">Rate Now</string>
+	<string name="rate_negative">No, thanks</string>
+	<string name="rate_neutral">Later</string>
     
 
 </resources>

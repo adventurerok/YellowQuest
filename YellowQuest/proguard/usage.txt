@@ -4715,27 +4715,13 @@ com.ithinkrok.yellowquest.entity.Entity:
 com.ithinkrok.yellowquest.entity.Entity$EntityType:
     1:1:public static com.ithinkrok.yellowquest.entity.Entity$EntityType[] values()
     1:1:public static com.ithinkrok.yellowquest.entity.Entity$EntityType valueOf(java.lang.String)
-com.ithinkrok.yellowquest.entity.power.Power:
-    22:25:public Power(com.ithinkrok.yellowquest.entity.EntityPlayer,int)
-com.ithinkrok.yellowquest.entity.power.PowerBounce:
-    12:15:public PowerBounce(com.ithinkrok.yellowquest.entity.EntityPlayer,int)
-com.ithinkrok.yellowquest.entity.power.PowerLife:
-    9:11:public PowerLife(com.ithinkrok.yellowquest.entity.EntityPlayer,int)
 com.ithinkrok.yellowquest.entity.power.PowerSlip
-com.ithinkrok.yellowquest.entity.power.PowerTeleport:
-    15:18:public PowerTeleport(com.ithinkrok.yellowquest.entity.EntityPlayer,int)
-com.ithinkrok.yellowquest.entity.power.PowerTimeStop:
-    22:26:public PowerTimeStop(com.ithinkrok.yellowquest.entity.EntityPlayer,int)
-com.ithinkrok.yellowquest.entity.power.PowerTroll:
-    11:13:public PowerTroll(com.ithinkrok.yellowquest.entity.EntityPlayer,int)
-com.ithinkrok.yellowquest.entity.power.PowerUp:
-    12:15:public PowerUp(com.ithinkrok.yellowquest.entity.EntityPlayer,int)
 com.ithinkrok.yellowquest.entity.trait.Trait:
     44:44:public boolean canDualTrait()
 com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory:
     8:8:public WeightedTraitFactory()
 com.ithinkrok.yellowquest.ui.PowerInfo:
-    114:114:public static int buyCost(int)
+    141:141:public static int buyCost(int)
 com.ithinkrok.yellowquest.util.Box:
     15:23:public com.ithinkrok.yellowquest.util.Box include(double,double)
     46:46:public com.ithinkrok.yellowquest.util.Box expand(double,double)

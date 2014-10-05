@@ -149,10 +149,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		screenReciever.registered = true;
 
 		powerAdapter = new PowerAdapter(this);
-		//buyAdapter = new BuyAdapter(this);
-
-		//checkPurchases();
-
+		
+		AppRater.app_launched(this);
 	}
 	
 	public void setPassedOne() {
