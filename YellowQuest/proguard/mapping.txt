@@ -176,7 +176,7 @@ android.support.v4.app.FragmentActivity -> android.support.v4.app.f:
     void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
     void onStart() -> onStart
     void onStop() -> onStop
-    void supportInvalidateOptionsMenu() -> c_
+    void supportInvalidateOptionsMenu() -> d_
     void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[]) -> dump
     java.lang.String viewToString(android.view.View) -> a
     void dumpViewHierarchy(java.lang.String,java.io.PrintWriter,android.view.View) -> a
@@ -405,86 +405,14 @@ android.support.v4.util.ContainerHelpers -> android.support.v4.b.c:
     boolean equal(java.lang.Object,java.lang.Object) -> a
     int binarySearch(int[],int,int) -> a
     int binarySearch(long[],int,long) -> a
-android.support.v4.util.DebugUtils -> android.support.v4.b.d:
-    void buildShortClassTag(java.lang.Object,java.lang.StringBuilder) -> a
-    int a(android.os.Parcel,int) -> a
-    void b(android.os.Parcel,int) -> b
-    void a(android.os.Parcel,int,int) -> b
-    void a$ae3cd4b(android.os.Parcel,int,int) -> c
-    int B(android.os.Parcel) -> a
-    boolean c(android.os.Parcel,int) -> c
-    java.lang.Boolean d(android.os.Parcel,int) -> d
-    int g(android.os.Parcel,int) -> e
-    java.lang.Integer h(android.os.Parcel,int) -> f
-    long i(android.os.Parcel,int) -> g
-    java.lang.Long j(android.os.Parcel,int) -> h
-    java.math.BigInteger k(android.os.Parcel,int) -> i
-    float l(android.os.Parcel,int) -> j
-    double m(android.os.Parcel,int) -> k
-    java.math.BigDecimal n(android.os.Parcel,int) -> l
-    java.lang.String o(android.os.Parcel,int) -> m
-    android.os.Parcelable a(android.os.Parcel,int,android.os.Parcelable$Creator) -> a
-    android.os.Bundle q(android.os.Parcel,int) -> n
-    byte[] r(android.os.Parcel,int) -> o
-    java.math.BigDecimal[] z(android.os.Parcel,int) -> p
-    java.lang.String[] A(android.os.Parcel,int) -> q
-    java.util.ArrayList B(android.os.Parcel,int) -> r
-    java.lang.Object[] b(android.os.Parcel,int,android.os.Parcelable$Creator) -> b
-    java.util.ArrayList c(android.os.Parcel,int,android.os.Parcelable$Creator) -> c
-    android.os.Parcel C(android.os.Parcel,int) -> s
-    android.os.Parcel[] D(android.os.Parcel,int) -> t
-    void b(android.os.Parcel,int,int) -> d
-    int E(android.os.Parcel,int) -> v
-    void F(android.os.Parcel,int) -> w
-    int C(android.os.Parcel) -> b
-    void G(android.os.Parcel,int) -> u
-    void a(android.os.Parcel,int,boolean) -> a
-    void a(android.os.Parcel,int,java.lang.Boolean,boolean) -> a
-    void c(android.os.Parcel,int,int) -> a
-    void a(android.os.Parcel,int,java.lang.Integer,boolean) -> a
-    void a(android.os.Parcel,int,long) -> a
-    void a(android.os.Parcel,int,java.lang.Long,boolean) -> a
-    void a(android.os.Parcel,int,java.lang.String,boolean) -> a
-    void a(android.os.Parcel,int,android.os.Parcelable,int,boolean) -> a
-    void a(android.os.Parcel,int,android.os.Bundle,boolean) -> a
-    void a(android.os.Parcel,int,byte[],boolean) -> a
-    void a(android.os.Parcel,int,java.lang.String[],boolean) -> a
-    void a(android.os.Parcel,int,java.util.List,boolean) -> a
-    void a(android.os.Parcel,int,android.os.Parcelable[],int,boolean) -> a
-    void b(android.os.Parcel,int,java.util.List,boolean) -> b
-    void a(android.os.Parcel,android.os.Parcelable,int) -> a
-    void a(android.os.Parcel,int,android.os.Parcel,boolean) -> a
-    void A(boolean) -> a
-    void a(boolean,java.lang.Object) -> a
-    void a(java.lang.StringBuilder,java.lang.Object[]) -> a
-    void a(java.lang.StringBuilder,long[]) -> a
-    void a(java.lang.StringBuilder,float[]) -> a
-    void a(java.lang.StringBuilder,double[]) -> a
-    void a(java.lang.StringBuilder,boolean[]) -> a
-    void a(java.lang.StringBuilder,java.lang.String[]) -> a
-    java.lang.String d(byte[]) -> a
-    java.lang.String e(byte[]) -> b
-    void a(java.lang.StringBuilder,java.util.HashMap) -> a
-    boolean gc() -> a
-    boolean gd() -> b
-    boolean ge() -> c
-    boolean gf() -> d
-    boolean gg() -> e
-    boolean gh() -> f
-    boolean aF(int) -> a
-    java.lang.String e(com.google.android.gms.internal.me) -> a
-    void a(java.lang.String,java.lang.Object,java.lang.StringBuffer,java.lang.StringBuffer) -> a
-    java.lang.String cA(java.lang.String) -> a
-    java.lang.String aK(java.lang.String) -> b
-    void a(byte[],java.lang.StringBuffer) -> a
-android.support.v4.util.LogWriter -> android.support.v4.b.e:
+android.support.v4.util.LogWriter -> android.support.v4.b.d:
     java.lang.String mTag -> a
     java.lang.StringBuilder mBuilder -> b
     void close() -> close
     void flush() -> flush
     void write(char[],int,int) -> write
     void flushBuilder() -> a
-android.support.v4.util.LongSparseArray -> android.support.v4.b.f:
+android.support.v4.util.LongSparseArray -> android.support.v4.b.e:
     java.lang.Object DELETED -> a
     boolean mGarbage -> b
     long[] mKeys -> c
@@ -498,7 +426,7 @@ android.support.v4.util.LongSparseArray -> android.support.v4.b.f:
     java.lang.Object valueAt(int) -> b
     java.lang.String toString() -> toString
     java.lang.Object clone() -> clone
-android.support.v4.util.MapCollections -> android.support.v4.b.g:
+android.support.v4.util.MapCollections -> android.support.v4.b.f:
     android.support.v4.util.MapCollections$EntrySet mEntrySet -> a
     android.support.v4.util.MapCollections$KeySet mKeySet -> b
     android.support.v4.util.MapCollections$ValuesCollection mValues -> c
@@ -514,7 +442,7 @@ android.support.v4.util.MapCollections -> android.support.v4.b.g:
     java.lang.Object colSetValue(int,java.lang.Object) -> a
     void colRemoveAt(int) -> a
     void colClear() -> c
-android.support.v4.util.MapCollections$ArrayIterator -> android.support.v4.b.h:
+android.support.v4.util.MapCollections$ArrayIterator -> android.support.v4.b.g:
     int mOffset -> a
     int mSize -> b
     int mIndex -> c
@@ -523,7 +451,7 @@ android.support.v4.util.MapCollections$ArrayIterator -> android.support.v4.b.h:
     boolean hasNext() -> hasNext
     java.lang.Object next() -> next
     void remove() -> remove
-android.support.v4.util.MapCollections$EntrySet -> android.support.v4.b.i:
+android.support.v4.util.MapCollections$EntrySet -> android.support.v4.b.h:
     android.support.v4.util.MapCollections this$0 -> a
     boolean addAll(java.util.Collection) -> addAll
     void clear() -> clear
@@ -540,7 +468,7 @@ android.support.v4.util.MapCollections$EntrySet -> android.support.v4.b.i:
     boolean equals(java.lang.Object) -> equals
     int hashCode() -> hashCode
     boolean add(java.lang.Object) -> add
-android.support.v4.util.MapCollections$KeySet -> android.support.v4.b.j:
+android.support.v4.util.MapCollections$KeySet -> android.support.v4.b.i:
     android.support.v4.util.MapCollections this$0 -> a
     boolean add(java.lang.Object) -> add
     boolean addAll(java.util.Collection) -> addAll
@@ -557,7 +485,7 @@ android.support.v4.util.MapCollections$KeySet -> android.support.v4.b.j:
     java.lang.Object[] toArray(java.lang.Object[]) -> toArray
     boolean equals(java.lang.Object) -> equals
     int hashCode() -> hashCode
-android.support.v4.util.MapCollections$MapIterator -> android.support.v4.b.k:
+android.support.v4.util.MapCollections$MapIterator -> android.support.v4.b.j:
     int mEnd -> a
     int mIndex -> b
     boolean mEntryValid -> c
@@ -571,7 +499,7 @@ android.support.v4.util.MapCollections$MapIterator -> android.support.v4.b.k:
     int hashCode() -> hashCode
     java.lang.String toString() -> toString
     java.lang.Object next() -> next
-android.support.v4.util.MapCollections$ValuesCollection -> android.support.v4.b.l:
+android.support.v4.util.MapCollections$ValuesCollection -> android.support.v4.b.k:
     android.support.v4.util.MapCollections this$0 -> a
     boolean add(java.lang.Object) -> add
     boolean addAll(java.util.Collection) -> addAll
@@ -586,7 +514,7 @@ android.support.v4.util.MapCollections$ValuesCollection -> android.support.v4.b.
     int size() -> size
     java.lang.Object[] toArray() -> toArray
     java.lang.Object[] toArray(java.lang.Object[]) -> toArray
-android.support.v4.util.SimpleArrayMap -> android.support.v4.b.m:
+android.support.v4.util.SimpleArrayMap -> android.support.v4.b.l:
     java.lang.Object[] mBaseCache -> c
     int mBaseCacheSize -> d
     java.lang.Object[] mTwiceBaseCache -> e
@@ -614,7 +542,7 @@ android.support.v4.util.SimpleArrayMap -> android.support.v4.b.m:
     boolean equals(java.lang.Object) -> equals
     int hashCode() -> hashCode
     java.lang.String toString() -> toString
-android.support.v4.util.SparseArrayCompat -> android.support.v4.b.n:
+android.support.v4.util.SparseArrayCompat -> android.support.v4.b.m:
     java.lang.Object DELETED -> a
     boolean mGarbage -> b
     int[] mKeys -> c
@@ -1528,10 +1456,10 @@ com.google.android.gms.drive.metadata.CustomPropertyKey -> com.google.android.gm
     boolean equals(java.lang.Object) -> equals
     java.lang.String toString() -> toString
 com.google.android.gms.drive.metadata.MetadataField -> com.google.android.gms.drive.metadata.a:
-    java.lang.String getName() -> g
+    java.lang.String getName() -> c_
 com.google.android.gms.drive.metadata.a -> com.google.android.gms.drive.metadata.b:
     java.lang.String JH -> a
-    java.lang.String getName() -> g
+    java.lang.String getName() -> c_
     java.lang.String toString() -> toString
 com.google.android.gms.drive.metadata.b -> com.google.android.gms.drive.metadata.c:
 com.google.android.gms.drive.metadata.c -> com.google.android.gms.drive.metadata.d:
@@ -3973,29 +3901,29 @@ com.google.android.gms.internal.ks -> com.google.android.gms.internal.ks:
     java.util.Set kk() -> d
     int getVersionCode() -> e
     java.lang.String getAboutMe() -> f
-    com.google.android.gms.internal.ks$a kF() -> h
-    java.lang.String getBirthday() -> i
-    java.lang.String getBraggingRights() -> j
-    int getCircledByCount() -> k
-    com.google.android.gms.internal.ks$b kG() -> l
-    java.lang.String getCurrentLocation() -> m
-    java.lang.String getDisplayName() -> n
-    int getGender() -> o
-    java.lang.String getId() -> p
-    com.google.android.gms.internal.ks$c kH() -> q
-    boolean isPlusUser() -> r
-    java.lang.String getLanguage() -> s
-    com.google.android.gms.internal.ks$d kI() -> t
-    java.lang.String getNickname() -> u
-    int getObjectType() -> v
-    java.util.List kJ() -> w
-    java.util.List kK() -> x
-    int getPlusOneCount() -> y
-    int getRelationshipStatus() -> z
-    java.lang.String getTagline() -> A
-    java.lang.String getUrl() -> B
-    java.util.List kL() -> C
-    boolean isVerified() -> D
+    com.google.android.gms.internal.ks$a kF() -> g
+    java.lang.String getBirthday() -> h
+    java.lang.String getBraggingRights() -> i
+    int getCircledByCount() -> j
+    com.google.android.gms.internal.ks$b kG() -> k
+    java.lang.String getCurrentLocation() -> l
+    java.lang.String getDisplayName() -> m
+    int getGender() -> n
+    java.lang.String getId() -> o
+    com.google.android.gms.internal.ks$c kH() -> p
+    boolean isPlusUser() -> q
+    java.lang.String getLanguage() -> r
+    com.google.android.gms.internal.ks$d kI() -> s
+    java.lang.String getNickname() -> t
+    int getObjectType() -> u
+    java.util.List kJ() -> v
+    java.util.List kK() -> w
+    int getPlusOneCount() -> x
+    int getRelationshipStatus() -> y
+    java.lang.String getTagline() -> z
+    java.lang.String getUrl() -> A
+    java.util.List kL() -> B
+    boolean isVerified() -> C
     int describeContents() -> describeContents
     void writeToParcel(android.os.Parcel,int) -> writeToParcel
     java.lang.Object aF$9543ced() -> b
@@ -4494,7 +4422,7 @@ com.google.example.games.basegameutils.GameHelper$1 -> com.google.a.a.a.c:
     com.google.example.games.basegameutils.GameHelper this$0 -> a
     void run() -> run
 com.google.example.games.basegameutils.GameHelper$GameHelperListener -> com.google.a.a.a.d:
-    void onSignInFailed() -> d_
+    void onSignInFailed() -> e_
     void onSignInSucceeded() -> b
 com.google.example.games.basegameutils.GameHelper$SignInFailureReason -> com.google.a.a.a.e:
     int mServiceErrorCode -> a
@@ -4509,14 +4437,95 @@ com.google.example.games.basegameutils.GameHelperUtils -> com.google.a.a.a.f:
     java.lang.String getAppIdFromResource(android.content.Context) -> b
     java.lang.String getSHA1CertFingerprint(android.content.Context) -> c
     java.lang.String getString(android.content.Context,int) -> a
-com.ithinkrok.yellowquest.BoxMath -> com.ithinkrok.yellowquest.a:
+com.ithinkrok.yellowquest.AppRater -> com.ithinkrok.yellowquest.a:
+    void buildShortClassTag(java.lang.Object,java.lang.StringBuilder) -> a
+    int a(android.os.Parcel,int) -> a
+    void b(android.os.Parcel,int) -> b
+    void a(android.os.Parcel,int,int) -> b
+    void a$ae3cd4b(android.os.Parcel,int,int) -> c
+    int B(android.os.Parcel) -> a
+    boolean c(android.os.Parcel,int) -> c
+    java.lang.Boolean d(android.os.Parcel,int) -> d
+    int g(android.os.Parcel,int) -> e
+    java.lang.Integer h(android.os.Parcel,int) -> f
+    long i(android.os.Parcel,int) -> g
+    java.lang.Long j(android.os.Parcel,int) -> h
+    java.math.BigInteger k(android.os.Parcel,int) -> i
+    float l(android.os.Parcel,int) -> j
+    double m(android.os.Parcel,int) -> k
+    java.math.BigDecimal n(android.os.Parcel,int) -> l
+    java.lang.String o(android.os.Parcel,int) -> m
+    android.os.Parcelable a(android.os.Parcel,int,android.os.Parcelable$Creator) -> a
+    android.os.Bundle q(android.os.Parcel,int) -> n
+    byte[] r(android.os.Parcel,int) -> o
+    java.math.BigDecimal[] z(android.os.Parcel,int) -> p
+    java.lang.String[] A(android.os.Parcel,int) -> q
+    java.util.ArrayList B(android.os.Parcel,int) -> r
+    java.lang.Object[] b(android.os.Parcel,int,android.os.Parcelable$Creator) -> b
+    java.util.ArrayList c(android.os.Parcel,int,android.os.Parcelable$Creator) -> c
+    android.os.Parcel C(android.os.Parcel,int) -> s
+    android.os.Parcel[] D(android.os.Parcel,int) -> t
+    void b(android.os.Parcel,int,int) -> d
+    int E(android.os.Parcel,int) -> v
+    void F(android.os.Parcel,int) -> w
+    int C(android.os.Parcel) -> b
+    void G(android.os.Parcel,int) -> u
+    void a(android.os.Parcel,int,boolean) -> a
+    void a(android.os.Parcel,int,java.lang.Boolean,boolean) -> a
+    void c(android.os.Parcel,int,int) -> a
+    void a(android.os.Parcel,int,java.lang.Integer,boolean) -> a
+    void a(android.os.Parcel,int,long) -> a
+    void a(android.os.Parcel,int,java.lang.Long,boolean) -> a
+    void a(android.os.Parcel,int,java.lang.String,boolean) -> a
+    void a(android.os.Parcel,int,android.os.Parcelable,int,boolean) -> a
+    void a(android.os.Parcel,int,android.os.Bundle,boolean) -> a
+    void a(android.os.Parcel,int,byte[],boolean) -> a
+    void a(android.os.Parcel,int,java.lang.String[],boolean) -> a
+    void a(android.os.Parcel,int,java.util.List,boolean) -> a
+    void a(android.os.Parcel,int,android.os.Parcelable[],int,boolean) -> a
+    void b(android.os.Parcel,int,java.util.List,boolean) -> b
+    void a(android.os.Parcel,android.os.Parcelable,int) -> a
+    void a(android.os.Parcel,int,android.os.Parcel,boolean) -> a
+    void A(boolean) -> a
+    void a(boolean,java.lang.Object) -> a
+    void a(java.lang.StringBuilder,java.lang.Object[]) -> a
+    void a(java.lang.StringBuilder,long[]) -> a
+    void a(java.lang.StringBuilder,float[]) -> a
+    void a(java.lang.StringBuilder,double[]) -> a
+    void a(java.lang.StringBuilder,boolean[]) -> a
+    void a(java.lang.StringBuilder,java.lang.String[]) -> a
+    java.lang.String d(byte[]) -> a
+    java.lang.String e(byte[]) -> b
+    void a(java.lang.StringBuilder,java.util.HashMap) -> a
+    boolean gc() -> a
+    boolean gd() -> b
+    boolean ge() -> d
+    boolean gf() -> e
+    boolean gg() -> f
+    boolean gh() -> g
+    boolean aF(int) -> a
+    java.lang.String e(com.google.android.gms.internal.me) -> a
+    void a(java.lang.String,java.lang.Object,java.lang.StringBuffer,java.lang.StringBuffer) -> a
+    java.lang.String cA(java.lang.String) -> a
+    java.lang.String aK(java.lang.String) -> b
+    void a(byte[],java.lang.StringBuffer) -> a
+com.ithinkrok.yellowquest.AppRater$1 -> com.ithinkrok.yellowquest.b:
+    android.content.SharedPreferences$Editor val$editor -> a
+    android.content.Context val$mContext -> b
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.ithinkrok.yellowquest.AppRater$2 -> com.ithinkrok.yellowquest.c:
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.ithinkrok.yellowquest.AppRater$3 -> com.ithinkrok.yellowquest.d:
+    android.content.SharedPreferences$Editor val$editor -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.ithinkrok.yellowquest.BoxMath -> com.ithinkrok.yellowquest.e:
     double JUMP_GRAVITY -> a
     double FALL_GRAVITY -> b
     double FALL_VELOCITY_MAX -> c
     java.text.DecimalFormat numberFormat -> d
     double maxJumpHeight(double) -> a
     java.lang.String formatNumber(int) -> a
-com.ithinkrok.yellowquest.CanvasSurfaceView -> com.ithinkrok.yellowquest.b:
+com.ithinkrok.yellowquest.CanvasSurfaceView -> com.ithinkrok.yellowquest.f:
     com.ithinkrok.yellowquest.util.Vector2 currentTouch -> f
     com.ithinkrok.yellowquest.CanvasThread _thread -> g
     int width -> a
@@ -4545,14 +4554,14 @@ com.ithinkrok.yellowquest.CanvasSurfaceView -> com.ithinkrok.yellowquest.b:
     void surfaceDestroyed(android.view.SurfaceHolder) -> surfaceDestroyed
     boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
     boolean touchInBox(com.ithinkrok.yellowquest.util.Box) -> a
-com.ithinkrok.yellowquest.CanvasThread -> com.ithinkrok.yellowquest.c:
+com.ithinkrok.yellowquest.CanvasThread -> com.ithinkrok.yellowquest.g:
     android.view.SurfaceHolder _surfaceHolder -> a
     com.ithinkrok.yellowquest.CanvasSurfaceView _panel -> b
     boolean _run -> c
     boolean _pause -> d
     void setRunning(boolean) -> a
     void run() -> run
-com.ithinkrok.yellowquest.GameData -> com.ithinkrok.yellowquest.d:
+com.ithinkrok.yellowquest.GameData -> com.ithinkrok.yellowquest.h:
     com.ithinkrok.yellowquest.MainActivity context -> a
     com.google.android.gms.common.api.GoogleApiClient client -> b
     android.support.v4.util.LongSparseArray data -> c
@@ -4578,11 +4587,11 @@ com.ithinkrok.yellowquest.GameData -> com.ithinkrok.yellowquest.d:
     void setNextPower(java.lang.String) -> b
     void setPowerUpgradeLevel(java.lang.String,int) -> b
     boolean subtractScorePoints(int) -> e
-com.ithinkrok.yellowquest.GameOver -> com.ithinkrok.yellowquest.e:
+com.ithinkrok.yellowquest.GameOver -> com.ithinkrok.yellowquest.i:
     int time -> a
     int type -> b
     java.lang.String message -> c
-com.ithinkrok.yellowquest.Level -> com.ithinkrok.yellowquest.f:
+com.ithinkrok.yellowquest.Level -> com.ithinkrok.yellowquest.j:
     com.ithinkrok.yellowquest.entity.EntityPlatform lastBoxType -> a
     int size -> b
     int number -> c
@@ -4641,7 +4650,7 @@ com.ithinkrok.yellowquest.MainActivity -> com.ithinkrok.yellowquest.MainActivity
     void screenOff() -> l
     void onResume() -> onResume
     void screenOn() -> m
-    void onSignInFailed() -> d_
+    void onSignInFailed() -> e_
     void onSignInSucceeded() -> b
     void onClick(android.view.View) -> onClick
     void loadMenuView() -> n
@@ -4662,24 +4671,24 @@ com.ithinkrok.yellowquest.MainActivity -> com.ithinkrok.yellowquest.MainActivity
     android.media.AudioManager access$5(com.ithinkrok.yellowquest.MainActivity) -> e
     void access$6(com.ithinkrok.yellowquest.MainActivity,android.media.MediaPlayer) -> a
     int[] $SWITCH_TABLE$com$ithinkrok$yellowquest$MainActivity$GameState() -> v
-com.ithinkrok.yellowquest.MainActivity$1 -> com.ithinkrok.yellowquest.g:
+com.ithinkrok.yellowquest.MainActivity$1 -> com.ithinkrok.yellowquest.k:
     com.ithinkrok.yellowquest.MainActivity this$0 -> a
     void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
     void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
-com.ithinkrok.yellowquest.MainActivity$2 -> com.ithinkrok.yellowquest.h:
+com.ithinkrok.yellowquest.MainActivity$2 -> com.ithinkrok.yellowquest.l:
     com.ithinkrok.yellowquest.MainActivity this$0 -> a
     void run() -> run
-com.ithinkrok.yellowquest.MainActivity$3 -> com.ithinkrok.yellowquest.i:
+com.ithinkrok.yellowquest.MainActivity$3 -> com.ithinkrok.yellowquest.m:
     void onClick(android.content.DialogInterface,int) -> onClick
-com.ithinkrok.yellowquest.MainActivity$4 -> com.ithinkrok.yellowquest.j:
+com.ithinkrok.yellowquest.MainActivity$4 -> com.ithinkrok.yellowquest.n:
     void onClick(android.content.DialogInterface,int) -> onClick
-com.ithinkrok.yellowquest.MainActivity$5 -> com.ithinkrok.yellowquest.k:
+com.ithinkrok.yellowquest.MainActivity$5 -> com.ithinkrok.yellowquest.o:
     com.ithinkrok.yellowquest.MainActivity this$0 -> a
     void onAudioFocusChange(int) -> onAudioFocusChange
-com.ithinkrok.yellowquest.MainActivity$6 -> com.ithinkrok.yellowquest.l:
+com.ithinkrok.yellowquest.MainActivity$6 -> com.ithinkrok.yellowquest.p:
     com.ithinkrok.yellowquest.MainActivity this$0 -> a
     void run() -> run
-com.ithinkrok.yellowquest.MainActivity$GameState -> com.ithinkrok.yellowquest.m:
+com.ithinkrok.yellowquest.MainActivity$GameState -> com.ithinkrok.yellowquest.q:
     com.ithinkrok.yellowquest.MainActivity$GameState MENU -> a
     com.ithinkrok.yellowquest.MainActivity$GameState SETTINGS -> b
     com.ithinkrok.yellowquest.MainActivity$GameState SETUP -> c
@@ -4687,12 +4696,12 @@ com.ithinkrok.yellowquest.MainActivity$GameState -> com.ithinkrok.yellowquest.m:
     com.ithinkrok.yellowquest.MainActivity$GameState BUY -> e
     com.ithinkrok.yellowquest.MainActivity$GameState[] ENUM$VALUES -> f
     com.ithinkrok.yellowquest.MainActivity$GameState[] values() -> a
-com.ithinkrok.yellowquest.ScreenReceiver -> com.ithinkrok.yellowquest.n:
+com.ithinkrok.yellowquest.ScreenReceiver -> com.ithinkrok.yellowquest.r:
     java.lang.ref.WeakReference activity -> c
     android.content.IntentFilter filter -> a
     boolean registered -> b
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.ithinkrok.yellowquest.YellowQuest -> com.ithinkrok.yellowquest.o:
+com.ithinkrok.yellowquest.YellowQuest -> com.ithinkrok.yellowquest.s:
     android.graphics.Paint PAINT_RED -> m
     android.graphics.Paint PAINT_BROWN -> n
     android.graphics.Paint PAINT_STATS -> o

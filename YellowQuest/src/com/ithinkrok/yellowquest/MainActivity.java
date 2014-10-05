@@ -261,7 +261,11 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			signIn.setVisibility(View.GONE);
 		if (signOut != null)
 			signOut.setVisibility(View.VISIBLE);
+		gameData.updateOnlineHiScore();
 		gameData.addOfflineAchievements();
+		try{
+			gameData.save(settings.edit());
+		} catch(Exception e){}
 	}
 
 	@Override
@@ -293,6 +297,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 				dialog.show();
 				return;
 			}
+			gameData.addOfflineAchievements();
 			startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), 1);
 			break;
 		case R.id.menu_leaderboards:
@@ -312,6 +317,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 				dialog.show();
 				return;
 			}
+			gameData.updateOnlineHiScore();
 			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(getApiClient(),
 					getString(R.string.leaderboard_yellowquest_hiscores)), 1);
 			break;

@@ -105,10 +105,21 @@ public class GameData {
 			if (client != null && client.isConnected()) {
 				Games.Leaderboards.submitScore(client, context.getString(R.string.leaderboard_yellowquest_hiscores),
 						score);
+				setInt(hash("score_uploaded"), score);
 			}
 			return true;
 		} else
 			return false;
+	}
+	
+	public void updateOnlineHiScore(){
+		if(client == null || !client.isConnected()) return;
+		int offline = getInt(hash("score_total"), 0);
+		int online = getInt(hash("score_uploaded"), 0);
+		if(offline <= online) return;
+		Games.Leaderboards.submitScore(client, context.getString(R.string.leaderboard_yellowquest_hiscores),
+				offline);
+		setInt(hash("score_uploaded"), offline);
 	}
 	
 
