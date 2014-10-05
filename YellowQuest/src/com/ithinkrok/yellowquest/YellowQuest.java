@@ -263,8 +263,8 @@ public class YellowQuest {
 			if (nextBox >= level.size)
 				break;
 			int gainWidth = Math.max(0, 32 - level.number * 4);
-			xe = 64 + gainWidth + random(128 - gainWidth);
-			ye = 24 + random(24);
+			xe = 64 + gainWidth + random(127 - gainWidth);
+			ye = 24 + random(23);
 			if(level.lastBoxType != null){
 				hs = level.lastBoxType.getMaxYWithJump();
 				hs -= bgenY;
