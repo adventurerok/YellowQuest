@@ -1,10 +1,7 @@
 package com.ithinkrok.yellowquest.ui;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import android.util.Log;
 
 import com.ithinkrok.yellowquest.*;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
@@ -12,10 +9,16 @@ import com.ithinkrok.yellowquest.entity.power.*;
 import com.ithinkrok.yellowquest.entity.trait.*;
 
 public class PowerInfo {
+	
+	private static interface PowerCreator {
+		
+		public Power createPower(EntityPlayer player, int upgradeLevel);
+		
+	}
 
 	static int mult[] = new int[] { 1, 2, 4, 8, 16, 32, 64, 128, 256 };
 
-	Class<? extends Power> clazz;
+	//Class<? extends Power> clazz;
 	String name;
 	int color;
 	int buyCost;
@@ -27,11 +30,12 @@ public class PowerInfo {
 	int warnInfo;
 	int powerNum;
 	int displayUnlock;
+	PowerCreator creator;
 
-	public PowerInfo(Class<? extends Power> clazz, String name, int color, int buyCost, int upgradeCost,
+	public PowerInfo(String name, int color, int buyCost, int upgradeCost,
 			int displayName, int displayInfo, int displayUpgradeInfo, int maxUpgrade, int warnInfo, int powerNum, int displayUnlock) {
 		super();
-		this.clazz = clazz;
+		//this.clazz = clazz;
 		this.name = name;
 		this.color = color;
 		this.buyCost = buyCost;
@@ -45,27 +49,14 @@ public class PowerInfo {
 		this.displayUnlock = displayUnlock;
 
 	}
+	
+	public PowerInfo setCreator(PowerCreator creator){
+		this.creator = creator;
+		return this;
+	}
 
 	public Power newInstance(EntityPlayer player, int upgradeLevel) {
-		try {
-			return clazz.getConstructor(EntityPlayer.class, int.class).newInstance(player, upgradeLevel);
-		} catch (InstantiationException e) {
-			Log.e("YellowQuest", "Fix your code dammit");
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			Log.e("YellowQuest", "Fix your code dammit");
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			Log.e("YellowQuest", "Fix your code dammit");
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			Log.e("YellowQuest", "Fix your code dammit");
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			Log.e("YellowQuest", "Fix your code dammit");
-			e.printStackTrace();
-		}
-		throw new RuntimeException("You need to take a closer look at some of da code!");
+		return creator.createPower(player, upgradeLevel);
 	}
 
 	public int upgradeCost(int lvl) {
@@ -82,24 +73,60 @@ public class PowerInfo {
 	private static HashMap<String, PowerInfo> named = new HashMap<String, PowerInfo>();
 
 	static {
-		data.add(new PowerInfo(PowerUp.class, "up", TraitUp.PAINT_GREEN.getColor(), 2000, 10000,
+		data.add(new PowerInfo("up", TraitUp.PAINT_GREEN.getColor(), 2000, 10000,
 				R.string.power_up, R.string.power_up_desc, R.string.power_up_upgrade, 2,
-				R.string.power_up_warn, 0, R.string.power_up_unlock));
-		data.add(new PowerInfo(PowerBounce.class, "bounce", TraitBounce.PAINT_MAGENTA.getColor(), 3500, 18000,
+				R.string.power_up_warn, 0, R.string.power_up_unlock).setCreator(new PowerCreator() {
+					
+					@Override
+					public Power createPower(EntityPlayer player, int upgradeLevel) {
+						return new PowerUp(player, upgradeLevel);
+					}
+				}));
+		data.add(new PowerInfo("bounce", TraitBounce.PAINT_MAGENTA.getColor(), 3500, 18000,
 				R.string.power_bounce, R.string.power_bounce_desc, R.string.power_bounce_upgrade, 2,
-				R.string.power_bounce_warn, 1, R.string.power_bounce_unlock));
-		data.add(new PowerInfo(PowerTroll.class, "troll", TraitTroll.PAINT_TROLL.getColor(), 5000, 25000,
+				R.string.power_bounce_warn, 1, R.string.power_bounce_unlock).setCreator(new PowerCreator() {
+					
+					@Override
+					public Power createPower(EntityPlayer player, int upgradeLevel) {
+						return new PowerBounce(player, upgradeLevel);
+					}
+				}));
+		data.add(new PowerInfo("troll", TraitTroll.PAINT_TROLL.getColor(), 5000, 25000,
 				R.string.power_troll, R.string.power_troll_desc, R.string.power_troll_upgrade, 1,
-				R.string.power_troll_warn, 2, R.string.power_troll_unlock));
-		data.add(new PowerInfo(PowerTimeStop.class, "time", YellowQuest.PAINT_GAMEOVER.getColor(), 7500, 37000,
+				R.string.power_troll_warn, 2, R.string.power_troll_unlock).setCreator(new PowerCreator() {
+					
+					@Override
+					public Power createPower(EntityPlayer player, int upgradeLevel) {
+						return new PowerTroll(player, upgradeLevel);
+					}
+				}));
+		data.add(new PowerInfo("time", YellowQuest.PAINT_GAMEOVER.getColor(), 7500, 37000,
 				R.string.power_time, R.string.power_time_desc, R.string.power_time_upgrade, 2,
-				R.string.power_time_warn, 3, R.string.power_time_unlock));
-		data.add(new PowerInfo(PowerTeleport.class, "teleport", TraitConveyor.PAINT_GREY.getColor(), 10000, 50000,
+				R.string.power_time_warn, 3, R.string.power_time_unlock).setCreator(new PowerCreator() {
+					
+					@Override
+					public Power createPower(EntityPlayer player, int upgradeLevel) {
+						return new PowerTimeStop(player, upgradeLevel);
+					}
+				}));
+		data.add(new PowerInfo("teleport", TraitConveyor.PAINT_GREY.getColor(), 10000, 50000,
 				R.string.power_teleport, R.string.power_teleport_desc, R.string.power_teleport_upgrade, 2,
-				R.string.power_teleport_warn, 4, R.string.power_teleport_unlock));
-		data.add(new PowerInfo(PowerLife.class, "life", EntityPlayer.PAINT_YELLOW.getColor(), 15000, 75000,
+				R.string.power_teleport_warn, 4, R.string.power_teleport_unlock).setCreator(new PowerCreator() {
+					
+					@Override
+					public Power createPower(EntityPlayer player, int upgradeLevel) {
+						return new PowerTeleport(player, upgradeLevel);
+					}
+				}));
+		data.add(new PowerInfo("life", EntityPlayer.PAINT_YELLOW.getColor(), 15000, 75000,
 				R.string.power_life, R.string.power_life_desc, R.string.power_life_upgrade, 2,
-				R.string.power_life_warn, 5, R.string.power_life_unlock));
+				R.string.power_life_warn, 5, R.string.power_life_unlock).setCreator(new PowerCreator() {
+					
+					@Override
+					public Power createPower(EntityPlayer player, int upgradeLevel) {
+						return new PowerLife(player, upgradeLevel);
+					}
+				}));
 
 		for (PowerInfo info : data) {
 			named.put(info.name, info);
