@@ -4681,9 +4681,9 @@ com.ithinkrok.yellowquest.GameData:
     private static final int MOD
     47:47:public boolean addAchievement(java.lang.String)
     79:80:public void setPowerUnlocks(int)
-    206:208:public int getScore(int)
-    234:237:public int getTime(int)
-    246:246:public boolean hasScorePoints(int)
+    217:219:public int getScore(int)
+    245:248:public int getTime(int)
+    257:257:public boolean hasScorePoints(int)
 com.ithinkrok.yellowquest.MainActivity:
     public static final boolean DEBUG
 com.ithinkrok.yellowquest.MainActivity$GameState:

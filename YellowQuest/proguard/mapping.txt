@@ -4571,16 +4571,17 @@ com.ithinkrok.yellowquest.GameData -> com.ithinkrok.yellowquest.h:
     void addPowerUnlock(int) -> a
     boolean hasPowerUnlock(int) -> b
     boolean addHiScore(int) -> c
-    void addOfflineAchievements() -> b
+    void updateOnlineHiScore() -> b
+    void addOfflineAchievements() -> c
     boolean addScore(int,int) -> a
     void addScorePoints(int) -> d
     long getAchievementHash(java.lang.String) -> d
-    int getHiScore() -> c
+    int getHiScore() -> d
     int getInt(long,int) -> a
-    java.lang.String getNextPower() -> d
+    java.lang.String getNextPower() -> e
     int getPowerUpgradeLevel(java.lang.String) -> a
-    int getPreviousScore() -> e
-    int getScorePoints() -> f
+    int getPreviousScore() -> f
+    int getScorePoints() -> g
     void load(android.content.SharedPreferences) -> a
     void save(android.content.SharedPreferences$Editor) -> a
     void setInt(long,int) -> b

@@ -262,7 +262,7 @@ public class YellowQuest {
 		for (int d = 0; d < amount; ++d) {
 			if (nextBox >= level.size)
 				break;
-			int gainWidth = Math.max(0, 32 - level.number * 4);
+			int gainWidth = Math.max(0, 48 - level.number * 6);
 			xe = 64 + gainWidth + random(127 - gainWidth);
 			ye = 24 + random(23);
 			if(level.lastBoxType != null){
@@ -330,7 +330,9 @@ public class YellowQuest {
 			mult = 20;
 		addScore((level.number + 1) * mult);
 		if (timed) {
-			addScore(((TIMER_MAX - timer) / TIMER_SECOND) * 75);
+			int seconds = ((TIMER_MAX - timer) / TIMER_SECOND);
+			seconds = Math.min(seconds, 5);
+			addScore(seconds * 75);
 		} else {
 			addScore(((TIMER_MAX - timer) / TIMER_SECOND));
 		}
