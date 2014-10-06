@@ -16,6 +16,7 @@ import android.view.*;
 import android.widget.*;
 
 import com.android.vending.billing.IInAppBillingService;
+import com.google.android.gms.ads.*;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 import com.google.example.games.basegameutils.BaseGameActivity;
@@ -50,6 +51,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private ImageButton play_shadow;
 	private ImageButton play_time;
 	private TextView play_score;
+	private AdView play_ad;
 
 	private TextView buy_money;
 	private TextView buy_back;
@@ -423,6 +425,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		play_score = (TextView) findViewById(R.id.play_score);
 		play_powers = (ListView) findViewById(R.id.play_powers);
 		play_money = (Button) findViewById(R.id.play_money);
+		play_ad = (AdView) findViewById(R.id.play_ad);
 
 		play_play.setOnClickListener(this);
 		play_back.setOnClickListener(this);
@@ -455,6 +458,15 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			play_score.setText(text);
 		} else {
 			play_score.setText(R.string.no_powers);
+		}
+		
+		if(gameData.hasMadePurchase()){
+			play_ad.setVisibility(View.GONE);
+		} else {
+			AdRequest request = new AdRequest.Builder().build();
+			play_ad.setAdSize(AdSize.BANNER);
+			play_ad.setAdUnitId("ca-app-pub-3997067583457090/3896801162");
+			play_ad.loadAd(request);
 		}
 	}
 

@@ -16,6 +16,8 @@ import com.google.android.gms.games.Games;
 public class GameData {
 	
 	private static final int MOD = 1436862197;
+	
+	private static final int UNIQUE = android.os.Build.MODEL.hashCode();
 
 	public static long hash(String string) {
 		long h = 1125899906842597L; // prime
@@ -86,6 +88,14 @@ public class GameData {
 	public boolean hasPowerUnlock(int power){
 		int lks = getPowerUnlocks();
 		return ((lks >> power) & 1) == 1;
+	}
+	
+	public void setMadePurchase(){
+		setInt(hash("made_iap"), UNIQUE);
+	}
+	
+	public boolean hasMadePurchase(){
+		return getInt(hash("made_iap"), 0) == UNIQUE;
 	}
 
 	public boolean addHiScore(int score) {
@@ -277,7 +287,9 @@ public class GameData {
 		}
 	}
 
+	
 	public void save(Editor editor) {
+		editor.putInt("sv", 1);
 		Object obj;
 		Integer i;
 		Long l;

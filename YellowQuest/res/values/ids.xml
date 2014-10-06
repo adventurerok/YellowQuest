@@ -35,5 +35,6 @@
     <item type="id" name="purchase"/>
     <item type="id" name="purchase_name"/>
     <item type="id" name="purchase_buy"/>
+    <item type="id" name="play_ad"/>
 
 </resources>

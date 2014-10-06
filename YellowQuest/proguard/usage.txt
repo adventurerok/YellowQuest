@@ -4713,7 +4713,7 @@ com.ithinkrok.yellowquest.YellowQuest:
     122:123:public void addAchievement(int)
     139:140:public void addAchievement(java.lang.String)
     297:297:public int getScore()
-    600:600:public boolean isDisplaying()
+    602:602:public boolean isDisplaying()
 com.ithinkrok.yellowquest.entity.Entity:
     61:61:public com.ithinkrok.yellowquest.entity.Entity teleport(double,double)
     154:154:public void delete()

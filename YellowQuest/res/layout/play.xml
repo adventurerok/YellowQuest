@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
@@ -27,8 +28,8 @@
         android:layout_toStartOf="@+id/play_time"
         android:contentDescription="@string/shadow"
         android:src="@drawable/shadow_off" />
-    
-    <Button 
+
+    <Button
         android:id="@+id/play_money"
         style="@style/RelFont"
         android:layout_width="wrap_content"
@@ -36,8 +37,7 @@
         android:layout_alignParentTop="true"
         android:layout_gravity="start"
         android:layout_toLeftOf="@+id/play_shadow"
-        android:layout_toStartOf="@+id/play_shadow"
-        />
+        android:layout_toStartOf="@+id/play_shadow" />
 
     <TextView
         android:id="@+id/play_title"
@@ -81,12 +81,26 @@
         android:layout_alignParentStart="true"
         android:text="@string/back" />
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/play_ad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_toEndOf="@+id/play_back"
+        android:layout_toLeftOf="@+id/play_play"
+        android:layout_toRightOf="@+id/play_back"
+        android:layout_toStartOf="@+id/play_play"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3997067583457090/3896801162" />
+
     <ListView
         android:id="@+id/play_powers"
         style="@style/RelFont"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/play_back"
+        android:layout_above="@+id/play_play"
         android:layout_below="@+id/play_score" />
 
 </RelativeLayout>

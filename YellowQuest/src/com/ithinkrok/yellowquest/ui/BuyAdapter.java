@@ -227,6 +227,7 @@ public class BuyAdapter extends BaseAdapter implements View.OnClickListener {
 						context.runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
+								context.getGameData().setMadePurchase();
 								context.getGameData().addScorePoints(reward);
 								context.saveData();
 								String text = context.getString(R.string.achievement_reward);

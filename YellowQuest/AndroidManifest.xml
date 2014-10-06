@@ -5,6 +5,8 @@
     android:versionName="1.0.6">
     
     <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-sdk
         android:minSdkVersion="10"
@@ -33,6 +35,9 @@
         <meta-data
             android:name="com.google.android.gms.games.APP_ID" 
             android:value="@string/app_id"/>
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
     </application>
 
 </manifest>
