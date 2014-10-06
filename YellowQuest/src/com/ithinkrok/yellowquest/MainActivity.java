@@ -464,8 +464,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			play_ad.setVisibility(View.GONE);
 		} else {
 			AdRequest request = new AdRequest.Builder().build();
-			play_ad.setAdSize(AdSize.BANNER);
-			play_ad.setAdUnitId("ca-app-pub-3997067583457090/3896801162");
+			//play_ad.setAdSize(AdSize.BANNER);
+			//play_ad.setAdUnitId("ca-app-pub-3997067583457090/3896801162");
 			play_ad.loadAd(request);
 		}
 	}
