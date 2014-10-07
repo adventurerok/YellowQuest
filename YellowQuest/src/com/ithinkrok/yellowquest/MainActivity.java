@@ -447,7 +447,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		else
 			play_time.setImageResource(R.drawable.time_on);
 
-		if(gameData.getPowerUnlocks() != 0) play_money.setText(BoxMath.formatNumber(gameData.getScorePoints()) + " SP");
+		if(gameData.getPowerUnlocks() != 0) play_money.setText(BoxMath.formatNumberWithoutSuffix(gameData.getScorePoints()) + " SP");
 		else play_money.setVisibility(View.GONE);
 
 		if (powerAdapter == null)
@@ -501,7 +501,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 		buy_back.setOnClickListener(this);
 
-		buy_money.setText(BoxMath.formatNumber(gameData.getScorePoints()) + " SP");
+		buy_money.setText(BoxMath.formatNumberWithoutSuffix(gameData.getScorePoints()) + " SP");
 
 		if (buyAdapter == null)
 			buyAdapter = new BuyAdapter(this);
@@ -590,6 +590,14 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		case SETUP:
 			loadPlayView();
 			break;
+		}
+	}
+	
+	public void updateScorePointCounter(){
+		if(state == GameState.SETUP){
+			play_money.setText(BoxMath.formatNumberWithoutSuffix(gameData.getScorePoints()) + " SP");
+		} else if(state == GameState.BUY){
+			buy_money.setText(BoxMath.formatNumberWithoutSuffix(gameData.getScorePoints()) + " SP");
 		}
 	}
 

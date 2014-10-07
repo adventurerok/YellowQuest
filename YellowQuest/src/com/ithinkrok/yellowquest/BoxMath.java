@@ -10,6 +10,10 @@ public class BoxMath {
 	
 	private static DecimalFormat numberFormat = new DecimalFormat("#,###");
 	
+	public static String formatNumberWithoutSuffix(int num){
+		return numberFormat.format(num);
+	}
+	
 
 	public static double maxJumpHeight(double jumpVelocity){
 		double time = Math.floor(-jumpVelocity/JUMP_GRAVITY);

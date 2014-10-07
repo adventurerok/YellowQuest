@@ -133,6 +133,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 				data.setPowerUpgradeLevel(info.name, ++lvl);
 				context.saveData();
 				notifyDataSetChanged();
+				context.updateScorePointCounter();
 			}
 		});
 		
@@ -172,6 +173,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 			}
 			context.getGameData().setNextPower(info.name);
 			context.getGameData().setScorePoints(totalSp - info.buyCost);
+			context.getGameData().save(context.getSettings().edit());
 			break;
 		case R.id.power_upgrade:
 			int lvlNum = context.getGameData().getPowerUpgradeLevel(info.name);
@@ -183,6 +185,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 		}
 
 		notifyDataSetChanged();
+		context.updateScorePointCounter();
 	}
 
 }
