@@ -4572,12 +4572,12 @@ com.ithinkrok.yellowquest.AppRater:
     8:8:public AppRater()
 com.ithinkrok.yellowquest.BoxMath:
     5:5:public BoxMath()
-    25:38:public static double maxBoxHeight(double,double,double)
-    43:43:public static double maxSpeed(double,double)
-    47:51:public static double velocity(double,double,double,int)
-    55:61:public static double testDistance(double,double,double,int)
-    65:68:public static double distance(double,double,double,int)
-    72:80:public static double distanceTravelled(double,double,double,int)
+    29:42:public static double maxBoxHeight(double,double,double)
+    47:47:public static double maxSpeed(double,double)
+    51:55:public static double velocity(double,double,double,int)
+    59:65:public static double testDistance(double,double,double,int)
+    69:72:public static double distance(double,double,double,int)
+    76:84:public static double distanceTravelled(double,double,double,int)
 com.ithinkrok.yellowquest.BuildConfig
 com.ithinkrok.yellowquest.CanvasSurfaceView:
     public static final double UPDATE_PERIOD
@@ -4590,9 +4590,9 @@ com.ithinkrok.yellowquest.GameData:
     private static final int MOD
     49:49:public boolean addAchievement(java.lang.String)
     81:82:public void setPowerUnlocks(int)
-    227:229:public int getScore(int)
-    255:258:public int getTime(int)
-    267:267:public boolean hasScorePoints(int)
+    231:233:public int getScore(int)
+    259:262:public int getTime(int)
+    271:271:public boolean hasScorePoints(int)
 com.ithinkrok.yellowquest.MainActivity:
     public static final boolean DEBUG
 com.ithinkrok.yellowquest.MainActivity$GameState:
@@ -4622,7 +4622,7 @@ com.ithinkrok.yellowquest.YellowQuest:
     122:123:public void addAchievement(int)
     139:140:public void addAchievement(java.lang.String)
     297:297:public int getScore()
-    602:602:public boolean isDisplaying()
+    599:599:public boolean isDisplaying()
 com.ithinkrok.yellowquest.entity.Entity:
     61:61:public com.ithinkrok.yellowquest.entity.Entity teleport(double,double)
     154:154:public void delete()

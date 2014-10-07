@@ -90,6 +90,7 @@
 	<string name="rate_negative">No, thanks</string>
 	<string name="rate_neutral">Later</string>
 	<string name="no_purchase_without_internet">You cannot access in app purchases without an internet connection</string>
+	<string name="tap_anywhere_to_play">Tap anywhere to start playing</string>
     
 
 </resources>

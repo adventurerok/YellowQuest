@@ -37,6 +37,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 	private GameData gameData;
 	private TextView menu_play;
+	private View menu;
 	private View menu_achievements;
 	private View menu_leaderboards;
 	private View menu_settings;
@@ -275,6 +276,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+		case R.id.menu:
 		case R.id.menu_play:
 		case R.id.buy_back:
 			if(passedOne) loadPlayView();
@@ -397,7 +399,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	public void loadMenuView() {
 		state = GameState.MENU;
 		setContentView(R.layout.menu);
-
+		
+		menu = findViewById(R.id.menu);
 		menu_play = (TextView) findViewById(R.id.menu_play);
 		menu_achievements = findViewById(R.id.menu_achievements);
 		menu_leaderboards = findViewById(R.id.menu_leaderboards);
@@ -406,6 +409,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		sign_out_button = findViewById(R.id.sign_out_button);
 
 		menu_play.setOnClickListener(this);
+		menu.setOnClickListener(this);
 		menu_achievements.setOnClickListener(this);
 		menu_leaderboards.setOnClickListener(this);
 		menu_settings.setOnClickListener(this);

@@ -6804,8 +6804,9 @@ com.ithinkrok.yellowquest.BoxMath -> com.ithinkrok.yellowquest.e:
     double FALL_GRAVITY -> b
     double FALL_VELOCITY_MAX -> c
     java.text.DecimalFormat numberFormat -> d
+    java.lang.String formatNumberWithoutSuffix(int) -> a
     double maxJumpHeight(double) -> a
-    java.lang.String formatNumber(int) -> a
+    java.lang.String formatNumber(int) -> b
 com.ithinkrok.yellowquest.CanvasSurfaceView -> com.ithinkrok.yellowquest.f:
     com.ithinkrok.yellowquest.util.Vector2 currentTouch -> f
     com.ithinkrok.yellowquest.CanvasThread _thread -> g
@@ -6859,6 +6860,7 @@ com.ithinkrok.yellowquest.GameData -> com.ithinkrok.yellowquest.h:
     void addOfflineAchievements() -> e
     boolean addScore(int,int) -> a
     void addScorePoints(int) -> d
+    void setScorePoints(int) -> e
     long getAchievementHash(java.lang.String) -> d
     int getHiScore() -> f
     int getInt(long,int) -> a
@@ -6871,7 +6873,7 @@ com.ithinkrok.yellowquest.GameData -> com.ithinkrok.yellowquest.h:
     void setInt(long,int) -> b
     void setNextPower(java.lang.String) -> b
     void setPowerUpgradeLevel(java.lang.String,int) -> b
-    boolean subtractScorePoints(int) -> e
+    boolean subtractScorePoints(int) -> f
 com.ithinkrok.yellowquest.GameOver -> com.ithinkrok.yellowquest.i:
     int time -> a
     int type -> b
@@ -6941,13 +6943,14 @@ com.ithinkrok.yellowquest.MainActivity -> com.ithinkrok.yellowquest.MainActivity
     void onClick(android.view.View) -> onClick
     void loadMenuView() -> n
     void loadPlayView() -> o
-    void loadSettingsView() -> r
-    void loadBuyView() -> s
-    void loadGameView() -> t
+    void loadSettingsView() -> s
+    void loadBuyView() -> t
+    void loadGameView() -> u
     void onBackPressed() -> onBackPressed
-    void audioStart() -> u
+    void audioStart() -> v
     void invalidateUI() -> p
-    void checkPurchases() -> q
+    void updateScorePointCounter() -> q
+    void checkPurchases() -> r
     void onActivityResult(int,int,android.content.Intent) -> onActivityResult
     com.ithinkrok.yellowquest.ui.BuyAdapter access$0(com.ithinkrok.yellowquest.MainActivity) -> a
     void access$1(com.ithinkrok.yellowquest.MainActivity,com.ithinkrok.yellowquest.ui.BuyAdapter) -> a
@@ -6956,7 +6959,7 @@ com.ithinkrok.yellowquest.MainActivity -> com.ithinkrok.yellowquest.MainActivity
     android.media.MediaPlayer access$4(com.ithinkrok.yellowquest.MainActivity) -> d
     android.media.AudioManager access$5(com.ithinkrok.yellowquest.MainActivity) -> e
     void access$6(com.ithinkrok.yellowquest.MainActivity,android.media.MediaPlayer) -> a
-    int[] $SWITCH_TABLE$com$ithinkrok$yellowquest$MainActivity$GameState() -> v
+    int[] $SWITCH_TABLE$com$ithinkrok$yellowquest$MainActivity$GameState() -> w
 com.ithinkrok.yellowquest.MainActivity$1 -> com.ithinkrok.yellowquest.k:
     com.ithinkrok.yellowquest.MainActivity this$0 -> a
     void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected

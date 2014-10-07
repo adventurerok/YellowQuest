@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_id">596492711628</string>
+    <item type="id" name="menu"/>
     <item type="id" name="menu_play"/>
     <item type="id" name="menu_achievements"/>
     <item type="id" name="menu_leaderboards"/>
