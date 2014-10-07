@@ -89,6 +89,7 @@
 	<string name="rate_positive">Rate Now</string>
 	<string name="rate_negative">No, thanks</string>
 	<string name="rate_neutral">Later</string>
+	<string name="no_purchase_without_internet">You cannot access in app purchases without an internet connection</string>
     
 
 </resources>

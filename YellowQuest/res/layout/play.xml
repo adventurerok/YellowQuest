@@ -100,7 +100,7 @@
         style="@style/RelFont"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/play_play"
+        android:layout_above="@+id/play_ad"
         android:layout_below="@+id/play_score" />
 
 </RelativeLayout>

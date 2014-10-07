@@ -765,24 +765,49 @@ com.android.vending.billing.IInAppBillingService$Stub:
     58:58:public android.os.IBinder asBinder()
 com.android.vending.billing.IInAppBillingService$Stub$Proxy:
     186:186:public java.lang.String getInterfaceDescriptor()
-com.google.ads.AdRequest
+com.google.ads.AdRequest:
+    public static final java.lang.String VERSION
+    public static final java.lang.String LOGTAG
+    private AdRequest()
 com.google.ads.AdRequest$ErrorCode
-com.google.ads.AdRequest$Gender
-com.google.ads.AdSize
+com.google.ads.AdRequest$Gender:
+    public static com.google.ads.AdRequest$Gender[] values()
+    public static com.google.ads.AdRequest$Gender valueOf(java.lang.String)
+com.google.ads.AdSize:
+    public static final int FULL_WIDTH
+    public static final int AUTO_HEIGHT
+    public static final int LANDSCAPE_AD_HEIGHT
+    public static final int PORTRAIT_AD_HEIGHT
+    public static final int LARGE_AD_HEIGHT
+    public AdSize(int,int)
+    public boolean isFullWidth()
+    public boolean isAutoHeight()
+    public boolean isCustomAdSize()
+    public int getWidthInPixels(android.content.Context)
+    public int getHeightInPixels(android.content.Context)
+    public boolean isSizeAppropriate(int,int)
+    public varargs com.google.ads.AdSize findBestSize(com.google.ads.AdSize[])
 com.google.ads.mediation.EmptyNetworkExtras
-com.google.ads.mediation.MediationAdRequest
-com.google.ads.mediation.MediationAdapter
-com.google.ads.mediation.MediationBannerAdapter
-com.google.ads.mediation.MediationBannerListener
-com.google.ads.mediation.MediationInterstitialAdapter
-com.google.ads.mediation.MediationInterstitialListener
-com.google.ads.mediation.MediationServerParameters
-com.google.ads.mediation.MediationServerParameters$MappingException
-com.google.ads.mediation.MediationServerParameters$Parameter
-com.google.ads.mediation.NetworkExtras
-com.google.ads.mediation.admob.AdMobAdapter
-com.google.ads.mediation.admob.AdMobAdapter$a
-com.google.ads.mediation.admob.AdMobAdapter$b
+com.google.ads.mediation.MediationAdRequest:
+    public java.lang.Integer getAgeInYears()
+    public java.util.Date getBirthday()
+    public com.google.ads.AdRequest$Gender getGender()
+    public java.util.Set getKeywords()
+    public android.location.Location getLocation()
+    public boolean isTesting()
+com.google.ads.mediation.MediationBannerListener:
+    public abstract void onReceivedAd(com.google.ads.mediation.MediationBannerAdapter)
+    public abstract void onFailedToReceiveAd(com.google.ads.mediation.MediationBannerAdapter,com.google.ads.AdRequest$ErrorCode)
+    public abstract void onPresentScreen(com.google.ads.mediation.MediationBannerAdapter)
+    public abstract void onDismissScreen(com.google.ads.mediation.MediationBannerAdapter)
+    public abstract void onLeaveApplication(com.google.ads.mediation.MediationBannerAdapter)
+    public abstract void onClick(com.google.ads.mediation.MediationBannerAdapter)
+com.google.ads.mediation.MediationInterstitialListener:
+    public abstract void onReceivedAd(com.google.ads.mediation.MediationInterstitialAdapter)
+    public abstract void onFailedToReceiveAd(com.google.ads.mediation.MediationInterstitialAdapter,com.google.ads.AdRequest$ErrorCode)
+    public abstract void onPresentScreen(com.google.ads.mediation.MediationInterstitialAdapter)
+    public abstract void onDismissScreen(com.google.ads.mediation.MediationInterstitialAdapter)
+    public abstract void onLeaveApplication(com.google.ads.mediation.MediationInterstitialAdapter)
 com.google.ads.mediation.customevent.CustomEvent
 com.google.ads.mediation.customevent.CustomEventAdapter
 com.google.ads.mediation.customevent.CustomEventAdapter$a
@@ -862,34 +887,105 @@ com.google.android.gms.R$string:
     public static final int wallet_buy_button_place_holder
     130:130:public R$string()
 com.google.android.gms.R$style
-com.google.android.gms.R$styleable
+com.google.android.gms.R$styleable:
+    public static final int AdsAttrs_adSize
+    public static final int AdsAttrs_adSizes
+    public static final int AdsAttrs_adUnitId
+    public static final int MapAttrs_cameraBearing
+    public static final int MapAttrs_cameraTargetLat
+    public static final int MapAttrs_cameraTargetLng
+    public static final int MapAttrs_cameraTilt
+    public static final int MapAttrs_cameraZoom
+    public static final int MapAttrs_mapType
+    public static final int MapAttrs_uiCompass
+    public static final int MapAttrs_uiRotateGestures
+    public static final int MapAttrs_uiScrollGestures
+    public static final int MapAttrs_uiTiltGestures
+    public static final int MapAttrs_uiZoomControls
+    public static final int MapAttrs_uiZoomGestures
+    public static final int MapAttrs_useViewLifecycle
+    public static final int MapAttrs_zOrderOnTop
+    public static final int WalletFragmentOptions_environment
+    public static final int WalletFragmentOptions_fragmentMode
+    public static final int WalletFragmentOptions_fragmentStyle
+    public static final int WalletFragmentOptions_theme
+    public static final int WalletFragmentStyle_buyButtonAppearance
+    public static final int WalletFragmentStyle_buyButtonHeight
+    public static final int WalletFragmentStyle_buyButtonText
+    public static final int WalletFragmentStyle_buyButtonWidth
+    public static final int WalletFragmentStyle_maskedWalletDetailsBackground
+    public static final int WalletFragmentStyle_maskedWalletDetailsButtonBackground
+    public static final int WalletFragmentStyle_maskedWalletDetailsButtonTextAppearance
+    public static final int WalletFragmentStyle_maskedWalletDetailsHeaderTextAppearance
+    public static final int WalletFragmentStyle_maskedWalletDetailsLogoImageType
+    public static final int WalletFragmentStyle_maskedWalletDetailsLogoTextColor
+    public static final int WalletFragmentStyle_maskedWalletDetailsTextAppearance
+    165:165:public R$styleable()
 com.google.android.gms.actions.ReserveIntents
-com.google.android.gms.ads.AdActivity
-com.google.android.gms.ads.AdListener
-com.google.android.gms.ads.AdRequest
-com.google.android.gms.ads.AdRequest$1
-com.google.android.gms.ads.AdRequest$Builder
-com.google.android.gms.ads.AdSize
-com.google.android.gms.ads.AdView
-com.google.android.gms.ads.InterstitialAd
-com.google.android.gms.ads.a
-com.google.android.gms.ads.doubleclick.AppEventListener
+com.google.android.gms.ads.AdActivity:
+    public static final java.lang.String CLASS_NAME
+    public static final java.lang.String SIMPLE_CLASS_NAME
+com.google.android.gms.ads.AdRequest:
+    public static final int ERROR_CODE_INTERNAL_ERROR
+    public static final int ERROR_CODE_INVALID_REQUEST
+    public static final int ERROR_CODE_NETWORK_ERROR
+    public static final int ERROR_CODE_NO_FILL
+    public static final int GENDER_UNKNOWN
+    public static final int GENDER_MALE
+    public static final int GENDER_FEMALE
+    public static final int MAX_CONTENT_URL_LENGTH
+    public java.util.Date getBirthday()
+    public java.lang.String getContentUrl()
+    public int getGender()
+    public java.util.Set getKeywords()
+    public android.location.Location getLocation()
+    public com.google.android.gms.ads.mediation.NetworkExtras getNetworkExtras(java.lang.Class)
+    public android.os.Bundle getNetworkExtrasBundle(java.lang.Class)
+    public android.os.Bundle getCustomEventExtrasBundle(java.lang.Class)
+    public boolean isTestDevice(android.content.Context)
+com.google.android.gms.ads.AdRequest$Builder:
+    public com.google.android.gms.ads.AdRequest$Builder addNetworkExtras(com.google.android.gms.ads.mediation.NetworkExtras)
+    public com.google.android.gms.ads.AdRequest$Builder addCustomEventExtrasBundle(java.lang.Class,android.os.Bundle)
+    public com.google.android.gms.ads.AdRequest$Builder setContentUrl(java.lang.String)
+    public com.google.android.gms.ads.AdRequest$Builder setLocation(android.location.Location)
+com.google.android.gms.ads.AdSize:
+    public static final int FULL_WIDTH
+    public static final int AUTO_HEIGHT
+    public boolean isAutoHeight()
+    public boolean isFullWidth()
+com.google.android.gms.ads.AdView:
+    public com.google.android.gms.ads.AdListener getAdListener()
+    public java.lang.String getAdUnitId()
+    public com.google.android.gms.ads.purchase.InAppPurchaseListener getInAppPurchaseListener()
+    public void setInAppPurchaseListener(com.google.android.gms.ads.purchase.InAppPurchaseListener)
+    public void setPlayStorePurchaseParams(com.google.android.gms.ads.purchase.PlayStorePurchaseListener,java.lang.String)
+com.google.android.gms.ads.InterstitialAd:
+    public com.google.android.gms.ads.AdListener getAdListener()
+    public java.lang.String getAdUnitId()
+    public com.google.android.gms.ads.purchase.InAppPurchaseListener getInAppPurchaseListener()
+    public boolean isLoaded()
+    public void setInAppPurchaseListener(com.google.android.gms.ads.purchase.InAppPurchaseListener)
+    public void setPlayStorePurchaseParams(com.google.android.gms.ads.purchase.PlayStorePurchaseListener,java.lang.String)
 com.google.android.gms.ads.doubleclick.PublisherAdRequest
 com.google.android.gms.ads.doubleclick.PublisherAdRequest$1
 com.google.android.gms.ads.doubleclick.PublisherAdRequest$Builder
 com.google.android.gms.ads.doubleclick.PublisherAdView
 com.google.android.gms.ads.doubleclick.PublisherInterstitialAd
-com.google.android.gms.ads.identifier.AdvertisingIdClient
-com.google.android.gms.ads.identifier.AdvertisingIdClient$Info
-com.google.android.gms.ads.mediation.MediationAdRequest
-com.google.android.gms.ads.mediation.MediationAdapter
-com.google.android.gms.ads.mediation.MediationBannerAdapter
-com.google.android.gms.ads.mediation.MediationBannerListener
-com.google.android.gms.ads.mediation.MediationInterstitialAdapter
-com.google.android.gms.ads.mediation.MediationInterstitialListener
+com.google.android.gms.ads.identifier.AdvertisingIdClient:
+    public AdvertisingIdClient()
+com.google.android.gms.ads.mediation.MediationAdRequest:
+    public static final int TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE
+    public static final int TAG_FOR_CHILD_DIRECTED_TREATMENT_FALSE
+    public static final int TAG_FOR_CHILD_DIRECTED_TREATMENT_UNSPECIFIED
+    public abstract int taggedForChildDirectedTreatment()
+com.google.android.gms.ads.mediation.MediationInterstitialListener:
+    public abstract void onAdClicked(com.google.android.gms.ads.mediation.MediationInterstitialAdapter)
 com.google.android.gms.ads.mediation.NetworkExtras
 com.google.android.gms.ads.mediation.admob.AdMobExtras
-com.google.android.gms.ads.mediation.customevent.CustomEvent
+com.google.android.gms.ads.mediation.customevent.CustomEvent:
+    public abstract void onDestroy()
+    public abstract void onPause()
+    public abstract void onResume()
 com.google.android.gms.ads.mediation.customevent.CustomEventAdapter
 com.google.android.gms.ads.mediation.customevent.CustomEventAdapter$a
 com.google.android.gms.ads.mediation.customevent.CustomEventAdapter$b
@@ -899,12 +995,42 @@ com.google.android.gms.ads.mediation.customevent.CustomEventExtras
 com.google.android.gms.ads.mediation.customevent.CustomEventInterstitial
 com.google.android.gms.ads.mediation.customevent.CustomEventInterstitialListener
 com.google.android.gms.ads.mediation.customevent.CustomEventListener
-com.google.android.gms.ads.purchase.InAppPurchase
+com.google.android.gms.ads.purchase.InAppPurchase:
+    public static final int RESOLUTION_FAILURE
+    public static final int RESOLUTION_SUCCESS
+    public static final int RESOLUTION_CANCELED
+    public static final int RESOLUTION_INVALID_PRODUCT
+    public abstract java.lang.String getProductId()
+    public abstract void recordResolution(int)
+    public abstract void recordPlayBillingResolution(int)
 com.google.android.gms.ads.purchase.InAppPurchaseActivity
-com.google.android.gms.ads.purchase.InAppPurchaseListener
-com.google.android.gms.ads.purchase.InAppPurchaseResult
-com.google.android.gms.ads.purchase.PlayStorePurchaseListener
-com.google.android.gms.ads.search.SearchAdRequest
+com.google.android.gms.ads.purchase.InAppPurchaseResult:
+    public abstract java.lang.String getProductId()
+    public abstract android.content.Intent getPurchaseData()
+    public abstract int getResultCode()
+    public abstract boolean isVerified()
+    public abstract void finishPurchase()
+com.google.android.gms.ads.search.SearchAdRequest:
+    public static final int ERROR_CODE_INTERNAL_ERROR
+    public static final int ERROR_CODE_INVALID_REQUEST
+    public static final int ERROR_CODE_NETWORK_ERROR
+    public static final int ERROR_CODE_NO_FILL
+    public static final int BORDER_TYPE_NONE
+    public static final int BORDER_TYPE_DASHED
+    public static final int BORDER_TYPE_DOTTED
+    public static final int BORDER_TYPE_SOLID
+    public static final int CALL_BUTTON_COLOR_LIGHT
+    public static final int CALL_BUTTON_COLOR_MEDIUM
+    public static final int CALL_BUTTON_COLOR_DARK
+    private final com.google.android.gms.internal.at ks
+    private SearchAdRequest(com.google.android.gms.ads.search.SearchAdRequest$Builder)
+    public android.location.Location getLocation()
+    public com.google.android.gms.ads.mediation.NetworkExtras getNetworkExtras(java.lang.Class)
+    public android.os.Bundle getNetworkExtrasBundle(java.lang.Class)
+    public android.os.Bundle getCustomEventExtrasBundle(java.lang.Class)
+    public boolean isTestDevice(android.content.Context)
+    com.google.android.gms.internal.at T()
+    synthetic SearchAdRequest(com.google.android.gms.ads.search.SearchAdRequest$Builder,com.google.android.gms.ads.search.SearchAdRequest$1)
 com.google.android.gms.ads.search.SearchAdRequest$1
 com.google.android.gms.ads.search.SearchAdRequest$Builder
 com.google.android.gms.ads.search.SearchAdView
@@ -1138,9 +1264,8 @@ com.google.android.gms.common.GooglePlayServicesClient:
     public abstract void registerConnectionFailedListener(com.google.android.gms.common.GooglePlayServicesClient$OnConnectionFailedListener)
     public abstract boolean isConnectionFailedListenerRegistered(com.google.android.gms.common.GooglePlayServicesClient$OnConnectionFailedListener)
     public abstract void unregisterConnectionFailedListener(com.google.android.gms.common.GooglePlayServicesClient$OnConnectionFailedListener)
-com.google.android.gms.common.GooglePlayServicesClient$ConnectionCallbacks
-com.google.android.gms.common.GooglePlayServicesNotAvailableException
-com.google.android.gms.common.GooglePlayServicesRepairableException
+com.google.android.gms.common.GooglePlayServicesRepairableException:
+    public int getConnectionStatusCode()
 com.google.android.gms.common.GooglePlayServicesUtil:
     public static final java.lang.String GMS_ERROR_DIALOG
     public static final int GOOGLE_PLAY_SERVICES_VERSION_CODE
@@ -1148,7 +1273,6 @@ com.google.android.gms.common.GooglePlayServicesUtil:
     public static final java.lang.String GOOGLE_PLAY_STORE_PACKAGE
     private GooglePlayServicesUtil()
     public static java.lang.String getErrorString(int)
-    public static void z(android.content.Context)
     public static boolean b(android.content.pm.PackageManager,java.lang.String)
     public static boolean a(android.content.pm.PackageManager,android.content.pm.PackageInfo)
     public static boolean b(android.content.pm.PackageManager)
@@ -1173,8 +1297,8 @@ com.google.android.gms.common.SignInButton:
     public void setColorScheme(int)
 com.google.android.gms.common.SupportErrorDialogFragment:
     public static com.google.android.gms.common.SupportErrorDialogFragment newInstance(android.app.Dialog)
-com.google.android.gms.common.UserRecoverableException
-com.google.android.gms.common.a
+com.google.android.gms.common.UserRecoverableException:
+    public android.content.Intent getIntent()
 com.google.android.gms.common.annotation.IGooglePlayServicesRocks
 com.google.android.gms.common.annotation.IGooglePlayServicesRocks$Stub
 com.google.android.gms.common.annotation.IGooglePlayServicesRocks$Stub$a
@@ -1316,7 +1440,6 @@ com.google.android.gms.common.images.b
 com.google.android.gms.common.internal.safeparcel.a:
     public static byte e(android.os.Parcel,int)
     public static short f(android.os.Parcel,int)
-    public static android.os.IBinder p(android.os.Parcel,int)
     public static byte[][] s(android.os.Parcel,int)
     public static void a(android.os.Parcel,int,java.util.List,java.lang.ClassLoader)
 com.google.android.gms.common.internal.safeparcel.b:
@@ -1324,7 +1447,6 @@ com.google.android.gms.common.internal.safeparcel.b:
     public static void a(android.os.Parcel,int,short)
     public static void a(android.os.Parcel,int,float)
     public static void a(android.os.Parcel,int,double)
-    public static void a(android.os.Parcel,int,android.os.IBinder,boolean)
     public static void a(android.os.Parcel,int,byte[][],boolean)
     public static void a(android.os.Parcel,int,int[],boolean)
     public static void c(android.os.Parcel,int,java.util.List,boolean)
@@ -2895,92 +3017,40 @@ com.google.android.gms.identity.intents.model.UserAddress
 com.google.android.gms.identity.intents.model.a
 com.google.android.gms.identity.intents.model.b
 com.google.android.gms.internal.a
-com.google.android.gms.internal.aa
-com.google.android.gms.internal.ab
-com.google.android.gms.internal.ac
-com.google.android.gms.internal.ac$1
-com.google.android.gms.internal.ac$2
-com.google.android.gms.internal.ac$3
-com.google.android.gms.internal.ac$4
-com.google.android.gms.internal.ac$5
-com.google.android.gms.internal.ad
-com.google.android.gms.internal.ae
-com.google.android.gms.internal.ae$a
-com.google.android.gms.internal.af
-com.google.android.gms.internal.af$1
-com.google.android.gms.internal.ag
-com.google.android.gms.internal.ah
-com.google.android.gms.internal.ai
-com.google.android.gms.internal.aj
-com.google.android.gms.internal.ak
-com.google.android.gms.internal.al
-com.google.android.gms.internal.am
-com.google.android.gms.internal.an
-com.google.android.gms.internal.ao
-com.google.android.gms.internal.ap
-com.google.android.gms.internal.ap$a
-com.google.android.gms.internal.ap$a$a
-com.google.android.gms.internal.aq
-com.google.android.gms.internal.aq$a
-com.google.android.gms.internal.aq$a$a
-com.google.android.gms.internal.ar
-com.google.android.gms.internal.ar$a
-com.google.android.gms.internal.ar$a$a
-com.google.android.gms.internal.as
-com.google.android.gms.internal.as$a
-com.google.android.gms.internal.as$a$a
-com.google.android.gms.internal.at
-com.google.android.gms.internal.at$a
-com.google.android.gms.internal.au
-com.google.android.gms.internal.av
-com.google.android.gms.internal.aw
-com.google.android.gms.internal.ax
-com.google.android.gms.internal.ay
-com.google.android.gms.internal.az
+com.google.android.gms.internal.at:
+    public com.google.android.gms.ads.mediation.NetworkExtras getNetworkExtras(java.lang.Class)
+    public android.os.Bundle getCustomEventExtrasBundle(java.lang.Class)
+com.google.android.gms.internal.at$a:
+    public void a(com.google.android.gms.ads.mediation.NetworkExtras)
+    public void b(java.lang.Class,android.os.Bundle)
+    public void i(java.lang.String)
+    public void a(android.location.Location)
+    public void g(boolean)
+    public void j(java.lang.String)
+com.google.android.gms.internal.au:
+    public com.google.android.gms.ads.AdListener getAdListener()
+    public com.google.android.gms.ads.AdSize[] getAdSizes()
+    public java.lang.String getAdUnitId()
+    public com.google.android.gms.ads.doubleclick.AppEventListener getAppEventListener()
+    public com.google.android.gms.ads.purchase.InAppPurchaseListener getInAppPurchaseListener()
+    public void recordManualImpression()
+    public void setAppEventListener(com.google.android.gms.ads.doubleclick.AppEventListener)
+    public void setInAppPurchaseListener(com.google.android.gms.ads.purchase.InAppPurchaseListener)
+    public void setPlayStorePurchaseParams(com.google.android.gms.ads.purchase.PlayStorePurchaseListener,java.lang.String)
+com.google.android.gms.internal.av:
+    public com.google.android.gms.ads.AdListener getAdListener()
+    public java.lang.String getAdUnitId()
+    public com.google.android.gms.ads.doubleclick.AppEventListener getAppEventListener()
+    public com.google.android.gms.ads.purchase.InAppPurchaseListener getInAppPurchaseListener()
+    public boolean isLoaded()
+    public void setAppEventListener(com.google.android.gms.ads.doubleclick.AppEventListener)
+    public void setInAppPurchaseListener(com.google.android.gms.ads.purchase.InAppPurchaseListener)
+    public void setPlayStorePurchaseParams(com.google.android.gms.ads.purchase.PlayStorePurchaseListener,java.lang.String)
 com.google.android.gms.internal.b
-com.google.android.gms.internal.ba
-com.google.android.gms.internal.bb
-com.google.android.gms.internal.bb$1
-com.google.android.gms.internal.bb$2
-com.google.android.gms.internal.bb$3
-com.google.android.gms.internal.bb$4
-com.google.android.gms.internal.bb$5
-com.google.android.gms.internal.bb$6
-com.google.android.gms.internal.bb$7
-com.google.android.gms.internal.bb$8
-com.google.android.gms.internal.bc
-com.google.android.gms.internal.bd
-com.google.android.gms.internal.be
-com.google.android.gms.internal.bf
-com.google.android.gms.internal.bg
-com.google.android.gms.internal.bh
-com.google.android.gms.internal.bi
-com.google.android.gms.internal.bj
-com.google.android.gms.internal.bk
-com.google.android.gms.internal.bk$1
-com.google.android.gms.internal.bl
-com.google.android.gms.internal.bm
-com.google.android.gms.internal.bn
-com.google.android.gms.internal.bo
-com.google.android.gms.internal.bp
-com.google.android.gms.internal.bp$1
-com.google.android.gms.internal.bq
-com.google.android.gms.internal.bq$a
-com.google.android.gms.internal.br
-com.google.android.gms.internal.bs
-com.google.android.gms.internal.bt
-com.google.android.gms.internal.bt$a
-com.google.android.gms.internal.bt$a$a
-com.google.android.gms.internal.bu
-com.google.android.gms.internal.bu$a
-com.google.android.gms.internal.bu$a$a
-com.google.android.gms.internal.bv
-com.google.android.gms.internal.bv$a
-com.google.android.gms.internal.bv$a$a
-com.google.android.gms.internal.bw
-com.google.android.gms.internal.bx
-com.google.android.gms.internal.by
-com.google.android.gms.internal.bz
+com.google.android.gms.internal.bw:
+    public int taggedForChildDirectedTreatment()
+com.google.android.gms.internal.by:
+    public void onAdClicked(com.google.android.gms.ads.mediation.MediationInterstitialAdapter)
 com.google.android.gms.internal.c
 com.google.android.gms.internal.c$a
 com.google.android.gms.internal.c$b
@@ -2992,7 +3062,19 @@ com.google.android.gms.internal.c$g
 com.google.android.gms.internal.c$h
 com.google.android.gms.internal.c$i
 com.google.android.gms.internal.c$j
-com.google.android.gms.internal.ca
+com.google.android.gms.internal.ca:
+    public void onClick(com.google.ads.mediation.MediationBannerAdapter)
+    public void onDismissScreen(com.google.ads.mediation.MediationBannerAdapter)
+    public void onFailedToReceiveAd(com.google.ads.mediation.MediationBannerAdapter,com.google.ads.AdRequest$ErrorCode)
+    public void onLeaveApplication(com.google.ads.mediation.MediationBannerAdapter)
+    public void onPresentScreen(com.google.ads.mediation.MediationBannerAdapter)
+    public void onReceivedAd(com.google.ads.mediation.MediationBannerAdapter)
+    public void onDismissScreen(com.google.ads.mediation.MediationInterstitialAdapter)
+    public void onFailedToReceiveAd(com.google.ads.mediation.MediationInterstitialAdapter,com.google.ads.AdRequest$ErrorCode)
+    public void onLeaveApplication(com.google.ads.mediation.MediationInterstitialAdapter)
+    public void onPresentScreen(com.google.ads.mediation.MediationInterstitialAdapter)
+    public void onReceivedAd(com.google.ads.mediation.MediationInterstitialAdapter)
+    static synthetic com.google.android.gms.internal.bv a(com.google.android.gms.internal.ca)
 com.google.android.gms.internal.ca$1
 com.google.android.gms.internal.ca$10
 com.google.android.gms.internal.ca$11
@@ -3004,166 +3086,32 @@ com.google.android.gms.internal.ca$6
 com.google.android.gms.internal.ca$7
 com.google.android.gms.internal.ca$8
 com.google.android.gms.internal.ca$9
-com.google.android.gms.internal.cb
+com.google.android.gms.internal.cb:
+    public static int a(com.google.ads.AdRequest$ErrorCode)
 com.google.android.gms.internal.cb$1
-com.google.android.gms.internal.cc
-com.google.android.gms.internal.cd
-com.google.android.gms.internal.ce
-com.google.android.gms.internal.cf
-com.google.android.gms.internal.cf$1
-com.google.android.gms.internal.cf$a
-com.google.android.gms.internal.cf$b
-com.google.android.gms.internal.cf$c
-com.google.android.gms.internal.cg
-com.google.android.gms.internal.ch
-com.google.android.gms.internal.ci
-com.google.android.gms.internal.cj
-com.google.android.gms.internal.cj$a
-com.google.android.gms.internal.cj$a$1
-com.google.android.gms.internal.ck
-com.google.android.gms.internal.cl
-com.google.android.gms.internal.cm
-com.google.android.gms.internal.cm$a
-com.google.android.gms.internal.cn
-com.google.android.gms.internal.cn$a
-com.google.android.gms.internal.cn$a$a
-com.google.android.gms.internal.co
-com.google.android.gms.internal.co$a
-com.google.android.gms.internal.co$a$a
-com.google.android.gms.internal.cp
-com.google.android.gms.internal.cq
-com.google.android.gms.internal.cr
-com.google.android.gms.internal.cs
-com.google.android.gms.internal.cs$1
-com.google.android.gms.internal.ct
-com.google.android.gms.internal.cu
-com.google.android.gms.internal.cv
-com.google.android.gms.internal.cw
-com.google.android.gms.internal.cx
-com.google.android.gms.internal.cx$a
-com.google.android.gms.internal.cy
-com.google.android.gms.internal.cz
+com.google.android.gms.internal.cu:
+    public cu(android.app.Activity)
 com.google.android.gms.internal.d
 com.google.android.gms.internal.d$a
-com.google.android.gms.internal.da
-com.google.android.gms.internal.db
-com.google.android.gms.internal.db$a
-com.google.android.gms.internal.db$a$a
-com.google.android.gms.internal.dc
-com.google.android.gms.internal.dc$a
-com.google.android.gms.internal.dc$a$a
-com.google.android.gms.internal.dd
-com.google.android.gms.internal.dd$a
+com.google.android.gms.internal.dd$a:
+    public dd$a()
+    public static com.google.android.gms.internal.dd r(android.os.IBinder)
 com.google.android.gms.internal.dd$a$a
 com.google.android.gms.internal.de
 com.google.android.gms.internal.de$a
 com.google.android.gms.internal.de$a$a
-com.google.android.gms.internal.df
-com.google.android.gms.internal.df$a
-com.google.android.gms.internal.df$a$a
-com.google.android.gms.internal.dg
-com.google.android.gms.internal.dg$a
-com.google.android.gms.internal.dg$a$a
-com.google.android.gms.internal.dh
 com.google.android.gms.internal.di
 com.google.android.gms.internal.di$a
-com.google.android.gms.internal.dj
-com.google.android.gms.internal.dk
-com.google.android.gms.internal.dl
-com.google.android.gms.internal.dm
-com.google.android.gms.internal.dm$a
-com.google.android.gms.internal.dn
-com.google.android.gms.internal.dn$1
-com.google.android.gms.internal.dn$2
-com.google.android.gms.internal.dn$3
-com.google.android.gms.internal.dn$4
-com.google.android.gms.internal.dn$a
-com.google.android.gms.internal.do
-com.google.android.gms.internal.do$a
-com.google.android.gms.internal.dp
-com.google.android.gms.internal.dp$a
-com.google.android.gms.internal.dq
-com.google.android.gms.internal.dq$a
-com.google.android.gms.internal.dq$b
-com.google.android.gms.internal.dr
-com.google.android.gms.internal.ds
-com.google.android.gms.internal.ds$a
-com.google.android.gms.internal.dt
-com.google.android.gms.internal.du
-com.google.android.gms.internal.dv
-com.google.android.gms.internal.dw
-com.google.android.gms.internal.dw$a
-com.google.android.gms.internal.dw$a$a
-com.google.android.gms.internal.dx
-com.google.android.gms.internal.dx$1
-com.google.android.gms.internal.dx$2
-com.google.android.gms.internal.dy
-com.google.android.gms.internal.dz
-com.google.android.gms.internal.dz$1
-com.google.android.gms.internal.dz$2
-com.google.android.gms.internal.e
-com.google.android.gms.internal.ea
-com.google.android.gms.internal.eb
-com.google.android.gms.internal.ec
-com.google.android.gms.internal.ed
-com.google.android.gms.internal.ee
-com.google.android.gms.internal.ef
-com.google.android.gms.internal.eg
-com.google.android.gms.internal.eg$a
-com.google.android.gms.internal.eh
-com.google.android.gms.internal.ei
-com.google.android.gms.internal.ej
-com.google.android.gms.internal.ek
-com.google.android.gms.internal.el
-com.google.android.gms.internal.em
-com.google.android.gms.internal.em$1
-com.google.android.gms.internal.en
-com.google.android.gms.internal.en$1
-com.google.android.gms.internal.en$2
-com.google.android.gms.internal.eo
-com.google.android.gms.internal.eo$1
-com.google.android.gms.internal.eo$a
-com.google.android.gms.internal.ep
-com.google.android.gms.internal.ep$1
-com.google.android.gms.internal.ep$2
-com.google.android.gms.internal.eq
-com.google.android.gms.internal.er
-com.google.android.gms.internal.es
-com.google.android.gms.internal.et
-com.google.android.gms.internal.eu
-com.google.android.gms.internal.ev
-com.google.android.gms.internal.ew
-com.google.android.gms.internal.ex
-com.google.android.gms.internal.ex$a
-com.google.android.gms.internal.ey
-com.google.android.gms.internal.ey$1
-com.google.android.gms.internal.ey$a
-com.google.android.gms.internal.ez
-com.google.android.gms.internal.ez$1
-com.google.android.gms.internal.ez$2
-com.google.android.gms.internal.ez$3
-com.google.android.gms.internal.ez$4
-com.google.android.gms.internal.ez$5
-com.google.android.gms.internal.ez$6
-com.google.android.gms.internal.ez$7
-com.google.android.gms.internal.f
-com.google.android.gms.internal.f$1
-com.google.android.gms.internal.f$a
-com.google.android.gms.internal.f$b
-com.google.android.gms.internal.f$c
-com.google.android.gms.internal.f$d
-com.google.android.gms.internal.f$e
-com.google.android.gms.internal.f$f
-com.google.android.gms.internal.f$g
-com.google.android.gms.internal.f$h
-com.google.android.gms.internal.f$i
-com.google.android.gms.internal.f$j
-com.google.android.gms.internal.f$k
-com.google.android.gms.internal.f$l
-com.google.android.gms.internal.f$m
-com.google.android.gms.internal.fa
-com.google.android.gms.internal.fb
-com.google.android.gms.internal.fc
+com.google.android.gms.internal.dj:
+    public boolean isVerified()
+    public java.lang.String getProductId()
+    public android.content.Intent getPurchaseData()
+    public int getResultCode()
+    public void finishPurchase()
+com.google.android.gms.internal.dk:
+    public java.lang.String getProductId()
+    public void recordResolution(int)
+    public void recordPlayBillingResolution(int)
 com.google.android.gms.internal.fd
 com.google.android.gms.internal.fd$1
 com.google.android.gms.internal.fe
@@ -3205,7 +3153,6 @@ com.google.android.gms.internal.fy$c
 com.google.android.gms.internal.fy$d
 com.google.android.gms.internal.fy$e
 com.google.android.gms.internal.fz
-com.google.android.gms.internal.g
 com.google.android.gms.internal.ga:
     public int dU()
     public int dV()
@@ -3268,9 +3215,7 @@ com.google.android.gms.internal.gx:
     public static void az(java.lang.String)
 com.google.android.gms.internal.gy:
     public java.lang.String getAccountName()
-com.google.android.gms.internal.h
 com.google.android.gms.internal.hb:
-    protected varargs hb(android.content.Context,com.google.android.gms.common.GooglePlayServicesClient$ConnectionCallbacks,com.google.android.gms.common.GooglePlayServicesClient$OnConnectionFailedListener,java.lang.String[])
     public void an(int)
     public final void a(com.google.android.gms.internal.hb$b)
     public void registerConnectionCallbacks(com.google.android.gms.common.GooglePlayServicesClient$ConnectionCallbacks)
@@ -3279,9 +3224,7 @@ com.google.android.gms.internal.hb:
     public void registerConnectionFailedListener(com.google.android.gms.common.GooglePlayServicesClient$OnConnectionFailedListener)
     public boolean isConnectionFailedListenerRegistered(com.google.android.gms.common.GooglePlayServicesClient$OnConnectionFailedListener)
     public void unregisterConnectionFailedListener(com.google.android.gms.common.GooglePlayServicesClient$OnConnectionFailedListener)
-com.google.android.gms.internal.hb$c
 com.google.android.gms.internal.hb$d
-com.google.android.gms.internal.hb$g
 com.google.android.gms.internal.hc:
     public boolean isConnectionCallbacksRegistered(com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks)
     public void unregisterConnectionCallbacks(com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks)
@@ -3294,16 +3237,12 @@ com.google.android.gms.internal.hm:
     public static java.lang.String aE(java.lang.String)
     public static java.lang.String b(java.lang.String,java.lang.Object)
     public static varargs void b(boolean,java.lang.String,java.lang.Object[])
-    public static void ay(java.lang.String)
-    public static void az(java.lang.String)
 com.google.android.gms.internal.hp
 com.google.android.gms.internal.hq
 com.google.android.gms.internal.hy$a:
     public com.google.android.gms.internal.hy$a fJ()
     public static com.google.android.gms.internal.hy$a h(java.lang.String,int)
     public static com.google.android.gms.internal.hy$a k(java.lang.String,int)
-com.google.android.gms.internal.i
-com.google.android.gms.internal.i$a
 com.google.android.gms.internal.ib:
     public void fU()
     public ib(java.lang.Class)
@@ -3347,8 +3286,6 @@ com.google.android.gms.internal.iy
 com.google.android.gms.internal.iy$a
 com.google.android.gms.internal.iy$a$a
 com.google.android.gms.internal.iz
-com.google.android.gms.internal.j
-com.google.android.gms.internal.j$a
 com.google.android.gms.internal.ja
 com.google.android.gms.internal.ja$1
 com.google.android.gms.internal.ja$2
@@ -3406,7 +3343,6 @@ com.google.android.gms.internal.jy
 com.google.android.gms.internal.jy$a
 com.google.android.gms.internal.jy$a$a
 com.google.android.gms.internal.jz
-com.google.android.gms.internal.k
 com.google.android.gms.internal.ka
 com.google.android.gms.internal.kb
 com.google.android.gms.internal.kc
@@ -3571,7 +3507,6 @@ com.google.android.gms.internal.ks$h:
     public com.google.android.gms.internal.ks$h kY()
     public boolean isDataValid()
     public synthetic java.lang.Object freeze()
-com.google.android.gms.internal.l
 com.google.android.gms.internal.ld
 com.google.android.gms.internal.le
 com.google.android.gms.internal.le$a
@@ -3617,20 +3552,16 @@ com.google.android.gms.internal.lw
 com.google.android.gms.internal.lw$a
 com.google.android.gms.internal.lw$a$a
 com.google.android.gms.internal.lw$a$a$a
-com.google.android.gms.internal.lx
 com.google.android.gms.internal.ly
 com.google.android.gms.internal.lz:
-    public static com.google.android.gms.internal.lz q(byte[])
     public void a(int,double)
     public void b(int,float)
-    public void b(int,long)
     public void a(int,boolean)
     public void a(int,com.google.android.gms.internal.me)
     public void a(int,byte[])
     public void q(int,int)
     public void e(double)
     public void d(float)
-    public void B(long)
     public void I(boolean)
     public void b(com.google.android.gms.internal.me)
     public void r(byte[])
@@ -3652,7 +3583,6 @@ com.google.android.gms.internal.lz:
     public void eK(int)
     public void H(long)
     public static int eL(int)
-com.google.android.gms.internal.m
 com.google.android.gms.internal.ma:
     public final java.lang.Object a(com.google.android.gms.internal.mb)
     protected final boolean a(com.google.android.gms.internal.ly,int)
@@ -3670,30 +3600,9 @@ com.google.android.gms.internal.mh:
     static int eN(int)
     public static int eO(int)
     public static final int b(com.google.android.gms.internal.ly,int)
-com.google.android.gms.internal.n
-com.google.android.gms.internal.o
-com.google.android.gms.internal.o$a
-com.google.android.gms.internal.p
-com.google.android.gms.internal.q
 com.google.android.gms.internal.r
 com.google.android.gms.internal.r$a
 com.google.android.gms.internal.r$a$a
-com.google.android.gms.internal.s
-com.google.android.gms.internal.s$a
-com.google.android.gms.internal.s$a$a
-com.google.android.gms.internal.t
-com.google.android.gms.internal.u
-com.google.android.gms.internal.u$1
-com.google.android.gms.internal.u$a
-com.google.android.gms.internal.u$b
-com.google.android.gms.internal.u$c
-com.google.android.gms.internal.v
-com.google.android.gms.internal.w
-com.google.android.gms.internal.x
-com.google.android.gms.internal.y
-com.google.android.gms.internal.y$1
-com.google.android.gms.internal.y$a
-com.google.android.gms.internal.z
 com.google.android.gms.location.ActivityRecognition
 com.google.android.gms.location.ActivityRecognition$1
 com.google.android.gms.location.ActivityRecognition$a
@@ -4679,11 +4588,11 @@ com.ithinkrok.yellowquest.CanvasThread:
     25:26:public void setPause(boolean)
 com.ithinkrok.yellowquest.GameData:
     private static final int MOD
-    47:47:public boolean addAchievement(java.lang.String)
-    79:80:public void setPowerUnlocks(int)
-    217:219:public int getScore(int)
-    245:248:public int getTime(int)
-    257:257:public boolean hasScorePoints(int)
+    49:49:public boolean addAchievement(java.lang.String)
+    81:82:public void setPowerUnlocks(int)
+    227:229:public int getScore(int)
+    255:258:public int getTime(int)
+    267:267:public boolean hasScorePoints(int)
 com.ithinkrok.yellowquest.MainActivity:
     public static final boolean DEBUG
 com.ithinkrok.yellowquest.MainActivity$GameState:

@@ -10,6 +10,8 @@ import android.content.*;
 import android.content.SharedPreferences.Editor;
 import android.media.*;
 import android.media.AudioManager.OnAudioFocusChangeListener;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.*;
 import android.util.Log;
 import android.view.*;
@@ -384,7 +386,10 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			editorTime.commit();
 			break;
 		case R.id.play_money:
-			loadBuyView();
+			ConnectivityManager cm = (ConnectivityManager)getSystemService(CONNECTIVITY_SERVICE);
+			NetworkInfo net = cm.getActiveNetworkInfo();
+			if(net != null && net.isConnected()) loadBuyView();
+			else Toast.makeText(this, R.string.no_purchase_without_internet, Toast.LENGTH_SHORT).show();;
 		}
 
 	}
