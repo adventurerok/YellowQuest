@@ -586,10 +586,7 @@ public class YellowQuest {
 		String pName = gameData.getNextPower();
 		if (pName == null || pName.trim().isEmpty())
 			return;
-		if (gameData.subtractScorePoints(PowerInfo.buyCost(pName))) {
-			player.setPower(PowerInfo.getData(pName).newInstance(player, gameData.getPowerUpgradeLevel(pName)));
-		} else
-			Toast.makeText(canvas.getContext(), R.string.not_enough, Toast.LENGTH_SHORT).show();
+		player.setPower(PowerInfo.getData(pName).newInstance(player, gameData.getPowerUpgradeLevel(pName)));
 		gameData.setNextPower("");
 		canvas.getActivity().saveData();
 	}

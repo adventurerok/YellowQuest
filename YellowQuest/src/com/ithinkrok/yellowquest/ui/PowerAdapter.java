@@ -129,7 +129,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 					Toast.makeText(context, R.string.not_enough, Toast.LENGTH_SHORT).show();
 					return;
 				}
-				data.setNextPower("");
+				//data.setNextPower("");
 				data.setPowerUpgradeLevel(info.name, ++lvl);
 				context.saveData();
 				notifyDataSetChanged();
@@ -161,11 +161,17 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 				expanded = pos;
 			break;
 		case R.id.power_buy:
-			if(info.buyCost > context.getGameData().getScorePoints()){
+			int totalSp = context.getGameData().getScorePoints();
+			String nextPower = context.getGameData().getNextPower();
+			if(nextPower != null && !nextPower.isEmpty()){
+				totalSp += PowerInfo.buyCost(nextPower);
+			}
+			if(info.buyCost > totalSp){
 				Toast.makeText(context, R.string.not_enough, Toast.LENGTH_SHORT).show();
 				return;
 			}
 			context.getGameData().setNextPower(info.name);
+			context.getGameData().setScorePoints(totalSp - info.buyCost);
 			break;
 		case R.id.power_upgrade:
 			int lvlNum = context.getGameData().getPowerUpgradeLevel(info.name);

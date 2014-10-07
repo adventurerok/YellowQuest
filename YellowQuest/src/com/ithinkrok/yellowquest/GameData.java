@@ -175,6 +175,10 @@ public class GameData {
 		setInt(hash, add);
 
 	}
+	
+	public void setScorePoints(int set){
+		setInt(hash("score_points"), set);
+	}
 
 	private long getAchievementHash(String achievement) {
 		return hash("achievement_" + achievement);
