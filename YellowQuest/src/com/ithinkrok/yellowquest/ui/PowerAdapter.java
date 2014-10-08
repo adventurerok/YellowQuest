@@ -2,6 +2,8 @@ package com.ithinkrok.yellowquest.ui;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.*;
 import android.widget.*;
 
@@ -70,9 +72,16 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 		Button power_buy = (Button) row.findViewById(R.id.power_buy);
 		Button power_upgrade = (Button) row.findViewById(R.id.power_upgrade);
 
-		if (using)
+		if (using){
 			row.setBackgroundColor(0xFF666666);
-		else row.setBackgroundColor(0xFF000000);
+			power_buy.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.MULTIPLY);
+			//power_buy.setBackgroundColor(0xFF666666);
+		}
+		else {
+			row.setBackgroundColor(0xFF000000);
+			//power_buy.setBackgroundResource(R.drawable.);
+			power_buy.getBackground().setColorFilter(null);
+		}
 		power_color.setBackgroundColor(info.color);
 		
 		String displayName = context.getString(info.displayName);
@@ -93,7 +102,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 		power_buy.setTag(position);
 		power_upgrade.setTag(position);
 
-		power_buy.setEnabled(!using);
+		//power_buy.setEnabled(!using);
 		power_upgrade.setEnabled(lvlNum < info.maxUpgrade);
 
 		if (position == expanded) {
@@ -167,13 +176,19 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 			if(nextPower != null && !nextPower.isEmpty()){
 				totalSp += PowerInfo.buyCost(nextPower);
 			}
-			if(info.buyCost > totalSp){
-				Toast.makeText(context, R.string.not_enough, Toast.LENGTH_SHORT).show();
-				return;
+			if(info.name.equals(nextPower)){
+				context.getGameData().setNextPower("");
+				context.getGameData().setScorePoints(totalSp);
+				context.getGameData().save(context.getSettings().edit());
+			} else {
+				if(info.buyCost > totalSp){
+					Toast.makeText(context, R.string.not_enough, Toast.LENGTH_SHORT).show();
+					return;
+				}
+				context.getGameData().setNextPower(info.name);
+				context.getGameData().setScorePoints(totalSp - info.buyCost);
+				context.getGameData().save(context.getSettings().edit());
 			}
-			context.getGameData().setNextPower(info.name);
-			context.getGameData().setScorePoints(totalSp - info.buyCost);
-			context.getGameData().save(context.getSettings().edit());
 			break;
 		case R.id.power_upgrade:
 			int lvlNum = context.getGameData().getPowerUpgradeLevel(info.name);

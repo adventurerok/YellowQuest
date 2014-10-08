@@ -41,7 +41,7 @@
             android:drawableStart="@drawable/upgrade"
             android:text="@string/upgrade" />
 
-        <Button
+        <com.ithinkrok.yellowquest.ui.DisableButton
             android:id="@+id/power_buy"
             android:layout_width="110dp"
             android:layout_height="wrap_content"

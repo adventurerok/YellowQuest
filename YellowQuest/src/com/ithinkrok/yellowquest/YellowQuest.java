@@ -540,6 +540,7 @@ public class YellowQuest {
 				//Debug.stopMethodTracing();
 				gameOver();
 				setDisplaying(false);
+				canvas.clearTouches();
 				if(canvas.getActivity().passedOne) canvas.getActivity().loadPlayView();
 				else canvas.getActivity().loadMenuView();
 			} else if (gameOver.type == 1)

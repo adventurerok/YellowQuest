@@ -216,6 +216,11 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 		return touches.values();
 	}
 	
+	public void clearTouches(){
+		touches.clear();
+		touchDowns.clear();
+	}
+	
 	private void setTouch(int id, double x, double y){
 		Vector2 touch = touches.get(id);
 		if(touch == null){
