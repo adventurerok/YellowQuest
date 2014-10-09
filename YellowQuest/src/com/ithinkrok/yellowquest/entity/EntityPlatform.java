@@ -134,10 +134,10 @@ public class EntityPlatform extends Entity {
 		else paint = traits[1].color;
         float xp = (float) (box.sx - game.player.x + rend.width / 2);
         float yp = (float) (box.sy - game.player.y + rend.height / 2);
-        if (xp > rend.width || yp > rend.height) return;
+        if (xp > rend.scaledWidth || yp > rend.scaledHeight) return;
         float w = (float) (box.ex - box.sx);
         float h = (float) (box.ey - box.sy);
-        if ((xp + w) < 0 || (yp + h) < 0) return;
+        if ((xp + w) < rend.scaledX || (yp + h) < rend.scaledY) return;
         rend.fillRect(xp, yp, w, h, paint);
         if(traits.length < 2 || !revealed) return;
         int bonusBorder = (int) (Math.min(width, height) / 4d);

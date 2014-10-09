@@ -1,5 +1,7 @@
 package com.ithinkrok.yellowquest.ui;
 
+import java.util.ArrayList;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -14,9 +16,12 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 	MainActivity context;
 
 
-	private int expanded = -1;
+	private String expanded = null;
 	
-	private View[] blanks = new View[10];
+	
+	private ArrayList<String> showing = new ArrayList<String>();
+	
+	
 
 	// private ListView view;
 
@@ -28,41 +33,76 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 
 	@Override
 	public int getCount() {
-		return PowerInfo.getPowerCount();
+		return showing.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return PowerInfo.getData(position);
+		String at = showing.get(position);
+		if(at.startsWith("#")){
+			return null;
+		}
+		return PowerInfo.getData(showing.get(position));
 	}
 
 	@Override
 	public long getItemId(int position) {
 		return position;
 	}
+	
+	public void refreshItems(){
+		showing.clear();
+//		String tip = Tip.getTip(context);
+//		if(tip != null){
+//			showing.add(tip);
+//		}
+		for(int d = 0; d < 6; ++d){
+			if(!context.getGameData().hasPowerUnlock(d)) continue;
+			else showing.add(PowerInfo.getData(d).name);
+		}
+	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		if(!context.getGameData().hasPowerUnlock(position)){
-			if(blanks[position] == null){
-				blanks[position] = new View(context);
-				blanks[position].setBackgroundColor(0x00000000);
-			}
-			return blanks[position];
+		String name = showing.get(position);
+		if(name.startsWith("#")) return getTipView(name, convertView, parent);
+		else return getPowerView(name, convertView, parent);
+		
+	}
+	
+	public View getTipView(String name, View convertView, ViewGroup parent){
+		View row = null;
+		if(convertView != null && convertView.getId() == R.id.tip){
+			row = convertView;
+		} 
+		if(row == null){
+			LayoutInflater inflater = context.getLayoutInflater();
+			row = inflater.inflate(R.layout.tip, parent, false);
 		}
-		PowerInfo info = PowerInfo.getData(position);
+		TextView tip_message = (TextView) row.findViewById(R.id.tip_message);
+		int messageId = Tip.getTipMessage(name);
+		tip_message.setText(messageId);
+		
+		Button tip_hide = (Button) row.findViewById(R.id.tip_hide);
+		tip_hide.setOnClickListener(this);
+		tip_hide.setTag(name);
+		return row;
+	}
+	
+	public View getPowerView(String name, View convertView, ViewGroup parent){
+		PowerInfo info = PowerInfo.getData(name);
 		boolean using = info.name.equals(context.getGameData().getNextPower());
-		LayoutInflater inflater = context.getLayoutInflater();
 		View row = null;
 		if (convertView != null) {
 			if(convertView.getId() == R.id.power_expanded || convertView.getId() == R.id.power){
 				boolean wasExpanded = convertView.getId() == R.id.power_expanded;
-				if (wasExpanded == (position == expanded))
+				if (wasExpanded == (info.name.equals(expanded)))
 					row = convertView;
 			}
 		}
 		if (row == null) {
-			if (position != expanded)
+			LayoutInflater inflater = context.getLayoutInflater();
+			if (!info.name.equals(expanded))
 				row = inflater.inflate(R.layout.power, parent, false);
 			else
 				row = inflater.inflate(R.layout.power_expanded, parent, false);
@@ -98,14 +138,14 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 		power_buy.setOnClickListener(this);
 		power_upgrade.setOnClickListener(this);
 
-		power_name.setTag(position);
-		power_buy.setTag(position);
-		power_upgrade.setTag(position);
+		power_name.setTag(info.name);
+		power_buy.setTag(info.name);
+		power_upgrade.setTag(info.name);
 
 		//power_buy.setEnabled(!using);
 		power_upgrade.setEnabled(lvlNum < info.maxUpgrade);
 
-		if (position == expanded) {
+		if (info.name.equals(expanded)) {
 			TextView power_info = (TextView) row.findViewById(R.id.power_info);
 			StringBuilder infoText = new StringBuilder();
 			infoText.append(context.getString(info.displayInfo));
@@ -156,19 +196,31 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 		
 		builder.create().show();
 	}
+	
+	public void onTipClick(View v, String name){
+		switch(v.getId()){
+		case R.id.tip_hide:
+			showing.remove(name);
+			notifyDataSetChanged();
+			break;
+		}
+	}
 
 	@Override
 	public void onClick(View v) {
 		if(!v.isEnabled()) return;
-		int pos = (Integer) v.getTag();
-		PowerInfo info = PowerInfo.getData(pos);
+		String name = (String) v.getTag();
+		if(name.startsWith("#")){
+			onTipClick(v, name);
+			return;
+		}
+		PowerInfo info = PowerInfo.getData(name);
 		switch (v.getId()) {
 		case R.id.power_name:
-			pos = (Integer) v.getTag();
-			if (expanded == pos)
-				expanded = -1;
+			if (name.equals(expanded))
+				expanded = null;
 			else
-				expanded = pos;
+				expanded = name;
 			break;
 		case R.id.power_buy:
 			int totalSp = context.getGameData().getScorePoints();

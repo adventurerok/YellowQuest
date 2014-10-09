@@ -10,11 +10,11 @@ public class AppRater {
 	// Change for your needs!
 	private final static String APP_PACKAGE_NAME = "com.ithinkrok.yellowquest";
 
-	private final static int DAYS_UNTIL_PROMPT = 2;
-	private final static int LAUNCH_UNTIL_PROMPT = 5;
+	public final static int DAYS_UNTIL_PROMPT = 2;
+	public final static int LAUNCH_UNTIL_PROMPT = 5;
 
-	public static void app_launched(Context mContext) {
-		SharedPreferences prefs = mContext.getSharedPreferences("rate_app", 0);
+	public static void app_launched(MainActivity mContext) {
+		SharedPreferences prefs = mContext.rateSettings;
 		if (prefs.getBoolean("dontshowagain", false)) {
 			return;
 		}

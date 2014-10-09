@@ -41,6 +41,12 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 	
 	private boolean reverse = false;
 	
+	public int scaledWidth = 0;
+	public int scaledHeight = 0;
+	public int scaledX = 0;
+	public int scaledY = 0;
+	
+	
 	public void setReversed(boolean reverse) {
 		this.reverse = reverse;
 	}
@@ -61,8 +67,14 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 		} else {
 			getOldSize(size, display);
 		}
-		width = size.x;
-		height = size.y;
+		scaledWidth = width = size.x;
+		scaledHeight = height = size.y;
+		if(density < 2){
+			scaledWidth *= 2;
+			scaledHeight *= 2;
+			scaledX = -width;
+			scaledY = -height;
+		}
 		getHolder().addCallback(this);
 		setFocusable(true);
 		density = getResources().getDisplayMetrics().density;
@@ -95,12 +107,24 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 	}
 	
 	public void fillRect(float x, float y, float w, float h, Paint paint) {
+		if(density < 2){
+			fillRectSmall(x, y, w, h, paint);
+			return;
+		}
 	    if(!reverse){
 	    	canvas.drawRect(floor(x), floor(height - y - h), floor(x + w), floor(height - y), paint);
 	    } else {
 	    	canvas.drawRect(width - floor(x + w), floor(height - y - h), width - floor(x), floor(height - y), paint);
 	    }
 	}
+	
+	private void fillRectSmall(float x, float y, float w, float h, Paint paint){
+	if(!reverse){
+    	canvas.drawRect((floor(x) / 2) + width / 4, (floor(height - y - h) / 2) + height / 4, (floor(x + w) / 2) + width / 4, (floor(height - y) / 2) + height / 4, paint);
+    } else {
+    	canvas.drawRect((width - floor(x + w) / 2) + width / 4, (floor(height - y - h) / 2) + height / 4, ((width - floor(x)) / 2) + width / 4, (floor(height - y) / 2) + height / 4, paint);
+    }
+}
 	
 	public MainActivity getActivity() {
 		return (MainActivity)getContext();
@@ -171,6 +195,14 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 		if(MainActivity.DEBUG) Log.i("CSV", "New Size: [" + width + "," + height + "]");
 		this.width = width;
 		this.height = height;
+		scaledWidth = width;
+		scaledHeight = height;
+		if(density < 2){
+			scaledWidth *= 2;
+			scaledHeight *= 2;
+			scaledX = -width;
+			scaledY = -height;
+		}
 		game.createButtons(this);
 		//_thread.setPause(false);
 	}

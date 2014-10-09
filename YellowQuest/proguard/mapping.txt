@@ -6835,6 +6835,7 @@ com.ithinkrok.yellowquest.CanvasSurfaceView -> com.ithinkrok.yellowquest.f:
     void surfaceChanged(android.view.SurfaceHolder,int,int,int) -> surfaceChanged
     void surfaceDestroyed(android.view.SurfaceHolder) -> surfaceDestroyed
     boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    void clearTouches() -> f
     boolean touchInBox(com.ithinkrok.yellowquest.util.Box) -> a
 com.ithinkrok.yellowquest.CanvasThread -> com.ithinkrok.yellowquest.g:
     android.view.SurfaceHolder _surfaceHolder -> a
@@ -6887,46 +6888,47 @@ com.ithinkrok.yellowquest.MainActivity -> com.ithinkrok.yellowquest.MainActivity
     com.ithinkrok.yellowquest.MainActivity$GameState state -> k
     com.ithinkrok.yellowquest.GameData gameData -> l
     android.widget.TextView menu_play -> m
-    android.view.View menu_achievements -> n
-    android.view.View menu_leaderboards -> o
-    android.view.View menu_settings -> p
-    android.view.View sign_in_button -> q
-    android.view.View sign_out_button -> r
-    android.widget.CheckBox settings_music -> s
-    android.widget.CheckBox settings_leftbutton -> t
-    android.widget.TextView settings_back -> u
-    android.widget.ListView play_powers -> v
-    android.widget.Button play_money -> w
-    android.widget.TextView play_play -> x
-    android.widget.TextView play_back -> y
-    android.widget.ImageButton play_shadow -> z
-    android.widget.ImageButton play_time -> A
-    android.widget.TextView play_score -> B
-    com.google.android.gms.ads.AdView play_ad -> C
-    android.widget.TextView buy_money -> D
-    android.widget.TextView buy_back -> E
-    android.widget.ListView buy_list -> F
+    android.view.View menu -> n
+    android.view.View menu_achievements -> o
+    android.view.View menu_leaderboards -> p
+    android.view.View menu_settings -> q
+    android.view.View sign_in_button -> r
+    android.view.View sign_out_button -> s
+    android.widget.CheckBox settings_music -> t
+    android.widget.CheckBox settings_leftbutton -> u
+    android.widget.TextView settings_back -> v
+    android.widget.ListView play_powers -> w
+    android.widget.Button play_money -> x
+    android.widget.TextView play_play -> y
+    android.widget.TextView play_back -> z
+    android.widget.ImageButton play_shadow -> A
+    android.widget.ImageButton play_time -> B
+    android.widget.TextView play_score -> C
+    com.google.android.gms.ads.AdView play_ad -> D
+    android.widget.TextView buy_money -> E
+    android.widget.TextView buy_back -> F
+    android.widget.ListView buy_list -> G
     com.android.vending.billing.IInAppBillingService buyService -> e
-    android.content.Intent buyIntent -> G
+    android.content.Intent buyIntent -> H
     boolean passedOne -> f
     com.ithinkrok.yellowquest.YellowQuest gameHolder -> g
     boolean buyConnected -> h
-    android.content.ServiceConnection buyConnection -> H
-    com.ithinkrok.yellowquest.ui.PowerAdapter powerAdapter -> I
+    android.content.ServiceConnection buyConnection -> I
+    com.ithinkrok.yellowquest.ui.PowerAdapter powerAdapter -> J
     com.ithinkrok.yellowquest.CanvasSurfaceView view -> i
-    android.media.AudioManager am -> J
-    android.media.MediaPlayer media -> K
-    android.media.AudioManager$OnAudioFocusChangeListener audioListener -> L
-    boolean audioEnabled -> M
+    android.media.AudioManager am -> K
+    android.media.MediaPlayer media -> L
+    android.media.AudioManager$OnAudioFocusChangeListener audioListener -> M
+    boolean audioEnabled -> N
     boolean fullSizeLeftButton -> j
-    boolean shadowMode -> N
-    boolean timeMode -> O
-    boolean paused -> P
-    boolean screenOff -> Q
-    android.content.SharedPreferences settings -> R
-    com.ithinkrok.yellowquest.ui.BuyAdapter buyAdapter -> S
-    com.ithinkrok.yellowquest.ScreenReceiver screenReciever -> T
-    int[] $SWITCH_TABLE$com$ithinkrok$yellowquest$MainActivity$GameState -> U
+    boolean shadowMode -> O
+    boolean timeMode -> P
+    boolean paused -> Q
+    boolean screenOff -> R
+    android.content.SharedPreferences settings -> S
+    com.ithinkrok.yellowquest.ui.BuyAdapter buyAdapter -> T
+    com.ithinkrok.yellowquest.ScreenReceiver screenReciever -> U
+    int[] $SWITCH_TABLE$com$ithinkrok$yellowquest$MainActivity$GameState -> V
     void onCreate(android.os.Bundle) -> onCreate
     void setPassedOne() -> h
     void onPause() -> onPause
@@ -7262,7 +7264,7 @@ com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$WeightUp -> com.ithi
     com.google.ads.mediation.MediationServerParameters create$1a4f3648(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
     int getWeight(com.ithinkrok.yellowquest.entity.EntityPlatform,int) -> a
     java.lang.String getName() -> a
-com.ithinkrok.yellowquest.ui.BuyAdapter -> com.ithinkrok.yellowquest.b.a:
+com.ithinkrok.yellowquest.ui.BuyAdapter -> com.ithinkrok.yellowquest.ui.a:
     java.util.ArrayList items -> b
     java.util.HashMap rewards -> c
     java.lang.String[] prices -> d
@@ -7283,35 +7285,37 @@ com.ithinkrok.yellowquest.ui.BuyAdapter -> com.ithinkrok.yellowquest.b.a:
     java.lang.String[] access$1() -> e
     java.lang.String[] access$2() -> f
     java.util.HashMap access$3() -> g
-com.ithinkrok.yellowquest.ui.BuyAdapter$1 -> com.ithinkrok.yellowquest.b.b:
+com.ithinkrok.yellowquest.ui.BuyAdapter$1 -> com.ithinkrok.yellowquest.ui.b:
     com.ithinkrok.yellowquest.ui.BuyAdapter this$0 -> a
     android.os.Bundle val$querySkus -> b
     void run() -> run
-com.ithinkrok.yellowquest.ui.BuyAdapter$2 -> com.ithinkrok.yellowquest.b.c:
+com.ithinkrok.yellowquest.ui.BuyAdapter$2 -> com.ithinkrok.yellowquest.ui.c:
     com.ithinkrok.yellowquest.ui.BuyAdapter this$0 -> a
     void run() -> run
-com.ithinkrok.yellowquest.ui.BuyAdapter$3 -> com.ithinkrok.yellowquest.b.d:
+com.ithinkrok.yellowquest.ui.BuyAdapter$3 -> com.ithinkrok.yellowquest.ui.d:
     com.ithinkrok.yellowquest.ui.BuyAdapter this$0 -> a
     void run() -> run
-com.ithinkrok.yellowquest.ui.BuyAdapter$4 -> com.ithinkrok.yellowquest.b.e:
+com.ithinkrok.yellowquest.ui.BuyAdapter$4 -> com.ithinkrok.yellowquest.ui.e:
     com.ithinkrok.yellowquest.ui.BuyAdapter this$0 -> a
     int val$resId -> b
     void run() -> run
-com.ithinkrok.yellowquest.ui.BuyAdapter$5 -> com.ithinkrok.yellowquest.b.f:
+com.ithinkrok.yellowquest.ui.BuyAdapter$5 -> com.ithinkrok.yellowquest.ui.f:
     com.ithinkrok.yellowquest.ui.BuyAdapter this$0 -> a
     java.lang.String val$toastText -> b
     void run() -> run
-com.ithinkrok.yellowquest.ui.BuyAdapter$6 -> com.ithinkrok.yellowquest.b.g:
+com.ithinkrok.yellowquest.ui.BuyAdapter$6 -> com.ithinkrok.yellowquest.ui.g:
     com.ithinkrok.yellowquest.ui.BuyAdapter this$0 -> a
     java.lang.String val$purchaseToken -> b
     java.lang.String val$productId -> c
     void run() -> run
     com.ithinkrok.yellowquest.ui.BuyAdapter access$0(com.ithinkrok.yellowquest.ui.BuyAdapter$6) -> a
-com.ithinkrok.yellowquest.ui.BuyAdapter$6$1 -> com.ithinkrok.yellowquest.b.h:
+com.ithinkrok.yellowquest.ui.BuyAdapter$6$1 -> com.ithinkrok.yellowquest.ui.h:
     com.ithinkrok.yellowquest.ui.BuyAdapter$6 this$1 -> a
     int val$reward -> b
     void run() -> run
-com.ithinkrok.yellowquest.ui.PowerAdapter -> com.ithinkrok.yellowquest.b.i:
+com.ithinkrok.yellowquest.ui.DisableButton -> com.ithinkrok.yellowquest.ui.DisableButton:
+    void setEnabled(boolean) -> setEnabled
+com.ithinkrok.yellowquest.ui.PowerAdapter -> com.ithinkrok.yellowquest.ui.i:
     com.ithinkrok.yellowquest.MainActivity context -> a
     int expanded -> b
     android.view.View[] blanks -> c
@@ -7321,13 +7325,13 @@ com.ithinkrok.yellowquest.ui.PowerAdapter -> com.ithinkrok.yellowquest.b.i:
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
     void setView$400f2bde() -> a
     void onClick(android.view.View) -> onClick
-com.ithinkrok.yellowquest.ui.PowerAdapter$1 -> com.ithinkrok.yellowquest.b.j:
+com.ithinkrok.yellowquest.ui.PowerAdapter$1 -> com.ithinkrok.yellowquest.ui.j:
     com.ithinkrok.yellowquest.ui.PowerAdapter this$0 -> a
     com.ithinkrok.yellowquest.ui.PowerInfo val$info -> b
     void onClick(android.content.DialogInterface,int) -> onClick
-com.ithinkrok.yellowquest.ui.PowerAdapter$2 -> com.ithinkrok.yellowquest.b.k:
+com.ithinkrok.yellowquest.ui.PowerAdapter$2 -> com.ithinkrok.yellowquest.ui.k:
     void onClick(android.content.DialogInterface,int) -> onClick
-com.ithinkrok.yellowquest.ui.PowerInfo -> com.ithinkrok.yellowquest.b.l:
+com.ithinkrok.yellowquest.ui.PowerInfo -> com.ithinkrok.yellowquest.ui.l:
     int[] mult -> j
     java.lang.String name -> a
     int color -> b
@@ -7350,21 +7354,21 @@ com.ithinkrok.yellowquest.ui.PowerInfo -> com.ithinkrok.yellowquest.b.l:
     int buyCost(java.lang.String) -> a
     int getPowerCount() -> a
     com.ithinkrok.yellowquest.ui.PowerInfo getData(java.lang.String) -> b
-com.ithinkrok.yellowquest.ui.PowerInfo$1 -> com.ithinkrok.yellowquest.b.m:
+com.ithinkrok.yellowquest.ui.PowerInfo$1 -> com.ithinkrok.yellowquest.ui.m:
     com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
-com.ithinkrok.yellowquest.ui.PowerInfo$2 -> com.ithinkrok.yellowquest.b.n:
+com.ithinkrok.yellowquest.ui.PowerInfo$2 -> com.ithinkrok.yellowquest.ui.n:
     com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
-com.ithinkrok.yellowquest.ui.PowerInfo$3 -> com.ithinkrok.yellowquest.b.o:
+com.ithinkrok.yellowquest.ui.PowerInfo$3 -> com.ithinkrok.yellowquest.ui.o:
     com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
-com.ithinkrok.yellowquest.ui.PowerInfo$4 -> com.ithinkrok.yellowquest.b.p:
+com.ithinkrok.yellowquest.ui.PowerInfo$4 -> com.ithinkrok.yellowquest.ui.p:
     com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
-com.ithinkrok.yellowquest.ui.PowerInfo$5 -> com.ithinkrok.yellowquest.b.q:
+com.ithinkrok.yellowquest.ui.PowerInfo$5 -> com.ithinkrok.yellowquest.ui.q:
     com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
-com.ithinkrok.yellowquest.ui.PowerInfo$6 -> com.ithinkrok.yellowquest.b.r:
+com.ithinkrok.yellowquest.ui.PowerInfo$6 -> com.ithinkrok.yellowquest.ui.r:
     com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
-com.ithinkrok.yellowquest.ui.PowerInfo$PowerCreator -> com.ithinkrok.yellowquest.b.s:
+com.ithinkrok.yellowquest.ui.PowerInfo$PowerCreator -> com.ithinkrok.yellowquest.ui.s:
     com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
-com.ithinkrok.yellowquest.util.Box -> com.ithinkrok.yellowquest.c.a:
+com.ithinkrok.yellowquest.util.Box -> com.ithinkrok.yellowquest.b.a:
     double sx -> a
     double sy -> b
     double ex -> c
@@ -7372,6 +7376,6 @@ com.ithinkrok.yellowquest.util.Box -> com.ithinkrok.yellowquest.c.a:
     void set(double,double,double,double) -> a
     com.ithinkrok.yellowquest.util.Box move(double,double,com.ithinkrok.yellowquest.util.Box) -> a
     boolean intersects(com.ithinkrok.yellowquest.util.Box) -> a
-com.ithinkrok.yellowquest.util.Vector2 -> com.ithinkrok.yellowquest.c.b:
+com.ithinkrok.yellowquest.util.Vector2 -> com.ithinkrok.yellowquest.b.b:
     double x -> a
     double y -> b

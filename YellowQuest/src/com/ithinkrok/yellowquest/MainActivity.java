@@ -45,6 +45,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private View sign_out_button;
 	private CheckBox settings_music;
 	private CheckBox settings_leftbutton;
+	private CheckBox settings_tips;
 	private TextView settings_back;
 	private ListView play_powers;
 	private Button play_money;
@@ -68,6 +69,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	public YellowQuest gameHolder = null;
 	
 	public boolean buyConnected = false;
+	
+	public boolean usedDifferentModes = false;
 
 	ServiceConnection buyConnection = new ServiceConnection() {
 
@@ -107,6 +110,9 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private BuyAdapter buyAdapter;
 	
 	private ScreenReceiver screenReciever;
+	
+	public SharedPreferences rateSettings;
+	public boolean enableTips = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +123,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		gameData = new GameData(this);
 
 		settings = getSharedPreferences("com.ithinkrok.yellowquest", Context.MODE_PRIVATE);
+		rateSettings = getSharedPreferences("rate_app", 0);
 
 		gameData.load(settings);
 
@@ -135,11 +142,13 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 		// setContentView(view);
 
+		usedDifferentModes = settings.getBoolean("usedmodes", false);
 		audioEnabled = settings.getBoolean("music", true);
 		fullSizeLeftButton = settings.getBoolean("fullsizeleft", false);
 		shadowMode = settings.getBoolean("shadow", false);
 		timeMode = settings.getBoolean("time", false);
 		passedOne = settings.getBoolean("passed", false);
+		enableTips = settings.getBoolean("tips", true);
 		if (audioEnabled) {
 			audioStart();
 		}
@@ -170,6 +179,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	@Override
 	protected void onPause() {
 		paused = true;
+		view.clearTouches();
 		super.onPause();
 		if (audioEnabled)
 			media.pause();
@@ -221,6 +231,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	}
 
 	public void screenOff() {
+		view.clearTouches();
 		screenOff = true;
 		if (audioEnabled)
 			media.pause();
@@ -347,6 +358,12 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			editorLeft.putBoolean("fullsizeleft", fullSizeLeftButton);
 			editorLeft.commit();
 			break;
+		case R.id.settings_tips:
+			enableTips = settings_tips.isChecked();
+			Editor editorTips = settings.edit();
+			editorTips.putBoolean("tips", enableTips);
+			editorTips.commit();
+			break;
 		case R.id.play_back:
 		case R.id.settings_back:
 			loadMenuView();
@@ -457,6 +474,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		if (powerAdapter == null)
 			powerAdapter = new PowerAdapter(this);
 		play_powers.setAdapter(powerAdapter);
+		powerAdapter.refreshItems();
 		powerAdapter.setView(play_powers);
 
 		if(gameData.getPowerUnlocks() != 0){
@@ -486,13 +504,16 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		settings_music = (CheckBox) findViewById(R.id.settings_music);
 		settings_leftbutton = (CheckBox) findViewById(R.id.settings_leftbutton);
 		settings_back = (TextView) findViewById(R.id.settings_back);
+		settings_tips = (CheckBox) findViewById(R.id.settings_tips);
 
 		settings_music.setOnClickListener(this);
 		settings_leftbutton.setOnClickListener(this);
 		settings_back.setOnClickListener(this);
+		settings_tips.setOnClickListener(this);
 
 		settings_music.setChecked(audioEnabled);
 		settings_leftbutton.setChecked(fullSizeLeftButton);
+		settings_tips.setChecked(enableTips);
 	}
 
 	public void loadBuyView() {

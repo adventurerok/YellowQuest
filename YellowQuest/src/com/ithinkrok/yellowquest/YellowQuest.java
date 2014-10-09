@@ -106,6 +106,9 @@ public class YellowQuest {
 	private boolean wasPowerPressed = false;
 	
 	private boolean fullSizeLeftButton = false;
+	
+	//private double pixelDensity = 1d;
+	
 
 	public YellowQuest(CanvasSurfaceView canvas) {
 		this.canvas = canvas;
@@ -114,6 +117,7 @@ public class YellowQuest {
 		gameData = canvas.getActivity().getGameData();
 		createButtons(canvas);
 		BOX_BUFFER = (canvas.width / 148) + 2;
+		if(canvas.density < 2) BOX_BUFFER *= 2;
 		PAINT_STATS.setTextSize(canvas.density * 12);
 		PAINT_GAMEOVER.setTextSize(canvas.density * 30);
 	}
@@ -149,10 +153,15 @@ public class YellowQuest {
 		createButtons(canvas);
 	}
 	
+	public boolean renderSmall(){
+		return canvas.density < 2;
+	}
+	
 	public void createButtons(CanvasSurfaceView canvas) {
 		if (lastWidth == canvas.width && lastHeight == canvas.height && fullSizeLeftButton == lastFullSizedLeft)
 			return;
 		double bsm = canvas.density;
+		//pixelDensity = bsm;
 		double leftExtra = 0;
 		if(fullSizeLeftButton) leftExtra = 40;
 		leftButton = new Box(20 * bsm, canvas.height - 120 * bsm, (80 + leftExtra) * bsm, canvas.height - 20 * bsm);
@@ -579,7 +588,14 @@ public class YellowQuest {
 	}
 
 	public void loadData() {
-		//Debug.startMethodTracing("game");
+		if(timed || shadow){
+			MainActivity context = canvas.getActivity();
+			if(!context.usedDifferentModes){
+				context.usedDifferentModes = true;
+				context.getSettings().edit().putBoolean("usedmodes", true).commit();
+			}
+		}
+		
 		if(timed){
 			PowerInfo.getData("time").unlock(getContext());
 		}

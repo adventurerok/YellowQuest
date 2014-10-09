@@ -6,6 +6,8 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="canvas_view">Canvas View</string>
     
+    <string name="hide">Hide</string>
+    <string name="img_here">Image Here</string>
     <string name="play">Play</string>
     <string name="achievements">Achievements</string>
     <string name="leaderboards">Leaderboards</string>
@@ -72,12 +74,18 @@
 	<string name="power_up_unlock">Using a green platform has made you realise the secrets of rising up!</string>
 	<string name="power_time_unlock">Using time mode has made you realise you need to stop time!</string>
 	
+	<string name="tip_empty">There should be a tip here. Where is it?</string>
+	<string name="tip_modes">Have you tried the buttons at the top right yet?</string>
+	<string name="tip_powers">There are six powers to unlock. Can you unlock them all?</string>
+	<string name="tip_rate">Have you rated the app yet? We would love to hear what you have to say about it!</string>
+	
 	
 	<string name="shadow_off">Shadow mode disabled</string>
 	<string name="shadow_on">Shadow mode enabled</string>
 	<string name="time_off">Timer challenge mode disabled</string>
 	<string name="time_on">Timer challenge mode enabled</string>
 	
+	<string name="enable_tips">Enable tips</string>
 	<string name="hiscore_beat">Unbelievable! You beat your hiscore! Your new record is %1$d</string>
 	<string name="achievement_reward">You have been rewarded %1$d SP!</string>
 	<string name="powers_view_unlock">You have passed level 1! You have unlocked the powers menu!</string>

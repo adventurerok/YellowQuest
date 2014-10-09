@@ -2,6 +2,10 @@
 <resources>
 
     <string name="app_id">596492711628</string>
+    <item type="id" name="tip"/>
+    <item type="id" name="tip_icon"/>
+    <item type="id" name="tip_message"/>
+    <item type="id" name="tip_hide"/>
     <item type="id" name="menu"/>
     <item type="id" name="menu_play"/>
     <item type="id" name="menu_achievements"/>
@@ -12,6 +16,7 @@
     <item type="id" name="settings_gameover_time"/>
     <item type="id" name="settings_reset"/>
     <item type="id" name="settings_leftbutton"/>
+    <item type="id" name="settings_tips"/>
     <item type="id" name="play_shadow"/>
     <item type="id" name="play_time"/>
     <item type="id" name="play_play"/>

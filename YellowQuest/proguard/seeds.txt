@@ -509,3 +509,7 @@ com.google.example.games.basegameutils.BaseGameActivity: BaseGameActivity()
 com.google.example.games.basegameutils.BaseGameActivity: BaseGameActivity(int)
 com.ithinkrok.yellowquest.MainActivity
 com.ithinkrok.yellowquest.MainActivity: MainActivity()
+com.ithinkrok.yellowquest.ui.DisableButton
+com.ithinkrok.yellowquest.ui.DisableButton: DisableButton(android.content.Context,android.util.AttributeSet,int)
+com.ithinkrok.yellowquest.ui.DisableButton: DisableButton(android.content.Context,android.util.AttributeSet)
+com.ithinkrok.yellowquest.ui.DisableButton: DisableButton(android.content.Context)

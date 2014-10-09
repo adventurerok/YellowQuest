@@ -106,11 +106,11 @@ public class EntityPlayer extends Entity {
 			paint = power.getPaint();
 		float xp = (float) (box.sx - game.player.x + rend.width / 2);
 		float yp = (float) (box.sy - game.player.y + rend.height / 2);
-		if (xp > rend.width || yp > rend.height)
+		if (xp > rend.scaledWidth || yp > rend.scaledHeight)
 			return;
 		float w = (float) (box.ex - box.sx);
 		float h = (float) (box.ey - box.sy);
-		if ((xp + w) < 0 || (yp + h) < 0)
+		if ((xp + w) < rend.scaledX || (yp + h) < rend.scaledY)
 			return;
 		rend.fillRect(xp, yp, w, h, paint);
 		if (power == null)
