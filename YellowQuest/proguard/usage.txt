@@ -4567,8 +4567,8 @@ com.google.example.games.basegameutils.R$style
 com.google.example.games.basegameutils.R$styleable
 com.ithinkrok.yellowquest.AppRater:
     private static final java.lang.String APP_PACKAGE_NAME
-    private static final int DAYS_UNTIL_PROMPT
-    private static final int LAUNCH_UNTIL_PROMPT
+    public static final int DAYS_UNTIL_PROMPT
+    public static final int LAUNCH_UNTIL_PROMPT
     8:8:public AppRater()
 com.ithinkrok.yellowquest.BoxMath:
     5:5:public BoxMath()
@@ -4581,8 +4581,8 @@ com.ithinkrok.yellowquest.BoxMath:
 com.ithinkrok.yellowquest.BuildConfig
 com.ithinkrok.yellowquest.CanvasSurfaceView:
     public static final double UPDATE_PERIOD
-    49:49:public boolean isReversed()
-    216:216:public java.util.Collection getTouches()
+    55:55:public boolean isReversed()
+    248:248:public java.util.Collection getTouches()
 com.ithinkrok.yellowquest.CanvasThread:
     private static final int FRAME_PERIOD
     25:26:public void setPause(boolean)
@@ -4619,10 +4619,11 @@ com.ithinkrok.yellowquest.YellowQuest:
     public static final int TIMER_SECOND
     public static final int TIMER_START
     public static final int TIMER_BOX
-    122:123:public void addAchievement(int)
-    139:140:public void addAchievement(java.lang.String)
-    297:297:public int getScore()
-    600:600:public boolean isDisplaying()
+    126:127:public void addAchievement(int)
+    143:144:public void addAchievement(java.lang.String)
+    157:157:public boolean renderSmall()
+    306:306:public int getScore()
+    616:616:public boolean isDisplaying()
 com.ithinkrok.yellowquest.entity.Entity:
     61:61:public com.ithinkrok.yellowquest.entity.Entity teleport(double,double)
     154:154:public void delete()
@@ -4636,6 +4637,16 @@ com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory:
     8:8:public WeightedTraitFactory()
 com.ithinkrok.yellowquest.ui.PowerInfo:
     141:141:public static int buyCost(int)
+    149:149:public static int getPowerCount()
+com.ithinkrok.yellowquest.ui.Tip:
+    29:44:public static java.lang.String getTip(com.ithinkrok.yellowquest.MainActivity)
+    public abstract boolean canShow(com.ithinkrok.yellowquest.MainActivity)
+com.ithinkrok.yellowquest.ui.Tip$TipMode:
+    118:118:public boolean canShow(com.ithinkrok.yellowquest.MainActivity)
+com.ithinkrok.yellowquest.ui.Tip$TipPower:
+    100:105:public boolean canShow(com.ithinkrok.yellowquest.MainActivity)
+com.ithinkrok.yellowquest.ui.Tip$TipRate:
+    71:85:public boolean canShow(com.ithinkrok.yellowquest.MainActivity)
 com.ithinkrok.yellowquest.util.Box:
     15:23:public com.ithinkrok.yellowquest.util.Box include(double,double)
     46:46:public com.ithinkrok.yellowquest.util.Box expand(double,double)

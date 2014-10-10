@@ -3,8 +3,7 @@ package com.ithinkrok.yellowquest;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import android.graphics.Paint;
-import android.graphics.Typeface;
+import android.graphics.*;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
@@ -37,6 +36,8 @@ public class YellowQuest {
 		PAINT_GAMEOVER.setTypeface(tf);
 		PAINT_STATS.setTextSize(12);
 		PAINT_GAMEOVER.setTextSize(30);
+		
+		PAINT_COOLDOWN.setStyle(Paint.Style.FILL);
 	}
 
 	// public static final double DEFAULT_SLIP = 0.82; //45 ups versions
@@ -198,6 +199,7 @@ public class YellowQuest {
 		if (gameOver != null && gameOver.time == 0)
 			gameOver = null;
 		if (gameOver == null) {
+			drawArrow(rend, 100, 100, PAINT_COOLDOWN);
 			tPos = 0;
 			drawFlag(rend, (float) level.finalBox.x, (float) level.finalBox.box.ey);
 			for (int d = 0; d < boxes.size(); ++d) {
@@ -231,6 +233,7 @@ public class YellowQuest {
 					drawBox(coolBox, cd);
 				}
 			}
+			
 
 			statsText(rend, "Level: " + (level.number + 1) + "." + (playerBox + 1));
 			statsText(rend, "Score: " + score);
@@ -259,6 +262,32 @@ public class YellowQuest {
 		y += rend.height / 2;
 		rend.fillRect(x - 30, y + 30, 30, 30, PAINT_RED);
 		rend.fillRect(x, y, 5, 60, PAINT_BROWN);
+	}
+	
+	public void drawArrow(CanvasSurfaceView rend, float x, float y, Paint paint){
+		x -= player.x;
+		y -= player.y;
+		x += rend.width / 2;
+		y += rend.height / 2;
+		rend.fillRect(x - 5, y, 10, 15, paint);
+		
+		Path path = new Path();
+		path.setFillType(Path.FillType.EVEN_ODD);
+		if(rend.density >= 1.99){
+			path.moveTo(x - 15, rend.height - (y + 15));
+			path.lineTo(x, rend.height - (y + 30));
+			path.lineTo(x + 15, rend.height - (y + 15));
+			path.lineTo(x - 15, rend.height - (y + 15));
+		} else {
+			path.moveTo((x - 15) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+			path.lineTo(x / 2 + rend.width / 4, (rend.height - (y + 30)) / 2 + rend.height / 4);
+			path.lineTo((x + 15) + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+			path.lineTo((x - 15) + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+		}
+		path.close();
+		
+		
+		rend.canvas.drawPath(path, paint);
 	}
 
 	public void generateBoxes(int amount) {

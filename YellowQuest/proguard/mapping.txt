@@ -6808,20 +6808,24 @@ com.ithinkrok.yellowquest.BoxMath -> com.ithinkrok.yellowquest.e:
     double maxJumpHeight(double) -> a
     java.lang.String formatNumber(int) -> b
 com.ithinkrok.yellowquest.CanvasSurfaceView -> com.ithinkrok.yellowquest.f:
-    com.ithinkrok.yellowquest.util.Vector2 currentTouch -> f
-    com.ithinkrok.yellowquest.CanvasThread _thread -> g
+    com.ithinkrok.yellowquest.util.Vector2 currentTouch -> j
+    com.ithinkrok.yellowquest.CanvasThread _thread -> k
     int width -> a
     int height -> b
     float density -> c
     android.graphics.Canvas canvas -> d
     com.ithinkrok.yellowquest.YellowQuest game -> e
-    long lastUpdate -> h
-    double tickTime -> i
-    java.util.HashMap touches -> j
-    java.util.ArrayList touchDowns -> k
-    boolean paused -> l
-    boolean screenOff -> m
-    boolean reverse -> n
+    long lastUpdate -> l
+    double tickTime -> m
+    java.util.HashMap touches -> n
+    java.util.ArrayList touchDowns -> o
+    boolean paused -> p
+    boolean screenOff -> q
+    boolean reverse -> r
+    int scaledWidth -> f
+    int scaledHeight -> g
+    int scaledX -> h
+    int scaledY -> i
     void setReversed(boolean) -> a
     int floor(float) -> a
     void fillRect(float,float,float,float,android.graphics.Paint) -> a
@@ -6885,50 +6889,54 @@ com.ithinkrok.yellowquest.Level -> com.ithinkrok.yellowquest.j:
     int number -> c
     com.ithinkrok.yellowquest.entity.Entity finalBox -> d
 com.ithinkrok.yellowquest.MainActivity -> com.ithinkrok.yellowquest.MainActivity:
-    com.ithinkrok.yellowquest.MainActivity$GameState state -> k
-    com.ithinkrok.yellowquest.GameData gameData -> l
-    android.widget.TextView menu_play -> m
-    android.view.View menu -> n
-    android.view.View menu_achievements -> o
-    android.view.View menu_leaderboards -> p
-    android.view.View menu_settings -> q
-    android.view.View sign_in_button -> r
-    android.view.View sign_out_button -> s
-    android.widget.CheckBox settings_music -> t
-    android.widget.CheckBox settings_leftbutton -> u
-    android.widget.TextView settings_back -> v
-    android.widget.ListView play_powers -> w
-    android.widget.Button play_money -> x
-    android.widget.TextView play_play -> y
-    android.widget.TextView play_back -> z
-    android.widget.ImageButton play_shadow -> A
-    android.widget.ImageButton play_time -> B
-    android.widget.TextView play_score -> C
-    com.google.android.gms.ads.AdView play_ad -> D
-    android.widget.TextView buy_money -> E
-    android.widget.TextView buy_back -> F
-    android.widget.ListView buy_list -> G
+    com.ithinkrok.yellowquest.MainActivity$GameState state -> m
+    com.ithinkrok.yellowquest.GameData gameData -> n
+    android.widget.TextView menu_play -> o
+    android.view.View menu -> p
+    android.view.View menu_achievements -> q
+    android.view.View menu_leaderboards -> r
+    android.view.View menu_settings -> s
+    android.view.View sign_in_button -> t
+    android.view.View sign_out_button -> u
+    android.widget.CheckBox settings_music -> v
+    android.widget.CheckBox settings_leftbutton -> w
+    android.widget.CheckBox settings_tips -> x
+    android.widget.TextView settings_back -> y
+    android.widget.ListView play_powers -> z
+    android.widget.Button play_money -> A
+    android.widget.TextView play_play -> B
+    android.widget.TextView play_back -> C
+    android.widget.ImageButton play_shadow -> D
+    android.widget.ImageButton play_time -> E
+    android.widget.TextView play_score -> F
+    com.google.android.gms.ads.AdView play_ad -> G
+    android.widget.TextView buy_money -> H
+    android.widget.TextView buy_back -> I
+    android.widget.ListView buy_list -> J
     com.android.vending.billing.IInAppBillingService buyService -> e
-    android.content.Intent buyIntent -> H
+    android.content.Intent buyIntent -> K
     boolean passedOne -> f
     com.ithinkrok.yellowquest.YellowQuest gameHolder -> g
     boolean buyConnected -> h
-    android.content.ServiceConnection buyConnection -> I
-    com.ithinkrok.yellowquest.ui.PowerAdapter powerAdapter -> J
-    com.ithinkrok.yellowquest.CanvasSurfaceView view -> i
-    android.media.AudioManager am -> K
-    android.media.MediaPlayer media -> L
-    android.media.AudioManager$OnAudioFocusChangeListener audioListener -> M
-    boolean audioEnabled -> N
-    boolean fullSizeLeftButton -> j
-    boolean shadowMode -> O
-    boolean timeMode -> P
-    boolean paused -> Q
-    boolean screenOff -> R
-    android.content.SharedPreferences settings -> S
-    com.ithinkrok.yellowquest.ui.BuyAdapter buyAdapter -> T
-    com.ithinkrok.yellowquest.ScreenReceiver screenReciever -> U
-    int[] $SWITCH_TABLE$com$ithinkrok$yellowquest$MainActivity$GameState -> V
+    boolean usedDifferentModes -> i
+    android.content.ServiceConnection buyConnection -> L
+    com.ithinkrok.yellowquest.ui.PowerAdapter powerAdapter -> M
+    com.ithinkrok.yellowquest.CanvasSurfaceView view -> j
+    android.media.AudioManager am -> N
+    android.media.MediaPlayer media -> O
+    android.media.AudioManager$OnAudioFocusChangeListener audioListener -> P
+    boolean audioEnabled -> Q
+    boolean fullSizeLeftButton -> k
+    boolean shadowMode -> R
+    boolean timeMode -> S
+    boolean paused -> T
+    boolean screenOff -> U
+    android.content.SharedPreferences settings -> V
+    com.ithinkrok.yellowquest.ui.BuyAdapter buyAdapter -> W
+    com.ithinkrok.yellowquest.ScreenReceiver screenReciever -> X
+    android.content.SharedPreferences rateSettings -> l
+    boolean enableTips -> Y
+    int[] $SWITCH_TABLE$com$ithinkrok$yellowquest$MainActivity$GameState -> Z
     void onCreate(android.os.Bundle) -> onCreate
     void setPassedOne() -> h
     void onPause() -> onPause
@@ -7317,13 +7325,14 @@ com.ithinkrok.yellowquest.ui.DisableButton -> com.ithinkrok.yellowquest.ui.Disab
     void setEnabled(boolean) -> setEnabled
 com.ithinkrok.yellowquest.ui.PowerAdapter -> com.ithinkrok.yellowquest.ui.i:
     com.ithinkrok.yellowquest.MainActivity context -> a
-    int expanded -> b
-    android.view.View[] blanks -> c
+    java.lang.String expanded -> b
+    java.util.ArrayList showing -> c
     int getCount() -> getCount
     java.lang.Object getItem(int) -> getItem
     long getItemId(int) -> getItemId
+    void refreshItems() -> a
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-    void setView$400f2bde() -> a
+    void setView$400f2bde() -> b
     void onClick(android.view.View) -> onClick
 com.ithinkrok.yellowquest.ui.PowerAdapter$1 -> com.ithinkrok.yellowquest.ui.j:
     com.ithinkrok.yellowquest.ui.PowerAdapter this$0 -> a
@@ -7352,7 +7361,6 @@ com.ithinkrok.yellowquest.ui.PowerInfo -> com.ithinkrok.yellowquest.ui.l:
     void unlock(com.ithinkrok.yellowquest.MainActivity) -> a
     com.ithinkrok.yellowquest.ui.PowerInfo getData(int) -> b
     int buyCost(java.lang.String) -> a
-    int getPowerCount() -> a
     com.ithinkrok.yellowquest.ui.PowerInfo getData(java.lang.String) -> b
 com.ithinkrok.yellowquest.ui.PowerInfo$1 -> com.ithinkrok.yellowquest.ui.m:
     com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
@@ -7368,6 +7376,13 @@ com.ithinkrok.yellowquest.ui.PowerInfo$6 -> com.ithinkrok.yellowquest.ui.r:
     com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
 com.ithinkrok.yellowquest.ui.PowerInfo$PowerCreator -> com.ithinkrok.yellowquest.ui.s:
     com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
+com.ithinkrok.yellowquest.ui.Tip -> com.ithinkrok.yellowquest.ui.t:
+    java.util.HashMap tipMessages -> a
+    java.util.ArrayList tips -> b
+    int getTipMessage(java.lang.String) -> a
+com.ithinkrok.yellowquest.ui.Tip$TipMode -> com.ithinkrok.yellowquest.ui.u:
+com.ithinkrok.yellowquest.ui.Tip$TipPower -> com.ithinkrok.yellowquest.ui.v:
+com.ithinkrok.yellowquest.ui.Tip$TipRate -> com.ithinkrok.yellowquest.ui.w:
 com.ithinkrok.yellowquest.util.Box -> com.ithinkrok.yellowquest.b.a:
     double sx -> a
     double sy -> b

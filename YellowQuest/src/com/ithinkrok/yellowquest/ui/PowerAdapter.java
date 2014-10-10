@@ -52,10 +52,10 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 	
 	public void refreshItems(){
 		showing.clear();
-//		String tip = Tip.getTip(context);
-//		if(tip != null){
-//			showing.add(tip);
-//		}
+		String tip = Tip.getTip(context);
+		if(tip != null){
+			showing.add(tip);
+		}
 		for(int d = 0; d < 6; ++d){
 			if(!context.getGameData().hasPowerUnlock(d)) continue;
 			else showing.add(PowerInfo.getData(d).name);
