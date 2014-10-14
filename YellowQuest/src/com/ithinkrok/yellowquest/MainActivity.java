@@ -95,6 +95,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	public CanvasSurfaceView view;
 	private AudioManager am;
 	private MediaPlayer media;
+	private MediaPlayer mediaNormal;
+	private MediaPlayer mediaTime;
 	OnAudioFocusChangeListener audioListener;
 	public boolean[] wasdKeys = new boolean[4];
 	private boolean audioEnabled = false;
@@ -379,6 +381,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			break;
 		case R.id.play_shadow:
 			shadowMode = !shadowMode;
+			audioChange();
 			if (shadowMode) {
 				Toast.makeText(this, R.string.shadow_on, Toast.LENGTH_SHORT).show();
 				play_shadow.setImageResource(R.drawable.shadow_on);
@@ -393,6 +396,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			break;
 		case R.id.play_time:
 			timeMode = !timeMode;
+			audioChange();
 			if (timeMode) {
 				Toast.makeText(this, R.string.time_on, Toast.LENGTH_SHORT).show();
 				play_time.setImageResource(R.drawable.time_off);
@@ -556,10 +560,44 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		} else
 			super.onBackPressed();
 	}
+	
+	public MediaPlayer getMedia() {
+		return media;
+	}
+	
+	public void audioChange(){
+		MediaPlayer old = media;
+		if(timeMode){
+			media = mediaTime;
+		} else {
+			media = mediaNormal;
+		}
+		if(old == media) return;
+		int oldPos = old.getCurrentPosition();
+		old.pause();
+		double oldTempo = 140;
+		if(old == mediaTime) oldTempo = 200;
+		double newTempo = 140;
+		if(media == mediaTime) newTempo = 200;
+		int newPos = (int) (oldPos * (oldTempo / newTempo));
+		media.seekTo(newPos);
+		media.start();
+	}
 
 	public void audioStart() {
-		media = MediaPlayer.create(this, R.raw.boxgameloop);
-		media.setLooping(true);
+		if(mediaNormal == null){
+			mediaNormal = MediaPlayer.create(this, R.raw.boxgameloop);
+			mediaNormal.setLooping(true);
+		}
+		if(mediaTime == null){
+			mediaTime = MediaPlayer.create(this, R.raw.timemode);
+			mediaTime.setLooping(true);
+		}
+		if(timeMode){
+			media = mediaTime;
+		} else {
+			media = mediaNormal;
+		}
 
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		am = (AudioManager) getSystemService(AUDIO_SERVICE);
@@ -569,15 +607,11 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			@Override
 			public void onAudioFocusChange(int focusChange) {
 				if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
-					media.pause();
+					getMedia().pause();
 				} else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
-					media.start();
+					getMedia().start();
 				} else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
-					// am.unregisterMediaButtonEventReceiver(RemoteControlReceiver);
-					am.abandonAudioFocus(this);
-					media.stop();
-					media.release();
-					media = null;
+					audioStop();
 				}
 			}
 		};
@@ -593,8 +627,10 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		if (media == null)
 			return;
 		media.stop();
-		media.release();
-		media = null;
+		mediaNormal.release();
+		mediaTime.release();
+		mediaNormal = null;
+		mediaTime = null;
 		if (audioListener != null) {
 			am.abandonAudioFocus(audioListener);
 			audioListener = null;

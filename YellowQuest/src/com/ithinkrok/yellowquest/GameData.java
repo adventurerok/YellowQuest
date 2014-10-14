@@ -44,6 +44,27 @@ public class GameData {
 		super();
 		this.context = context;
 	}
+	
+	public void addStat(String stat, int add){
+		long id = hash("stat_" + stat);
+		setInt(id, getInt(id, 0) + add);
+		id = hash("cstat_" + stat);
+		setInt(id, getInt(id, 0) + add);
+	}
+	
+	public int getStat(String stat){
+		return getInt(hash("stat_" + stat), 0);
+	}
+	
+	public int resetStatChallenge(String stat){
+		int old = getStatChallenge(stat);
+		setInt(hash("cstat_" + stat), 0);
+		return old;
+	}
+	
+	public int getStatChallenge(String stat){
+		return getInt(hash("cstat_" + stat), 0);
+	}
 
 	public boolean addAchievement(String achievement) {
 		return addAchievement(achievement, 500);
@@ -83,6 +104,14 @@ public class GameData {
 	
 	public void addPowerUnlock(int n){
 		setInt(hash("unlockedpowers"), getPowerUnlocks() | (1 << n));
+	}
+	
+	public int getPlayerRank(){
+		return getInt(hash("player_rank"), 0);
+	}
+	
+	public void setPlayerRank(int val){
+		setInt(hash("player_rank"), val);
 	}
 	
 	public boolean hasPowerUnlock(int power){

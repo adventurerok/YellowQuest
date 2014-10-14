@@ -14,4 +14,5 @@ Save this file as res/values/games-ids.xml in your project.
   <string name="achievement_almost">CgkIzO3xja4REAIQAw</string>
   <string name="achievement_overshot">CgkIzO3xja4REAIQBA</string>
   <string name="leaderboard_yellowquest_hiscores">CgkIzO3xja4REAIQCg</string>
+  <string name="leaderboard_yellowquest_ranks">CgkIzO3xja4REAIQCw</string>
 </resources>
