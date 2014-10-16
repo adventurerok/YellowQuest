@@ -66,6 +66,23 @@ public class GameData {
 		return old;
 	}
 	
+	public int getChallengeNum(){
+		return getInt(hash("challenge_num"), 0);
+	}
+	
+	public void skipChallenge(){
+		setInt(hash("challenge_num"), getChallengeNum() + 1);
+	}
+	
+	public int getCompletedChallenges(){
+		return getInt(hash("challenges_done"), 0);
+	}
+	
+	public void completeChallenge(){
+		skipChallenge();
+		setInt(hash("challenges_done"), getCompletedChallenges() + 1);
+	}
+	
 	public int getStatChallenge(String stat){
 		return getInt(hash("cstat_" + stat), 0);
 	}

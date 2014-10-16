@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
 
-import com.ithinkrok.yellowquest.challenge.StatTracker.Stat;
+import com.ithinkrok.yellowquest.challenge.Stat;
 import com.ithinkrok.yellowquest.entity.*;
 import com.ithinkrok.yellowquest.entity.power.PowerTroll;
 import com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory;
@@ -579,6 +579,8 @@ public class YellowQuest {
 		if (gameOver.time == 0) {
 			if (gameOver.type == 0) {
 				gameData.statTracker.addStat(Stat.DEATHS, 1);
+				gameData.statTracker.lostLife();
+				gameData.statTracker.gameOver();
 				gameOver();
 				setDisplaying(false);
 				canvas.clearTouches();
@@ -586,11 +588,13 @@ public class YellowQuest {
 				else canvas.getActivity().loadMenuView();
 				gameData.statTracker.resetGame();
 			} else if (gameOver.type == 1){
-				this.nextLevel();
+				gameData.statTracker.completeLevel();
 				gameData.statTracker.resetLevel();
+				this.nextLevel();
 			} else if (gameOver.type == 2){
 				this.restartLevel();
 				gameData.statTracker.addStat(Stat.DEATHS, 1);
+				gameData.statTracker.lostLife();
 				gameData.statTracker.resetLife();
 			}
 			gameOver = null;
