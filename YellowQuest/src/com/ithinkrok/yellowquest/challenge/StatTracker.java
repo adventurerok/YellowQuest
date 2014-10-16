@@ -8,17 +8,22 @@ import com.ithinkrok.yellowquest.GameData;
 public class StatTracker {
 	
 	public static enum Stat{
-		RIGHT_SIDE_FLAG,
-		JUMP_OVER_BOXES,
-		COMPLETE_LEVEL,
-		JUMPS,
-		LEFT_DISTANCE,
-		DEATHS,
+		RIGHT_SIDE_FLAG, //Tracked
+		JUMP_OVER_BOXES, //Tracked
+		COMPLETE_LEVEL, //Tracked
+		JUMPS, //Tracked
+		LEFT_DISTANCE, //Tracked
+		DEATHS, //Tracked
 		BONUS
 	}
 	
 	private static ArrayList<String> statNames = new ArrayList<String>();
 	
+	public StatTracker(GameData gameData) {
+		super();
+		this.gameData = gameData;
+	}
+
 	static{
 		Stat[] all = Stat.values();
 		for(Stat s : all){
@@ -53,6 +58,24 @@ public class StatTracker {
 		for(String s: statNames){
 			gameData.resetStatChallenge(s);
 		}
+	}
+	
+	public void addStat(Stat stat, int add){
+		Integer old;
+		
+		old = currentGame.get(stat.name());
+		if(old == null) old = 0;
+		currentGame.put(stat.name(), old + add);
+		
+		old = currentLife.get(stat.name());
+		if(old == null) old = 0;
+		currentLife.put(stat.name(), old + add);
+		
+		old = currentLevel.get(stat.name());
+		if(old == null) old = 0;
+		currentLevel.put(stat.name(), old + add);
+		
+		gameData.addStat(stat.name(), add);
 	}
 
 }

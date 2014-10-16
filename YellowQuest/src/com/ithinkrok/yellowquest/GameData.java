@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
+import com.ithinkrok.yellowquest.challenge.StatTracker;
 
 public class GameData {
 	
@@ -32,6 +33,9 @@ public class GameData {
 	private MainActivity context;
 
 	private GoogleApiClient client;
+	
+	public StatTracker statTracker = new StatTracker(this);
+	
 
 	// Use gamedata to save achievements
 	// 0 = not got

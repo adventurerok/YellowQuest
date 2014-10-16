@@ -1,6 +1,7 @@
 package com.ithinkrok.yellowquest.entity;
 
 import com.ithinkrok.yellowquest.*;
+import com.ithinkrok.yellowquest.challenge.StatTracker.Stat;
 import com.ithinkrok.yellowquest.entity.power.*;
 
 import android.graphics.Paint;
@@ -58,7 +59,11 @@ public class EntityPlayer extends Entity {
 
 		if (this.intersecting != null && !this.box.intersects(this.intersecting.box))
 			this.intersecting = null;
+		double oldx = x;
 		this.move(this.x_velocity, this.y_velocity);
+		if(oldx > x){
+			game.gameData.statTracker.addStat(Stat.LEFT_DISTANCE, (int)(oldx - x));
+		}
 		if (this.intersecting != null) {
 			if (this.intersecting.boxNumber > game.playerBox) {
 				int skipped = this.intersecting.boxNumber - game.playerBox;
@@ -71,6 +76,7 @@ public class EntityPlayer extends Entity {
 					boxMult = 15;
 				game.addScore(skipped * boxMult);
 				--skipped;
+				if(skipped > 0) game.gameData.statTracker.addStat(Stat.JUMP_OVER_BOXES, skipped);
 				while (skipped > 0) {
 					game.addScore(skipped * 10);
 					--skipped;

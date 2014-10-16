@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
 
+import com.ithinkrok.yellowquest.challenge.StatTracker.Stat;
 import com.ithinkrok.yellowquest.entity.*;
 import com.ithinkrok.yellowquest.entity.power.PowerTroll;
 import com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory;
@@ -358,6 +359,7 @@ public class YellowQuest {
 
 	private void levelUp() {
 		gameOver = new GameOver(1, "Next Level");
+		gameData.statTracker.addStat(Stat.COMPLETE_LEVEL, 1);
 		int mult = 10;
 		if (shadow) {
 			if (timed)
@@ -378,6 +380,7 @@ public class YellowQuest {
 		gameData.addScore(level.number + 1, levelScore);
 
 		if (Math.abs(player.box.sx - level.finalBox.box.ex) < 1) {
+			gameData.statTracker.addStat(Stat.RIGHT_SIDE_FLAG, 1);
 			addAchievement(R.string.achievement_overshot, 5000);
 		}
 		switch (level.number) {
@@ -575,16 +578,21 @@ public class YellowQuest {
 		--gameOver.time;
 		if (gameOver.time == 0) {
 			if (gameOver.type == 0) {
-				//Debug.stopMethodTracing();
+				gameData.statTracker.addStat(Stat.DEATHS, 1);
 				gameOver();
 				setDisplaying(false);
 				canvas.clearTouches();
 				if(canvas.getActivity().passedOne) canvas.getActivity().loadPlayView();
 				else canvas.getActivity().loadMenuView();
-			} else if (gameOver.type == 1)
+				gameData.statTracker.resetGame();
+			} else if (gameOver.type == 1){
 				this.nextLevel();
-			else if (gameOver.type == 2)
+				gameData.statTracker.resetLevel();
+			} else if (gameOver.type == 2){
 				this.restartLevel();
+				gameData.statTracker.addStat(Stat.DEATHS, 1);
+				gameData.statTracker.resetLife();
+			}
 			gameOver = null;
 		} 
 	}
@@ -611,6 +619,7 @@ public class YellowQuest {
 			this.player.x_velocity = maxSpeed;
 		if (doJump() && this.player.onGround) {
 			this.player.y_velocity = jump * player.getJumpMultiplier() + player.getJumpIncrease();
+			gameData.statTracker.addStat(Stat.JUMPS, 1);
 			player.onGround = false;
 			timerStarted = true;
 		}
