@@ -56,6 +56,32 @@ public class ToastSystem {
 	}
 	
 	@SuppressLint("InflateParams")
+	public static void showHiscoreToast(int current, int old){
+		//Log.i("YellowQuest", "Start make achievement toast");
+		View layout = context.getLayoutInflater().inflate(R.layout.achievement, null, false);
+		
+		ImageView icon = (ImageView) layout.findViewById(R.id.achievement_icon);
+		icon.setImageResource(R.drawable.new_hiscore);
+		
+		TextView name =(TextView) layout.findViewById(R.id.achievement_name);
+		name.setText(String.format(context.getString(R.string.new_hiscore), current));
+		
+		TextView desc = (TextView) layout.findViewById(R.id.achievement_desc);
+		desc.setText(String.format(context.getString(R.string.old_hiscore), current - old, old));
+		
+		TextView reward = (TextView) layout.findViewById(R.id.achievement_reward);
+		reward.setText("");
+		
+		Toast toast = new Toast(context);
+		toast.setView(layout);
+		toast.setDuration(Toast.LENGTH_SHORT);
+		toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 60);
+		toast.show();
+		
+		//Log.i("YellowQuest", "End make achievement toast");
+	}
+	
+	@SuppressLint("InflateParams")
 	public static void showUnlockToast(int iconId, int textId){
 		//Log.i("YellowQuest", "Start make achievement toast");
 		View layout = context.getLayoutInflater().inflate(R.layout.unlock, null, false);

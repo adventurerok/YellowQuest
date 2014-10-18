@@ -6,7 +6,6 @@ import java.util.Map.Entry;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.support.v4.util.LongSparseArray;
-import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
@@ -174,7 +173,9 @@ public class GameData {
 			setInt(hash, score);
 			String text = context.getString(R.string.hiscore_beat);
 			text = String.format(text, score);
-			Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
+			
+			ToastSystem.showHiscoreToast(score, res);
+			
 			client = context.getApiClient();
 			if (client != null && client.isConnected()) {
 				Games.Leaderboards.submitScore(client, context.getString(R.string.leaderboard_yellowquest_hiscores),

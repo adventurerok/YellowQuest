@@ -116,5 +116,8 @@
     <string name="achievement_big_failure_desc">Fail to reach the second box on level 1</string>
     <string name="achievement_almost_desc">Fail to land on the flag box</string>
     <string name="achievement_overshot_desc">Collide with the right side of the flag box</string>
+    
+    <string name="new_hiscore">New Hiscore: %1$d</string>
+    <string name="old_hiscore">That\'s an increase of %1$d on your old hiscore of %2$d!</string>
 
 </resources>

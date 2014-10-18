@@ -44,7 +44,7 @@
             android:layout_toEndOf="@+id/achievement_icon"
             android:layout_toRightOf="@+id/achievement_icon"
             android:gravity="bottom"
-            android:text="@string/desc_here" />
+            android:text="@string/old_hiscore" />
 
         <TextView
             android:id="@+id/achievement_reward"
