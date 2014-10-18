@@ -1,13 +1,11 @@
 package com.ithinkrok.yellowquest;
 
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.support.v4.util.LongSparseArray;
-import android.view.Gravity;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -98,23 +96,23 @@ public class GameData {
 		client = context.getApiClient();
 		if (client == null || !client.isConnected()) {
 			setInt(getAchievementHash(achievement), 1);
-			ToastSystem.showAchievementToast(info);
 			
 		} else {
 			Games.Achievements.unlock(client, achievement);
 			setInt(getAchievementHash(achievement), 2);
 		}
 
+		ToastSystem.showAchievementToast(info);
 		
 		if (info.reward < 1)
 			return true;
 
 		addScorePoints(info.reward);
-		String text = context.getString(R.string.achievement_reward);
-		text = String.format(text, info.reward);
-		Toast t = Toast.makeText(context, text, Toast.LENGTH_SHORT);
-		t.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, (int) (context.view.width * 0.05), (int) (context.view.height * 0.1));
-		t.show();
+//		String text = context.getString(R.string.achievement_reward);
+//		text = String.format(text, info.reward);
+//		Toast t = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+//		t.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, (int) (context.view.width * 0.05), (int) (context.view.height * 0.1));
+//		t.show();
 
 		return true;
 	}
