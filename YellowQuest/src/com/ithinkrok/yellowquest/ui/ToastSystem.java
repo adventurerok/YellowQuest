@@ -1,7 +1,6 @@
 package com.ithinkrok.yellowquest.ui;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.*;
@@ -29,7 +28,7 @@ public class ToastSystem {
 	
 	@SuppressLint("InflateParams")
 	public static void showAchievementToast(AchievementInfo achievement){
-		Log.i("YellowQuest", "Start make achievement toast");
+		//Log.i("YellowQuest", "Start make achievement toast");
 		View layout = context.getLayoutInflater().inflate(R.layout.achievement, null, false);
 		
 		ImageView icon = (ImageView) layout.findViewById(R.id.achievement_icon);
@@ -53,7 +52,28 @@ public class ToastSystem {
 		toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 10);
 		toast.show();
 		
-		Log.i("YellowQuest", "End make achievement toast");
+		//Log.i("YellowQuest", "End make achievement toast");
+	}
+	
+	@SuppressLint("InflateParams")
+	public static void showUnlockToast(int iconId, int textId){
+		//Log.i("YellowQuest", "Start make achievement toast");
+		View layout = context.getLayoutInflater().inflate(R.layout.unlock, null, false);
+		
+		ImageView icon = (ImageView) layout.findViewById(R.id.unlock_icon);
+		icon.setImageResource(iconId);
+		
+		TextView name =(TextView) layout.findViewById(R.id.unlock_text);
+		name.setText(textId);
+		
+		
+		Toast toast = new Toast(context);
+		toast.setView(layout);
+		toast.setDuration(Toast.LENGTH_SHORT);
+		toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 10);
+		toast.show();
+		
+		//Log.i("YellowQuest", "End make achievement toast");
 	}
 
 }

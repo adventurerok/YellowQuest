@@ -174,8 +174,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	public void setPassedOne() {
 		if(!this.passedOne){
 			settings.edit().putBoolean("passed", true).commit();
-			//Toast.makeText(this, R.string.powers_view_unlock, Toast.LENGTH_SHORT).show();
-			view.game.toastText(R.string.powers_view_unlock);
+			
+			ToastSystem.showUnlockToast(R.drawable.unlock_powers, R.string.powers_view_unlock);
 		}
 		this.passedOne = true;
 	}

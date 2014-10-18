@@ -30,10 +30,11 @@ public class PowerInfo {
 	int warnInfo;
 	int powerNum;
 	int displayUnlock;
+	int displayIcon;
 	PowerCreator creator;
 
 	public PowerInfo(String name, int color, int buyCost, int upgradeCost,
-			int displayName, int displayInfo, int displayUpgradeInfo, int maxUpgrade, int warnInfo, int powerNum, int displayUnlock) {
+			int displayName, int displayInfo, int displayUpgradeInfo, int maxUpgrade, int warnInfo, int powerNum, int displayUnlock, int displayIcon) {
 		super();
 		//this.clazz = clazz;
 		this.name = name;
@@ -47,6 +48,7 @@ public class PowerInfo {
 		this.warnInfo = warnInfo;
 		this.powerNum = powerNum;
 		this.displayUnlock = displayUnlock;
+		this.displayIcon = displayIcon;
 
 	}
 	
@@ -66,7 +68,8 @@ public class PowerInfo {
 	public void unlock(MainActivity context){
 		if(context.getGameData().hasPowerUnlock(powerNum)) return;
 		context.getGameData().addPowerUnlock(powerNum);
-		context.view.game.toastText(displayUnlock);
+		//context.view.game.toastText(displayUnlock);
+		ToastSystem.showUnlockToast(displayIcon, displayUnlock);
 	}
 
 	private static ArrayList<PowerInfo> data = new ArrayList<PowerInfo>();
@@ -75,7 +78,7 @@ public class PowerInfo {
 	static {
 		data.add(new PowerInfo("up", TraitUp.PAINT_GREEN.getColor(), 2000, 10000,
 				R.string.power_up, R.string.power_up_desc, R.string.power_up_upgrade, 2,
-				R.string.power_up_warn, 0, R.string.power_up_unlock).setCreator(new PowerCreator() {
+				R.string.power_up_warn, 0, R.string.power_up_unlock, R.drawable.unlock_up).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
@@ -84,7 +87,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("bounce", TraitBounce.PAINT_MAGENTA.getColor(), 3500, 18000,
 				R.string.power_bounce, R.string.power_bounce_desc, R.string.power_bounce_upgrade, 2,
-				R.string.power_bounce_warn, 1, R.string.power_bounce_unlock).setCreator(new PowerCreator() {
+				R.string.power_bounce_warn, 1, R.string.power_bounce_unlock, R.drawable.unlock_bounce).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
@@ -93,7 +96,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("troll", TraitTroll.PAINT_TROLL.getColor(), 5000, 25000,
 				R.string.power_troll, R.string.power_troll_desc, R.string.power_troll_upgrade, 1,
-				R.string.power_troll_warn, 2, R.string.power_troll_unlock).setCreator(new PowerCreator() {
+				R.string.power_troll_warn, 2, R.string.power_troll_unlock, R.drawable.unlock_backwards).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
@@ -102,7 +105,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("time", YellowQuest.PAINT_GAMEOVER.getColor(), 7500, 37000,
 				R.string.power_time, R.string.power_time_desc, R.string.power_time_upgrade, 2,
-				R.string.power_time_warn, 3, R.string.power_time_unlock).setCreator(new PowerCreator() {
+				R.string.power_time_warn, 3, R.string.power_time_unlock, R.drawable.unlock_time_stop).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
@@ -111,7 +114,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("teleport", TraitConveyor.PAINT_GREY.getColor(), 10000, 50000,
 				R.string.power_teleport, R.string.power_teleport_desc, R.string.power_teleport_upgrade, 2,
-				R.string.power_teleport_warn, 4, R.string.power_teleport_unlock).setCreator(new PowerCreator() {
+				R.string.power_teleport_warn, 4, R.string.power_teleport_unlock, R.drawable.unlock_teleport).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
@@ -120,7 +123,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("life", EntityPlayer.PAINT_YELLOW.getColor(), 15000, 75000,
 				R.string.power_life, R.string.power_life_desc, R.string.power_life_upgrade, 2,
-				R.string.power_life_warn, 5, R.string.power_life_unlock).setCreator(new PowerCreator() {
+				R.string.power_life_warn, 5, R.string.power_life_unlock, R.drawable.unlock_extra_life).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {

@@ -9,7 +9,10 @@ import android.support.v4.util.LongSparseArray;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.achievement.Achievements;
+import com.google.android.gms.games.achievement.Achievements.UpdateAchievementResult;
 import com.ithinkrok.yellowquest.challenge.StatTracker;
 import com.ithinkrok.yellowquest.ui.AchievementInfo;
 import com.ithinkrok.yellowquest.ui.ToastSystem;
@@ -98,7 +101,16 @@ public class GameData {
 			setInt(getAchievementHash(achievement), 1);
 			
 		} else {
-			Games.Achievements.unlock(client, achievement);
+			//Suppress Google achievement notification
+			Games.Achievements.unlockImmediate(client, achievement).setResultCallback(new  ResultCallback<Achievements.UpdateAchievementResult>() {
+
+	            @Override
+	            public void onResult(UpdateAchievementResult result) {
+	                return;
+	            }
+
+	        });
+			
 			setInt(getAchievementHash(achievement), 2);
 		}
 

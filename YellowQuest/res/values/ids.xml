@@ -47,6 +47,9 @@
     <item type="id" name="achievement_name"/>
     <item type="id" name="achievement_desc"/>
     <item type="id" name="achievement_reward"/>
+    <item type="id" name="unlock"/>
+    <item type="id" name="unlock_icon"/>
+    <item type="id" name="unlock_text"/>
     
 
 </resources>
