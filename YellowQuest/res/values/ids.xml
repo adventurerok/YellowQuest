@@ -42,5 +42,11 @@
     <item type="id" name="purchase_name"/>
     <item type="id" name="purchase_buy"/>
     <item type="id" name="play_ad"/>
+    <item type="id" name="achievement"/>
+    <item type="id" name="achievement_icon"/>
+    <item type="id" name="achievement_name"/>
+    <item type="id" name="achievement_desc"/>
+    <item type="id" name="achievement_reward"/>
+    
 
 </resources>

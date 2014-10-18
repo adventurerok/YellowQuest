@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 import com.ithinkrok.yellowquest.challenge.StatTracker;
+import com.ithinkrok.yellowquest.ui.AchievementInfo;
+import com.ithinkrok.yellowquest.ui.ToastSystem;
 
 public class GameData {
 	
@@ -87,27 +89,29 @@ public class GameData {
 		return getInt(hash("cstat_" + stat), 0);
 	}
 
-	public boolean addAchievement(String achievement) {
-		return addAchievement(achievement, 500);
-	}
 
-	public boolean addAchievement(String achievement, int reward) {
+	public boolean addAchievement(String achievement) {
 		if (hasAchievement(achievement))
 			return false;
+		
+		AchievementInfo info = AchievementInfo.getAchievement(achievement);
 		client = context.getApiClient();
 		if (client == null || !client.isConnected()) {
 			setInt(getAchievementHash(achievement), 1);
+			ToastSystem.showAchievementToast(info);
+			
 		} else {
 			Games.Achievements.unlock(client, achievement);
 			setInt(getAchievementHash(achievement), 2);
 		}
 
-		if (reward < 1)
+		
+		if (info.reward < 1)
 			return true;
 
-		addScorePoints(reward);
+		addScorePoints(info.reward);
 		String text = context.getString(R.string.achievement_reward);
-		text = String.format(text, reward);
+		text = String.format(text, info.reward);
 		Toast t = Toast.makeText(context, text, Toast.LENGTH_SHORT);
 		t.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, (int) (context.view.width * 0.05), (int) (context.view.height * 0.1));
 		t.show();

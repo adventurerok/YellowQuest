@@ -16,7 +16,7 @@ public class BasicChallenge extends Challenge {
 	@Override
 	public void update() {
 		if(tracker.getStat(stat, type) >= target){
-			//Yay! Challenge complete!
+			tracker.nextChallenge(true);
 		}
 	}
 

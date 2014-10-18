@@ -22,8 +22,7 @@ import com.google.android.gms.ads.*;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 import com.google.example.games.basegameutils.BaseGameActivity;
-import com.ithinkrok.yellowquest.ui.BuyAdapter;
-import com.ithinkrok.yellowquest.ui.PowerAdapter;
+import com.ithinkrok.yellowquest.ui.*;
 
 public class MainActivity extends BaseGameActivity implements View.OnClickListener {
 	
@@ -118,6 +117,9 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		ToastSystem.setContext(this);
+		AchievementInfo.load(this);
+		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -225,6 +227,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 				Log.w("YellowQuest", "Failed ton unbind buyConnection");
 			}
 		}
+		ToastSystem.setContext(null);
 	}
 
 	@Override

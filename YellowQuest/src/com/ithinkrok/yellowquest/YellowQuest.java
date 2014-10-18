@@ -124,12 +124,9 @@ public class YellowQuest {
 		PAINT_GAMEOVER.setTextSize(canvas.density * 30);
 	}
 
+	
 	public void addAchievement(int achievement) {
 		gameData.addAchievement(activity.getString(achievement));
-	}
-	
-	public void addAchievement(int achievement, int score) {
-		gameData.addAchievement(activity.getString(achievement), score);
 	}
 	
 	public EntityPlatform getPlatform(int num){
@@ -381,26 +378,26 @@ public class YellowQuest {
 
 		if (Math.abs(player.box.sx - level.finalBox.box.ex) < 1) {
 			gameData.statTracker.addStat(Stat.RIGHT_SIDE_FLAG, 1);
-			addAchievement(R.string.achievement_overshot, 5000);
+			addAchievement(R.string.achievement_overshot);
 		}
 		switch (level.number) {
 		case 2:
-			addAchievement(R.string.achievement_easy, 1000);
+			addAchievement(R.string.achievement_easy);
 			break;
 		case 4:
 			PowerInfo.getData("life").unlock(getContext());
 			break;
 		case 5:
-			addAchievement(R.string.achievement_medium, 3000);
+			addAchievement(R.string.achievement_medium);
 			break;
 		case 8:
-			addAchievement(R.string.achievement_hard, 9000);
+			addAchievement(R.string.achievement_hard);
 			break;
 		case 11:
-			addAchievement(R.string.achievement_expert, 27000);
+			addAchievement(R.string.achievement_expert);
 			break;
 		case 14:
-			addAchievement(R.string.achievement_impossible, 81000);
+			addAchievement(R.string.achievement_impossible);
 			break;
 		}
 	}
@@ -562,9 +559,9 @@ public class YellowQuest {
 	private void updateFalling() {
 		if (this.player.fallDist > 1000) {
 			if (playerBox == 0 && level.number == 0) {
-				addAchievement(R.string.achievement_big_failure, 1);
+				addAchievement(R.string.achievement_big_failure);
 			} else if (playerBox + 2 >= level.size) {
-				addAchievement(R.string.achievement_almost, 99);
+				addAchievement(R.string.achievement_almost);
 			}
 			if (this.playerLives > 1) {
 				this.playerLives -= 1;
