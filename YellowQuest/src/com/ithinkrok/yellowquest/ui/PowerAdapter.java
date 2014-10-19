@@ -10,6 +10,7 @@ import android.view.*;
 import android.widget.*;
 
 import com.ithinkrok.yellowquest.*;
+import com.ithinkrok.yellowquest.challenge.Challenge;
 
 public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 
@@ -39,7 +40,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 	@Override
 	public Object getItem(int position) {
 		String at = showing.get(position);
-		if(at.startsWith("#")){
+		if(at.startsWith("#") || at.startsWith("!")){
 			return null;
 		}
 		return PowerInfo.getData(showing.get(position));
@@ -52,22 +53,51 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 	
 	public void refreshItems(){
 		showing.clear();
-		String tip = Tip.getTip(context);
-		if(tip != null){
-			showing.add(tip);
-		}
+		showing.add("!");
 		for(int d = 0; d < 6; ++d){
 			if(!context.getGameData().hasPowerUnlock(d)) continue;
 			else showing.add(PowerInfo.getData(d).name);
+		}
+		String tip = Tip.getTip(context);
+		if(tip != null){
+			showing.add(tip);
 		}
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		String name = showing.get(position);
+		if(name.startsWith("!")) return getChallengeView(convertView, parent);
 		if(name.startsWith("#")) return getTipView(name, convertView, parent);
 		else return getPowerView(name, convertView, parent);
 		
+	}
+	
+	public View getChallengeView(View convertView, ViewGroup parent){
+		Challenge chal = context.getGameData().statTracker.currentChallenge;
+		
+		View row = null;
+		if(convertView != null && convertView.getId() == R.id.challenge){
+			row = convertView;
+		} 
+		if(row == null){
+			LayoutInflater inflater = context.getLayoutInflater();
+			row = inflater.inflate(R.layout.challenge, parent, false);
+		}
+		
+		ImageView icon = (ImageView) row.findViewById(R.id.challenge_icon);
+		TextView title = (TextView) row.findViewById(R.id.challenge_title);
+		TextView progress = (TextView) row.findViewById(R.id.challenge_text);
+		
+		icon.setImageResource(chal.getIconResource());
+		
+		String titleText = chal.getTitleText(context);
+		titleText = String.format(context.getString(R.string.challenge_info), titleText);
+		title.setText(titleText);
+		
+		progress.setText(chal.getProgressText(context));
+		
+		return row;
 	}
 	
 	public View getTipView(String name, View convertView, ViewGroup parent){

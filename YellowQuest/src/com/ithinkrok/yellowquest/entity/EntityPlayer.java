@@ -62,7 +62,7 @@ public class EntityPlayer extends Entity {
 		double oldx = x;
 		this.move(this.x_velocity, this.y_velocity);
 		if(oldx > x){
-			game.gameData.statTracker.addStat(Stat.LEFT_DISTANCE, (int)(oldx - x));
+			game.gameData.statTracker.addStat(game.getContext(), Stat.LEFT_DISTANCE, (int)(oldx - x));
 		}
 		if (this.intersecting != null) {
 			if (this.intersecting.boxNumber > game.playerBox) {
@@ -76,7 +76,7 @@ public class EntityPlayer extends Entity {
 					boxMult = 15;
 				game.addScore(skipped * boxMult);
 				--skipped;
-				if(skipped > 0) game.gameData.statTracker.addStat(Stat.JUMP_OVER_BOXES, skipped);
+				if(skipped > 0) game.gameData.statTracker.addStat(game.getContext(), Stat.JUMP_OVER_BOXES, skipped);
 				while (skipped > 0) {
 					game.addScore(skipped * 10);
 					--skipped;

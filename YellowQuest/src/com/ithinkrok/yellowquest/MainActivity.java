@@ -449,6 +449,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 	public void loadPlayView() {
 		state = GameState.SETUP;
+		gameData.statTracker.generateChallenge();
 		setContentView(R.layout.play);
 
 		play_play = (TextView) findViewById(R.id.play_play);

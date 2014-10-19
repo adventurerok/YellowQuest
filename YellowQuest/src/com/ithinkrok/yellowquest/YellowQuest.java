@@ -114,6 +114,7 @@ public class YellowQuest {
 
 	public YellowQuest(CanvasSurfaceView canvas) {
 		this.canvas = canvas;
+		this.activity = getContext();
 		fullSizeLeftButton = canvas.getActivity().fullSizeLeftButton;
 		activity = canvas.getActivity();
 		gameData = canvas.getActivity().getGameData();
@@ -356,7 +357,7 @@ public class YellowQuest {
 
 	private void levelUp() {
 		gameOver = new GameOver(1, "Next Level");
-		gameData.statTracker.addStat(Stat.COMPLETE_LEVEL, 1);
+		gameData.statTracker.addStat(getContext(), Stat.COMPLETE_LEVEL, 1);
 		int mult = 10;
 		if (shadow) {
 			if (timed)
@@ -377,7 +378,7 @@ public class YellowQuest {
 		gameData.addScore(level.number + 1, levelScore);
 
 		if (Math.abs(player.box.sx - level.finalBox.box.ex) < 1) {
-			gameData.statTracker.addStat(Stat.RIGHT_SIDE_FLAG, 1);
+			gameData.statTracker.addStat(getContext(), Stat.RIGHT_SIDE_FLAG, 1);
 			addAchievement(R.string.achievement_overshot);
 		}
 		switch (level.number) {
@@ -575,23 +576,24 @@ public class YellowQuest {
 		--gameOver.time;
 		if (gameOver.time == 0) {
 			if (gameOver.type == 0) {
-				gameData.statTracker.addStat(Stat.DEATHS, 1);
-				gameData.statTracker.lostLife();
-				gameData.statTracker.gameOver();
+				gameData.statTracker.addStat(getContext(), Stat.DEATHS, 1);
+				gameData.statTracker.lostLife(getContext());
+				gameData.statTracker.gameOver(getContext());
 				gameOver();
 				setDisplaying(false);
 				canvas.clearTouches();
 				if(canvas.getActivity().passedOne) canvas.getActivity().loadPlayView();
 				else canvas.getActivity().loadMenuView();
 				gameData.statTracker.resetGame();
+				//gameData.statTracker.generateChallenge();
 			} else if (gameOver.type == 1){
-				gameData.statTracker.completeLevel();
+				gameData.statTracker.completeLevel(getContext());
 				gameData.statTracker.resetLevel();
 				this.nextLevel();
 			} else if (gameOver.type == 2){
 				this.restartLevel();
-				gameData.statTracker.addStat(Stat.DEATHS, 1);
-				gameData.statTracker.lostLife();
+				gameData.statTracker.addStat(getContext(), Stat.DEATHS, 1);
+				gameData.statTracker.lostLife(getContext());
 				gameData.statTracker.resetLife();
 			}
 			gameOver = null;
@@ -620,7 +622,7 @@ public class YellowQuest {
 			this.player.x_velocity = maxSpeed;
 		if (doJump() && this.player.onGround) {
 			this.player.y_velocity = jump * player.getJumpMultiplier() + player.getJumpIncrease();
-			gameData.statTracker.addStat(Stat.JUMPS, 1);
+			gameData.statTracker.addStat(getContext(), Stat.JUMPS, 1);
 			player.onGround = false;
 			timerStarted = true;
 		}

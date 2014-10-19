@@ -123,6 +123,15 @@
     <string name="rank_up">Rank up! You are now rank %1$d</string>
     
     <string name="jumped_over_boxes">Jumped over %1$d of %2$d boxes!</string>
-    <string name="right_side_flag">Right side flagged $1$d of %2%d times!</string>
+    <string name="jump_over_boxes">Jump over %1$d boxes %2$s</string>
+    <string name="right_side_flagging">Right side flagged %1$d of %2$d times!</string>
+    <string name="right_side_flag">Collide with the right side of the flag %1$d times %2$s</string>
+    <string name="challenge_complete">Challenge Complete!</string>
+    <string name="new_challenge">New Challenge:</string>
+    <string name="challenge_info">Challenge: %1$s</string>
+    
+    <string name="in_game">in 1 game</string>
+    <string name="in_level">in 1 level</string>
+    <string name="in_life">in 1 life</string>
 
 </resources>

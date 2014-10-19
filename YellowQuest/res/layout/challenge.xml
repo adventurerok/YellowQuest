@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/challenge"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_margin="5dp"
+    android:background="@color/black" >
+
+    <ImageView
+        android:id="@+id/challenge_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/img_here"/>
+
+    <TextView
+        android:id="@+id/challenge_title"
+        style="@style/RelSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@+id/challenge_icon"
+        android:layout_toRightOf="@+id/challenge_icon"
+        android:text="@string/tip_empty" />
+
+    <TextView
+        android:id="@+id/challenge_text"
+        style="@style/RelSmaller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/challenge_title"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="2dp"
+        android:layout_toEndOf="@+id/challenge_icon"
+        android:layout_toRightOf="@+id/challenge_icon"
+        android:text="@string/tip_empty" />
+
+
+</RelativeLayout>

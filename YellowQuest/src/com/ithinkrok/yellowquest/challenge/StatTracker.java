@@ -3,6 +3,8 @@ package com.ithinkrok.yellowquest.challenge;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.content.Context;
+
 import com.ithinkrok.yellowquest.GameData;
 
 public class StatTracker {
@@ -36,19 +38,19 @@ public class StatTracker {
 		
 	}
 	
-	public void completeLevel(){
+	public void completeLevel(Context context){
 		if(currentChallenge == null) return;
-		currentChallenge.completeLevel();
+		currentChallenge.completeLevel(context);
 	}
 	
-	public void lostLife(){
+	public void lostLife(Context context){
 		if(currentChallenge == null) return;
-		currentChallenge.lostLife();
+		currentChallenge.lostLife(context);
 	}
 	
-	public void gameOver(){
+	public void gameOver(Context context){
 		if(currentChallenge == null) return;
-		currentChallenge.gameOver();
+		currentChallenge.gameOver(context);
 	}
 	
 	private static ArrayList<ChallengeInfo> challenges = new ArrayList<StatTracker.ChallengeInfo>();
@@ -61,6 +63,10 @@ public class StatTracker {
 	public StatTracker(GameData gameData) {
 		super();
 		this.gameData = gameData;
+	}
+	
+	public void loaded(){
+		generateChallenge();
 	}
 
 	static {
@@ -112,7 +118,7 @@ public class StatTracker {
 		}
 	}
 
-	public void addStat(Stat stat, int add) {
+	public void addStat(Context context, Stat stat, int add) {
 		Integer old;
 
 		old = currentGame.get(stat.name());
@@ -132,7 +138,7 @@ public class StatTracker {
 
 		gameData.addStat(stat.name(), add);
 		
-		if(currentChallenge != null && currentChallenge.stat == stat) currentChallenge.update();
+		if(currentChallenge != null && currentChallenge.stat == stat) currentChallenge.update(context, add);
 	}
 
 	public int getStat(Stat stat, StatType type) {
@@ -152,6 +158,12 @@ public class StatTracker {
 		}
 	}
 	
+	public void generateChallenge(){
+		if(currentChallenge != null) return;
+		int cNum = gameData.getChallengeNum();
+		currentChallenge = challenges.get(cNum % challenges.size()).createChallenge(this);
+	}
+	
 	public void nextChallenge(boolean reward){
 		currentChallenge = null;
 		resetChallenge();
@@ -162,8 +174,22 @@ public class StatTracker {
 			gameData.skipChallenge();
 		}
 		
-		int cNum = gameData.getChallengeNum();
-		currentChallenge = challenges.get(cNum % challenges.size()).createChallenge(this);
+		generateChallenge();
+	}
+	
+	public void skipChallenge(){
+		currentChallenge = null;
+		resetChallenge();
+		
+		gameData.skipChallenge();
+		
+	}
+
+	public void completeChallenge() {
+		currentChallenge = null;
+		resetChallenge();
+		
+		gameData.completeChallenge();
 	}
 
 }

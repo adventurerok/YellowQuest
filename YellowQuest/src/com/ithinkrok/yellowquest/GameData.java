@@ -36,15 +36,15 @@ public class GameData {
 
 	private GoogleApiClient client;
 	
-	public StatTracker statTracker = new StatTracker(this);
 	
-
 	// Use gamedata to save achievements
 	// 0 = not got
 	// 1 = got, but only offline
 	// 2 = got online
 
 	private LongSparseArray<Object> data = new LongSparseArray<Object>();
+	
+	public StatTracker statTracker = new StatTracker(this);
 
 	public GameData(MainActivity context) {
 		super();
@@ -354,6 +354,8 @@ public class GameData {
 				this.data.put(key, (String) e.getValue());
 			}
 		}
+		
+		statTracker.loaded();
 	}
 
 	

@@ -56,6 +56,10 @@
     <item type="id" name="progress_bar_left"/>
     <item type="id" name="progress_bar_right"/>
     <item type="id" name="progress_increase"/>
+    <item type="id" name="challenge"/>
+    <item type="id" name="challenge_title"/>
+    <item type="id" name="challenge_icon"/>
+    <item type="id" name="challenge_text"/>
     
 
 </resources>
