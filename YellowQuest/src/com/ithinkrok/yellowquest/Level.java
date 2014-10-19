@@ -9,5 +9,7 @@ public class Level {
 	public int size = 10;
 	public int number = 0;
     public Entity finalBox = null;
+    public int bonusPosition;
+    public String bonusType;
 	
 }

@@ -12,6 +12,8 @@ public class EntityPlatform extends Entity {
 	
 	public boolean revealed = true;
 	
+	public boolean isBonus = false;
+	
 	static {
 		PAINT_BLUE.setColor(0xff0000ff);
 		PAINT_WHITE.setColor(0xffffffff);

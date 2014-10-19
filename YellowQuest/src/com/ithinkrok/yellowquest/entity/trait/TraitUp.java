@@ -12,6 +12,9 @@ public class TraitUp extends Trait {
 	
 	private static boolean powerUnlock = false;
 	
+	private int playerUpTime = 0;
+	private int maxUpTime = 200;
+	
 	static {
 		PAINT_GREEN.setColor(0xff00ff00);
 	}
@@ -23,7 +26,12 @@ public class TraitUp extends Trait {
 	
 	@Override
 	public void intersectsPlayer(EntityPlayer player) {
-		parent.y_velocity = 5; // 45 ups
+		if(playerUpTime == 0){
+			maxUpTime = (player.hasPower("up") ? 250 : 200);
+		}
+		++playerUpTime;
+		if(playerUpTime < maxUpTime) parent.y_velocity = 5; // 45 ups
+		else if(playerUpTime == maxUpTime) parent.y_velocity = 0;
 		if(!powerUnlock){
 			PowerInfo.getData("up").unlock(player.game.getContext());
 			powerUnlock = true;

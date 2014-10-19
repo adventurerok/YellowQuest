@@ -8,9 +8,11 @@ import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
 
+import com.ithinkrok.yellowquest.Arrow.Direction;
 import com.ithinkrok.yellowquest.challenge.Stat;
 import com.ithinkrok.yellowquest.entity.*;
 import com.ithinkrok.yellowquest.entity.power.PowerTroll;
+import com.ithinkrok.yellowquest.entity.trait.TraitUp;
 import com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory;
 import com.ithinkrok.yellowquest.ui.PowerInfo;
 import com.ithinkrok.yellowquest.util.Box;
@@ -66,6 +68,7 @@ public class YellowQuest {
 	public GameOver gameOver = null;
 	public Level level = new Level();
 	public ArrayList<Entity> boxes = new ArrayList<Entity>();
+	public ArrayList<Arrow> arrows = new ArrayList<Arrow>();
 	public EntityPlayer player;
 	public int nextBox = 0;
 	public int playerBox = 0;
@@ -75,6 +78,8 @@ public class YellowQuest {
 	public int bgenX = -32, bgenY = 0;
 	public int bgenYMax = 0, bgenYMin = 0;
 	private CanvasSurfaceView canvas;
+	
+	public boolean generatingBonus = false;
 
 	private int lastWidth = 0;
 	private int lastHeight = 0;
@@ -198,7 +203,11 @@ public class YellowQuest {
 		if (gameOver != null && gameOver.time == 0)
 			gameOver = null;
 		if (gameOver == null) {
-			drawArrow(rend, 100, 100, PAINT_COOLDOWN);
+			//drawArrow(rend, 100, 100, PAINT_COOLDOWN);
+			for(Arrow arr : arrows){
+				drawUpArrow(rend, arr.x, arr.y, arr.paint);
+				
+			}
 			tPos = 0;
 			drawFlag(rend, (float) level.finalBox.x, (float) level.finalBox.box.ey);
 			for (int d = 0; d < boxes.size(); ++d) {
@@ -263,7 +272,7 @@ public class YellowQuest {
 		rend.fillRect(x, y, 5, 60, PAINT_BROWN);
 	}
 	
-	public void drawArrow(CanvasSurfaceView rend, float x, float y, Paint paint){
+	public void drawUpArrow(CanvasSurfaceView rend, float x, float y, Paint paint){
 		x -= player.x;
 		y -= player.y;
 		x += rend.width / 2;
@@ -289,9 +298,47 @@ public class YellowQuest {
 		rend.canvas.drawPath(path, paint);
 	}
 
+	public void generateBonusBoxes(int x, int y){
+		int ox = bgenX;
+		int oy = bgenY;
+		Level old = level;
+		int oldNextBox = nextBox;
+		
+		bgenX = x;
+		bgenY = y;
+		level = new Level();
+		level.number = old.number;
+		level.size = 3 + random(5);
+		nextBox = 0;
+		
+		generatingBonus = true;
+		
+		generateBoxes(10);
+		
+		generatingBonus = false;
+		
+		bgenX = ox;
+		bgenY = oy;
+		level = old;
+		nextBox = oldNextBox;
+	}
+	
+	public void generateBonusInfo(){
+		if(generatingBonus) return;
+		PowerInfo bType = PowerInfo.generateBonus(this);
+		if(bType != null){
+			level.bonusType = bType.getName();
+			level.bonusPosition = 1 + random(level.size - 3);
+		} else {
+			level.bonusType = "";
+			level.bonusPosition = -1;
+		}
+	}
+	
 	public void generateBoxes(int amount) {
 		if (nextBox >= level.size)
 			return;
+		if(level.bonusPosition == 0) generateBonusInfo();
 		double xe;
 		double ye;
 		double hs;
@@ -315,6 +362,19 @@ public class YellowQuest {
 			ent = (EntityPlatform) WeightedTraitFactory.randomPlatform(this).calcBounds(bgenX + xe / 2, bgenY - ye / 2,
 					xe, ye);
 			
+			//if(!generatingBonus && ent.hasTrait("up")) generateBonusBoxes(bgenX + 120, bgenY + 1510);
+			
+			
+			ent.isBonus = generatingBonus;
+			if(generatingBonus) ent.boxNumber += 9900;
+			
+			if(level.bonusPosition == ent.boxNumber){
+				if(level.bonusType.equals("up")){
+					arrows.add(new Arrow(ent.x, ent.box.ey + 20, Direction.UP, TraitUp.PAINT_GREEN));
+					generateBonusBoxes(bgenX + 150, bgenY + 1500);
+				}
+			}
+			
 			ent.install();
 			level.lastBoxType = ent;
 			boxes.add(ent);
@@ -322,7 +382,8 @@ public class YellowQuest {
 			bgenX += xe;
 			bgenX += 10;
 			bgenX += random(170);
-			bgenY += random(230) - 110;
+			if(generatingBonus) bgenY += random(170) - 50;
+			else bgenY += random(230) - 110;
 			if (bgenY > bgenYMax)
 				bgenYMax = bgenY;
 			else if (bgenY < bgenYMin)
@@ -410,6 +471,7 @@ public class YellowQuest {
 
 	public void nextLevel() {
 		boxes.clear();
+		arrows.clear();
 		level.lastBoxType = null;
 		level.number += 1;
 		level.size = 8 + (level.number * 3);
@@ -449,6 +511,7 @@ public class YellowQuest {
 	public void reload() {
 		gameOver = null;
 		boxes.clear();
+		arrows.clear();
 		level.lastBoxType = null;
 		playerLives = 3;
 		level.number = 0;
@@ -476,6 +539,7 @@ public class YellowQuest {
 
 	public void restartLevel() {
 		boxes.clear();
+		arrows.clear();
 		level.lastBoxType = null;
 		level.size = 8 + (level.number * 4);
 		nextBox = 0;
@@ -666,6 +730,7 @@ public class YellowQuest {
 	public void toastText(int resId){
 		toastText(getContext().getString(resId));
 	}
+	
 
 	private void updateTimer() {
 		if (this.timerStarted) {

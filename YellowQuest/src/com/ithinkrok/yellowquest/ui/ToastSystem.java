@@ -93,12 +93,12 @@ public class ToastSystem {
 
 		View progressLeft = layout.findViewById(R.id.progress_bar_left);
 		RelativeLayout.LayoutParams leftParams = (RelativeLayout.LayoutParams) progressLeft.getLayoutParams();
-		leftParams.width = (int) (250 * percent);
+		leftParams.width = (int) (280 * percent);
 		progressLeft.setLayoutParams(leftParams);
 
 		View progressRight = layout.findViewById(R.id.progress_bar_right);
 		RelativeLayout.LayoutParams rightParams = (RelativeLayout.LayoutParams) progressRight.getLayoutParams();
-		rightParams.width = (int) (250 * (1 - percent));
+		rightParams.width = (int) (280 * (1 - percent));
 		progressRight.setLayoutParams(rightParams);
 		
 		Toast toast = new Toast(context);
@@ -121,7 +121,7 @@ public class ToastSystem {
 		View layout = context.getLayoutInflater().inflate(R.layout.achievement, null, false);
 
 		ImageView icon = (ImageView) layout.findViewById(R.id.achievement_icon);
-		icon.setImageResource(R.drawable.new_hiscore);
+		icon.setImageResource(iconRes);
 
 		TextView name = (TextView) layout.findViewById(R.id.achievement_name);
 		name.setText(R.string.challenge_complete);

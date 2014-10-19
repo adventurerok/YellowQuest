@@ -67,6 +67,7 @@ public class EntityPlayer extends Entity {
 		if (this.intersecting != null) {
 			if (this.intersecting.boxNumber > game.playerBox) {
 				int skipped = this.intersecting.boxNumber - game.playerBox;
+				if(skipped > 5) skipped = 1;
 				if (game.timeMode())
 					game.timer -= YellowQuest.TIMER_BOX * skipped;
 				int boxMult = 10;
