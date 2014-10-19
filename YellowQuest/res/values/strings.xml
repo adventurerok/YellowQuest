@@ -119,5 +119,10 @@
     
     <string name="new_hiscore">New Hiscore: %1$d</string>
     <string name="old_hiscore">That\'s an increase of %1$d on your old hiscore of %2$d!</string>
+    <string name="new_rank">Rank %1$d</string>
+    <string name="rank_up">Rank up! You are now rank %1$d</string>
+    
+    <string name="jumped_over_boxes">Jumped over %1$d of %2$d boxes!</string>
+    <string name="right_side_flag">Right side flagged $1$d of %2%d times!</string>
 
 </resources>

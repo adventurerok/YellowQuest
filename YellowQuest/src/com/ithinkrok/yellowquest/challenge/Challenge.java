@@ -17,6 +17,10 @@ public abstract class Challenge {
 	}
 
 
+	public int getIconResource(){
+		return stat.icon;
+	}
+	
 	//Called when the stat it is tracking is updated
 	public void update(){
 		

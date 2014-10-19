@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/progress"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/black" >
+
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        tools:ignore="UselessParent" >
+
+        <ImageView
+            android:id="@+id/progress_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/ach_icon" />
+
+        <TextView
+            android:id="@+id/progress_name"
+            style="@style/RelSmaller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/progress_icon"
+            android:layout_toRightOf="@+id/progress_icon"
+            android:text="@string/empty" />
+
+        <View
+            android:id="@+id/progress_bar_left"
+            style="@style/RelSmaller"
+            android:background="@color/yellow"
+            android:layout_width="100dp"
+            android:layout_height="15dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toEndOf="@+id/progress_icon"
+            android:layout_toRightOf="@+id/progress_icon"
+            android:gravity="bottom"
+            android:text="@string/old_hiscore" />
+        
+        <View
+            android:id="@+id/progress_bar_right"
+            style="@style/RelSmaller"
+            android:background="@color/red"
+            android:layout_width="150dp"
+            android:layout_height="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/progress_bar_left"
+            android:layout_toRightOf="@+id/progress_bar_left"
+            android:gravity="bottom"
+            android:text="@string/old_hiscore" />
+
+        <TextView
+            android:id="@+id/progress_increase"
+            style="@style/RelSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"/>
+    </RelativeLayout>
+
+</RelativeLayout>

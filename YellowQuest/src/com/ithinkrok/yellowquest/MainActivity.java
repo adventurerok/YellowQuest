@@ -28,11 +28,11 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	
 	public static final boolean DEBUG = false;
 
-	private static enum GameState {
+	public static enum GameState {
 		MENU, SETTINGS, SETUP, GAME, BUY;
 	}
 
-	private GameState state;
+	public GameState state;
 
 	private GameData gameData;
 	private TextView menu_play;
