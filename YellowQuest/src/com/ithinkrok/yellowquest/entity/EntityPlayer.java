@@ -66,6 +66,10 @@ public class EntityPlayer extends Entity {
 		}
 		if (this.intersecting != null) {
 			if (this.intersecting.boxNumber > game.playerBox) {
+				if(!game.level.isBonus && ((EntityPlatform)this.intersecting).isBonus){
+					game.nextBox = 9999;
+					game.level = game.level.bonusLevel;
+				}
 				int skipped = this.intersecting.boxNumber - game.playerBox;
 				if(skipped > 5) skipped = 1;
 				if (game.timeMode())

@@ -6,11 +6,11 @@ import com.ithinkrok.yellowquest.entity.trait.TraitUp;
 
 public class PowerUp extends Power {
 	
-	int up = 1;
+	int up = 2;
 
 	public PowerUp(EntityPlayer player, int upgradeLevel) {
 		super(player, upgradeLevel);
-		up = 1 + upgradeLevel;
+		up = 2 + upgradeLevel;
 		paint = TraitUp.PAINT_GREEN;
 	}
 

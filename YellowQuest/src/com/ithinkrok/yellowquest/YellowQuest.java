@@ -307,6 +307,8 @@ public class YellowQuest {
 		bgenX = x;
 		bgenY = y;
 		level = new Level();
+		level.isBonus = true;
+		old.bonusLevel = level;
 		level.number = old.number;
 		level.size = 3 + random(5);
 		nextBox = 0;
@@ -329,6 +331,7 @@ public class YellowQuest {
 		if(bType != null){
 			level.bonusType = bType.getName();
 			level.bonusPosition = 1 + random(level.size - 3);
+			Log.i("YellowQuest", "Bonus Type: " +level.bonusType + ", Bonus Pos: " + level.bonusPosition);
 		} else {
 			level.bonusType = "";
 			level.bonusPosition = -1;
@@ -370,7 +373,7 @@ public class YellowQuest {
 			
 			if(level.bonusPosition == ent.boxNumber){
 				if(level.bonusType.equals("up")){
-					arrows.add(new Arrow(ent.x, ent.box.ey + 20, Direction.UP, TraitUp.PAINT_GREEN));
+					for(int a = 0; a < 1499; a += 300) arrows.add(new Arrow(ent.x, ent.box.ey + 20 + a, Direction.UP, TraitUp.PAINT_GREEN));
 					generateBonusBoxes(bgenX + 150, bgenY + 1500);
 				}
 			}
@@ -472,8 +475,9 @@ public class YellowQuest {
 	public void nextLevel() {
 		boxes.clear();
 		arrows.clear();
-		level.lastBoxType = null;
-		level.number += 1;
+		int lNum = level.number;
+		level = new Level();
+		level.number = lNum + 1;
 		level.size = 8 + (level.number * 3);
 		nextBox = 0;
 		bgenX = -32;
@@ -512,7 +516,7 @@ public class YellowQuest {
 		gameOver = null;
 		boxes.clear();
 		arrows.clear();
-		level.lastBoxType = null;
+		level = new Level();
 		playerLives = 3;
 		level.number = 0;
 		level.size = 8;
@@ -540,7 +544,9 @@ public class YellowQuest {
 	public void restartLevel() {
 		boxes.clear();
 		arrows.clear();
-		level.lastBoxType = null;
+		int lNum = level.number;
+		level = new Level();
+		level.number = lNum;
 		level.size = 8 + (level.number * 4);
 		nextBox = 0;
 		bgenX = -32;
@@ -597,7 +603,9 @@ public class YellowQuest {
 			updateFalling();
 			updateEntities();
 
-			if (this.playerBox + 1 >= level.size) {
+			if (!level.isBonus && this.playerBox + 1 == level.size) {
+				levelUp();
+			} else if(level.isBonus && this.playerBox - 9900 + 1 == level.size){
 				levelUp();
 			}
 		} else {

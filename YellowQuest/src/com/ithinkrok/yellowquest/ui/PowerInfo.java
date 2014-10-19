@@ -52,6 +52,9 @@ public class PowerInfo {
 		this.displayUnlock = displayUnlock;
 		this.displayIcon = displayIcon;
 		this.minBonusLevel = minBonusLevel;
+		
+		this.buyCost = 1;
+		this.upgradeCost = 1;
 
 	}
 	
@@ -89,7 +92,7 @@ public class PowerInfo {
 	static {
 		data.add(new PowerInfo("up", TraitUp.PAINT_GREEN.getColor(), 2000, 10000,
 				R.string.power_up, R.string.power_up_desc, R.string.power_up_upgrade, 2,
-				R.string.power_up_warn, 0, R.string.power_up_unlock, R.drawable.unlock_up, 3).setCreator(new PowerCreator() {
+				R.string.power_up_warn, 0, R.string.power_up_unlock, R.drawable.unlock_up, 0).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {

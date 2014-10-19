@@ -11,5 +11,7 @@ public class Level {
     public Entity finalBox = null;
     public int bonusPosition;
     public String bonusType;
+    public Level bonusLevel;
+    public boolean isBonus = false;
 	
 }
