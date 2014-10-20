@@ -12,8 +12,7 @@ import com.ithinkrok.yellowquest.Arrow.Direction;
 import com.ithinkrok.yellowquest.challenge.Stat;
 import com.ithinkrok.yellowquest.entity.*;
 import com.ithinkrok.yellowquest.entity.power.PowerTroll;
-import com.ithinkrok.yellowquest.entity.trait.TraitUp;
-import com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory;
+import com.ithinkrok.yellowquest.entity.trait.*;
 import com.ithinkrok.yellowquest.ui.PowerInfo;
 import com.ithinkrok.yellowquest.util.Box;
 
@@ -21,6 +20,7 @@ public class YellowQuest {
 
 	private static final Paint PAINT_RED = new Paint();
 	private static final Paint PAINT_BROWN = new Paint();
+	private static final Paint PAINT_BROWNER = new Paint();
 	public static final Paint PAINT_STATS = new Paint();
 	public static final Paint PAINT_GAMEOVER = new Paint();
 	private static final Paint PAINT_BUTTON = new Paint();
@@ -29,6 +29,7 @@ public class YellowQuest {
 	static {
 		PAINT_RED.setColor(0xFFFF0000);
 		PAINT_BROWN.setColor(0xFF556644);
+		PAINT_BROWNER.setColor(0xFF9E3F00);
 		PAINT_STATS.setColor(0xFFFFFFFF);
 		PAINT_GAMEOVER.setColor(0xFFFFFFFF);
 		PAINT_BUTTON.setColor(0x55ffffff);
@@ -39,7 +40,7 @@ public class YellowQuest {
 		PAINT_GAMEOVER.setTypeface(tf);
 		PAINT_STATS.setTextSize(12);
 		PAINT_GAMEOVER.setTextSize(30);
-		
+
 		PAINT_COOLDOWN.setStyle(Paint.Style.FILL);
 	}
 
@@ -78,7 +79,9 @@ public class YellowQuest {
 	public int bgenX = -32, bgenY = 0;
 	public int bgenYMax = 0, bgenYMin = 0;
 	private CanvasSurfaceView canvas;
-	
+
+	public int lifeBonusNum = 0;
+
 	public boolean generatingBonus = false;
 
 	private int lastWidth = 0;
@@ -111,11 +114,10 @@ public class YellowQuest {
 	private Box coolBox = new Box(0, 0, 0, 0);
 
 	private boolean wasPowerPressed = false;
-	
+
 	private boolean fullSizeLeftButton = false;
-	
-	//private double pixelDensity = 1d;
-	
+
+	// private double pixelDensity = 1d;
 
 	public YellowQuest(CanvasSurfaceView canvas) {
 		this.canvas = canvas;
@@ -125,21 +127,23 @@ public class YellowQuest {
 		gameData = canvas.getActivity().getGameData();
 		createButtons(canvas);
 		BOX_BUFFER = (canvas.width / 148) + 2;
-		if(canvas.density < 2) BOX_BUFFER *= 2;
+		if (canvas.density < 2)
+			BOX_BUFFER *= 2;
 		PAINT_STATS.setTextSize(canvas.density * 12);
 		PAINT_GAMEOVER.setTextSize(canvas.density * 30);
 	}
 
-	
 	public void addAchievement(int achievement) {
 		gameData.addAchievement(activity.getString(achievement));
 	}
-	
-	public EntityPlatform getPlatform(int num){
-		for(int d = 0; d < boxes.size(); ++d){
-			if(!(boxes.get(d) instanceof EntityPlatform)) continue;
-			if(boxes.get(d).boxNumber == num) return (EntityPlatform) boxes.get(d);
-			
+
+	public EntityPlatform getPlatform(int num) {
+		for (int d = 0; d < boxes.size(); ++d) {
+			if (!(boxes.get(d) instanceof EntityPlatform))
+				continue;
+			if (boxes.get(d).boxNumber == num)
+				return (EntityPlatform) boxes.get(d);
+
 		}
 		return null;
 	}
@@ -157,20 +161,22 @@ public class YellowQuest {
 		this.fullSizeLeftButton = fullSizeLeftButton;
 		createButtons(canvas);
 	}
-	
-	public boolean renderSmall(){
+
+	public boolean renderSmall() {
 		return canvas.density < 2;
 	}
-	
+
 	public void createButtons(CanvasSurfaceView canvas) {
 		if (lastWidth == canvas.width && lastHeight == canvas.height && fullSizeLeftButton == lastFullSizedLeft)
 			return;
 		double bsm = canvas.density;
-		//pixelDensity = bsm;
+		// pixelDensity = bsm;
 		double leftExtra = 0;
-		if(fullSizeLeftButton) leftExtra = 40;
+		if (fullSizeLeftButton)
+			leftExtra = 40;
 		leftButton = new Box(20 * bsm, canvas.height - 120 * bsm, (80 + leftExtra) * bsm, canvas.height - 20 * bsm);
-		rightButton = new Box((100 + leftExtra) * bsm, canvas.height - 120 * bsm, (200 + leftExtra) * bsm, canvas.height - 20 * bsm);
+		rightButton = new Box((100 + leftExtra) * bsm, canvas.height - 120 * bsm, (200 + leftExtra) * bsm,
+				canvas.height - 20 * bsm);
 		jumpButton = new Box(canvas.width - 120 * bsm, canvas.height - 120 * bsm, canvas.width - 20 * bsm,
 				canvas.height - 20 * bsm);
 
@@ -203,9 +209,9 @@ public class YellowQuest {
 		if (gameOver != null && gameOver.time == 0)
 			gameOver = null;
 		if (gameOver == null) {
-			//drawArrow(rend, 100, 100, PAINT_COOLDOWN);
-			for(Arrow arr : arrows){
-				switch(arr.dir){
+			// drawArrow(rend, 100, 100, PAINT_COOLDOWN);
+			for (Arrow arr : arrows) {
+				switch (arr.dir) {
 				case UP:
 					drawUpArrow(rend, arr.x, arr.y, arr.paint);
 					break;
@@ -213,8 +219,7 @@ public class YellowQuest {
 					drawDownArrow(rend, arr.x, arr.y, arr.paint);
 					break;
 				}
-				
-				
+
 			}
 			tPos = 0;
 			drawFlag(rend, (float) level.finalBox.x, (float) level.finalBox.box.ey);
@@ -233,9 +238,10 @@ public class YellowQuest {
 			if (player.getPower() != null && player.getPower().showPowerButton()) {
 				float cooldown = 1f;
 				cooldown = (player.getPower().cooldownPercent() / 100);
-				
+
 				Paint cd = player.getPower().getCooldownPaint();
-				if(cd == null) cd = PAINT_COOLDOWN;
+				if (cd == null)
+					cd = PAINT_COOLDOWN;
 
 				if (cooldown == 1)
 					drawBox(powerButton);
@@ -249,7 +255,6 @@ public class YellowQuest {
 					drawBox(coolBox, cd);
 				}
 			}
-			
 
 			statsText(rend, "Level: " + (level.number + 1) + "." + (playerBox + 1));
 			statsText(rend, "Score: " + score);
@@ -276,20 +281,25 @@ public class YellowQuest {
 		y -= player.y;
 		x += rend.width / 2;
 		y += rend.height / 2;
-		rend.fillRect(x - 30, y + 30, 30, 30, PAINT_RED);
-		rend.fillRect(x, y, 5, 60, PAINT_BROWN);
+		if(level.isBonus){
+			rend.fillRect(x - 30, y + 30, 30, 30, PAINT_GAMEOVER);
+			rend.fillRect(x, y, 5, 60, PAINT_BROWNER);
+		} else {
+			rend.fillRect(x - 30, y + 30, 30, 30, PAINT_RED);
+			rend.fillRect(x, y, 5, 60, PAINT_BROWN);
+		}
 	}
-	
-	public void drawUpArrow(CanvasSurfaceView rend, float x, float y, Paint paint){
+
+	public void drawUpArrow(CanvasSurfaceView rend, float x, float y, Paint paint) {
 		x -= player.x;
 		y -= player.y;
 		x += rend.width / 2;
 		y += rend.height / 2;
 		rend.fillRect(x - 5, y, 10, 15, paint);
-		
+
 		Path path = new Path();
 		path.setFillType(Path.FillType.EVEN_ODD);
-		if(rend.density >= 1.99){
+		if (rend.density >= 1.99) {
 			path.moveTo(x - 15, rend.height - (y + 15));
 			path.lineTo(x, rend.height - (y + 30));
 			path.lineTo(x + 15, rend.height - (y + 15));
@@ -301,21 +311,20 @@ public class YellowQuest {
 			path.lineTo((x - 15) + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
 		}
 		path.close();
-		
-		
+
 		rend.canvas.drawPath(path, paint);
 	}
-	
-	public void drawDownArrow(CanvasSurfaceView rend, float x, float y, Paint paint){
+
+	public void drawDownArrow(CanvasSurfaceView rend, float x, float y, Paint paint) {
 		x -= player.x;
 		y -= player.y;
 		x += rend.width / 2;
 		y += rend.height / 2;
 		rend.fillRect(x - 5, y + 15, 10, 15, paint);
-		
+
 		Path path = new Path();
 		path.setFillType(Path.FillType.EVEN_ODD);
-		if(rend.density >= 1.99){
+		if (rend.density >= 1.99) {
 			path.moveTo(x - 15, rend.height - (y + 15));
 			path.lineTo(x, rend.height - (y));
 			path.lineTo(x + 15, rend.height - (y + 15));
@@ -327,58 +336,65 @@ public class YellowQuest {
 			path.lineTo((x - 15) + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
 		}
 		path.close();
-		
-		
+
 		rend.canvas.drawPath(path, paint);
 	}
 
-	public void generateBonusBoxes(int x, int y){
+	public void generateBonusBoxes(int x, int y) {
 		int ox = bgenX;
 		int oy = bgenY;
 		Level old = level;
 		int oldNextBox = nextBox;
-		
+
 		bgenX = x;
 		bgenY = y;
 		level = new Level();
 		level.isBonus = true;
+		level.bonusType = old.bonusType;
 		old.bonusLevel = level;
 		level.number = old.number;
-		level.size = 3 + random(5);
+		level.size = 5 + random(5);
 		nextBox = 0;
-		
+
 		generatingBonus = true;
-		
+
 		generateBoxes(10);
-		
+
 		generatingBonus = false;
-		
+
 		bgenX = ox;
 		bgenY = oy;
 		level = old;
 		nextBox = oldNextBox;
 	}
-	
-	public void generateBonusInfo(){
-		if(generatingBonus) return;
-		PowerInfo bType = PowerInfo.generateBonus(this);
-		if(bType != null){
+
+	public void generateBonusInfo() {
+		if (generatingBonus)
+			return;
+		PowerInfo bType;
+		if (lifeBonusNum == 0)
+			bType = PowerInfo.generateBonus(this);
+		else
+			bType = PowerInfo.getData("life");
+		if (bType != null) {
 			level.bonusType = bType.getName();
-			level.bonusPosition = 1 + random(level.size - 3);
-			Log.i("YellowQuest", "Bonus Type: " +level.bonusType + ", Bonus Pos: " + level.bonusPosition);
+			level.bonusPosition = 2 + random(level.size - 4);
+			Log.i("YellowQuest", "Bonus Type: " + level.bonusType + ", Bonus Pos: " + level.bonusPosition);
 		} else {
 			level.bonusType = "";
 			level.bonusPosition = -1;
 		}
 	}
-	
+
 	public void generateBoxes(int amount) {
 		if (nextBox >= level.size)
 			return;
-		if(level.bonusPosition == 0) generateBonusInfo();
+		if (level.bonusPosition == 0)
+			generateBonusInfo();
 		double xe;
 		double ye;
 		double hs;
+		int maxLifeAward = 0;
 		EntityPlatform ent;
 		for (int d = 0; d < amount; ++d) {
 			if (nextBox >= level.size)
@@ -386,34 +402,51 @@ public class YellowQuest {
 			int gainWidth = Math.max(0, 48 - level.number * 6);
 			xe = 64 + gainWidth + random(127 - gainWidth);
 			ye = 24 + random(23);
-			if(level.lastBoxType != null){
+			if (level.lastBoxType != null) {
 				hs = level.lastBoxType.getMaxYWithJump();
 				hs -= bgenY;
-				//hs -= ye / 2d;
-				
-				if(hs < 0){
-					bgenY += hs - random(5); //Boxes cannot be out of reach
-					if(MainActivity.DEBUG) Log.i("YellowQuest", "hs: " + hs + ", bn: " + nextBox);
+				// hs -= ye / 2d;
+
+				if (hs < 0) {
+					bgenY += hs - random(5); // Boxes cannot be out of reach
+					if (MainActivity.DEBUG)
+						Log.i("YellowQuest", "hs: " + hs + ", bn: " + nextBox);
 				}
 			}
 			ent = (EntityPlatform) WeightedTraitFactory.randomPlatform(this).calcBounds(bgenX + xe / 2, bgenY - ye / 2,
 					xe, ye);
 			
-			//if(!generatingBonus && ent.hasTrait("up")) generateBonusBoxes(bgenX + 120, bgenY + 1510);
-			
-			
+			if(level.isBonus && maxLifeAward < 3 && "life".equals(level.bonusType) && ent.traits.length < 2 && random(3) != 0){
+				++maxLifeAward;
+				Trait[] after = new Trait[ent.traits.length + 1];
+				for(int i = 0; i < ent.traits.length; ++i) after[i] = ent.traits[i];
+				after[ent.traits.length] = new TraitExtraLife(ent);
+				ent.traits = after;
+			}
+
+			// if(!generatingBonus && ent.hasTrait("up"))
+			// generateBonusBoxes(bgenX + 120, bgenY + 1510);
+
 			ent.isBonus = generatingBonus;
-			if(generatingBonus) ent.boxNumber += 9900;
-			
-			if(level.bonusPosition == ent.boxNumber){
-				if(level.bonusType.equals("up")){
-					for(int a = 0; a < 1499; a += 500) arrows.add(new Arrow(ent.x, ent.box.ey + 20 + a, Direction.UP, TraitUp.PAINT_GREEN));
+			if (generatingBonus)
+				ent.boxNumber += 9900;
+
+			if (level.bonusPosition == ent.boxNumber) {
+				if (level.bonusType.equals("up")) {
+					for (int a = 0; a < 1499; a += 500)
+						arrows.add(new Arrow(ent.x, ent.box.ey + 20 + a, Direction.UP, TraitUp.PAINT_GREEN));
 					generateBonusBoxes(bgenX + 150, bgenY + 1500);
-					if(ent.hasTrait("up")) ((TraitUp)ent.getTrait("up")).maxUpTime = 1500;
-					ent.bonusType = level.bonusType;
+					if (ent.hasTrait("up"))
+						((TraitUp) ent.getTrait("up")).maxUpTime = 1500;
+					ent.bonusType = "up";
+				} else if (level.bonusType.equals("life")) {
+					arrows.add(new Arrow((ent.box.sx + level.lastBoxType.box.ex) / 2,
+							(ent.box.ey + level.lastBoxType.box.ey) / 2 + 20, Direction.DOWN, EntityPlayer.PAINT_YELLOW));
+					level.lastBoxType.bonusType = "life";
+					generateBonusBoxes(-30, 2000);
 				}
 			}
-			
+
 			ent.install();
 			level.lastBoxType = ent;
 			boxes.add(ent);
@@ -421,8 +454,10 @@ public class YellowQuest {
 			bgenX += xe;
 			bgenX += 10;
 			bgenX += random(170);
-			if(generatingBonus) bgenY += random(170) - 50;
-			else bgenY += random(230) - 110;
+			if (generatingBonus)
+				bgenY += random(170) - 50;
+			else
+				bgenY += random(230) - 110;
 			if (bgenY > bgenYMax)
 				bgenYMax = bgenY;
 			else if (bgenY < bgenYMin)
@@ -448,7 +483,7 @@ public class YellowQuest {
 		if (player.getPower() == null || !player.getPower().showPowerButton())
 			return;
 		boolean pressed = canvas.touchInBox(powerButton);
-		if (pressed && !wasPowerPressed){
+		if (pressed && !wasPowerPressed) {
 			timerStarted = true;
 			player.getPower().powerButtonPressed();
 		}
@@ -511,6 +546,7 @@ public class YellowQuest {
 	public void nextLevel() {
 		boxes.clear();
 		arrows.clear();
+		lifeBonusNum = 0;
 		int lNum = level.number;
 		level = new Level();
 		level.number = lNum + 1;
@@ -531,10 +567,10 @@ public class YellowQuest {
 		timerStarted = false;
 		levelScore = 0;
 		canvas.getActivity().setPassedOne();
-		//toastText("Next Level");
+		// toastText("Next Level");
 	}
-	
-	public MainActivity getContext(){
+
+	public MainActivity getContext() {
 		return canvas.getActivity();
 	}
 
@@ -552,6 +588,7 @@ public class YellowQuest {
 		gameOver = null;
 		boxes.clear();
 		arrows.clear();
+		lifeBonusNum = 0;
 		level = new Level();
 		playerLives = 3;
 		level.number = 0;
@@ -641,7 +678,7 @@ public class YellowQuest {
 
 			if (!level.isBonus && this.playerBox + 1 == level.size) {
 				levelUp();
-			} else if(level.isBonus && this.playerBox - 9900 + 1 == level.size){
+			} else if (level.isBonus && this.playerBox - 9900 + 1 == level.size) {
 				levelUp();
 			}
 		} else {
@@ -666,7 +703,7 @@ public class YellowQuest {
 	}
 
 	private void updateFalling() {
-		if (this.player.fallDist > 1000) {
+		if (player.fallDist > 1010) {
 			if (playerBox == 0 && level.number == 0) {
 				addAchievement(R.string.achievement_big_failure);
 			} else if (playerBox + 2 >= level.size) {
@@ -674,7 +711,24 @@ public class YellowQuest {
 			}
 			if (this.playerLives > 1) {
 				this.playerLives -= 1;
-				gameOver = new GameOver(2, "Level Failed");
+				if (player.lastIntersected != null && "life".equals(player.lastIntersected.bonusType)) {
+					lifeBonusNum++;
+					Log.i("YellowQuest", "LifeBonusNum: " + lifeBonusNum);
+				} else {
+					lifeBonusNum = 0;
+				}
+				
+				
+				if (lifeBonusNum >= 3) {
+					//Log.i("YellowQuest", "Life bonus unlock");
+					player.fallDist = 0;
+					player.teleport(0, 2400);
+					gameOver = new GameOver(3, "Level Failed?");
+					lifeBonusNum = 0;
+				} else {
+					gameOver = new GameOver(2, "Level Failed");
+				}
+				
 			} else
 				gameOver = new GameOver(0, "Game Over");
 		}
@@ -690,28 +744,32 @@ public class YellowQuest {
 				gameOver();
 				setDisplaying(false);
 				canvas.clearTouches();
-				if(canvas.getActivity().passedOne) canvas.getActivity().loadPlayView();
-				else canvas.getActivity().loadMenuView();
+				if (canvas.getActivity().passedOne)
+					canvas.getActivity().loadPlayView();
+				else
+					canvas.getActivity().loadMenuView();
 				gameData.statTracker.resetGame();
-				//gameData.statTracker.generateChallenge();
-			} else if (gameOver.type == 1){
+				// gameData.statTracker.generateChallenge();
+			} else if (gameOver.type == 1) {
 				gameData.statTracker.completeLevel(getContext());
 				gameData.statTracker.resetLevel();
 				this.nextLevel();
-			} else if (gameOver.type == 2){
+			} else if (gameOver.type == 2) {
 				this.restartLevel();
 				gameData.statTracker.addStat(getContext(), Stat.DEATHS, 1);
 				gameData.statTracker.lostLife(getContext());
 				gameData.statTracker.resetLife();
+			} else if (gameOver.type == 3) {
+				// Do nothing
 			}
 			gameOver = null;
-		} 
+		}
 	}
 
 	private void updateInput() {
 		double accel = AIR_ACCEL;
 		double jump = DEFAULT_JUMP;
-		if (this.player.intersecting != null){
+		if (this.player.intersecting != null) {
 			accel = this.player.intersecting.accel;
 			jump = this.player.intersecting.jump;
 		}
@@ -737,18 +795,18 @@ public class YellowQuest {
 	}
 
 	public void loadData() {
-		if(timed || shadow){
+		if (timed || shadow) {
 			MainActivity context = canvas.getActivity();
-			if(!context.usedDifferentModes){
+			if (!context.usedDifferentModes) {
 				context.usedDifferentModes = true;
 				context.getSettings().edit().putBoolean("usedmodes", true).commit();
 			}
 		}
-		
-		if(timed){
+
+		if (timed) {
 			PowerInfo.getData("time").unlock(getContext());
 		}
-		
+
 		String pName = gameData.getNextPower();
 		if (pName == null || pName.trim().isEmpty())
 			return;
@@ -764,17 +822,16 @@ public class YellowQuest {
 	public boolean isDisplaying() {
 		return display;
 	}
-	
-	public void toastText(String text){
+
+	public void toastText(String text) {
 		Toast toast = Toast.makeText(getContext(), text, Toast.LENGTH_SHORT);
-		toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, (int) (canvas.height * 0.2));
+		toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, (int) (canvas.height * 0.2));
 		toast.show();
 	}
-	
-	public void toastText(int resId){
+
+	public void toastText(int resId) {
 		toastText(getContext().getString(resId));
 	}
-	
 
 	private void updateTimer() {
 		if (this.timerStarted) {

@@ -81,6 +81,16 @@ public class EntityPlatform extends Entity {
 	public void aiUpdate(){
 		for(int d = 0; d < traits.length; ++d){
 			traits[d].aiUpdate();
+			if(traits[d].remove){
+				Trait[] after = new Trait[traits.length - 1];
+				for(int i = 0; i < d; ++i){
+					after[i] = traits[i];
+				}
+				for(int i = d + 1; i < traits.length; ++i){
+					after[i - 1] = traits[i];
+				}
+				traits = after;
+			}
 		}
 	}
 	

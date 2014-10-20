@@ -137,7 +137,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("life", EntityPlayer.PAINT_YELLOW.getColor(), 15000, 75000,
 				R.string.power_life, R.string.power_life_desc, R.string.power_life_upgrade, 2,
-				R.string.power_life_warn, 5, R.string.power_life_unlock, R.drawable.unlock_extra_life, 4).setCreator(new PowerCreator() {
+				R.string.power_life_warn, 5, R.string.power_life_unlock, R.drawable.unlock_extra_life, 0).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {

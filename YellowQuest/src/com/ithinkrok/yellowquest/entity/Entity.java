@@ -31,6 +31,7 @@ public abstract class Entity {
 	public double accel = YellowQuest.DEFAULT_ACCEL;
 	public double jump = YellowQuest.DEFAULT_JUMP;
 	public Entity intersecting = null;
+	public Entity lastIntersected = null;
 	public double x = 0, y = 100, width = 32, height = 32;
 	public double x_velocity = 0, y_velocity = 0, x_velocity_old = 0, y_velocity_old = 0;
 	public boolean onGround = false;
@@ -90,7 +91,7 @@ public abstract class Entity {
 				ys = yv;
 				yv = test.get(d).box.calcYOffset(this.box, yv);
 				if (this.type == EntityType.PLAYER && ys != yv)
-					this.intersecting = test.get(d);
+					this.intersecting = this.lastIntersected = test.get(d);
 			}
 			this.y_velocity_old = yv;
 			// Game.renderText(yv);
@@ -102,7 +103,7 @@ public abstract class Entity {
 				xs = xv;
 				xv = test.get(d).box.calcXOffset(this.box, xv);
 				if (this.type == EntityType.PLAYER && xs != xv)
-					this.intersecting = test.get(d);
+					this.intersecting = this.lastIntersected = test.get(d);
 			}
 			this.x_velocity_old = xv;
 			// Game.renderText(xv);
@@ -130,6 +131,7 @@ public abstract class Entity {
 		slip = YellowQuest.DEFAULT_SLIP;
 		accel = YellowQuest.DEFAULT_ACCEL;
 		intersecting = null;
+		lastIntersected = null;
 		x = 0;
 		y = 100;
 		width = 32;

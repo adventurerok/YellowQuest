@@ -10,6 +10,7 @@ public abstract class Trait {
 	public EntityPlatform parent;
 	public Paint color;
 	public boolean isVisible = true;
+	public boolean remove = false;
 	
 	
 	public Trait(EntityPlatform parent) {
