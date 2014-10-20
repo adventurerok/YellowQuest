@@ -6,7 +6,7 @@ import com.ithinkrok.yellowquest.entity.trait.TraitUp;
 
 public class PowerUp extends Power {
 	
-	int up = 2;
+	public int up = 2;
 
 	public PowerUp(EntityPlayer player, int upgradeLevel) {
 		super(player, upgradeLevel);
@@ -23,6 +23,9 @@ public class PowerUp extends Power {
 	public void update(EntityPlayer player) {
 		if(!player.onGround || player.intersecting == null) return;
 		if(!(player.intersecting instanceof EntityPlatform)) return;
+		int maxUp = (1000 / up) + 1;
+		if("up".equals(player.intersecting.bonusType)) maxUp = (1500 / up) + 1;
+		if(maxUp < player.intersecting.timeOnPlatform) return;
 		player.move(0, up);
 		player.onGround = true;
 		player.intersecting.move(0, up);

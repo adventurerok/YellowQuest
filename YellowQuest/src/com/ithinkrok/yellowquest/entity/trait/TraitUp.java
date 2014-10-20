@@ -4,6 +4,7 @@ import android.graphics.Paint;
 
 import com.ithinkrok.yellowquest.entity.EntityPlatform;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
+import com.ithinkrok.yellowquest.entity.power.PowerUp;
 import com.ithinkrok.yellowquest.ui.PowerInfo;
 
 public class TraitUp extends Trait {
@@ -12,8 +13,7 @@ public class TraitUp extends Trait {
 	
 	private static boolean powerUnlock = false;
 	
-	private int playerUpTime = 0;
-	private int maxUpTime = 200;
+	public int maxUpTime = 1000;
 	
 	static {
 		PAINT_GREEN.setColor(0xff00ff00);
@@ -26,12 +26,16 @@ public class TraitUp extends Trait {
 	
 	@Override
 	public void intersectsPlayer(EntityPlayer player) {
-		if(playerUpTime == 0){
-			maxUpTime = (player.hasPower("up") ? 250 : 200);
+		if(parent.timeOnPlatform == 0){
+			if(player.hasPower("up")){
+				maxUpTime = maxUpTime / (5 + ((PowerUp)player.getPower()).up);
+			} else maxUpTime = 200;
 		}
-		++playerUpTime;
-		if(playerUpTime < maxUpTime) parent.y_velocity = 5; // 45 ups
-		else if(playerUpTime == maxUpTime) parent.y_velocity = 0;
+		if(parent.timeOnPlatform < maxUpTime) parent.y_velocity = 5; // 45 ups
+		else if(parent.timeOnPlatform == maxUpTime){
+			parent.y_velocity = 0;
+			parent.timeOnPlatform += 500;
+		}
 		if(!powerUnlock){
 			PowerInfo.getData("up").unlock(player.game.getContext());
 			powerUnlock = true;

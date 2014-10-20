@@ -1,11 +1,15 @@
 package com.ithinkrok.yellowquest.entity;
 
+import java.util.ArrayList;
+
 import android.graphics.Paint;
 
 import com.ithinkrok.yellowquest.*;
 import com.ithinkrok.yellowquest.entity.trait.Trait;
 
 public class EntityPlatform extends Entity {
+	
+	private static ArrayList<Trait> _visibleTraits = new ArrayList<Trait>();
 
 	private static final Paint PAINT_BLUE = new Paint();
 	private static final Paint PAINT_WHITE = new Paint();
@@ -13,6 +17,7 @@ public class EntityPlatform extends Entity {
 	public boolean revealed = true;
 	
 	public boolean isBonus = false;
+	
 	
 	static {
 		PAINT_BLUE.setColor(0xff0000ff);
@@ -38,6 +43,7 @@ public class EntityPlatform extends Entity {
 	        //game.player.intersecting = this;
 	        revealed = true;
 	        this.intersectsPlayer(game.player);
+	        ++timeOnPlatform;
 	    } else{
 	    	this.noPlayer(game.player);
 	    }
@@ -109,6 +115,13 @@ public class EntityPlatform extends Entity {
 		return false;
 	}
 	
+	public Trait getTrait(String name){
+		for(int d = 0; d < traits.length; ++d){
+			if(traits[d].getName().equals(name)) return traits[d];
+		}
+		return null;
+	}
+	
 	public double getMaxYPos(){
 		double max = box.ey;
 		double t;
@@ -131,23 +144,38 @@ public class EntityPlatform extends Entity {
 	public void draw(CanvasSurfaceView rend) {
 		Paint paint;
 		if(!revealed) paint = PAINT_WHITE;
-		else if(traits.length == 0) paint = this.color;
-		else if(traits.length == 1) paint = traits[0].color;
-		else paint = traits[1].color;
+		else {
+			for(int i = 0; i < traits.length; ++i){
+				if(traits[i].isVisible) _visibleTraits.add(traits[i]);
+			}
+			if(_visibleTraits.size() == 0) paint = this.color;
+			else if(_visibleTraits.size() == 1) paint = _visibleTraits.get(0).color;
+			else paint = _visibleTraits.get(1).color;
+		}
         float xp = (float) (box.sx - game.player.x + rend.width / 2);
         float yp = (float) (box.sy - game.player.y + rend.height / 2);
-        if (xp > rend.scaledWidth || yp > rend.scaledHeight) return;
+        if (xp > rend.scaledWidth || yp > rend.scaledHeight){
+        	_visibleTraits.clear();
+        	return;
+        }
         float w = (float) (box.ex - box.sx);
         float h = (float) (box.ey - box.sy);
-        if ((xp + w) < rend.scaledX || (yp + h) < rend.scaledY) return;
+        if ((xp + w) < rend.scaledX || (yp + h) < rend.scaledY){
+        	_visibleTraits.clear();
+        	return;
+        }
         rend.fillRect(xp, yp, w, h, paint);
-        if(traits.length < 2 || !revealed) return;
+        if(traits.length < 2 || !revealed){
+        	_visibleTraits.clear();
+        	return;
+        }
         int bonusBorder = (int) (Math.min(width, height) / 4d);
         xp = (float) ((box.sx - game.player.x + rend.width / 2) + bonusBorder);
         yp = (float) ((box.sy - game.player.y + rend.height / 2) + bonusBorder);
         w = (float) ((box.ex - box.sx) - (bonusBorder * 2));
         h = (float) ((box.ey - box.sy) - (bonusBorder * 2));
-        rend.fillRect(xp, yp, w, h, traits[0].color);
+        rend.fillRect(xp, yp, w, h, _visibleTraits.get(0).color);
+        _visibleTraits.clear();
 	}
 
 }

@@ -205,7 +205,15 @@ public class YellowQuest {
 		if (gameOver == null) {
 			//drawArrow(rend, 100, 100, PAINT_COOLDOWN);
 			for(Arrow arr : arrows){
-				drawUpArrow(rend, arr.x, arr.y, arr.paint);
+				switch(arr.dir){
+				case UP:
+					drawUpArrow(rend, arr.x, arr.y, arr.paint);
+					break;
+				case DOWN:
+					drawDownArrow(rend, arr.x, arr.y, arr.paint);
+					break;
+				}
+				
 				
 			}
 			tPos = 0;
@@ -297,6 +305,32 @@ public class YellowQuest {
 		
 		rend.canvas.drawPath(path, paint);
 	}
+	
+	public void drawDownArrow(CanvasSurfaceView rend, float x, float y, Paint paint){
+		x -= player.x;
+		y -= player.y;
+		x += rend.width / 2;
+		y += rend.height / 2;
+		rend.fillRect(x - 5, y + 15, 10, 15, paint);
+		
+		Path path = new Path();
+		path.setFillType(Path.FillType.EVEN_ODD);
+		if(rend.density >= 1.99){
+			path.moveTo(x - 15, rend.height - (y + 15));
+			path.lineTo(x, rend.height - (y));
+			path.lineTo(x + 15, rend.height - (y + 15));
+			path.lineTo(x - 15, rend.height - (y + 15));
+		} else {
+			path.moveTo((x - 15) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+			path.lineTo(x / 2 + rend.width / 4, (rend.height - (y)) / 2 + rend.height / 4);
+			path.lineTo((x + 15) + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+			path.lineTo((x - 15) + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+		}
+		path.close();
+		
+		
+		rend.canvas.drawPath(path, paint);
+	}
 
 	public void generateBonusBoxes(int x, int y){
 		int ox = bgenX;
@@ -373,8 +407,10 @@ public class YellowQuest {
 			
 			if(level.bonusPosition == ent.boxNumber){
 				if(level.bonusType.equals("up")){
-					for(int a = 0; a < 1499; a += 300) arrows.add(new Arrow(ent.x, ent.box.ey + 20 + a, Direction.UP, TraitUp.PAINT_GREEN));
+					for(int a = 0; a < 1499; a += 500) arrows.add(new Arrow(ent.x, ent.box.ey + 20 + a, Direction.UP, TraitUp.PAINT_GREEN));
 					generateBonusBoxes(bgenX + 150, bgenY + 1500);
+					if(ent.hasTrait("up")) ((TraitUp)ent.getTrait("up")).maxUpTime = 1500;
+					ent.bonusType = level.bonusType;
 				}
 			}
 			

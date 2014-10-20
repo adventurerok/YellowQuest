@@ -9,17 +9,18 @@ import com.ithinkrok.yellowquest.util.Box;
 import android.graphics.Paint;
 
 public abstract class Entity {
-	
+
 	private static ArrayList<Entity> test = new ArrayList<Entity>(4);
 	private static Box exp = new Box(0, 0, 1, 1);
 
-	
 	public static enum EntityType {
 		PLAYER, PLATFORM, OBJECT
 	}
 
-	
-	
+	public int timeOnPlatform = 0;
+
+	public String bonusType = null;
+
 	public YellowQuest game;
 	public EntityType type;
 	public int entityPos;
@@ -44,8 +45,10 @@ public abstract class Entity {
 		super();
 		this.game = game;
 		this.type = type;
-		if (this.type == EntityType.PLATFORM) this.boxNumber = game.nextBox++;
-		else this.boxNumber = -1;
+		if (this.type == EntityType.PLATFORM)
+			this.boxNumber = game.nextBox++;
+		else
+			this.boxNumber = -1;
 	}
 
 	public Entity calcBounds(double x, double y, double w, double h) {
@@ -62,7 +65,7 @@ public abstract class Entity {
 	}
 
 	public void move(double xv, double yv) {
-		if(xv == 0 && yv == 0){
+		if (xv == 0 && yv == 0) {
 			this.x_velocity_old = 0;
 			this.y_velocity_old = 0;
 			return;
@@ -73,49 +76,56 @@ public abstract class Entity {
 		Entity cur;
 		for (d = 0; d < game.boxes.size(); ++d) {
 			cur = game.boxes.get(d);
-			if (cur != this && cur.collidable && exp.intersects(cur.box)) test.add(cur);
+			if (cur != this && cur.collidable && exp.intersects(cur.box))
+				test.add(cur);
 		}
 		// Game.renderText(test.length);
 		double xc = xv;
 		double yc = yv;
 		double ys = yv;
 		double xs = xv;
-		
-		if(Math.abs(yv) > 0.001){
+
+		if (Math.abs(yv) > 0.001) {
 			for (d = 0; d < test.size(); ++d) {
 				ys = yv;
 				yv = test.get(d).box.calcYOffset(this.box, yv);
-				if(this.type == EntityType.PLAYER && ys != yv) this.intersecting = test.get(d);
+				if (this.type == EntityType.PLAYER && ys != yv)
+					this.intersecting = test.get(d);
 			}
 			this.y_velocity_old = yv;
 			// Game.renderText(yv);
 			this.box.move(0, yv, this.box);
 		}
-		
-		if(Math.abs(xv) > 0.001){
+
+		if (Math.abs(xv) > 0.001) {
 			for (d = 0; d < test.size(); ++d) {
 				xs = xv;
 				xv = test.get(d).box.calcXOffset(this.box, xv);
-				if(this.type == EntityType.PLAYER && xs != xv) this.intersecting = test.get(d);
+				if (this.type == EntityType.PLAYER && xs != xv)
+					this.intersecting = test.get(d);
 			}
 			this.x_velocity_old = xv;
 			// Game.renderText(xv);
 			this.box.move(xv, 0, this.box);
 		}
-		
+
 		if (this.type == EntityType.PLAYER) {
-			if (xc != xv) this.x_velocity = 0;
-			if (yc != yv) this.y_velocity = 0;
+			if (xc != xv)
+				this.x_velocity = 0;
+			if (yc != yv)
+				this.y_velocity = 0;
 		}
 		this.x = (this.box.sx + this.box.ex) / 2;
 		this.y = (this.box.sy + this.box.ey) / 2;
-		//this.onGround = (yc < yv && yc < 0.0d);
+		// this.onGround = (yc < yv && yc < 0.0d);
 		this.onGround = (yc < yv) || (this.onGround && yc == 0);
-		if (yv < 0) this.fallDist -= yv;
-		else this.fallDist = 0;
+		if (yv < 0)
+			this.fallDist -= yv;
+		else
+			this.fallDist = 0;
 	}
-	
-	public void reset(){
+
+	public void reset() {
 		collidable = true;
 		slip = YellowQuest.DEFAULT_SLIP;
 		accel = YellowQuest.DEFAULT_ACCEL;
@@ -136,21 +146,23 @@ public abstract class Entity {
 		remove = false;
 		box.set(this.x - this.width / 2, this.y - this.height / 2, this.x + this.width / 2, this.y + this.height / 2);
 	}
-	
+
 	public abstract void update();
 
 	public void draw(CanvasSurfaceView rend) {
-        float xp = (float) (box.sx - game.player.x + rend.width / 2);
-        float yp = (float) (box.sy - game.player.y + rend.height / 2);
-        if (xp > rend.width || yp > rend.height) return;
-        float w = (float) (box.ex - box.sx);
-        float h = (float) (box.ey - box.sy);
-        if ((xp + w) < 0 || (yp + h) < 0) return;
-        rend.fillRect(xp, yp, w, h, color);
+		float xp = (float) (box.sx - game.player.x + rend.width / 2);
+		float yp = (float) (box.sy - game.player.y + rend.height / 2);
+		if (xp > rend.width || yp > rend.height)
+			return;
+		float w = (float) (box.ex - box.sx);
+		float h = (float) (box.ey - box.sy);
+		if ((xp + w) < 0 || (yp + h) < 0)
+			return;
+		rend.fillRect(xp, yp, w, h, color);
 	}
-	
+
 	public void delete() {
-		
+
 	}
 
 }
