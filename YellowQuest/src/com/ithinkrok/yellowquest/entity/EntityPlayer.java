@@ -101,11 +101,11 @@ public class EntityPlayer extends Entity {
 	}
 
 	public float getAccelIncrease() {
-		return power != null ? power.getAccelIncrease() : 1.0f;
+		return power != null ? power.getAccelIncrease() : 0.0f;
 	}
 
 	public float getJumpIncrease() {
-		return power != null ? power.getJumpIncrease() : 1.0f;
+		return power != null ? power.getJumpIncrease(): 0.0f;
 	}
 
 	@Override

@@ -49,10 +49,10 @@ public class YellowQuest {
 	// public static final double DEFAULT_JUMP = 10;
 
 	public static final double DEFAULT_SLIP = 0.82; // 45 ups versions
-	public static final double DEFAULT_ACCEL = 2.5;
+	public static final double DEFAULT_ACCEL = 3.4;
 	public static final double DEFAULT_JUMP = 10; // Doesn't change
 	public static final double AIR_SLIP = 0.75;
-	public static final double AIR_ACCEL = 2.5;
+	public static final double AIR_ACCEL = 3.3;
 
 	public static final int TIMER_MAX = 8999;
 	public static final int TIMER_SECOND = 45;
@@ -452,8 +452,8 @@ public class YellowQuest {
 			boxes.add(ent);
 			level.finalBox = ent;
 			bgenX += xe;
-			bgenX += 10;
-			bgenX += random(170);
+			bgenX += 50;
+			bgenX += random(150);
 			if (generatingBonus)
 				bgenY += random(170) - 50;
 			else
@@ -706,7 +706,7 @@ public class YellowQuest {
 		if (player.fallDist > 1010) {
 			if (playerBox == 0 && level.number == 0) {
 				addAchievement(R.string.achievement_big_failure);
-			} else if (playerBox + 2 >= level.size) {
+			} else if (player.lastIntersected != null && player.lastIntersected.boxNumber + 2 >= level.size) {
 				addAchievement(R.string.achievement_almost);
 			}
 			if (this.playerLives > 1) {
