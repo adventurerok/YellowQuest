@@ -19,6 +19,8 @@ public class EntityPlatform extends Entity {
 	public boolean isBonus = false;
 	
 	
+	
+	
 	static {
 		PAINT_BLUE.setColor(0xff0000ff);
 		PAINT_WHITE.setColor(0xffffffff);
@@ -44,8 +46,18 @@ public class EntityPlatform extends Entity {
 	        revealed = true;
 	        this.intersectsPlayer(game.player);
 	        ++timeOnPlatform;
+	        
+	        if(timeSinceIntercept == 0 && bonusData == 1742 && "bounce".equals(bonusType) && game.player.hasPower("bounce")){
+	        	if(game.player.oldIntersected != null && game.player.oldIntersected.bonusData == 12){
+	        		game.player.teleport(0, 2100);
+	        		game.player.fallDist = 0;
+	        	}
+	        }
+	        
+	        ++timeSinceIntercept;
 	    } else{
 	    	this.noPlayer(game.player);
+	    	timeSinceIntercept = 0;
 	    }
 //	    this.moveUpdate();
 	    this.aiUpdate();

@@ -431,7 +431,7 @@ public class YellowQuest {
 			if (generatingBonus)
 				ent.boxNumber += 9900;
 
-			if (level.bonusPosition == ent.boxNumber) {
+			if (!level.isBonus && level.bonusPosition == ent.boxNumber) {
 				if (level.bonusType.equals("up")) {
 					for (int a = 0; a < 1499; a += 500)
 						arrows.add(new Arrow(ent.x, ent.box.ey + 20 + a, Direction.UP, TraitUp.PAINT_GREEN));
@@ -443,6 +443,19 @@ public class YellowQuest {
 					arrows.add(new Arrow((ent.box.sx + level.lastBoxType.box.ex) / 2,
 							(ent.box.ey + level.lastBoxType.box.ey) / 2 + 20, Direction.DOWN, EntityPlayer.PAINT_YELLOW));
 					level.lastBoxType.bonusType = "life";
+					ent.bonusType = "life";
+					ent.bonusData = 1;
+					generateBonusBoxes(-30, 2000);
+				} else if(level.bonusType.equals("bounce")){
+					arrows.add(new Arrow(ent.x, ent.box.ey + 20, Direction.UP, TraitBounce.PAINT_MAGENTA));
+					ent.bonusType = "bounce";
+					ent.bonusData = 12;
+					EntityPlatform plat = getPlatform(ent.boxNumber - 2 - random(2));
+					if(plat != null){
+						arrows.add(new Arrow(plat.x, plat.box.ey + 20, Direction.DOWN, TraitBounce.PAINT_MAGENTA));
+						plat.bonusType = "bounce";
+						plat.bonusData = 1742;
+					}
 					generateBonusBoxes(-30, 2000);
 				}
 			}
@@ -711,16 +724,23 @@ public class YellowQuest {
 			}
 			if (this.playerLives > 1) {
 				this.playerLives -= 1;
-				if (player.lastIntersected != null && "life".equals(player.lastIntersected.bonusType)) {
+				boolean lifeInter = false;
+				if(player.lastIntersected != null && "life".equals(player.lastIntersected.bonusType)){
+					if(player.lastIntersected.bonusData == 0){
+						lifeInter = player.x > player.lastIntersected.box.sx;
+					} else if(player.lastIntersected.bonusData == 1){
+						lifeInter = player.x < player.lastIntersected.box.ex;
+					}
+				}
+				
+				if (lifeInter) {
 					lifeBonusNum++;
-					Log.i("YellowQuest", "LifeBonusNum: " + lifeBonusNum);
 				} else {
 					lifeBonusNum = 0;
 				}
 				
 				
 				if (lifeBonusNum >= 3) {
-					//Log.i("YellowQuest", "Life bonus unlock");
 					player.fallDist = 0;
 					player.teleport(0, 2400);
 					gameOver = new GameOver(3, "Level Failed?");

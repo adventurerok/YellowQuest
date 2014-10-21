@@ -159,7 +159,7 @@ public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Call
 		double diff = (now - lastUpdate) / 1000000;
 		tickTime += diff;
 		int updatesDone = 0;
-		if(tickTime > UPDATE_PERIOD * 3) tickTime = UPDATE_PERIOD + 0.001;
+		if(tickTime > UPDATE_PERIOD * 4) tickTime = UPDATE_PERIOD + 0.001;
 		while (tickTime > UPDATE_PERIOD) {
 			tickTime -= UPDATE_PERIOD;
 			game.update();

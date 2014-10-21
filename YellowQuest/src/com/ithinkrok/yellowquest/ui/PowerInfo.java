@@ -92,7 +92,7 @@ public class PowerInfo {
 	static {
 		data.add(new PowerInfo("up", TraitUp.PAINT_GREEN.getColor(), 2000, 10000,
 				R.string.power_up, R.string.power_up_desc, R.string.power_up_upgrade, 2,
-				R.string.power_up_warn, 0, R.string.power_up_unlock, R.drawable.unlock_up, 0).setCreator(new PowerCreator() {
+				R.string.power_up_warn, 0, R.string.power_up_unlock, R.drawable.unlock_up, 2).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
@@ -101,7 +101,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("bounce", TraitBounce.PAINT_MAGENTA.getColor(), 3500, 18000,
 				R.string.power_bounce, R.string.power_bounce_desc, R.string.power_bounce_upgrade, 2,
-				R.string.power_bounce_warn, 1, R.string.power_bounce_unlock, R.drawable.unlock_bounce, 6).setCreator(new PowerCreator() {
+				R.string.power_bounce_warn, 1, R.string.power_bounce_unlock, R.drawable.unlock_bounce, 0).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
@@ -137,7 +137,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("life", EntityPlayer.PAINT_YELLOW.getColor(), 15000, 75000,
 				R.string.power_life, R.string.power_life_desc, R.string.power_life_upgrade, 2,
-				R.string.power_life_warn, 5, R.string.power_life_unlock, R.drawable.unlock_extra_life, 0).setCreator(new PowerCreator() {
+				R.string.power_life_warn, 5, R.string.power_life_unlock, R.drawable.unlock_extra_life, 2).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {

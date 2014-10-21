@@ -10,6 +10,9 @@ import android.graphics.Paint;
 
 public abstract class Entity {
 
+	private static Entity _ting;
+	private static Entity _closest;
+	
 	private static ArrayList<Entity> test = new ArrayList<Entity>(4);
 	private static Box exp = new Box(0, 0, 1, 1);
 
@@ -20,6 +23,9 @@ public abstract class Entity {
 	public int timeOnPlatform = 0;
 
 	public String bonusType = null;
+	public int bonusData = 0;
+	
+	public int timeSinceIntercept = 0;
 
 	public YellowQuest game;
 	public EntityType type;
@@ -32,6 +38,7 @@ public abstract class Entity {
 	public double jump = YellowQuest.DEFAULT_JUMP;
 	public Entity intersecting = null;
 	public Entity lastIntersected = null;
+	public Entity oldIntersected = null;
 	public double x = 0, y = 100, width = 32, height = 32;
 	public double x_velocity = 0, y_velocity = 0, x_velocity_old = 0, y_velocity_old = 0;
 	public boolean onGround = false;
@@ -41,6 +48,8 @@ public abstract class Entity {
 	public int aiMaxTime = 0;
 	public boolean remove = false;
 	public Box box = new Box(-16, 84, 16, 116);
+	
+	private boolean isPlayer = false;
 
 	public Entity(YellowQuest game, EntityType type) {
 		super();
@@ -50,6 +59,8 @@ public abstract class Entity {
 			this.boxNumber = game.nextBox++;
 		else
 			this.boxNumber = -1;
+		
+		if(this.type == EntityType.PLAYER) isPlayer = true;
 	}
 
 	public Entity calcBounds(double x, double y, double w, double h) {
@@ -85,29 +96,54 @@ public abstract class Entity {
 		double yc = yv;
 		double ys = yv;
 		double xs = xv;
+		
 
 		if (Math.abs(yv) > 0.001) {
 			for (d = 0; d < test.size(); ++d) {
 				ys = yv;
-				yv = test.get(d).box.calcYOffset(this.box, yv);
-				if (this.type == EntityType.PLAYER && ys != yv)
-					this.intersecting = this.lastIntersected = test.get(d);
+				_ting = test.get(d);
+				yv = _ting.box.calcYOffset(this.box, yv);
+				if (isPlayer && ys != yv){
+					_closest = _ting;
+				}
 			}
+			
+			if(_closest != null){
+				if(_closest != lastIntersected){
+					oldIntersected = lastIntersected;
+					lastIntersected = _closest;
+				}
+				intersecting = _closest;
+			}
+			
 			this.y_velocity_old = yv;
 			// Game.renderText(yv);
 			this.box.move(0, yv, this.box);
+			_ting = _closest = null;
 		}
 
 		if (Math.abs(xv) > 0.001) {
 			for (d = 0; d < test.size(); ++d) {
 				xs = xv;
-				xv = test.get(d).box.calcXOffset(this.box, xv);
-				if (this.type == EntityType.PLAYER && xs != xv)
-					this.intersecting = this.lastIntersected = test.get(d);
+				_ting = test.get(d);
+				xv = _ting.box.calcXOffset(this.box, xv);
+				if (isPlayer && xs != xv){
+					_closest = _ting;
+				}
 			}
+			
+			if(_closest != null){
+				if(_closest != lastIntersected){
+					oldIntersected = lastIntersected;
+					lastIntersected = _closest;
+				}
+				intersecting = _closest;
+			}
+			
 			this.x_velocity_old = xv;
 			// Game.renderText(xv);
 			this.box.move(xv, 0, this.box);
+			_ting = _closest = null;
 		}
 
 		if (this.type == EntityType.PLAYER) {
@@ -132,6 +168,7 @@ public abstract class Entity {
 		accel = YellowQuest.DEFAULT_ACCEL;
 		intersecting = null;
 		lastIntersected = null;
+		oldIntersected = null;
 		x = 0;
 		y = 100;
 		width = 32;
