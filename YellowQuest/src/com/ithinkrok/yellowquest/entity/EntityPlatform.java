@@ -42,6 +42,15 @@ public class EntityPlatform extends Entity {
 	    boolean pis = false;
 	    if (game.player.intersecting == this) {
 	        pis = true;
+	        
+	        if(isBonus && timeOnPlatform == 0){
+	        	if("up".equals(game.level.bonusType)){
+	        		game.addAchievement(R.string.achievement_up_up_and_away);
+	        	} else if(("life").equals(game.level.bonusType)){
+	        		game.addAchievement(R.string.achievement_sacrifice);
+	        	}
+	        }
+	        
 	        //game.player.intersecting = this;
 	        revealed = true;
 	        this.intersectsPlayer(game.player);
@@ -49,6 +58,7 @@ public class EntityPlatform extends Entity {
 	        
 	        if(timeSinceIntercept == 0 && bonusData == 1742 && "bounce".equals(bonusType) && game.player.hasPower("bounce")){
 	        	if(game.player.oldIntersected != null && game.player.oldIntersected.bonusData == 12){
+	        		game.addAchievement(R.string.achievement_bounceback);
 	        		game.player.teleport(0, 2100);
 	        		game.player.fallDist = 0;
 	        	}

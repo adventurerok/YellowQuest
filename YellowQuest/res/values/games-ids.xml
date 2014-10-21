@@ -13,6 +13,11 @@ Save this file as res/values/games-ids.xml in your project.
   <string name="achievement_big_failure">CgkIzO3xja4REAIQAg</string>
   <string name="achievement_almost">CgkIzO3xja4REAIQAw</string>
   <string name="achievement_overshot">CgkIzO3xja4REAIQBA</string>
+  <string name="achievement_jumpman">CgkIzO3xja4REAIQEA</string>
+  <string name="achievement_bonus_time">CgkIzO3xja4REAIQDA</string>
+  <string name="achievement_up_up_and_away">CgkIzO3xja4REAIQDQ</string>
+  <string name="achievement_sacrifice">CgkIzO3xja4REAIQDg</string>
+  <string name="achievement_bounceback">CgkIzO3xja4REAIQDw</string>
   <string name="leaderboard_yellowquest_hiscores">CgkIzO3xja4REAIQCg</string>
   <string name="leaderboard_yellowquest_ranks">CgkIzO3xja4REAIQCw</string>
 </resources>

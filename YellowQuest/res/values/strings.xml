@@ -107,6 +107,11 @@
     <string name="achievement_big_failure_name">Big Failure</string>
     <string name="achievement_almost_name">Almost</string>
     <string name="achievement_overshot_name">Overshot</string>
+    <string name="achievement_jumpman_name">Jumpman</string>
+    <string name="achievement_bonus_time_name">Bonus Time</string>
+    <string name="achievement_up_up_away_name">Up, up and away</string>
+    <string name="achievement_sacrifice_name">Sacrifice</string>
+    <string name="achievement_bounceback_name">BounceBack</string>
     
     <string name="achievement_easy_desc">Complete level 3</string>
     <string name="achievement_medium_desc">Complete level 6</string>
@@ -116,6 +121,11 @@
     <string name="achievement_big_failure_desc">Fail to reach the second box on level 1</string>
     <string name="achievement_almost_desc">Fail to land on the flag box</string>
     <string name="achievement_overshot_desc">Collide with the right side of the flag box</string>
+    <string name="achievement_jumpman_desc">Jump over 3 platforms and land it</string>
+    <string name="achievement_bonus_time_desc">Complete a bonus area</string>
+    <string name="achievement_up_up_away_desc">Access a bonus area using the up power</string>
+    <string name="achievement_sacrifice_desc">Access a bonus area using the extra life power</string>
+    <string name="achievement_bounceback_desc">Access a bonus area using the bounce power</string>
     
     <string name="new_hiscore">New Hiscore: %1$d</string>
     <string name="old_hiscore">That\'s an increase of %1$d on your old hiscore of %2$d!</string>
