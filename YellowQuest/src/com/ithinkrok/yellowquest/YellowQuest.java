@@ -692,6 +692,7 @@ public class YellowQuest {
 			if (!level.isBonus && this.playerBox + 1 == level.size) {
 				levelUp();
 			} else if (level.isBonus && this.playerBox - 9900 + 1 == level.size) {
+				addAchievement(R.string.achievement_bonus_time);
 				levelUp();
 			}
 		} else {

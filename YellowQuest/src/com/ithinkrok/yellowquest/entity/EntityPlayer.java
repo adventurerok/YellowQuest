@@ -71,7 +71,10 @@ public class EntityPlayer extends Entity {
 					game.level = game.level.bonusLevel;
 				}
 				int skipped = this.intersecting.boxNumber - game.playerBox;
-				if(skipped > 5) skipped = 1;
+				if(skipped > 7) skipped = 1;
+				if(skipped > 3){
+					game.addAchievement(R.string.achievement_jumpman);
+				}
 				if (game.timeMode())
 					game.timer -= YellowQuest.TIMER_BOX * skipped;
 				int boxMult = 10;
