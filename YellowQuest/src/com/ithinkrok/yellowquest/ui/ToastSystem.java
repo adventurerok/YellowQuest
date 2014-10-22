@@ -14,7 +14,7 @@ public class ToastSystem {
 	private static MainActivity context;
 	
 	private static View layoutAchievements[] = new View[5];
-	private static View layoutProgress[] = new View[5];
+	private static View layoutProgress[] = new View[1];
 	private static View layoutUnlocks[] = new View[5];
 	
 	private static int posAchievements = 0;
@@ -35,6 +35,9 @@ public class ToastSystem {
 
 	@SuppressLint("InflateParams")
 	public static void showAchievementToast(AchievementInfo achievement) {
+		
+		long allstart = System.nanoTime();
+		
 		View layout;
 		
 		if(layoutAchievements[posAchievements] != null) layout = layoutAchievements[posAchievements];
@@ -74,6 +77,12 @@ public class ToastSystem {
 		toast.setDuration(Toast.LENGTH_SHORT);
 		toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 10);
 		toast.show();
+		
+		long alltime = System.nanoTime() - allstart;
+		
+		if(alltime > 20 * 1000000){
+			Log.w("YellowQuest", "showachievementtoast took " + (alltime / 1000000));
+		}
 
 	}
 	

@@ -23,8 +23,8 @@ public class TraitConveyor extends Trait {
 	
 	@Override
 	public void intersectsPlayer(EntityPlayer player) {
-		if(player.hasPower("troll")) player.x_velocity += 1.6;
-		else player.x_velocity -= 1.6;
+		if(player.hasPower("troll")) player.x_velocity += 2;
+		else player.x_velocity -= 2;
 		
 		if(!powerUnlock){
 			PowerInfo.getData("teleport").unlock(player.game.getContext());
