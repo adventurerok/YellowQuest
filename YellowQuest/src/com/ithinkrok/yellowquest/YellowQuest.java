@@ -121,6 +121,9 @@ public class YellowQuest {
 	private boolean wasPowerPressed = false;
 
 	private boolean fullSizeLeftButton = false;
+	
+	public int teleportX = -4500;
+	public int teleportY = -4500;
 
 	// private double pixelDensity = 1d;
 
@@ -215,6 +218,8 @@ public class YellowQuest {
 			break;
 		case DOWN:
 			drawDownArrow(rend, x, y, paint);
+		case CIRCLE:
+			drawCircleArrow(rend, x, y, paint);
 		}
 	}
 
@@ -339,6 +344,18 @@ public class YellowQuest {
 
 		rend.canvas.drawPath(path, paint);
 	}
+	
+	public void drawCircleArrow(CanvasSurfaceView rend, float x, float y, Paint paint){
+		x -= player.x;
+		y -= player.y;
+		x += rend.width / 2;
+		y += rend.height / 2;
+		
+		rend.fillRect(x - 10, y, 5, 20, paint);
+		rend.fillRect(x + 5, y, 5, 20, paint);
+		rend.fillRect(x - 6, y, 12, 5, paint);
+		rend.fillRect(x - 6, y + 15, 12, 5, paint);
+	}
 
 	public void drawDownArrow(CanvasSurfaceView rend, float x, float y, Paint paint) {
 		x -= player.x;
@@ -447,6 +464,25 @@ public class YellowQuest {
 				plat.bonusData = 1742;
 				plat.relativeArrow = new Arrow(0, plat.box.ey - plat.y + 20, Direction.DOWN, TraitBounce.PAINT_MAGENTA);
 			}
+			
+			generateBonusBoxes(-30, 2000);
+			
+		} else if (level.bonusType.equals("teleport")){
+			
+			int tx = (int) ((ent.box.sx + level.lastBoxType.box.ex) / 2);
+			int ty = (int) ((ent.box.ey + level.lastBoxType.box.ey) / 2 + 20);
+			
+			arrows.add(new Arrow(tx,
+					ty, Direction.DOWN, TraitConveyor.PAINT_GREY));
+			
+			ty -= 400 + random(400);
+			tx -= 20 + random(40);
+			
+			teleportX = tx;
+			teleportY = ty;
+			
+			arrows.add(new Arrow(tx, ty - 10, Direction.CIRCLE, TraitConveyor.PAINT_GREY));
+			arrows.add(new Arrow(0, 2090, Direction.CIRCLE, TraitConveyor.PAINT_GREY));
 			
 			generateBonusBoxes(-30, 2000);
 			
@@ -624,7 +660,9 @@ public class YellowQuest {
 		timerStarted = false;
 		levelScore = 0;
 		canvas.getActivity().setPassedOne();
-		// toastText("Next Level");
+		
+		teleportX = -4500;
+		teleportY = -4500;
 	}
 
 	public MainActivity getContext() {
@@ -668,6 +706,9 @@ public class YellowQuest {
 		score = 0;
 		levelScore = 0;
 		player.setPower(null);
+		
+		teleportX = -4500;
+		teleportY = -4500;
 
 	}
 
@@ -693,6 +734,9 @@ public class YellowQuest {
 			timer = 0;
 		timerStarted = false;
 		levelScore = 0;
+		
+		teleportX = -4500;
+		teleportY = -4500;
 	}
 
 	public void setGameMode(boolean shadow, boolean time) {

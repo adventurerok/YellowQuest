@@ -8,7 +8,8 @@ public class Arrow {
 		UP,
 		DOWN,
 		BACKWARDS,
-		FORWARDS
+		FORWARDS,
+		CIRCLE
 	}
 	
 	float x;

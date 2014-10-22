@@ -41,15 +41,26 @@ public class PowerTeleport extends Power {
 	@Override
 	public void powerButtonPressed() {
 		if(cooling != 0) return;
-		int boxNum = player.game.playerBox + 1;
-		EntityPlatform box = player.game.getPlatform(boxNum);
-		if(box == null) return;
-		//player.calc
-		int tx = (int) box.x;
-		int ty = (int) (box.box.ey + 32);
-		player.calcBounds(tx, ty, player.width, player.height);
-		cooling = cooldown;
-		//cooling = 45;
+		
+		int dx = (int) (player.x - player.game.teleportX);
+		int dy = (int) (player.y - player.game.teleportY);
+		int dist = (dx * dx) + (dy * dy);
+		
+		if(dist < 10000){
+			player.teleport(0, 2100);
+			
+			cooling = cooldown;
+		} else {
+		
+			int boxNum = player.game.playerBox + 1;
+			EntityPlatform box = player.game.getPlatform(boxNum);
+			if(box == null) return;
+			
+			int tx = (int) box.x;
+			int ty = (int) (box.box.ey + 32);
+			player.teleport(tx, ty);
+			cooling = cooldown;
+		}
 	}
 	
 	
