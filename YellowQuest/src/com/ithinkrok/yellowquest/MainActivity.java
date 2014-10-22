@@ -8,17 +8,20 @@ import org.json.JSONObject;
 import android.app.AlertDialog;
 import android.content.*;
 import android.content.SharedPreferences.Editor;
+import android.graphics.drawable.Drawable;
 import android.media.*;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.*;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.*;
 import android.widget.*;
 
 import com.android.vending.billing.IInAppBillingService;
-import com.google.android.gms.ads.*;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 import com.google.example.games.basegameutils.BaseGameActivity;
@@ -114,11 +117,16 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	
 	public SharedPreferences rateSettings;
 	public boolean enableTips = true;
+	
+	
+	private SparseArray<Drawable> preloadedDrawables = new SparseArray<Drawable>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		ToastSystem.setContext(this);
+		ToastSystem.generateCache();
 		AchievementInfo.load(this);
+		
 		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -169,6 +177,47 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		powerAdapter = new PowerAdapter(this);
 		
 		AppRater.app_launched(this);
+	}
+	
+	public void preloadDrawables(){
+		loadDrawable(R.drawable.achievement_almost);
+		loadDrawable(R.drawable.achievement_big_failure);
+		loadDrawable(R.drawable.achievement_bonus_time);
+		loadDrawable(R.drawable.achievement_easy);
+		loadDrawable(R.drawable.achievement_expert);
+		loadDrawable(R.drawable.achievement_impossible);
+		loadDrawable(R.drawable.achievement_hard);
+		loadDrawable(R.drawable.achievement_jumpman);
+		loadDrawable(R.drawable.achievement_medium);
+		loadDrawable(R.drawable.achievement_overshot);
+		
+		loadDrawable(R.drawable.unlock_backwards);
+		loadDrawable(R.drawable.unlock_bounce);
+		loadDrawable(R.drawable.unlock_extra_life);
+		loadDrawable(R.drawable.unlock_powers);
+		loadDrawable(R.drawable.unlock_teleport);
+		loadDrawable(R.drawable.unlock_time_stop);
+		loadDrawable(R.drawable.unlock_up);
+		
+		loadDrawable(R.drawable.bonus_bounce);
+		loadDrawable(R.drawable.bonus_life);
+		loadDrawable(R.drawable.bonus_up);
+		
+		loadDrawable(R.drawable.challenge_dont_go_left);
+		loadDrawable(R.drawable.challenge_dont_go_right);
+		loadDrawable(R.drawable.challenge_level_up);
+		
+		loadDrawable(R.drawable.new_hiscore);
+	}
+	
+	
+	public Drawable loadDrawable(int res){
+		Drawable d = preloadedDrawables.get(res);
+		if(d == null){
+			d = getResources().getDrawable(res);
+			preloadedDrawables.put(res, d);
+		}
+		return d;
 	}
 	
 	public void setPassedOne() {

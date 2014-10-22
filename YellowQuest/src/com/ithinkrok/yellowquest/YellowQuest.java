@@ -17,6 +17,9 @@ import com.ithinkrok.yellowquest.ui.PowerInfo;
 import com.ithinkrok.yellowquest.util.Box;
 
 public class YellowQuest {
+	
+	private static final long MS_HIGH = 1000000 * 20;
+	private static final long MS = 1000000;
 
 	private static Entity _iterEntity;
 
@@ -220,6 +223,10 @@ public class YellowQuest {
 			return;
 		if (gameOver != null && gameOver.time == 0)
 			gameOver = null;
+		
+		long start = System.nanoTime();
+		
+		
 		if (gameOver == null) {
 			// drawArrow(rend, 100, 100, PAINT_COOLDOWN);
 			for (Arrow arr : arrows) {
@@ -278,6 +285,11 @@ public class YellowQuest {
 			rend.canvas.drawText(gameOver.message, (canvas.width / 2)
 					- (PAINT_GAMEOVER.measureText(gameOver.message) / 2),
 					canvas.height / 2 - (canvas.density * 30) / 2, PAINT_GAMEOVER);
+		}
+		
+		long time = System.nanoTime() - start;
+		if(time > MS_HIGH){
+			Log.w("YellowQuest", "draw() took " + (time / MS));
 		}
 	}
 
@@ -712,14 +724,50 @@ public class YellowQuest {
 		canvas.setReversed(reverse = (player.hasPower("troll") && ((PowerTroll) player.getPower()).isEnabled()));
 		if (gameOver == null) {
 			if (this.playerBox + BOX_BUFFER > this.nextBox) {
+				long start = System.nanoTime();
 				this.generateBoxes(1);
+				long time = System.nanoTime() - start;
+				if(time > MS_HIGH){
+					Log.w("YellowQuest", "generateBoxes(1) took " + (time / MS));
+				}
 			}
 
+			
 			updateTimer();
+			
+			long start = System.nanoTime();
+			
 			updateInput();
+			
+			long time = System.nanoTime() - start;
+			if(time > MS_HIGH){
+				Log.w("YellowQuest", "updateInput() took " + (time / MS));
+			}
+			start = System.nanoTime();
+			
 			updatePowerButton();
+			
+			time = System.nanoTime() - start;
+			if(time > MS_HIGH){
+				Log.w("YellowQuest", "updatePowerButton() took " + (time / MS));
+			}
+			start = System.nanoTime();
+			
 			updateFalling();
+			
+			time = System.nanoTime() - start;
+			if(time > MS_HIGH){
+				Log.w("YellowQuest", "updateFalling() took " + (time / MS));
+			}
+			start = System.nanoTime();
+			
 			updateEntities();
+			
+			time = System.nanoTime() - start;
+			if(time > MS_HIGH){
+				Log.w("YellowQuest", "updateEntities() took " + (time / MS));
+			}
+			start = System.nanoTime();
 
 			if (!level.isBonus && this.playerBox + 1 == level.size) {
 				levelUp();
@@ -727,6 +775,13 @@ public class YellowQuest {
 				addAchievement(R.string.achievement_bonus_time);
 				levelUp();
 			}
+			
+			time = System.nanoTime() - start;
+			if(time > MS_HIGH){
+				Log.w("YellowQuest", "update level up took " + (time / MS));
+			}
+			//start = System.nanoTime();
+			
 		} else {
 			updateGameOver();
 		}

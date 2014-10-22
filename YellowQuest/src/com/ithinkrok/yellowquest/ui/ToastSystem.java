@@ -1,6 +1,7 @@
 package com.ithinkrok.yellowquest.ui;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.*;
@@ -11,6 +12,14 @@ import com.ithinkrok.yellowquest.MainActivity.GameState;
 public class ToastSystem {
 
 	private static MainActivity context;
+	
+	private static View layoutAchievements[] = new View[5];
+	private static View layoutProgress[] = new View[5];
+	private static View layoutUnlocks[] = new View[5];
+	
+	private static int posAchievements = 0;
+	private static int posProgress = 0;
+	private static int posUnlocks = 0;
 
 	public static void setContext(MainActivity context) {
 		ToastSystem.context = context;
@@ -26,11 +35,27 @@ public class ToastSystem {
 
 	@SuppressLint("InflateParams")
 	public static void showAchievementToast(AchievementInfo achievement) {
-		// Log.i("YellowQuest", "Start make achievement toast");
-		View layout = context.getLayoutInflater().inflate(R.layout.achievement, null, false);
+		View layout;
+		
+		if(layoutAchievements[posAchievements] != null) layout = layoutAchievements[posAchievements];
+		else {
+			layout = layoutAchievements[posAchievements] =context.getLayoutInflater().inflate(R.layout.achievement, null, false);
+		}
+		
+		++posAchievements;
+		if(posAchievements >= layoutAchievements.length) posAchievements = 0;
+		
+		layout = context.getLayoutInflater().inflate(R.layout.achievement, null, false);
+		
+		long start = System.nanoTime();
 
 		ImageView icon = (ImageView) layout.findViewById(R.id.achievement_icon);
-		icon.setImageResource(achievement.icon);
+		icon.setImageDrawable(context.loadDrawable(achievement.icon));
+		
+		long time = System.nanoTime() - start;
+		if(time > 20 * 1000000){
+			Log.w("YellowQuest", "loadimageasset took " + (time / 1000000));
+		}
 
 		TextView name = (TextView) layout.findViewById(R.id.achievement_name);
 		name.setText(achievement.name);
@@ -50,16 +75,52 @@ public class ToastSystem {
 		toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 10);
 		toast.show();
 
-		// Log.i("YellowQuest", "End make achievement toast");
+	}
+	
+	public static void releaseCache(){
+		for(int d = 0; d < layoutAchievements.length; ++d){
+			layoutAchievements[d] = null;
+		}
+		
+		for(int d = 0; d < layoutProgress.length; ++d){
+			layoutProgress[d] = null;
+		}
+		
+		for(int d = 0; d <  layoutUnlocks.length; ++d){
+			layoutUnlocks[d] = null;
+		}
+	}
+	
+	@SuppressLint("InflateParams")
+	public static void generateCache(){
+		for(int d = 0; d < layoutAchievements.length; ++d){
+			if(layoutAchievements[d] != null) return;
+			layoutAchievements[d] = context.getLayoutInflater().inflate(R.layout.achievement, null, false);
+		}
+		for(int d = 0; d < layoutProgress.length; ++d){
+			if(layoutProgress[d] != null) return;
+			layoutProgress[d] = context.getLayoutInflater().inflate(R.layout.progress, null, false);
+		}
+		for(int d = 0; d < layoutUnlocks.length; ++d){
+			if(layoutUnlocks[d] != null) return;
+			layoutUnlocks[d] = context.getLayoutInflater().inflate(R.layout.unlock, null, false);
+		}
 	}
 
 	@SuppressLint("InflateParams")
 	public static void showHiscoreToast(int current, int old) {
-		// Log.i("YellowQuest", "Start make achievement toast");
-		View layout = context.getLayoutInflater().inflate(R.layout.achievement, null, false);
+		View layout;
+		
+		if(layoutAchievements[posAchievements] != null) layout = layoutAchievements[posAchievements];
+		else {
+			layout = layoutAchievements[posAchievements] =context.getLayoutInflater().inflate(R.layout.achievement, null, false);
+		}
+		
+		++posAchievements;
+		if(posAchievements >= layoutAchievements.length) posAchievements = 0;
 
 		ImageView icon = (ImageView) layout.findViewById(R.id.achievement_icon);
-		icon.setImageResource(R.drawable.new_hiscore);
+		icon.setImageDrawable(context.loadDrawable(R.drawable.new_hiscore));
 
 		TextView name = (TextView) layout.findViewById(R.id.achievement_name);
 		name.setText(String.format(context.getString(R.string.new_hiscore), current));
@@ -83,10 +144,18 @@ public class ToastSystem {
 	public static void showChallengeProgressToast(int iconRes, String text, double percent) {
 		percent /= 100d;
 
-		View layout = context.getLayoutInflater().inflate(R.layout.progress, null, false);
+		View layout;
+		
+		if(layoutProgress[posProgress] != null) layout = layoutProgress[posProgress];
+		else {
+			layout = layoutProgress[posProgress] =context.getLayoutInflater().inflate(R.layout.progress, null, false);
+		}
+		
+		++posProgress;
+		if(posProgress >= layoutProgress.length) posProgress = 0;
 
 		ImageView icon = (ImageView) layout.findViewById(R.id.progress_icon);
-		icon.setImageResource(iconRes);
+		icon.setImageDrawable(context.loadDrawable(iconRes));
 
 		TextView name = (TextView) layout.findViewById(R.id.progress_name);
 		name.setText(text);
@@ -118,10 +187,18 @@ public class ToastSystem {
 
 	@SuppressLint("InflateParams")
 	public static void showChallengeCompleteToast(int iconRes, String text) {
-		View layout = context.getLayoutInflater().inflate(R.layout.achievement, null, false);
+		View layout;
+		
+		if(layoutAchievements[posAchievements] != null) layout = layoutAchievements[posAchievements];
+		else {
+			layout = layoutAchievements[posAchievements] =context.getLayoutInflater().inflate(R.layout.achievement, null, false);
+		}
+		
+		++posAchievements;
+		if(posAchievements >= layoutAchievements.length) posAchievements = 0;
 
 		ImageView icon = (ImageView) layout.findViewById(R.id.achievement_icon);
-		icon.setImageResource(iconRes);
+		icon.setImageDrawable(context.loadDrawable(iconRes));
 
 		TextView name = (TextView) layout.findViewById(R.id.achievement_name);
 		name.setText(R.string.challenge_complete);
@@ -148,11 +225,18 @@ public class ToastSystem {
 
 	@SuppressLint("InflateParams")
 	public static void showRankToast(int rank) {
-		// Log.i("YellowQuest", "Start make achievement toast");
-		View layout = context.getLayoutInflater().inflate(R.layout.achievement, null, false);
+		View layout;
+		
+		if(layoutAchievements[posAchievements] != null) layout = layoutAchievements[posAchievements];
+		else {
+			layout = layoutAchievements[posAchievements] =context.getLayoutInflater().inflate(R.layout.achievement, null, false);
+		}
+		
+		++posAchievements;
+		if(posAchievements >= layoutAchievements.length) posAchievements = 0;
 
 		ImageView icon = (ImageView) layout.findViewById(R.id.achievement_icon);
-		icon.setImageResource(R.drawable.new_hiscore);
+		icon.setImageDrawable(context.loadDrawable(R.drawable.new_hiscore));
 
 		TextView name = (TextView) layout.findViewById(R.id.achievement_name);
 		name.setText(String.format(context.getString(R.string.new_rank), rank));
@@ -181,11 +265,18 @@ public class ToastSystem {
 
 	@SuppressLint("InflateParams")
 	public static void showUnlockToast(int iconId, int textId) {
-		// Log.i("YellowQuest", "Start make achievement toast");
-		View layout = context.getLayoutInflater().inflate(R.layout.unlock, null, false);
+		View layout;
+		
+		if(layoutUnlocks[posUnlocks] != null) layout = layoutUnlocks[posUnlocks];
+		else {
+			layout = layoutUnlocks[posUnlocks] =context.getLayoutInflater().inflate(R.layout.unlock, null, false);
+		}
+		
+		++posUnlocks;
+		if(posUnlocks >= layoutUnlocks.length) posUnlocks = 0;
 
 		ImageView icon = (ImageView) layout.findViewById(R.id.unlock_icon);
-		icon.setImageResource(iconId);
+		icon.setImageDrawable(context.loadDrawable(iconId));
 
 		TextView name = (TextView) layout.findViewById(R.id.unlock_text);
 		name.setText(textId);

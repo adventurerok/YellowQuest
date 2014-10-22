@@ -1,6 +1,7 @@
 package com.ithinkrok.yellowquest;
 
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.SurfaceHolder;
 
 public class CanvasThread extends Thread {
@@ -34,6 +35,8 @@ public class CanvasThread extends Thread {
 		while (_run) { // When setRunning(false) occurs, _run is
 			if(_pause) continue;
 			c = null; // set to false and loop ends, stopping thread
+			
+			
 
 			try {
 				beginTime = System.nanoTime();
@@ -50,6 +53,11 @@ public class CanvasThread extends Thread {
 				}
 			}
 			timeDiff = (System.nanoTime() - beginTime) / 1000000;
+			
+			if(timeDiff > 40){
+				Log.w("YellowQuest", "loop sequence took " + timeDiff);
+			}
+			
 			sleepTime = FRAME_PERIOD - timeDiff;
 			if(sleepTime > 0) {
 				try {
