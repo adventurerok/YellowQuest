@@ -2,11 +2,10 @@ package com.ithinkrok.yellowquest.entity;
 
 import java.util.ArrayList;
 
-import com.ithinkrok.yellowquest.CanvasSurfaceView;
-import com.ithinkrok.yellowquest.YellowQuest;
-import com.ithinkrok.yellowquest.util.Box;
-
 import android.graphics.Paint;
+
+import com.ithinkrok.yellowquest.*;
+import com.ithinkrok.yellowquest.util.Box;
 
 public abstract class Entity {
 
@@ -26,6 +25,8 @@ public abstract class Entity {
 	public int bonusData = 0;
 	
 	public int timeSinceIntercept = 0;
+	 
+	public Arrow relativeArrow = null;
 
 	public YellowQuest game;
 	public EntityType type;

@@ -18,6 +18,8 @@ import com.ithinkrok.yellowquest.util.Box;
 
 public class YellowQuest {
 
+	private static Entity _iterEntity;
+
 	private static final Paint PAINT_RED = new Paint();
 	private static final Paint PAINT_BROWN = new Paint();
 	private static final Paint PAINT_BROWNER = new Paint();
@@ -203,6 +205,16 @@ public class YellowQuest {
 		// return wasdKeys[0];
 	}
 
+	public void drawArrow(CanvasSurfaceView rend, float x, float y, Paint paint, Direction dir) {
+		switch (dir) {
+		case UP:
+			drawUpArrow(rend, x, y, paint);
+			break;
+		case DOWN:
+			drawDownArrow(rend, x, y, paint);
+		}
+	}
+
 	public void draw(CanvasSurfaceView rend) {
 		if (!display)
 			return;
@@ -211,18 +223,19 @@ public class YellowQuest {
 		if (gameOver == null) {
 			// drawArrow(rend, 100, 100, PAINT_COOLDOWN);
 			for (Arrow arr : arrows) {
-				switch (arr.dir) {
-				case UP:
-					drawUpArrow(rend, arr.x, arr.y, arr.paint);
-					break;
-				case DOWN:
-					drawDownArrow(rend, arr.x, arr.y, arr.paint);
-					break;
-				}
+				drawArrow(rend, arr.x, arr.y, arr.paint, arr.dir);
 
 			}
 			tPos = 0;
 			drawFlag(rend, (float) level.finalBox.x, (float) level.finalBox.box.ey);
+			for (int d = 0; d < boxes.size(); ++d) {
+				if (boxes.get(d).relativeArrow == null)
+					continue;
+				_iterEntity = boxes.get(d);
+				drawArrow(rend, (float) (_iterEntity.x + _iterEntity.relativeArrow.x),
+						(float) (_iterEntity.y + _iterEntity.relativeArrow.y), _iterEntity.relativeArrow.paint,
+						_iterEntity.relativeArrow.dir);
+			}
 			for (int d = 0; d < boxes.size(); ++d) {
 				boxes.get(d).draw(rend);
 			}
@@ -281,7 +294,7 @@ public class YellowQuest {
 		y -= player.y;
 		x += rend.width / 2;
 		y += rend.height / 2;
-		if(level.isBonus){
+		if (level.isBonus) {
 			rend.fillRect(x - 30, y + 30, 30, 30, PAINT_GAMEOVER);
 			rend.fillRect(x, y, 5, 60, PAINT_BROWNER);
 		} else {
@@ -386,6 +399,48 @@ public class YellowQuest {
 		}
 	}
 
+	public void generateBoxBonus(EntityPlatform ent) {
+		if (level.bonusType.equals("up")) {
+			
+			arrows.add(new Arrow(ent.x, ent.box.ey + 1020, Direction.UP, TraitUp.PAINT_GREEN));
+			ent.relativeArrow = new Arrow(0, ent.box.ey - ent.y + 20, Direction.UP, TraitUp.PAINT_GREEN);
+			
+			generateBonusBoxes(bgenX + 150, bgenY + 1500);
+			
+			if (ent.hasTrait("up"))
+				((TraitUp) ent.getTrait("up")).maxUpTime = 1500;
+			
+			ent.bonusType = "up";
+			
+		} else if (level.bonusType.equals("life")) {
+			
+			arrows.add(new Arrow((ent.box.sx + level.lastBoxType.box.ex) / 2,
+					(ent.box.ey + level.lastBoxType.box.ey) / 2 + 20, Direction.DOWN, EntityPlayer.PAINT_YELLOW));
+			
+			level.lastBoxType.bonusType = "life";
+			ent.bonusType = "life";
+			ent.bonusData = 1;
+			
+			generateBonusBoxes(-30, 2000);
+			
+		} else if (level.bonusType.equals("bounce")) {
+			
+			ent.bonusType = "bounce";
+			ent.bonusData = 12;
+			ent.relativeArrow = new Arrow(0, ent.box.ey - ent.y + 20, Direction.UP, TraitBounce.PAINT_MAGENTA);
+			
+			EntityPlatform plat = getPlatform(ent.boxNumber - 3 + (random(4) == 0 ? 1 : 0));
+			if (plat != null) {
+				plat.bonusType = "bounce";
+				plat.bonusData = 1742;
+				plat.relativeArrow = new Arrow(0, plat.box.ey - plat.y + 20, Direction.DOWN, TraitBounce.PAINT_MAGENTA);
+			}
+			
+			generateBonusBoxes(-30, 2000);
+			
+		}
+	}
+
 	public void generateBoxes(int amount) {
 		if (nextBox >= level.size)
 			return;
@@ -415,11 +470,13 @@ public class YellowQuest {
 			}
 			ent = (EntityPlatform) WeightedTraitFactory.randomPlatform(this).calcBounds(bgenX + xe / 2, bgenY - ye / 2,
 					xe, ye);
-			
-			if(level.isBonus && maxLifeAward < 3 && "life".equals(level.bonusType) && ent.traits.length < 2 && random(3) != 0){
+
+			if (level.isBonus && maxLifeAward < 3 && "life".equals(level.bonusType) && ent.traits.length < 2
+					&& random(3) != 0) {
 				++maxLifeAward;
 				Trait[] after = new Trait[ent.traits.length + 1];
-				for(int i = 0; i < ent.traits.length; ++i) after[i] = ent.traits[i];
+				for (int i = 0; i < ent.traits.length; ++i)
+					after[i] = ent.traits[i];
 				after[ent.traits.length] = new TraitExtraLife(ent);
 				ent.traits = after;
 			}
@@ -432,32 +489,7 @@ public class YellowQuest {
 				ent.boxNumber += 9900;
 
 			if (!level.isBonus && level.bonusPosition == ent.boxNumber) {
-				if (level.bonusType.equals("up")) {
-					for (int a = 0; a < 1499; a += 500)
-						arrows.add(new Arrow(ent.x, ent.box.ey + 20 + a, Direction.UP, TraitUp.PAINT_GREEN));
-					generateBonusBoxes(bgenX + 150, bgenY + 1500);
-					if (ent.hasTrait("up"))
-						((TraitUp) ent.getTrait("up")).maxUpTime = 1500;
-					ent.bonusType = "up";
-				} else if (level.bonusType.equals("life")) {
-					arrows.add(new Arrow((ent.box.sx + level.lastBoxType.box.ex) / 2,
-							(ent.box.ey + level.lastBoxType.box.ey) / 2 + 20, Direction.DOWN, EntityPlayer.PAINT_YELLOW));
-					level.lastBoxType.bonusType = "life";
-					ent.bonusType = "life";
-					ent.bonusData = 1;
-					generateBonusBoxes(-30, 2000);
-				} else if(level.bonusType.equals("bounce")){
-					arrows.add(new Arrow(ent.x, ent.box.ey + 20, Direction.UP, TraitBounce.PAINT_MAGENTA));
-					ent.bonusType = "bounce";
-					ent.bonusData = 12;
-					EntityPlatform plat = getPlatform(ent.boxNumber - 2 - random(2));
-					if(plat != null){
-						arrows.add(new Arrow(plat.x, plat.box.ey + 20, Direction.DOWN, TraitBounce.PAINT_MAGENTA));
-						plat.bonusType = "bounce";
-						plat.bonusData = 1742;
-					}
-					generateBonusBoxes(-30, 2000);
-				}
+				generateBoxBonus(ent);
 			}
 
 			ent.install();
@@ -726,21 +758,20 @@ public class YellowQuest {
 			if (this.playerLives > 1) {
 				this.playerLives -= 1;
 				boolean lifeInter = false;
-				if(player.lastIntersected != null && "life".equals(player.lastIntersected.bonusType)){
-					if(player.lastIntersected.bonusData == 0){
+				if (player.lastIntersected != null && "life".equals(player.lastIntersected.bonusType)) {
+					if (player.lastIntersected.bonusData == 0) {
 						lifeInter = player.x > player.lastIntersected.box.sx;
-					} else if(player.lastIntersected.bonusData == 1){
+					} else if (player.lastIntersected.bonusData == 1) {
 						lifeInter = player.x < player.lastIntersected.box.ex;
 					}
 				}
-				
+
 				if (lifeInter) {
 					lifeBonusNum++;
 				} else {
 					lifeBonusNum = 0;
 				}
-				
-				
+
 				if (lifeBonusNum >= 3) {
 					player.fallDist = 0;
 					player.teleport(0, 2400);
@@ -749,7 +780,7 @@ public class YellowQuest {
 				} else {
 					gameOver = new GameOver(2, "Level Failed");
 				}
-				
+
 			} else
 				gameOver = new GameOver(0, "Game Over");
 		}
