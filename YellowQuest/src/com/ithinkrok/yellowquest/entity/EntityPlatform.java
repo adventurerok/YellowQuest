@@ -37,7 +37,7 @@ public class EntityPlatform extends Entity {
 
 	@Override
 	public void update() {
-		if (this.boxNumber + YellowQuest.BOX_BUFFER < game.playerBox) this.remove = true;
+		if (game.playerBox < 9900 && this.boxNumber + YellowQuest.BOX_BUFFER < game.playerBox) this.remove = true;
 	    if (Math.abs(this.x_velocity) < 0.01) this.x_velocity = 0;
 	    boolean pis = false;
 	    if (game.player.intersecting == this) {

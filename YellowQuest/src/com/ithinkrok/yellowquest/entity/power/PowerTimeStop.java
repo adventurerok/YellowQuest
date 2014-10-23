@@ -13,10 +13,10 @@ public class PowerTimeStop extends Power {
 		PAINT_TIME_STOP.setColor(0x5500ee00);
 	}
 	
-	int stopTime = 3 * 45;
-	int cooldown = 50 * 45;
-	int cooling = 0;
-	int coolup = 0;
+	public int stopTime = 3 * 45;
+	public int cooldown = 50 * 45;
+	public int cooling = 0;
+	public int coolup = 0;
 
 	public PowerTimeStop(EntityPlayer player, int upgradeLevel) {
 		super(player, upgradeLevel);
@@ -42,6 +42,11 @@ public class PowerTimeStop extends Power {
 		return true;
 	}
 	
+	public void setTimers(){
+		coolup = stopTime;
+		cooling = cooldown;
+	}
+	
 	@Override
 	public void powerButtonPressed() {
 		if(coolup > 0 || cooling > 0) return;
@@ -65,6 +70,14 @@ public class PowerTimeStop extends Power {
 	@Override
 	public String getName() {
 		return "time";
+	}
+
+	public void backwardsTimer() {
+		if(coolup > 0 && coolup - 1 < stopTime) coolup += 2;
+	}
+
+	public void resetTimers() {
+		coolup = 0;
 	}
 
 }

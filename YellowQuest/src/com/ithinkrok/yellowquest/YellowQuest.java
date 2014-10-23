@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.ithinkrok.yellowquest.Arrow.Direction;
 import com.ithinkrok.yellowquest.challenge.Stat;
 import com.ithinkrok.yellowquest.entity.*;
+import com.ithinkrok.yellowquest.entity.power.PowerTimeStop;
 import com.ithinkrok.yellowquest.entity.power.PowerTroll;
 import com.ithinkrok.yellowquest.entity.trait.*;
 import com.ithinkrok.yellowquest.ui.PowerInfo;
@@ -499,7 +500,7 @@ public class YellowQuest {
 			
 			generateUpOnly = true;
 			
-			generateBonusBoxes((int)ent.x + 60, (int)ent.y + 150);
+			generateBonusBoxes((int)ent.x + 60, (int)ent.y + 120);
 			
 			bgenY -= 100;
 			
@@ -552,13 +553,12 @@ public class YellowQuest {
 					Trait[] after = new Trait[ent.traits.length + 1];
 					for (int i = 0; i < ent.traits.length; ++i)
 						after[i] = ent.traits[i];
-					after[ent.traits.length] = new TraitExtraLife(ent);
+					after[ent.traits.length] = new TraitTimeHidden(ent);
 					ent.traits = after;
 				} else {
 					Trait[] after = new Trait[2];
 					after[0] = ent.traits[random(2)];
 					after[1] = new TraitTimeHidden(ent);
-					after[1].install();
 					ent.traits = after;
 				}
 			}
@@ -860,6 +860,9 @@ public class YellowQuest {
 				levelUp();
 			} else if (level.isBonus && this.playerBox - 9900 + 1 == level.size) {
 				addAchievement(R.string.achievement_bonus_time);
+				if("time".equals(level.bonusType)){
+					((PowerTimeStop)player.getPower()).resetTimers();
+				}
 				levelUp();
 			}
 			
