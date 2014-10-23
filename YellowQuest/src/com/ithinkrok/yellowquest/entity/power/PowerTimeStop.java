@@ -28,9 +28,11 @@ public class PowerTimeStop extends Power {
 	@Override
 	public void update(EntityPlayer player) {
 		if(coolup > 0){
+			player.game.isTimeStopped = true;
 			--player.game.timer;
 			--coolup;
 		} else if(cooling > 0){
+			player.game.isTimeStopped = false;
 			--cooling;
 		}
 	}

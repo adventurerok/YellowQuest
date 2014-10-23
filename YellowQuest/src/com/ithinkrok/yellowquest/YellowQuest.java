@@ -86,6 +86,8 @@ public class YellowQuest {
 	private CanvasSurfaceView canvas;
 
 	public int lifeBonusNum = 0;
+	
+	public boolean isTimeStopped = false;
 
 	public boolean generatingBonus = false;
 
@@ -124,6 +126,9 @@ public class YellowQuest {
 	
 	public int teleportX = -4500;
 	public int teleportY = -4500;
+	
+	public boolean generateUpOnly = false;
+	
 
 	// private double pixelDensity = 1d;
 
@@ -488,6 +493,19 @@ public class YellowQuest {
 			
 			generateBonusBoxes(-30, 2000);
 			
+		} else if(level.bonusType.equals("time")){
+			
+			ent.relativeArrow = new Arrow(0, ent.box.ey - ent.y + 20, Direction.CIRCLE, YellowQuest.PAINT_GAMEOVER);
+			
+			generateUpOnly = true;
+			
+			generateBonusBoxes((int)ent.x + 60, (int)ent.y + 150);
+			
+			bgenY -= 100;
+			
+			generateUpOnly = false;
+			
+			
 		}
 	}
 
@@ -529,6 +547,20 @@ public class YellowQuest {
 					after[i] = ent.traits[i];
 				after[ent.traits.length] = new TraitExtraLife(ent);
 				ent.traits = after;
+			} else if(level.isBonus && "time".equals(level.bonusType)){
+				if(ent.traits.length < 2){
+					Trait[] after = new Trait[ent.traits.length + 1];
+					for (int i = 0; i < ent.traits.length; ++i)
+						after[i] = ent.traits[i];
+					after[ent.traits.length] = new TraitExtraLife(ent);
+					ent.traits = after;
+				} else {
+					Trait[] after = new Trait[2];
+					after[0] = ent.traits[random(2)];
+					after[1] = new TraitTimeHidden(ent);
+					after[1].install();
+					ent.traits = after;
+				}
 			}
 
 			// if(!generatingBonus && ent.hasTrait("up"))
@@ -549,10 +581,14 @@ public class YellowQuest {
 			bgenX += xe;
 			bgenX += 50;
 			bgenX += random(150);
+			int sbgenY = bgenY;
 			if (generatingBonus)
 				bgenY += random(170) - 50;
 			else
 				bgenY += random(230) - 110;
+			
+			if(generateUpOnly && bgenY < sbgenY) bgenY = sbgenY + random(120);
+			
 			if (bgenY > bgenYMax)
 				bgenYMax = bgenY;
 			else if (bgenY < bgenYMin)

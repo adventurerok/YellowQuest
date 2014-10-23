@@ -119,7 +119,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("time", YellowQuest.PAINT_GAMEOVER.getColor(), 7500, 37000,
 				R.string.power_time, R.string.power_time_desc, R.string.power_time_upgrade, 2,
-				R.string.power_time_warn, 3, R.string.power_time_unlock, R.drawable.unlock_time_stop, 3).setCreator(new PowerCreator() {
+				R.string.power_time_warn, 3, R.string.power_time_unlock, R.drawable.unlock_time_stop, 0).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
@@ -128,7 +128,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("teleport", TraitConveyor.PAINT_GREY.getColor(), 10000, 50000,
 				R.string.power_teleport, R.string.power_teleport_desc, R.string.power_teleport_upgrade, 2,
-				R.string.power_teleport_warn, 4, R.string.power_teleport_unlock, R.drawable.unlock_teleport, 0).setCreator(new PowerCreator() {
+				R.string.power_teleport_warn, 4, R.string.power_teleport_unlock, R.drawable.unlock_teleport, 2).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
