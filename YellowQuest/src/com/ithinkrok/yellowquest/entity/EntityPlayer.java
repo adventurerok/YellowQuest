@@ -113,6 +113,7 @@ public class EntityPlayer extends Entity {
 
 	@Override
 	public void draw(CanvasSurfaceView rend) {
+		if(!isVisible) return;
 		Paint paint;
 		if (power == null)
 			paint = this.color;

@@ -1,5 +1,7 @@
 package com.ithinkrok.yellowquest.entity.power;
 
+import android.util.Log;
+
 import com.ithinkrok.yellowquest.entity.EntityPlatform;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
 import com.ithinkrok.yellowquest.entity.trait.TraitConveyor;
@@ -45,6 +47,9 @@ public class PowerTeleport extends Power {
 		int dx = (int) (player.x - player.game.teleportX);
 		int dy = (int) (player.y - player.game.teleportY);
 		int dist = (dx * dx) + (dy * dy);
+		
+		//Log.i("YellowQuest", ")
+		Log.i("YellowQuest", "dist*dist: " + dist);
 		
 		if(dist < 10000){
 			player.teleport(0, 2100);

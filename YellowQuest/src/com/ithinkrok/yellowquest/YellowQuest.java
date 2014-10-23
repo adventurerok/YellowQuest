@@ -218,8 +218,10 @@ public class YellowQuest {
 			break;
 		case DOWN:
 			drawDownArrow(rend, x, y, paint);
+			break;
 		case CIRCLE:
 			drawCircleArrow(rend, x, y, paint);
+			break;
 		}
 	}
 
@@ -454,12 +456,12 @@ public class YellowQuest {
 			
 		} else if (level.bonusType.equals("bounce")) {
 			
-			ent.bonusType = "bounce";
-			ent.bonusData = 12;
-			ent.relativeArrow = new Arrow(0, ent.box.ey - ent.y + 20, Direction.UP, TraitBounce.PAINT_MAGENTA);
-			
 			EntityPlatform plat = getPlatform(ent.boxNumber - 3 + (random(4) == 0 ? 1 : 0));
 			if (plat != null) {
+				ent.bonusType = "bounce";
+				ent.bonusData = 12;
+				ent.relativeArrow = new Arrow(0, ent.box.ey - ent.y + 20, Direction.UP, TraitBounce.PAINT_MAGENTA);
+				
 				plat.bonusType = "bounce";
 				plat.bonusData = 1742;
 				plat.relativeArrow = new Arrow(0, plat.box.ey - plat.y + 20, Direction.DOWN, TraitBounce.PAINT_MAGENTA);
@@ -637,6 +639,9 @@ public class YellowQuest {
 	}
 
 	public void nextLevel() {
+		teleportX = -4500;
+		teleportY = -4500;
+		
 		boxes.clear();
 		arrows.clear();
 		lifeBonusNum = 0;
@@ -661,8 +666,6 @@ public class YellowQuest {
 		levelScore = 0;
 		canvas.getActivity().setPassedOne();
 		
-		teleportX = -4500;
-		teleportY = -4500;
 	}
 
 	public MainActivity getContext() {
@@ -680,6 +683,9 @@ public class YellowQuest {
 	}
 
 	public void reload() {
+		teleportX = -4500;
+		teleportY = -4500;
+		
 		gameOver = null;
 		boxes.clear();
 		arrows.clear();
@@ -707,12 +713,15 @@ public class YellowQuest {
 		levelScore = 0;
 		player.setPower(null);
 		
-		teleportX = -4500;
-		teleportY = -4500;
+		
 
 	}
 
 	public void restartLevel() {
+		teleportX = -4500;
+		teleportY = -4500;
+
+		
 		boxes.clear();
 		arrows.clear();
 		int lNum = level.number;
@@ -735,8 +744,6 @@ public class YellowQuest {
 		timerStarted = false;
 		levelScore = 0;
 		
-		teleportX = -4500;
-		teleportY = -4500;
 	}
 
 	public void setGameMode(boolean shadow, boolean time) {

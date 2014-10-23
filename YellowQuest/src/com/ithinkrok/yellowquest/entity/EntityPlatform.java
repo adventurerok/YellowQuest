@@ -174,6 +174,7 @@ public class EntityPlatform extends Entity {
 	
 	@Override
 	public void draw(CanvasSurfaceView rend) {
+		if(!isVisible) return;
 		Paint paint;
 		if(!revealed) paint = PAINT_WHITE;
 		else {

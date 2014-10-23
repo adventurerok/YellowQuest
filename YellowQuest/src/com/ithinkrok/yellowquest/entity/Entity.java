@@ -25,6 +25,8 @@ public abstract class Entity {
 	public int bonusData = 0;
 	
 	public int timeSinceIntercept = 0;
+	
+	public boolean isVisible = true;
 	 
 	public Arrow relativeArrow = null;
 
