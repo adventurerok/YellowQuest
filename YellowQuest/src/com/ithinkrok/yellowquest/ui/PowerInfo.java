@@ -110,7 +110,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("troll", TraitTroll.PAINT_TROLL.getColor(), 5000, 25000,
 				R.string.power_troll, R.string.power_troll_desc, R.string.power_troll_upgrade, 1,
-				R.string.power_troll_warn, 2, R.string.power_troll_unlock, R.drawable.unlock_backwards, 6).setCreator(new PowerCreator() {
+				R.string.power_troll_warn, 2, R.string.power_troll_unlock, R.drawable.unlock_backwards, 0).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
@@ -119,7 +119,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("time", YellowQuest.PAINT_GAMEOVER.getColor(), 7500, 37000,
 				R.string.power_time, R.string.power_time_desc, R.string.power_time_upgrade, 2,
-				R.string.power_time_warn, 3, R.string.power_time_unlock, R.drawable.unlock_time_stop, 0).setCreator(new PowerCreator() {
+				R.string.power_time_warn, 3, R.string.power_time_unlock, R.drawable.unlock_time_stop, 2).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {

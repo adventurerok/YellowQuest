@@ -85,6 +85,7 @@ public class YellowQuest {
 	public int bgenX = -32, bgenY = 0;
 	public int bgenYMax = 0, bgenYMin = 0;
 	private CanvasSurfaceView canvas;
+	
 
 	public int lifeBonusNum = 0;
 	
@@ -117,7 +118,7 @@ public class YellowQuest {
 
 	private boolean display = false;
 
-	private boolean reverse = false;
+	public boolean reverse = false;
 
 	private Box coolBox = new Box(0, 0, 0, 0);
 
@@ -228,6 +229,11 @@ public class YellowQuest {
 		case CIRCLE:
 			drawCircleArrow(rend, x, y, paint);
 			break;
+		case BACKWARDS:
+			drawLeftArrow(rend, x, y, paint);
+			break;
+		case FORWARDS:
+			drawRightArrow(rend, x, y, paint);
 		}
 	}
 
@@ -241,6 +247,7 @@ public class YellowQuest {
 		
 		
 		if (gameOver == null) {
+			
 			// drawArrow(rend, 100, 100, PAINT_COOLDOWN);
 			for (Arrow arr : arrows) {
 				drawArrow(rend, arr.x, arr.y, arr.paint, arr.dir);
@@ -337,16 +344,113 @@ public class YellowQuest {
 
 		Path path = new Path();
 		path.setFillType(Path.FillType.EVEN_ODD);
-		if (rend.density >= 1.99) {
-			path.moveTo(x - 15, rend.height - (y + 15));
-			path.lineTo(x, rend.height - (y + 30));
-			path.lineTo(x + 15, rend.height - (y + 15));
-			path.lineTo(x - 15, rend.height - (y + 15));
+		
+		if(reverse){
+			if (rend.density >= 1.99) {
+				path.moveTo(rend.width - (x - 15), rend.height - (y + 15));
+				path.lineTo(rend.width - x, rend.height - (y + 30));
+				path.lineTo(rend.width - (x + 15), rend.height - (y + 15));
+				path.lineTo(rend.width - (x - 15), rend.height - (y + 15));
+			} else {
+				path.moveTo((rend.width - (x - 15)) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+				path.lineTo((rend.width - x) / 2 + rend.width / 4, (rend.height - (y + 30)) / 2 + rend.height / 4);
+				path.lineTo((rend.width - (x + 15)) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+				path.lineTo((rend.width - (x - 15)) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+			}
 		} else {
-			path.moveTo((x - 15) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
-			path.lineTo(x / 2 + rend.width / 4, (rend.height - (y + 30)) / 2 + rend.height / 4);
-			path.lineTo((x + 15) + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
-			path.lineTo((x - 15) + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+			if (rend.density >= 1.99) {
+				path.moveTo(x - 15, rend.height - (y + 15));
+				path.lineTo(x, rend.height - (y + 30));
+				path.lineTo(x + 15, rend.height - (y + 15));
+				path.lineTo(x - 15, rend.height - (y + 15));
+			} else {
+				path.moveTo((x - 15) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+				path.lineTo(x / 2 + rend.width / 4, (rend.height - (y + 30)) / 2 + rend.height / 4);
+				path.lineTo((x + 15) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+				path.lineTo((x - 15) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+			}
+		}
+		
+		path.close();
+
+		rend.canvas.drawPath(path, paint);
+	}
+	
+	
+	public void drawLeftArrow(CanvasSurfaceView rend, float x, float y, Paint paint) {
+		x -= player.x;
+		y -= player.y;
+		x += rend.width / 2;
+		y += rend.height / 2;
+		rend.fillRect(x - 1, y + 10, 16, 10, paint);
+
+		Path path = new Path();
+		path.setFillType(Path.FillType.EVEN_ODD);
+		
+		if(reverse){
+			if (rend.density >= 1.99) {
+				path.moveTo(rend.width - x, rend.height - y);
+				path.lineTo(rend.width - (x - 15), rend.height - (y + 15));
+				path.lineTo(rend.width - x, rend.height - (y + 30));
+				path.lineTo(rend.width - x, rend.height - y);
+			} else {
+				path.moveTo((rend.width - x) / 2 + rend.width / 4, (rend.height - (y)) / 2 + rend.height / 4);
+				path.lineTo((rend.width - (x - 15)) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+				path.lineTo((rend.width  - x) / 2 + rend.width / 4, (rend.height - (y + 30)) / 2 + rend.height / 4);
+				path.lineTo((rend.width - x) / 2 + rend.width / 4, (rend.height - (y)) / 2 + rend.height / 4);
+			}
+		} else {
+			if (rend.density >= 1.99) {
+				path.moveTo(x, rend.height - y);
+				path.lineTo(x - 15, rend.height - (y + 15));
+				path.lineTo(x, rend.height - (y + 30));
+				path.lineTo(x, rend.height - y);
+			} else {
+				path.moveTo((x) / 2 + rend.width / 4, (rend.height - (y)) / 2 + rend.height / 4);
+				path.lineTo((x - 15) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+				path.lineTo((x) + rend.width / 4, (rend.height - (y + 30)) / 2 + rend.height / 4);
+				path.lineTo((x) + rend.width / 4, (rend.height - (y)) / 2 + rend.height / 4);
+			}
+		}
+		
+		path.close();
+
+		rend.canvas.drawPath(path, paint);
+	}
+	
+	public void drawRightArrow(CanvasSurfaceView rend, float x, float y, Paint paint) {
+		x -= player.x;
+		y -= player.y;
+		x += rend.width / 2;
+		y += rend.height / 2;
+		rend.fillRect(x - 15, y + 10, 16, 10, paint);
+
+		Path path = new Path();
+		path.setFillType(Path.FillType.EVEN_ODD);
+		if(reverse){
+			if (rend.density >= 1.99) {
+				path.moveTo(rend.width - x, rend.height - y);
+				path.lineTo(rend.width - (x + 15), rend.height - (y + 15));
+				path.lineTo(rend.width - x, rend.height - (y + 30));
+				path.lineTo(rend.width - x, rend.height - y);
+			} else {
+				path.moveTo((rend.width - x) / 2 + rend.width / 4, (rend.height - (y)) / 2 + rend.height / 4);
+				path.lineTo((rend.width - (x + 15)) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+				path.lineTo((rend.width - x) / 2 + rend.width / 4, (rend.height - (y + 30)) / 2 + rend.height / 4);
+				path.lineTo((rend.width - x) / 2 + rend.width / 4, (rend.height - (y)) / 2 + rend.height / 4);
+			}
+		} else {
+			if (rend.density >= 1.99) {
+				path.moveTo(x, rend.height - y);
+				path.lineTo(x + 15, rend.height - (y + 15));
+				path.lineTo(x, rend.height - (y + 30));
+				path.lineTo(x, rend.height - y);
+			} else {
+				path.moveTo((x) / 2 + rend.width / 4, (rend.height - (y)) / 2 + rend.height / 4);
+				path.lineTo((x + 15) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+				path.lineTo((x) / 2 + rend.width / 4, (rend.height - (y + 30)) / 2 + rend.height / 4);
+				path.lineTo((x) / 2 + rend.width / 4, (rend.height - (y)) / 2 + rend.height / 4);
+			}
 		}
 		path.close();
 
@@ -374,17 +478,32 @@ public class YellowQuest {
 
 		Path path = new Path();
 		path.setFillType(Path.FillType.EVEN_ODD);
-		if (rend.density >= 1.99) {
-			path.moveTo(x - 15, rend.height - (y + 15));
-			path.lineTo(x, rend.height - (y));
-			path.lineTo(x + 15, rend.height - (y + 15));
-			path.lineTo(x - 15, rend.height - (y + 15));
+		if(reverse){
+			if (rend.density >= 1.99) {
+				path.moveTo(rend.width - (x - 15), rend.height - (y + 15));
+				path.lineTo(rend.width - x, rend.height - (y));
+				path.lineTo(rend.width - (x + 15), rend.height - (y + 15));
+				path.lineTo(rend.width - (x - 15), rend.height - (y + 15));
+			} else {
+				path.moveTo((rend.width - (x - 15)) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+				path.lineTo((rend.width - x) / 2 + rend.width / 4, (rend.height - (y)) / 2 + rend.height / 4);
+				path.lineTo((rend.width - (x + 15)) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+				path.lineTo((rend.width - (x - 15)) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+			}
 		} else {
-			path.moveTo((x - 15) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
-			path.lineTo(x / 2 + rend.width / 4, (rend.height - (y)) / 2 + rend.height / 4);
-			path.lineTo((x + 15) + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
-			path.lineTo((x - 15) + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+			if (rend.density >= 1.99) {
+				path.moveTo(x - 15, rend.height - (y + 15));
+				path.lineTo(x, rend.height - (y));
+				path.lineTo(x + 15, rend.height - (y + 15));
+				path.lineTo(x - 15, rend.height - (y + 15));
+			} else {
+				path.moveTo((x - 15) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+				path.lineTo(x / 2 + rend.width / 4, (rend.height - (y)) / 2 + rend.height / 4);
+				path.lineTo((x + 15) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+				path.lineTo((x - 15) / 2 + rend.width / 4, (rend.height - (y + 15)) / 2 + rend.height / 4);
+			}
 		}
+		
 		path.close();
 
 		rend.canvas.drawPath(path, paint);
@@ -507,6 +626,8 @@ public class YellowQuest {
 			generateUpOnly = false;
 			
 			
+		} else if(level.bonusType.equals("troll")){
+			ent.traits = new Trait[]{new TraitTrollBonus(ent)};
 		}
 	}
 
@@ -561,7 +682,7 @@ public class YellowQuest {
 					after[1] = new TraitTimeHidden(ent);
 					ent.traits = after;
 				}
-			}
+			} 
 
 			// if(!generatingBonus && ent.hasTrait("up"))
 			// generateBonusBoxes(bgenX + 120, bgenY + 1510);
@@ -984,7 +1105,7 @@ public class YellowQuest {
 		if (this.player.x_velocity > maxSpeed)
 			this.player.x_velocity = maxSpeed;
 		if (doJump() && this.player.onGround) {
-			this.player.y_velocity = jump * player.getJumpMultiplier() + player.getJumpIncrease();
+			this.player.y_velocity = jump * player.getJumpMultiplier() + player.getJumpIncrease() + 0.25;
 			gameData.statTracker.addStat(getContext(), Stat.JUMPS, 1);
 			player.onGround = false;
 			timerStarted = true;

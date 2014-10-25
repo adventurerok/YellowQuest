@@ -38,10 +38,9 @@ public class TraitTroll extends Trait {
 			PowerInfo.getData("troll").unlock(player.game.getContext());
 			powerUnlock = true;
 		}
-		boolean pow = player.hasPower("troll");
-		if (pow && player.x_velocity >= 0)
+		if (player.game.reverse && player.x_velocity >= 0)
 			return;
-		if (!pow && player.x_velocity <= 0)
+		if (!player.game.reverse && player.x_velocity <= 0)
 			return;
 		if (parent.game.playerLives > 1) {
 			parent.game.playerLives -= 1;
