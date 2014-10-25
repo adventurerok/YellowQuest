@@ -3,6 +3,7 @@ package com.ithinkrok.yellowquest.entity.trait;
 import android.graphics.Paint;
 
 import com.ithinkrok.yellowquest.GameOver;
+import com.ithinkrok.yellowquest.R;
 import com.ithinkrok.yellowquest.entity.EntityPlatform;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
 import com.ithinkrok.yellowquest.ui.PowerInfo;
@@ -44,9 +45,9 @@ public class TraitTroll extends Trait {
 			return;
 		if (parent.game.playerLives > 1) {
 			parent.game.playerLives -= 1;
-			parent.game.gameOver = new GameOver(2, "Level Failed");
+			parent.game.gameOver = new GameOver(2, R.string.level_failed, player.game.getContext());
 		} else {
-			parent.game.gameOver = new GameOver(0, "Don't go right!");
+			parent.game.gameOver = new GameOver(0, R.string.dont_go_right, player.game.getContext());
 		}
 	}
 

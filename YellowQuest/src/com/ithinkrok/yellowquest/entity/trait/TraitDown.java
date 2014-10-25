@@ -3,6 +3,7 @@ package com.ithinkrok.yellowquest.entity.trait;
 import android.graphics.Paint;
 
 import com.ithinkrok.yellowquest.GameOver;
+import com.ithinkrok.yellowquest.R;
 import com.ithinkrok.yellowquest.entity.EntityPlatform;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
 
@@ -28,9 +29,27 @@ public class TraitDown extends Trait {
 		goingDown = true;
 		if(downTicks > 197){
 			if(player.game.playerLives > 1){
-				player.game.gameOver = new GameOver(2, "Level failed");
+				player.game.gameOver = new GameOver(2, R.string.level_failed, player.game.getContext());
 			} else {
-				player.game.gameOver = new GameOver(0, "You went down too far");
+				if(player.game.random(5000) == 2845){
+					switch(player.game.random(4)){
+					case 0:
+						player.game.gameOver = new GameOver(0, R.string.cant_get_up, player.game.getContext());
+						break;
+					case 1:
+						player.game.gameOver = new GameOver(0, R.string.you_were_trapped, player.game.getContext());
+						break;
+					case 2:
+						player.game.gameOver = new GameOver(0, R.string.i_couldnt_help, player.game.getContext());
+						break;
+					case 3:
+						player.game.gameOver = new GameOver(0, R.string.i_feel_so_sorry, player.game.getContext());
+						break;
+						
+					}
+				} else {
+					player.game.gameOver = new GameOver(0, R.string.down_too_far, player.game.getContext());
+				}
 			}
 		}
 	}

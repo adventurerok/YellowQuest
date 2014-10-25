@@ -752,7 +752,7 @@ public class YellowQuest {
 	}
 
 	private void levelUp() {
-		gameOver = new GameOver(1, "Next Level");
+		gameOver = new GameOver(1, R.string.next_level, getContext());
 		gameData.statTracker.addStat(getContext(), Stat.COMPLETE_LEVEL, 1);
 		int mult = 10;
 		if (shadow) {
@@ -1050,14 +1050,14 @@ public class YellowQuest {
 				if (lifeBonusNum >= 3) {
 					player.fallDist = 0;
 					player.teleport(0, 2400);
-					gameOver = new GameOver(3, "Level Failed?");
+					gameOver = new GameOver(3, R.string.level_failedq, getContext());
 					lifeBonusNum = 0;
 				} else {
-					gameOver = new GameOver(2, "Level Failed");
+					gameOver = new GameOver(2, R.string.level_failed, getContext());
 				}
 
 			} else
-				gameOver = new GameOver(0, "Game Over");
+				gameOver = new GameOver(0, R.string.game_over, getContext());
 		}
 	}
 
@@ -1178,9 +1178,9 @@ public class YellowQuest {
 		if (this.timer > TIMER_MAX) {
 			if (this.playerLives > 1) {
 				this.playerLives -= 1;
-				gameOver = new GameOver(2, "Time's Out");
+				gameOver = new GameOver(2, R.string.times_out, getContext());
 			} else
-				gameOver = new GameOver(0, "Time's Up");
+				gameOver = new GameOver(0, R.string.times_up, getContext());
 		}
 	}
 

@@ -143,5 +143,19 @@
     <string name="in_game">in 1 game</string>
     <string name="in_level">in 1 level</string>
     <string name="in_life">in 1 life</string>
+ 
+    <string name="next_level">Next Level</string>
+    <string name="level_failed">Level Failed</string>
+    <string name="level_failedq">Level Failed?</string>
+    <string name="game_over">Game Over</string>
+    <string name="times_out">Time\'s Out</string>
+    <string name="times_up">Time\'s Up</string>
+    <string name="code_inputted">Code Inputted</string>
+    <string name="dont_go_right">Don\' go right</string>
+    <string name="down_too_far">You went down too far</string>
+    <string name="cant_get_up">You couldn\'t get back up</string>
+    <string name="you_were_trapped">You were trapped</string>
+    <string name="i_couldnt_help">I couldn\'t help you</string>
+    <string name="i_feel_so_sorry">I feel so sorry</string>
 
 </resources>
