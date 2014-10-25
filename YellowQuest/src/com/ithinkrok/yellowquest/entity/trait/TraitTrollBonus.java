@@ -1,6 +1,7 @@
 package com.ithinkrok.yellowquest.entity.trait;
 
 import com.ithinkrok.yellowquest.Arrow;
+import com.ithinkrok.yellowquest.GameOver;
 import com.ithinkrok.yellowquest.Arrow.Direction;
 import com.ithinkrok.yellowquest.entity.EntityPlatform;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
@@ -39,6 +40,8 @@ public class TraitTrollBonus extends TraitTroll {
 		}
 		
 		player.teleport(0, 2100);
+		
+		player.game.gameOver = new GameOver(3, "Code inputted");
 	}
 
 }

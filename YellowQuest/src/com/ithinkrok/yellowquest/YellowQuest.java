@@ -633,6 +633,8 @@ public class YellowQuest {
 			
 		} else if(level.bonusType.equals("troll")){
 			ent.traits = new Trait[]{new TraitTrollBonus(ent)};
+			
+			generateBonusBoxes(-30, 2000);
 		}
 	}
 
