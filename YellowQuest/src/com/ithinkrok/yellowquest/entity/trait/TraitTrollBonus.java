@@ -8,6 +8,7 @@ import com.ithinkrok.yellowquest.entity.EntityPlayer;
 public class TraitTrollBonus extends TraitTroll {
 	
 	boolean sequence[];
+	
 
 	public TraitTrollBonus(EntityPlatform parent) {
 		super(parent);
@@ -27,6 +28,17 @@ public class TraitTrollBonus extends TraitTroll {
 	@Override
 	public void intersectsPlayer(EntityPlayer player) {
 		super.intersectsPlayer(player);
+		
+		if(parent.timeSinceIntercept == 0) player.game.movementSequence.clear();
+		if(player.game.movementSequence.size() != 3) return;
+		if(!player.game.movementSequenceChanged) return;
+		player.game.movementSequenceChanged = false;
+		
+		for(int d = 0; d < 3; ++d){
+			if(sequence[d] != player.game.movementSequence.get(d)) return;
+		}
+		
+		player.teleport(0, 2100);
 	}
 
 }

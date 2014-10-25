@@ -1,7 +1,6 @@
 package com.ithinkrok.yellowquest;
 
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.*;
 
 import android.graphics.*;
 import android.util.Log;
@@ -130,6 +129,12 @@ public class YellowQuest {
 	public int teleportY = -4500;
 	
 	public boolean generateUpOnly = false;
+	
+	public boolean wasGoingLeft, wasGoingRight, goingLeft, goingRight;
+	
+	public LinkedList<Boolean> movementSequence = new LinkedList<Boolean>();
+	
+	public boolean movementSequenceChanged = false;
 	
 
 	// private double pixelDensity = 1d;
@@ -722,12 +727,14 @@ public class YellowQuest {
 	}
 
 	public boolean goLeft() {
-		return reverse ? canvas.touchInBox(leftButtonR) : canvas.touchInBox(leftButton);
+		wasGoingLeft = goingLeft;
+		return goingLeft = reverse ? canvas.touchInBox(leftButtonR) : canvas.touchInBox(leftButton);
 		// return wasdKeys[1];
 	}
 
 	public boolean goRight() {
-		return reverse ? canvas.touchInBox(rightButtonR) : canvas.touchInBox(rightButton);
+		wasGoingRight = goingRight;
+		return goingRight = reverse ? canvas.touchInBox(rightButtonR) : canvas.touchInBox(rightButton);
 		// return wasdKeys[3];
 	}
 
@@ -1110,6 +1117,16 @@ public class YellowQuest {
 			player.onGround = false;
 			timerStarted = true;
 		}
+		
+		if(!goingLeft && wasGoingLeft && !goingRight){
+			movementSequence.add(false);
+			movementSequenceChanged = true;
+		} else if(!goingRight && wasGoingRight && !goingLeft){
+			movementSequence.add(true);
+			movementSequenceChanged = true;
+		}
+		
+		if(movementSequence.size() > 3) movementSequence.removeFirst();
 	}
 
 	public void loadData() {
