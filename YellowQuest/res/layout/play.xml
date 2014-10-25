@@ -59,7 +59,7 @@
         android:layout_gravity="start"
         android:text="@string/hiscore_x_previous_y" />
 
-    <TextView
+    <Button
         android:id="@+id/play_play"
         style="@style/RelFont"
         android:layout_width="wrap_content"
@@ -67,10 +67,11 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_gravity="bottom|start"
+        android:layout_below="@+id/play_powers"
+        android:layout_gravity="center"
         android:text="@string/play" />
 
-    <TextView
+    <Button
         android:id="@+id/play_back"
         style="@style/RelFont"
         android:layout_width="wrap_content"
@@ -78,6 +79,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/play_powers"
+        android:gravity="center"
         android:text="@string/back" />
 
     <com.google.android.gms.ads.AdView
@@ -89,9 +92,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_toEndOf="@+id/play_back"
-        android:layout_toLeftOf="@+id/play_play"
         android:layout_toRightOf="@+id/play_back"
-        android:layout_toStartOf="@+id/play_play"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-3997067583457090/3896801162" />
 
@@ -102,5 +103,20 @@
         android:layout_height="fill_parent"
         android:layout_above="@+id/play_ad"
         android:layout_below="@+id/play_score" />
+
+    <Button
+        android:id="@+id/play_level"
+        style="@style/RelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/play_powers"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|start"
+        android:layout_toRightOf="@+id/play_ad"
+        android:layout_toEndOf="@+id/play_ad"
+        android:layout_toLeftOf="@+id/play_play"
+        android:layout_toStartOf="@+id/play_play"
+        android:gravity="center"
+        android:text="@string/level_select" />
 
 </RelativeLayout>

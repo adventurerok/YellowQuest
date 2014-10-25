@@ -25,6 +25,7 @@
     <item type="id" name="play_powers"/>
     <item type="id" name="play_title"/>
     <item type="id" name="play_money"/>
+    <item type="id" name="play_level"/>
     <item type="id" name="power_color"/>
     <item type="id" name="power_name"/>
     <item type="id" name="power_buy"/>
