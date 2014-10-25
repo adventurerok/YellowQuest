@@ -32,7 +32,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	public static final boolean DEBUG = false;
 
 	public static enum GameState {
-		MENU, SETTINGS, SETUP, GAME, BUY;
+		MENU, SETTINGS, SETUP, GAME, BUY, LEVELS;
 	}
 
 	public GameState state;
@@ -62,6 +62,13 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private TextView buy_money;
 	private TextView buy_back;
 	private ListView buy_list;
+	
+	private TextView play_level;
+	
+	private TextView levels_money;
+	private TextView levels_back;
+	private TextView levels_play;
+	private ListView levels_list;
 
 	public IInAppBillingService buyService;
 	public Intent buyIntent;
@@ -341,12 +348,19 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+		case R.id.play_level:
+			loadLevelsView();
+			break;
 		case R.id.menu:
 		case R.id.menu_play:
 		case R.id.buy_back:
 			if(passedOne) loadPlayView();
 			else loadGameView();
 			break;
+		case R.id.levels_back:
+			loadPlayView();
+			break;
+		case R.id.levels_play:
 		case R.id.play_play:
 			view.game.setGameMode(shadowMode, timeMode);
 			loadGameView();
@@ -509,12 +523,14 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		play_powers = (ListView) findViewById(R.id.play_powers);
 		play_money = (Button) findViewById(R.id.play_money);
 		play_ad = (AdView) findViewById(R.id.play_ad);
+		play_level = (TextView) findViewById(R.id.play_level);
 
 		play_play.setOnClickListener(this);
 		play_back.setOnClickListener(this);
 		play_shadow.setOnClickListener(this);
 		play_time.setOnClickListener(this);
 		play_money.setOnClickListener(this);
+		play_level.setOnClickListener(this);
 
 		if (shadowMode)
 			play_shadow.setImageResource(R.drawable.shadow_on);
@@ -526,7 +542,10 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			play_time.setImageResource(R.drawable.time_on);
 
 		if(gameData.getPowerUnlocks() != 0) play_money.setText(BoxMath.formatNumberWithoutSuffix(gameData.getScorePoints()) + " SP");
-		else play_money.setVisibility(View.GONE);
+		else{
+			play_money.setVisibility(View.GONE);
+			play_level.setVisibility(View.GONE);
+		}
 
 		if (powerAdapter == null)
 			powerAdapter = new PowerAdapter(this);
@@ -571,6 +590,21 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		settings_music.setChecked(audioEnabled);
 		settings_leftbutton.setChecked(fullSizeLeftButton);
 		settings_tips.setChecked(enableTips);
+	}
+	
+	public void loadLevelsView(){
+		state = GameState.LEVELS;
+		setContentView(R.layout.levels);
+		
+		levels_back = (TextView) findViewById(R.id.levels_back);
+		levels_play = (TextView) findViewById(R.id.levels_play);
+		levels_money = (TextView) findViewById(R.id.levels_money);
+		levels_list = (ListView) findViewById(R.id.levels_list);
+		
+		levels_back.setOnClickListener(this);
+		levels_play.setOnClickListener(this);
+		
+		levels_money.setText(BoxMath.formatNumberWithoutSuffix(gameData.getScorePoints()) + " SP");
 	}
 
 	public void loadBuyView() {
@@ -712,6 +746,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			play_money.setText(BoxMath.formatNumberWithoutSuffix(gameData.getScorePoints()) + " SP");
 		} else if(state == GameState.BUY){
 			buy_money.setText(BoxMath.formatNumberWithoutSuffix(gameData.getScorePoints()) + " SP");
+		} else if(state == GameState.LEVELS){
+			levels_money.setText(BoxMath.formatNumberWithoutSuffix(gameData.getScorePoints()) + " SP");
 		}
 	}
 

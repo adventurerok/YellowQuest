@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="10dp"
+    android:background="@color/black"
+    android:id="@+id/levels" >
+    
+    <TextView 
+        android:id="@+id/levels_title"
+        android:text="@string/start_on_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        style="@style/RelFont"/>
+    
+    <TextView
+        android:id="@+id/levels_money"
+        style="@style/RelText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="start"/>
+
+
+    <Button
+        android:id="@+id/levels_back"
+        style="@style/RelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="start"
+        android:minHeight="50dp"
+        android:text="@string/back" />
+    
+    <Button
+        android:id="@+id/levels_play"
+        style="@style/RelFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="start"
+        android:minHeight="50dp"
+        android:text="@string/play" />
+    
+    <ListView
+        android:id="@+id/levels_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/levels_title"
+        android:layout_above="@+id/levels_back"
+        />
+
+</RelativeLayout>

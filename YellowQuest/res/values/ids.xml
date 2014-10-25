@@ -61,6 +61,12 @@
     <item type="id" name="challenge_title"/>
     <item type="id" name="challenge_icon"/>
     <item type="id" name="challenge_text"/>
+    <item type="id" name="levels"/>
+    <item type="id" name="levels_title"/>
+    <item type="id" name="levels_money"/>
+    <item type="id" name="levels_list"/>
+    <item type="id" name="levels_back"/>
+    <item type="id" name="levels_play"/>
     
 
 </resources>
