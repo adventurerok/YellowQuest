@@ -100,6 +100,7 @@
     <string name="ach_icon">Achievement icon</string>
     <string name="ach_reward">+ %1$s SP</string>
     <string name="level_select">Level</string>
+    <string name="scorepoints_subtracted">%1$d SP subtracted</string>
     
     
     <string name="achievement_easy_name">Easy</string>

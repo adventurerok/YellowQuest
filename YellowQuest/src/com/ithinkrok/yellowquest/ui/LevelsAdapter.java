@@ -2,6 +2,8 @@ package com.ithinkrok.yellowquest.ui;
 
 import com.ithinkrok.yellowquest.*;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.*;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
@@ -20,6 +22,8 @@ public class LevelsAdapter extends BaseAdapter implements OnClickListener {
 	}
 	
 	private MainActivity context;
+	
+	public int selected = -1;
 	
 	
 
@@ -68,9 +72,18 @@ public class LevelsAdapter extends BaseAdapter implements OnClickListener {
 		name.setText(text);
 		
 		TextView select = (TextView) view.findViewById(R.id.level_select);
-		select.setText(BoxMath.formatNumberWithoutSuffix(price(position + 2)));
-		select.setTag(position + 2);
+		select.setText(BoxMath.formatNumberWithoutSuffix(price(position + 1)));
+		select.setTag(position + 1);
 		select.setOnClickListener(this);
+		
+		if (selected == (position + 1)){
+			view.setBackgroundColor(0xFF666666);
+			select.getBackground().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.MULTIPLY);
+		}
+		else {
+			view.setBackgroundColor(0xFF000000);
+			select.getBackground().setColorFilter(null);
+		}
 		
 		
 		return view;
@@ -78,7 +91,17 @@ public class LevelsAdapter extends BaseAdapter implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+		int lvl = (Integer) v.getTag();
+		if(lvl == selected){
+			selected = -1;
+		} else {
+			if(price(lvl) > context.getGameData().getScorePoints()){
+				ToastSystem.showTextToast(R.string.not_enough);
+			}
+			selected = lvl;
+		}
+		
+		notifyDataSetChanged();
 
 	}
 

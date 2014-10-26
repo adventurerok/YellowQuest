@@ -803,6 +803,11 @@ public class YellowQuest {
 		player = new EntityPlayer(this);
 		reload();
 	}
+	
+	public void loadLevel(int level){
+		this.level.number = level - 1;
+		nextLevel();
+	}
 
 	public void nextLevel() {
 		teleportX = -4500;

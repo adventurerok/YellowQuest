@@ -363,6 +363,20 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			loadPlayView();
 			break;
 		case R.id.levels_play:
+			int level = levelsAdapter.selected;
+			if(level < 1){
+				view.game.setGameMode(shadowMode, timeMode);
+				loadGameView();
+				break;
+			}
+			gameData.subtractScorePoints(levelsAdapter.price(level));
+			view.game.setGameMode(shadowMode, timeMode);
+			loadGameView(level);
+			String sub = getString(R.string.scorepoints_subtracted);
+			sub = String.format(sub, levelsAdapter.price(level));
+			ToastSystem.showTextToast(sub);
+			levelsAdapter.selected = -1;
+			break;
 		case R.id.play_play:
 			view.game.setGameMode(shadowMode, timeMode);
 			loadGameView();
@@ -610,6 +624,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		
 		if (levelsAdapter == null)
 			levelsAdapter = new LevelsAdapter(this);
+		levelsAdapter.selected = -1;
 		levels_list.setAdapter(levelsAdapter);
 	}
 
@@ -630,14 +645,19 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		buy_list.setAdapter(buyAdapter);
 		// powerAdapter.setView(buy_list);
 	}
+	
+	public void loadGameView(){
+		loadGameView(0);
+	}
 
-	public void loadGameView() {
+	public void loadGameView(int level) {
 		state = GameState.GAME;
 		setContentView(view);
 		view.game.setGameMode(shadowMode, timeMode);
 		view.game.setDisplaying(true);
 		view.game.reload();
 		view.game.loadData();
+		if(level > 0) view.game.loadLevel(level);
 	}
 
 	@Override
