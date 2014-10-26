@@ -92,7 +92,7 @@ public class PowerInfo {
 	static {
 		data.add(new PowerInfo("up", TraitUp.PAINT_GREEN.getColor(), 2000, 10000,
 				R.string.power_up, R.string.power_up_desc, R.string.power_up_upgrade, 2,
-				R.string.power_up_warn, 0, R.string.power_up_unlock, R.drawable.unlock_up, 2).setCreator(new PowerCreator() {
+				R.string.power_up_warn, 0, R.string.power_up_unlock, R.drawable.unlock_up, 3).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
@@ -101,7 +101,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("bounce", TraitBounce.PAINT_MAGENTA.getColor(), 3500, 18000,
 				R.string.power_bounce, R.string.power_bounce_desc, R.string.power_bounce_upgrade, 2,
-				R.string.power_bounce_warn, 1, R.string.power_bounce_unlock, R.drawable.unlock_bounce, 2).setCreator(new PowerCreator() {
+				R.string.power_bounce_warn, 1, R.string.power_bounce_unlock, R.drawable.unlock_bounce, 5).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
@@ -110,7 +110,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("troll", TraitTroll.PAINT_TROLL.getColor(), 5000, 25000,
 				R.string.power_troll, R.string.power_troll_desc, R.string.power_troll_upgrade, 1,
-				R.string.power_troll_warn, 2, R.string.power_troll_unlock, R.drawable.unlock_backwards, 0).setCreator(new PowerCreator() {
+				R.string.power_troll_warn, 2, R.string.power_troll_unlock, R.drawable.unlock_backwards, 9).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
@@ -119,7 +119,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("time", YellowQuest.PAINT_GAMEOVER.getColor(), 7500, 37000,
 				R.string.power_time, R.string.power_time_desc, R.string.power_time_upgrade, 2,
-				R.string.power_time_warn, 3, R.string.power_time_unlock, R.drawable.unlock_time_stop, 2).setCreator(new PowerCreator() {
+				R.string.power_time_warn, 3, R.string.power_time_unlock, R.drawable.unlock_time_stop, 3).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
@@ -128,7 +128,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("teleport", TraitConveyor.PAINT_GREY.getColor(), 10000, 50000,
 				R.string.power_teleport, R.string.power_teleport_desc, R.string.power_teleport_upgrade, 2,
-				R.string.power_teleport_warn, 4, R.string.power_teleport_unlock, R.drawable.unlock_teleport, 2).setCreator(new PowerCreator() {
+				R.string.power_teleport_warn, 4, R.string.power_teleport_unlock, R.drawable.unlock_teleport, 6).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
@@ -137,7 +137,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("life", EntityPlayer.PAINT_YELLOW.getColor(), 15000, 75000,
 				R.string.power_life, R.string.power_life_desc, R.string.power_life_upgrade, 2,
-				R.string.power_life_warn, 5, R.string.power_life_unlock, R.drawable.unlock_extra_life, 2).setCreator(new PowerCreator() {
+				R.string.power_life_warn, 5, R.string.power_life_unlock, R.drawable.unlock_extra_life, 6).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
