@@ -832,6 +832,9 @@ public class YellowQuest {
 		levelScore = 0;
 		canvas.getActivity().setPassedOne();
 		
+		if(gameData.getHighestLevel() < level.number) gameData.setHighestLevel(level.number);
+		gameData.save(getContext().getSettings().edit());
+		
 	}
 
 	public MainActivity getContext() {

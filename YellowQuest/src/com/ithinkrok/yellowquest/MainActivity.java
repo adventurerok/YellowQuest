@@ -99,7 +99,6 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		}
 	};
 
-	private PowerAdapter powerAdapter;
 
 	public CanvasSurfaceView view;
 	private AudioManager am;
@@ -118,7 +117,9 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 	private SharedPreferences settings;
 
+	private PowerAdapter powerAdapter;
 	private BuyAdapter buyAdapter;
+	private LevelsAdapter levelsAdapter;
 	
 	private ScreenReceiver screenReciever;
 	
@@ -182,6 +183,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		screenReciever.registered = true;
 
 		powerAdapter = new PowerAdapter(this);
+		levelsAdapter = new LevelsAdapter(this);
 		
 		AppRater.app_launched(this);
 	}
@@ -605,6 +607,10 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		levels_play.setOnClickListener(this);
 		
 		levels_money.setText(BoxMath.formatNumberWithoutSuffix(gameData.getScorePoints()) + " SP");
+		
+		if (levelsAdapter == null)
+			levelsAdapter = new LevelsAdapter(this);
+		levels_list.setAdapter(levelsAdapter);
 	}
 
 	public void loadBuyView() {

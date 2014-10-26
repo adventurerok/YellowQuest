@@ -62,6 +62,16 @@ public class GameData {
 		return getInt(hash("stat_" + stat), 0);
 	}
 	
+	public int getHighestLevel(){
+		return getInt(hash("highest_level"), 0);
+	}
+	
+	public void setHighestLevel(int level){
+		if(level <= getHighestLevel()) return;
+		
+		setInt(hash("highest_level"), level);
+	}
+	
 	public int resetStatChallenge(String stat){
 		int old = getStatChallenge(stat);
 		setInt(hash("cstat_" + stat), 0);
