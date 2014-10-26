@@ -48,10 +48,10 @@ public class LevelsAdapter extends BaseAdapter implements OnClickListener {
 	}
 	
 	public int price(int level){
-		return totalBoxes[level] * 15 + level * 200;
+		return totalBoxes[level] * 30 + level * 200;
 	}
 	
-	//price for level = num boxes to level * 15 + 200 * lnum
+	//price for level = num boxes to level * 30 + 200 * lnum
 	//num boxes in level b=8+3l
 	//
 

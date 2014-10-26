@@ -32,7 +32,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	public static final boolean DEBUG = false;
 
 	public static enum GameState {
-		MENU, SETTINGS, SETUP, GAME, BUY, LEVELS;
+		MENU, SETTINGS, PLAY, GAME, BUY, LEVELS;
 	}
 
 	public GameState state;
@@ -527,7 +527,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	}
 
 	public void loadPlayView() {
-		state = GameState.SETUP;
+		state = GameState.PLAY;
 		gameData.statTracker.generateChallenge();
 		setContentView(R.layout.play);
 
@@ -666,9 +666,9 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			view.game.gameOver();
 			if(passedOne) loadPlayView();
 			else loadMenuView();
-		} else if (state == GameState.BUY) {
+		} else if (state == GameState.BUY || state == GameState.LEVELS) {
 			loadPlayView();
-		} else if (state == GameState.SETTINGS || state == GameState.SETUP) {
+		} else if (state == GameState.SETTINGS || state == GameState.PLAY) {
 			loadMenuView();
 		} else
 			super.onBackPressed();
@@ -761,14 +761,14 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		case SETTINGS:
 			loadSettingsView();
 			break;
-		case SETUP:
+		case PLAY:
 			loadPlayView();
 			break;
 		}
 	}
 	
 	public void updateScorePointCounter(){
-		if(state == GameState.SETUP){
+		if(state == GameState.PLAY){
 			play_money.setText(BoxMath.formatNumberWithoutSuffix(gameData.getScorePoints()) + " SP");
 		} else if(state == GameState.BUY){
 			buy_money.setText(BoxMath.formatNumberWithoutSuffix(gameData.getScorePoints()) + " SP");
