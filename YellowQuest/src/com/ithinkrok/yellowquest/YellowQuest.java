@@ -135,6 +135,9 @@ public class YellowQuest {
 	
 	public boolean movementSequenceChanged = false;
 	
+	public boolean doingJump;
+	public boolean wasDoingJump;
+	
 
 	// private double pixelDensity = 1d;
 
@@ -218,7 +221,8 @@ public class YellowQuest {
 	}
 
 	public boolean doJump() {
-		return canvas.touchInBox(jumpButton);
+		wasDoingJump = doingJump;
+		return doingJump = canvas.touchInBox(jumpButton);
 		// return wasdKeys[0];
 	}
 
@@ -1129,7 +1133,7 @@ public class YellowQuest {
 				gameData.statTracker.addStat(getContext(), Stat.JUMPS, 1);
 				player.onGround = false;
 				timerStarted = true;
-			} else if(player.y_velocity <= 0 && player.getPower() instanceof PowerDoubleJump){
+			} else if(!wasDoingJump && player.getPower() instanceof PowerDoubleJump){
 				if(((PowerDoubleJump)player.getPower()).doSecondJump()){
 					((PowerDoubleJump)player.getPower()).powerButtonPressed();
 				}

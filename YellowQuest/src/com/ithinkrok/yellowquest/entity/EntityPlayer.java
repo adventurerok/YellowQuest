@@ -48,7 +48,7 @@ public class EntityPlayer extends Entity {
 				aSlip = alt;
 		}
 		this.x_velocity *= aSlip;
-		if (this.y_velocity > 0 && game.doJump()) {
+		if (this.y_velocity > 0 && game.doingJump) {
 			this.y_velocity += BoxMath.JUMP_GRAVITY;
 		} else {
 			this.y_velocity += BoxMath.FALL_GRAVITY;
