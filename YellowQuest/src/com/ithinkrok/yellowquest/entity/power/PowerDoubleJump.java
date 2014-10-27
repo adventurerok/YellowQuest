@@ -30,6 +30,7 @@ public class PowerDoubleJump extends Power {
 	
 	@Override
 	public void powerButtonPressed() {
+		if(player.onGround)  return;
 		if(!usedJump) player.y_velocity = YellowQuest.DEFAULT_JUMP + 0.25;
 		usedJump = true;
 	}

@@ -789,6 +789,8 @@ public class YellowQuest {
 		case 8:
 			addAchievement(R.string.achievement_hard);
 			break;
+		case 9:
+			PowerInfo.getData("doublejump").unlock(getContext());
 		case 11:
 			addAchievement(R.string.achievement_expert);
 			break;
@@ -1126,7 +1128,7 @@ public class YellowQuest {
 				gameData.statTracker.addStat(getContext(), Stat.JUMPS, 1);
 				player.onGround = false;
 				timerStarted = true;
-			} else if(player.getPower() instanceof PowerDoubleJump){
+			} else if(player.y_velocity <= 0 && player.getPower() instanceof PowerDoubleJump){
 				if(((PowerDoubleJump)player.getPower()).doSecondJump()){
 					((PowerDoubleJump)player.getPower()).powerButtonPressed();
 				}
@@ -1156,12 +1158,12 @@ public class YellowQuest {
 			PowerInfo.getData("time").unlock(getContext());
 		}
 
-//		String pName = gameData.getNextPower();
-//		if (pName == null || pName.trim().isEmpty())
-//			return;
-//		player.setPower(PowerInfo.getData(pName).newInstance(player, gameData.getPowerUpgradeLevel(pName)));
+		String pName = gameData.getNextPower();
+		if (pName == null || pName.trim().isEmpty())
+			return;
+		player.setPower(PowerInfo.getData(pName).newInstance(player, gameData.getPowerUpgradeLevel(pName)));
 		
-		player.setPower(PowerInfo.getData("doublejump").newInstance(player, gameData.getPowerUpgradeLevel("doublejump")));
+//		player.setPower(PowerInfo.getData("doublejump").newInstance(player, gameData.getPowerUpgradeLevel("doublejump")));
 		
 		gameData.setNextPower("");
 		canvas.getActivity().saveData();
