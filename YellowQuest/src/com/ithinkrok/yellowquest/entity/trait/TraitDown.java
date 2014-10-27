@@ -14,6 +14,8 @@ public class TraitDown extends Trait {
 	private int downTicks = 0;
 	private boolean goingDown = false;
 	
+	public boolean stickBonusMode = false;
+	
 	static {
 		PAINT_RED.setColor(0xffff0000);
 	}
@@ -25,6 +27,8 @@ public class TraitDown extends Trait {
 	
 	@Override
 	public void intersectsPlayer(EntityPlayer player) {
+		if(stickBonusMode && player.x < parent.x) return;
+		
 		parent.y_velocity = -5;
 		goingDown = true;
 		if(downTicks > 197){

@@ -17,6 +17,8 @@ public class EntityPlatform extends Entity {
 	public boolean revealed = true;
 
 	public boolean isBonus = false;
+	
+	public boolean drawPowersBelow = false;
 
 	static {
 		PAINT_BLUE.setColor(0xff0000ff);
@@ -238,12 +240,20 @@ public class EntityPlatform extends Entity {
 			_visibleTraits.clear();
 			return;
 		}
-		int bonusBorder = (int) (Math.min(width, height) / 4d);
-		xp = (float) ((box.sx - game.player.x + rend.width / 2) + bonusBorder);
-		yp = (float) ((box.sy - game.player.y + rend.height / 2) + bonusBorder);
-		w = (float) ((box.ex - box.sx) - (bonusBorder * 2));
-		h = (float) ((box.ey - box.sy) - (bonusBorder * 2));
-		rend.fillRect(xp, yp, w, h, _visibleTraits.get(0).color);
+		
+		if(drawPowersBelow){
+			yp = (float) (box.sy - game.player.y + rend.height / 2);
+			h = (float) ((box.ey - box.sy) / 2);
+			rend.fillRect(xp, yp, w, h, _visibleTraits.get(0).color);
+		} else {
+			int bonusBorder = (int) (Math.min(width, height) / 4d);
+			xp = (float) ((box.sx - game.player.x + rend.width / 2) + bonusBorder);
+			yp = (float) ((box.sy - game.player.y + rend.height / 2) + bonusBorder);
+			w = (float) ((box.ex - box.sx) - (bonusBorder * 2));
+			h = (float) ((box.ey - box.sy) - (bonusBorder * 2));
+			rend.fillRect(xp, yp, w, h, _visibleTraits.get(0).color);
+		}
+
 		_visibleTraits.clear();
 	}
 

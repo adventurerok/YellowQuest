@@ -657,6 +657,30 @@ public class YellowQuest {
 			//arrows.add(new Arrow(0, 2090, Direction.CIRCLE, TraitConveyor.PAINT_GREY));
 			
 			//generateBonusBoxes(-30, 2000);
+		} else if(level.bonusType.equals("stick")){
+			int mx = (int) level.lastBoxType.x + 20 + random(100);
+			int my = (int) (90 + level.lastBoxType.y) + random(20);
+			
+			generateBonusBoxes(bgenX + 150, bgenY + 1400);
+			
+			bgenX -= (ent.x - mx);
+			bgenY -= 100;
+			ent.teleport(mx, my);
+			
+			TraitUp upTrait = new TraitUp(ent);
+			TraitDown downTrait = new TraitDown(ent);
+			
+			ent.drawPowersBelow = true;
+			upTrait.stickBonusMode = true;
+			downTrait.stickBonusMode = true;
+			
+			upTrait.maxUpTime = 250;
+			
+			ent.bonusType = "stick";
+			
+			ent.traits = new Trait[] {upTrait, downTrait};
+			
+			
 		}
 	}
 

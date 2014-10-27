@@ -186,7 +186,7 @@ public class WeightedTraitFactory {
 		@Override
 		public int getWeight(EntityPlatform parent, int level) {
 			if(level < 5) return 0;
-			return 8;
+			return 4;
 		}
 
 		@Override

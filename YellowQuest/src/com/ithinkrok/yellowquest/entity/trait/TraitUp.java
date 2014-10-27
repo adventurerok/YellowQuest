@@ -15,6 +15,8 @@ public class TraitUp extends Trait {
 	
 	public int maxUpTime = 1000;
 	
+	public boolean stickBonusMode = false;
+	
 	static {
 		PAINT_GREEN.setColor(0xff00ff00);
 	}
@@ -26,9 +28,12 @@ public class TraitUp extends Trait {
 	
 	@Override
 	public void intersectsPlayer(EntityPlayer player) {
+		if(stickBonusMode && player.x > parent.x) return;
 		if(parent.timeOnPlatform == 0){
-			if(player.hasPower("up")){
+			if(player.hasPower("up") && "up".equals(player.game.level.bonusType)){
 				maxUpTime = maxUpTime / (5 + ((PowerUp)player.getPower()).up);
+			} else if(player.hasPower("stick") && "stick".equals(player.game.level.bonusType)){
+				// do nothing
 			} else maxUpTime = 200;
 		}
 		if(parent.timeOnPlatform < maxUpTime) parent.y_velocity = 5; // 45 ups

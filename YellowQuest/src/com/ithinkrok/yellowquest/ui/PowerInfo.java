@@ -159,7 +159,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("doublejump", EntityPlatform.PAINT_BLUE.getColor(), 12000, 60000,
 				R.string.power_doublejump, R.string.power_doublejump_desc, R.string.power_doublejump_upgrade, 1,
-				R.string.power_doublejump_warn, 6, R.string.power_doublejump_unlock, R.drawable.unlock_doublejump, 0).setCreator(new PowerCreator() {
+				R.string.power_doublejump_warn, 6, R.string.power_doublejump_unlock, R.drawable.unlock_doublejump, 10).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
@@ -168,7 +168,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("stick", PowerStick.PAINT_STICK.getColor(), 20000, 100000,
 				R.string.power_stick, R.string.power_stick_desc, R.string.power_stick_upgrade, 0,
-				R.string.power_stick_warn, 5, R.string.power_stick_unlock, R.drawable.unlock_stick, 6).setCreator(new PowerCreator() {
+				R.string.power_stick_warn, 7, R.string.power_stick_unlock, R.drawable.unlock_stick, 0).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
