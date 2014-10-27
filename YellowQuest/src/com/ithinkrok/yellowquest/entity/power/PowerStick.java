@@ -39,9 +39,6 @@ public class PowerStick extends Power {
 			syv = player.y_velocity;
 			player.y_velocity = 0;
 		}
-		if(player.collisionVertical){
-			player.x_velocity = 0;
-		}
 		
 		if(player.box.ex == player.intersecting.box.sx || player.box.sx == player.intersecting.box.ex){
 			player.y_velocity = 0;
