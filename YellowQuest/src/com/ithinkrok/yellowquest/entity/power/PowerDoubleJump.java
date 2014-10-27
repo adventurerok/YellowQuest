@@ -30,9 +30,18 @@ public class PowerDoubleJump extends Power {
 	
 	@Override
 	public void powerButtonPressed() {
-		if(player.onGround)  return;
-		if(!usedJump) player.y_velocity = YellowQuest.DEFAULT_JUMP + 0.25;
+		if(player.onGround || usedJump)  return;
+		player.y_velocity = YellowQuest.DEFAULT_JUMP + 0.25;
 		usedJump = true;
+		
+		int dx = (int) (player.x - player.game.doubleX);
+		int dy = (int) (player.y - player.game.doubleY);
+		int dist = (dx * dx) + (dy * dy);
+		
+		if(dist < 20000){
+			player.fallDist = 0;
+			player.game.generateBonusBoxes(player.game.doubleX - 40, player.game.doubleY - 500);
+		}
 	}
 	
 	public boolean doSecondJump(){

@@ -159,7 +159,7 @@ public class PowerInfo {
 				}));
 		data.add(new PowerInfo("doublejump", EntityPlatform.PAINT_BLUE.getColor(), 12000, 60000,
 				R.string.power_doublejump, R.string.power_doublejump_desc, R.string.power_doublejump_upgrade, 2,
-				R.string.power_doublejump_warn, 6, R.string.power_doublejump_unlock, R.drawable.unlock_doublejump, 6).setCreator(new PowerCreator() {
+				R.string.power_doublejump_warn, 6, R.string.power_doublejump_unlock, R.drawable.unlock_doublejump, 0).setCreator(new PowerCreator() {
 					
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {

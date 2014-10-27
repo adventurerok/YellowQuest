@@ -137,6 +137,8 @@ public class YellowQuest {
 	
 	public boolean doingJump;
 	public boolean wasDoingJump;
+	public int doubleX;
+	public int doubleY;
 	
 
 	// private double pixelDensity = 1d;
@@ -638,6 +640,23 @@ public class YellowQuest {
 			ent.traits = new Trait[]{new TraitTrollBonus(ent)};
 			
 			generateBonusBoxes(-30, 2000);
+		} else if(level.bonusType.equals("doublejump")){
+			int tx = (int) ((ent.box.sx + level.lastBoxType.box.ex) / 2);
+			int ty = (int) ((ent.box.ey + level.lastBoxType.box.ey) / 2 + 20);
+			
+			arrows.add(new Arrow(tx,
+					ty, Direction.DOWN, EntityPlatform.PAINT_BLUE));
+			
+			ty -= 400 + random(400);
+			tx -= 20 + random(40);
+			
+			doubleX = tx;
+			doubleY = ty;
+			
+			arrows.add(new Arrow(tx, ty - 10, Direction.UP, EntityPlatform.PAINT_BLUE));
+			//arrows.add(new Arrow(0, 2090, Direction.CIRCLE, TraitConveyor.PAINT_GREY));
+			
+			//generateBonusBoxes(-30, 2000);
 		}
 	}
 
@@ -816,8 +835,7 @@ public class YellowQuest {
 	}
 
 	public void nextLevel() {
-		teleportX = -4500;
-		teleportY = -4500;
+		teleportX = teleportY = doubleX = doubleY = -4500;
 		
 		boxes.clear();
 		arrows.clear();
@@ -863,8 +881,7 @@ public class YellowQuest {
 	}
 
 	public void reload() {
-		teleportX = -4500;
-		teleportY = -4500;
+		teleportX = teleportY = doubleX = doubleY = -4500;
 		
 		gameOver = null;
 		boxes.clear();
@@ -898,9 +915,7 @@ public class YellowQuest {
 	}
 
 	public void restartLevel() {
-		teleportX = -4500;
-		teleportY = -4500;
-
+		teleportX = teleportY = doubleX = doubleY = -4500;
 		
 		boxes.clear();
 		arrows.clear();
@@ -1133,6 +1148,9 @@ public class YellowQuest {
 				gameData.statTracker.addStat(getContext(), Stat.JUMPS, 1);
 				player.onGround = false;
 				timerStarted = true;
+				if(player.getPower() instanceof PowerDoubleJump){
+					((PowerDoubleJump)player.getPower()).usedJump = false;
+				}
 			} else if(!wasDoingJump && player.getPower() instanceof PowerDoubleJump){
 				if(((PowerDoubleJump)player.getPower()).doSecondJump()){
 					((PowerDoubleJump)player.getPower()).powerButtonPressed();
