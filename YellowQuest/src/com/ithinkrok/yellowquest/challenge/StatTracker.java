@@ -53,6 +53,11 @@ public class StatTracker {
 		currentChallenge.gameOver(context);
 	}
 	
+	public void loadGame(Context context){
+		if(currentChallenge == null) return;
+		currentChallenge.loadGame(context);
+	}
+	
 	private static ArrayList<ChallengeInfo> challenges = new ArrayList<StatTracker.ChallengeInfo>();
 
 	private static ArrayList<String> statNames = new ArrayList<String>();

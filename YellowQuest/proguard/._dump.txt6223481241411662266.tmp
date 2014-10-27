@@ -114,7 +114,7 @@ Constant Pool (count = 264):
   - String [Removed: ]
   - String [SHOW]
   - String [Unknown cmd: ]
-  - String [addToBackStack() called after commit()]
+  - String [addToBackStack() called after apply()]
   - String [cmd=]
   - String [enterAnim=#]
   - String [mBreadCrumbShortTitleRes=#]
@@ -305,7 +305,7 @@ Constant Pool (count = 264):
   - Utf8 [Z]
   - Utf8 [a]
   - Utf8 [add]
-  - Utf8 [addToBackStack() called after commit()]
+  - Utf8 [addToBackStack() called after apply()]
   - Utf8 [android/support/v4/app/Fragment]
   - Utf8 [android/support/v4/app/a]
   - Utf8 [android/support/v4/app/b]
@@ -1084,7 +1084,7 @@ Methods (count = 7):
         - Class [java/lang/IllegalStateException]
       [17] dup
       [18] ldc #27
-        - String [addToBackStack() called after commit()]
+        - String [addToBackStack() called after apply()]
       [20] invokespecial #95
         - Methodref [java/lang/IllegalStateException.<init> (Ljava/lang/String;)V]
       [23] athrow

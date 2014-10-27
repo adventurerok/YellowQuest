@@ -42,4 +42,8 @@ public abstract class Challenge {
 	public void gameOver(Context context){
 		
 	}
+	
+	public void loadGame(Context context){
+		
+	}
 }

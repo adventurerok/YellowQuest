@@ -84,6 +84,8 @@ public class YellowQuest {
 	public int bgenYMax = 0, bgenYMin = 0;
 	private CanvasSurfaceView canvas;
 	
+	public boolean givenBonusStat = false;
+	
 
 	public int lifeBonusNum = 0;
 	
@@ -861,7 +863,7 @@ public class YellowQuest {
 
 	public void nextLevel() {
 		teleportX = teleportY = doubleX = doubleY = -4500;
-		
+		givenBonusStat = false;
 		boxes.clear();
 		arrows.clear();
 		lifeBonusNum = 0;
@@ -908,6 +910,7 @@ public class YellowQuest {
 	public void reload() {
 		teleportX = teleportY = doubleX = doubleY = -4500;
 		
+		givenBonusStat = false;
 		gameOver = null;
 		boxes.clear();
 		arrows.clear();
@@ -941,7 +944,7 @@ public class YellowQuest {
 
 	public void restartLevel() {
 		teleportX = teleportY = doubleX = doubleY = -4500;
-		
+		givenBonusStat = false;
 		boxes.clear();
 		arrows.clear();
 		int lNum = level.number;
@@ -1200,7 +1203,7 @@ public class YellowQuest {
 			MainActivity context = canvas.getActivity();
 			if (!context.usedDifferentModes) {
 				context.usedDifferentModes = true;
-				context.getSettings().edit().putBoolean("usedmodes", true).commit();
+				context.getSettings().edit().putBoolean("usedmodes", true).apply();
 			}
 		}
 
@@ -1209,14 +1212,15 @@ public class YellowQuest {
 		}
 
 		String pName = gameData.getNextPower();
-		if (pName == null || pName.trim().isEmpty())
-			return;
-		player.setPower(PowerInfo.getData(pName).newInstance(player, gameData.getPowerUpgradeLevel(pName)));
+		if (pName != null && !pName.trim().isEmpty()){
+			player.setPower(PowerInfo.getData(pName).newInstance(player, gameData.getPowerUpgradeLevel(pName)));
+			
+			
+			gameData.setNextPower("");
+			canvas.getActivity().saveData();
+		}
 		
-//		player.setPower(PowerInfo.getData("stick").newInstance(player, gameData.getPowerUpgradeLevel("doublejump")));
-		
-		gameData.setNextPower("");
-		canvas.getActivity().saveData();
+		gameData.statTracker.loadGame(getContext());
 	}
 
 	public void setDisplaying(boolean display) {

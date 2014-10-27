@@ -240,7 +240,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	
 	public void setPassedOne() {
 		if(!this.passedOne){
-			settings.edit().putBoolean("passed", true).commit();
+			settings.edit().putBoolean("passed", true).apply();
 			
 			ToastSystem.showUnlockToast(R.drawable.unlock_powers, R.string.powers_view_unlock);
 		}
@@ -445,20 +445,20 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 				audioStop();
 			Editor editorMusic = settings.edit();
 			editorMusic.putBoolean("music", audioEnabled);
-			editorMusic.commit();
+			editorMusic.apply();
 			break;
 		case R.id.settings_leftbutton:
 			fullSizeLeftButton = settings_leftbutton.isChecked();
 			view.game.setFullSizeLeftButton(fullSizeLeftButton);
 			Editor editorLeft = settings.edit();
 			editorLeft.putBoolean("fullsizeleft", fullSizeLeftButton);
-			editorLeft.commit();
+			editorLeft.apply();
 			break;
 		case R.id.settings_tips:
 			enableTips = settings_tips.isChecked();
 			Editor editorTips = settings.edit();
 			editorTips.putBoolean("tips", enableTips);
-			editorTips.commit();
+			editorTips.apply();
 			break;
 		case R.id.play_back:
 		case R.id.settings_back:
@@ -486,7 +486,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			}
 			Editor editorShadow = settings.edit();
 			editorShadow.putBoolean("shadow", shadowMode);
-			editorShadow.commit();
+			editorShadow.apply();
 			break;
 		case R.id.play_time:
 			timeMode = !timeMode;
@@ -500,7 +500,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			}
 			Editor editorTime = settings.edit();
 			editorTime.putBoolean("time", timeMode);
-			editorTime.commit();
+			editorTime.apply();
 			break;
 		case R.id.play_money:
 			ConnectivityManager cm = (ConnectivityManager)getSystemService(CONNECTIVITY_SERVICE);

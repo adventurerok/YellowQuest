@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.graphics.Paint;
 
 import com.ithinkrok.yellowquest.*;
+import com.ithinkrok.yellowquest.challenge.Stat;
 import com.ithinkrok.yellowquest.entity.trait.Trait;
 
 public class EntityPlatform extends Entity {
@@ -55,6 +56,11 @@ public class EntityPlatform extends Entity {
 					game.addAchievement(R.string.achievement_fall_breaking_jump);
 				} else if("stick".equals(game.level.bonusType)){
 					game.addAchievement(R.string.achievement_rising_bat);
+				}
+				
+				if(!game.givenBonusStat){
+					game.gameData.statTracker.addStat(game.getContext(), Stat.BONUS, 1);
+					game.givenBonusStat = true;
 				}
 			}
 

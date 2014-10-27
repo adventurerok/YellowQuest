@@ -39,7 +39,7 @@ public class AppRater {
 			}
 		}
 
-		editor.commit();
+		editor.apply();
 
 	}
 
@@ -53,7 +53,7 @@ public class AppRater {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						editor.putBoolean("dontshowagain", true);
-						editor.commit();
+						editor.apply();
 						mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="
 								+ APP_PACKAGE_NAME)));
 						dialog.dismiss();
@@ -71,7 +71,7 @@ public class AppRater {
 					public void onClick(DialogInterface dialog, int which) {
 						if (editor != null) {
 							editor.putBoolean("dontshowagain", true);
-							editor.commit();
+							editor.apply();
 						}
 						dialog.dismiss();
 

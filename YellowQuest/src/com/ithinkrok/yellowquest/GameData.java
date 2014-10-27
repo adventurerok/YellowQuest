@@ -395,7 +395,7 @@ public class GameData {
 				editor.putString("data_" + data.keyAt(d), (String) obj);
 			}
 		}
-		editor.commit();
+		editor.apply();
 	}
 
 	private void setInt(long key, int val) {
