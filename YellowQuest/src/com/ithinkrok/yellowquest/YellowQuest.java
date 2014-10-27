@@ -658,11 +658,11 @@ public class YellowQuest {
 			
 			//generateBonusBoxes(-30, 2000);
 		} else if(level.bonusType.equals("stick")){
-			int mx = (int) level.lastBoxType.x + 50 + random(200);
+			int mx = (int) level.lastBoxType.x + 50 + random(150);
 			int my = (int) (110 + level.lastBoxType.y) + random(20);
 			
 			
-			bgenX -= (ent.x - mx);
+			bgenX -= (ent.x - mx) + 50;
 			bgenY -= 100;
 			ent.teleport(mx, my);
 			
@@ -1047,6 +1047,8 @@ public class YellowQuest {
 				if("time".equals(level.bonusType)){
 					((PowerTimeStop)player.getPower()).resetTimers();
 				}
+				PowerInfo.getData(level.bonusType).showBonusComplete();
+				gameData.addScorePoints(PowerInfo.getData(level.bonusType).bonusReward);
 				levelUp();
 			}
 			

@@ -86,6 +86,58 @@ public class ToastSystem {
 
 	}
 	
+	@SuppressLint("InflateParams")
+	public static void showBonusToast(int bonusText, int bonusReward) {
+		long allstart = System.nanoTime();
+		
+		View layout;
+		
+		if(layoutAchievements[posAchievements] != null) layout = layoutAchievements[posAchievements];
+		else {
+			layout = layoutAchievements[posAchievements] =context.getLayoutInflater().inflate(R.layout.achievement, null, false);
+		}
+		
+		++posAchievements;
+		if(posAchievements >= layoutAchievements.length) posAchievements = 0;
+		
+		layout = context.getLayoutInflater().inflate(R.layout.achievement, null, false);
+		
+		long start = System.nanoTime();
+
+		ImageView icon = (ImageView) layout.findViewById(R.id.achievement_icon);
+		icon.setImageDrawable(context.loadDrawable(R.drawable.achievement_bonus_time));
+		
+		long time = System.nanoTime() - start;
+		if(time > 20 * 1000000){
+			Log.w("YellowQuest", "loadimageasset took " + (time / 1000000));
+		}
+
+		TextView name = (TextView) layout.findViewById(R.id.achievement_name);
+		name.setText(R.string.bonus_area_complete);
+
+		TextView desc = (TextView) layout.findViewById(R.id.achievement_desc);
+		desc.setText(bonusText);
+
+		TextView reward = (TextView) layout.findViewById(R.id.achievement_reward);
+		String rewardText = context.getText(R.string.ach_reward).toString();
+		String rewardNum = BoxMath.formatNumber(bonusReward);
+		rewardText = String.format(rewardText, rewardNum);
+		reward.setText(rewardText);
+
+		Toast toast = new Toast(context);
+		toast.setView(layout);
+		toast.setDuration(Toast.LENGTH_SHORT);
+		toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 10);
+		toast.show();
+		
+		long alltime = System.nanoTime() - allstart;
+		
+		if(alltime > 20 * 1000000){
+			Log.w("YellowQuest", "showachievementtoast took " + (alltime / 1000000));
+		}
+
+	}
+	
 	public static void releaseCache(){
 		for(int d = 0; d < layoutAchievements.length; ++d){
 			layoutAchievements[d] = null;

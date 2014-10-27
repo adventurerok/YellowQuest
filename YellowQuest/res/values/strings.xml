@@ -185,5 +185,15 @@
     <string name="you_were_trapped">You were trapped</string>
     <string name="i_couldnt_help">I couldn\'t help you</string>
     <string name="i_feel_so_sorry">I feel so sorry</string>
+    
+    <string name="bonus_area_complete">Bonus Area Complete!</string>
+    <string name="bonus_area_up">You completed an upwards power bonus</string>
+    <string name="bonus_area_bounce">You completed a bounce power bonus</string>
+    <string name="bonus_area_troll">You completed a backwards power bonus</string>
+    <string name="bonus_area_time_stop">You completed a time stop power bonus</string>
+    <string name="bonus_area_teleport">You completed a teleport power bonus</string>
+    <string name="bonus_area_life">You completed an extra life power bonus</string>
+    <string name="bonus_area_doublejump">You completed a double jump power bonus</string>
+    <string name="bonus_area_sticky">You completed a sticky power bonus</string>
 
 </resources>
