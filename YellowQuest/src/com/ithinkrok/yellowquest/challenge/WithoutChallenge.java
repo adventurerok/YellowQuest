@@ -5,17 +5,21 @@ import com.ithinkrok.yellowquest.ui.ToastSystem;
 import android.content.Context;
 
 
-public class BasicChallenge extends Challenge {
+public class WithoutChallenge extends Challenge {
 	
 	
 	StatType type;
 	int target;
 	int step;
+	Stat limited;
+	int limit;
 
-	public BasicChallenge(StatTracker tracker, Stat stat, StatType type, int target) {
+	public WithoutChallenge(StatTracker tracker, Stat stat, StatType type, int target, Stat limited, int limit) {
 		super(tracker, stat);
 		this.type = type;
 		this.target = target;
+		this.limited = limited;
+		this.limit = limit;
 		
 		if(target > 20 && (target % 10) == 0) step = 10;
 		else if(target > 5 && (target % 5) == 0) step = 5;
@@ -28,18 +32,35 @@ public class BasicChallenge extends Challenge {
 	
 	
 
-	public BasicChallenge(StatTracker tracker, Stat stat, StatType type, int target, int step) {
+	public WithoutChallenge(StatTracker tracker, Stat stat, StatType type, int target, int step, Stat limited, int limit) {
 		super(tracker, stat);
 		this.type = type;
 		this.target = target;
 		this.step = step;
+		this.limited = limited;
+		this.limit = limit;
+	}
+	
+	@Override
+	public boolean isTracking(Stat stat) {
+		return super.isTracking(stat) || limited == stat;
 	}
 
 
 
 	@Override
-	public void update(Context context, Stat stat, int increase) {
+	public void update(Context context, Stat gained, int increase) {
 		int current = tracker.getStat(stat, type);
+		int lat = tracker.getStat(limited, type);
+		if(lat > limit){
+			if(gained == limited && lat - increase <= limit){
+				//show some kind of challenge failed thing
+			}
+			return;
+		}
+		if(gained != stat) return;
+		
+		
 		if(current >= target){
 			ToastSystem.showChallengeCompleteToast(getIconResource(), getTitleText(context));
 			//tracker.nextChallenge(true);

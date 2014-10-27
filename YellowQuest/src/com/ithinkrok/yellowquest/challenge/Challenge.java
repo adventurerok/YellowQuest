@@ -27,8 +27,12 @@ public abstract class Challenge {
 	public abstract String getProgressText(Context context);
 	
 	//Called when the stat it is tracking is updated
-	public void update(Context context, int increase){
+	public void update(Context context, Stat stat, int increase){
 		
+	}
+	
+	public boolean isTracking(Stat stat){
+		return stat == this.stat;
 	}
 	
 	public void completeLevel(Context context){

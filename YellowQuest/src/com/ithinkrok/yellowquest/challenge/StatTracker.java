@@ -143,7 +143,7 @@ public class StatTracker {
 
 		gameData.addStat(stat.name(), add);
 		
-		if(currentChallenge != null && currentChallenge.stat == stat) currentChallenge.update(context, add);
+		if(currentChallenge != null && currentChallenge.isTracking(stat)) currentChallenge.update(context, stat, add);
 	}
 
 	public int getStat(Stat stat, StatType type) {
