@@ -8,6 +8,11 @@ public class PowerStick extends Power {
 	
 	public static final Paint PAINT_STICK = new Paint();
 	
+	public double syv;
+	
+	public boolean sticking = false;
+	public boolean xcollision = false;
+	
 	static {
 		PAINT_STICK.setColor(0xff008000);
 	}
@@ -21,11 +26,33 @@ public class PowerStick extends Power {
 	@Override
 	public void update(EntityPlayer player) {
 		player.gravity = player.intersecting == null;
-		if(player.gravity) return;
-		if(player.collisionHorizontal) player.y_velocity = 0;
+		if(player.gravity){
+			if(sticking && xcollision){
+				xcollision = false;
+				player.y_velocity = syv;
+			}
+			sticking = false;
+			return;
+		}
+		sticking = true;
+		if(player.collisionHorizontal){
+			syv = player.y_velocity;
+			player.y_velocity = 0;
+		}
+		if(player.collisionVertical){
+			player.x_velocity = 0;
+		}
 		
 		if(player.box.ex == player.intersecting.box.sx || player.box.sx == player.intersecting.box.ex){
 			player.y_velocity = 0;
+			xcollision = true;
+		} else xcollision = false;
+		if(player.box.ey == player.intersecting.box.sy){
+			player.x_velocity = 0;
+			if(player.game.doingJump && !player.game.wasDoingJump){
+				player.move(0, -1);
+				player.gravity = true;
+			}
 		}
 	}
 	
