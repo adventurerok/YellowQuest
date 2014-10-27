@@ -56,7 +56,7 @@ public class BasicChallenge extends Challenge {
 		String title = "";
 		if(stat.title == 0) return title;
 		title = context.getString(stat.title);
-		title = String.format(title, target, suffix);
+		title = String.format(title, target, suffix, "");
 		return title;
 	}
 
