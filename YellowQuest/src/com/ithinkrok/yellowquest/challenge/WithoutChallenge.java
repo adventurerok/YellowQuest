@@ -74,10 +74,16 @@ public class WithoutChallenge extends Challenge {
 	public String getTitleText(Context context) {
 		String suffix = "";
 		if(type.suffix != 0) suffix = context.getString(type.suffix);
+		String without = "";
+		if(limit == 0){
+			if(limited.without0 != 0) without = context.getString(limited.without0);
+		} else {
+			if(limited.withoutMany != 0) without = context.getString(limited.withoutMany);
+		}
 		String title = "";
 		if(stat.title == 0) return title;
 		title = context.getString(stat.title);
-		title = String.format(title, target, suffix);
+		title = String.format(title, target, suffix, without);
 		return title;
 	}
 

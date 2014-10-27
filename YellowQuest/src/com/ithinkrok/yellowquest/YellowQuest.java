@@ -937,6 +937,7 @@ public class YellowQuest {
 		score = 0;
 		levelScore = 0;
 		player.setPower(null);
+		gameData.statTracker.resetGame();
 		
 		
 
