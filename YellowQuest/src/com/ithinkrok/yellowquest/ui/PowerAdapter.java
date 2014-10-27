@@ -54,7 +54,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 	public void refreshItems(){
 		showing.clear();
 		showing.add("!");
-		for(int d = 0; d < 6; ++d){
+		for(int d = 0; d < PowerInfo.getPowerCount(); ++d){
 			if(!context.getGameData().hasPowerUnlock(d)) continue;
 			else showing.add(PowerInfo.getData(d).name);
 		}

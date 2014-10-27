@@ -791,6 +791,7 @@ public class YellowQuest {
 			break;
 		case 9:
 			PowerInfo.getData("doublejump").unlock(getContext());
+			break;
 		case 11:
 			addAchievement(R.string.achievement_expert);
 			break;
