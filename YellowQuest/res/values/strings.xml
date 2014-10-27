@@ -116,6 +116,13 @@
     <string name="achievement_up_up_away_name">Up, up and away</string>
     <string name="achievement_sacrifice_name">Sacrifice</string>
     <string name="achievement_bounceback_name">BounceBack</string>
+    <string name="achievement_wormhole_name">Wormhole</string>
+    <string name="achievement_frozen_time_name">Frozen Time</string>
+    <string name="achievement_arrows_name">Arrows</string>
+    <string name="achievement_upgrade_name">Time for an upgrade!</string>
+    <string name="achievement_unlocker_name">The Unlocker</string>
+    <string name="achievement_omnipotent_name">Omnipotent</string>
+    <string name="achievement_headstart_name">Headstart</string>
     
     <string name="achievement_easy_desc">Complete level 3</string>
     <string name="achievement_medium_desc">Complete level 6</string>
@@ -130,6 +137,13 @@
     <string name="achievement_up_up_away_desc">Access a bonus area using the up power</string>
     <string name="achievement_sacrifice_desc">Access a bonus area using the extra life power</string>
     <string name="achievement_bounceback_desc">Access a bonus area using the bounce power</string>
+    <string name="achievement_wormhole_desc">Access a bonus area using the teleport power</string>
+    <string name="achievement_frozen_time_desc">Access a bonus area using the time stop power</string>
+    <string name="achievement_arrows_desc">Access a bonus area using the upgraded backwards power</string>
+    <string name="achievement_upgrade_desc">Upgrade a power</string>
+    <string name="achievement_unlocker_desc">Unlock 4 powers</string>
+    <string name="achievement_omnipotent_desc">Unlock all 8 powers</string>
+    <string name="achievement_headstart_desc">Start a game on level 2 or above</string>
     
     <string name="new_hiscore">New Hiscore: %1$d</string>
     <string name="old_hiscore">That\'s an increase of %1$d on your old hiscore of %2$d!</string>

@@ -199,6 +199,10 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		loadDrawable(R.drawable.achievement_jumpman);
 		loadDrawable(R.drawable.achievement_medium);
 		loadDrawable(R.drawable.achievement_overshot);
+		loadDrawable(R.drawable.achievement_upgrade);
+		loadDrawable(R.drawable.achievement_unlocker);
+		loadDrawable(R.drawable.achievement_omnipotent);
+		loadDrawable(R.drawable.achievement_headstart);
 		
 		loadDrawable(R.drawable.unlock_backwards);
 		loadDrawable(R.drawable.unlock_bounce);
@@ -211,6 +215,9 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		loadDrawable(R.drawable.bonus_bounce);
 		loadDrawable(R.drawable.bonus_life);
 		loadDrawable(R.drawable.bonus_up);
+		loadDrawable(R.drawable.bonus_teleport);
+		loadDrawable(R.drawable.bonus_time_stop);
+		loadDrawable(R.drawable.bonus_troll);
 		
 		loadDrawable(R.drawable.challenge_dont_go_left);
 		loadDrawable(R.drawable.challenge_dont_go_right);

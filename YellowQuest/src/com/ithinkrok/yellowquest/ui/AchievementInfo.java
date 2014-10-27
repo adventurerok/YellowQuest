@@ -53,6 +53,20 @@ public class AchievementInfo {
 				R.string.achievement_sacrifice_name, R.string.achievement_sacrifice_desc, 3000));
 		info.put(context.getString(R.string.achievement_bounceback), new AchievementInfo(R.drawable.bonus_bounce,
 				R.string.achievement_bounceback_name, R.string.achievement_bounceback_desc, 1500));
+		info.put(context.getString(R.string.achievement_headstart), new AchievementInfo(R.drawable.achievement_headstart,
+				R.string.achievement_headstart_name, R.string.achievement_headstart_desc,300));
+		info.put(context.getString(R.string.achievement_time_for_an_upgrade), new AchievementInfo(R.drawable.achievement_upgrade,
+				R.string.achievement_upgrade_name, R.string.achievement_unlocker_desc,1000));
+		info.put(context.getString(R.string.achievement_the_unlocker), new AchievementInfo(R.drawable.achievement_unlocker,
+				R.string.achievement_unlocker_name, R.string.achievement_unlocker_desc,2000));
+		info.put(context.getString(R.string.achievement_omnipotent), new AchievementInfo(R.drawable.achievement_omnipotent,
+				R.string.achievement_omnipotent_name, R.string.achievement_omnipotent_desc,12000));
+		info.put(context.getString(R.string.achievement_wormhole), new AchievementInfo(R.drawable.bonus_teleport,
+				R.string.achievement_wormhole_name, R.string.achievement_wormhole_desc,2000));
+		info.put(context.getString(R.string.achievement_frozen_time), new AchievementInfo(R.drawable.bonus_time_stop,
+				R.string.achievement_frozen_time_name, R.string.achievement_frozen_time_desc,1500));
+		info.put(context.getString(R.string.achievement_arrows), new AchievementInfo(R.drawable.bonus_troll,
+				R.string.achievement_arrows_name, R.string.achievement_arrows_desc,20000));
 
 	}
 

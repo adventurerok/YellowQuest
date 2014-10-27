@@ -5,19 +5,26 @@ Save this file as res/values/games-ids.xml in your project.
 -->
 <resources>
   <string name="app_id">596492711628</string>
+  <string name="achievement_big_failure">CgkIzO3xja4REAIQAg</string>
+  <string name="achievement_almost">CgkIzO3xja4REAIQAw</string>
+  <string name="achievement_overshot">CgkIzO3xja4REAIQBA</string>
+  <string name="achievement_headstart">CgkIzO3xja4REAIQEQ</string>
+  <string name="achievement_jumpman">CgkIzO3xja4REAIQEA</string>
+  <string name="achievement_time_for_an_upgrade">CgkIzO3xja4REAIQFg</string>
+  <string name="achievement_the_unlocker">CgkIzO3xja4REAIQFQ</string>
+  <string name="achievement_omnipotent">CgkIzO3xja4REAIQFw</string>
+  <string name="achievement_bonus_time">CgkIzO3xja4REAIQDA</string>
   <string name="achievement_easy">CgkIzO3xja4REAIQBQ</string>
   <string name="achievement_medium">CgkIzO3xja4REAIQBg</string>
   <string name="achievement_hard">CgkIzO3xja4REAIQBw</string>
   <string name="achievement_expert">CgkIzO3xja4REAIQCA</string>
   <string name="achievement_impossible">CgkIzO3xja4REAIQCQ</string>
-  <string name="achievement_big_failure">CgkIzO3xja4REAIQAg</string>
-  <string name="achievement_almost">CgkIzO3xja4REAIQAw</string>
-  <string name="achievement_overshot">CgkIzO3xja4REAIQBA</string>
-  <string name="achievement_jumpman">CgkIzO3xja4REAIQEA</string>
-  <string name="achievement_bonus_time">CgkIzO3xja4REAIQDA</string>
   <string name="achievement_up_up_and_away">CgkIzO3xja4REAIQDQ</string>
   <string name="achievement_sacrifice">CgkIzO3xja4REAIQDg</string>
   <string name="achievement_bounceback">CgkIzO3xja4REAIQDw</string>
+  <string name="achievement_wormhole">CgkIzO3xja4REAIQEg</string>
+  <string name="achievement_frozen_time">CgkIzO3xja4REAIQEw</string>
+  <string name="achievement_arrows">CgkIzO3xja4REAIQFA</string>
   <string name="leaderboard_yellowquest_hiscores">CgkIzO3xja4REAIQCg</string>
   <string name="leaderboard_yellowquest_ranks">CgkIzO3xja4REAIQCw</string>
 </resources>
