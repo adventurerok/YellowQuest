@@ -142,12 +142,21 @@ public class GameData {
 		return getInt(hash("unlockedpowers"), 0);
 	}
 	
+	public int getBonusUnlocks(){
+		return getInt(hash("unlockedbonus"), 0);
+	}
+	
+	
 	public void setPowerUnlocks(int n){
 		setInt(hash("unlockedpowers"), n);
 	}
 	
 	public void addPowerUnlock(int n){
 		setInt(hash("unlockedpowers"), getPowerUnlocks() | (1 << n));
+	}
+	
+	public void addBonusUnlock(int n){
+		setInt(hash("unlockedbonus"), getBonusUnlocks() | (1 << n));
 	}
 	
 	public int getPlayerRank(){

@@ -1047,7 +1047,7 @@ public class YellowQuest {
 				if("time".equals(level.bonusType)){
 					((PowerTimeStop)player.getPower()).resetTimers();
 				}
-				PowerInfo.getData(level.bonusType).showBonusComplete();
+				PowerInfo.getData(level.bonusType).showBonusComplete(getContext());
 				gameData.addScorePoints(PowerInfo.getData(level.bonusType).bonusReward);
 				levelUp();
 			}

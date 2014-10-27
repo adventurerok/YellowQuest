@@ -51,6 +51,10 @@ public class EntityPlatform extends Entity {
 					game.addAchievement(R.string.achievement_sacrifice);
 				} else if ("time".equals(game.level.bonusType)) {
 					game.addAchievement(R.string.achievement_frozen_time);
+				} else if("doublejump".equals(game.level.bonusType)){
+					game.addAchievement(R.string.achievement_fall_breaking_jump);
+				} else if("stick".equals(game.level.bonusType)){
+					game.addAchievement(R.string.achievement_rising_bat);
 				}
 			}
 

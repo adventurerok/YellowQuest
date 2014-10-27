@@ -94,7 +94,11 @@ public class PowerInfo {
 		unlockNewAchievements(context);
 	}
 	
-	public void showBonusComplete(){
+	public void showBonusComplete(MainActivity context){
+		context.getGameData().addBonusUnlock(powerNum);
+		if(context.getGameData().getBonusUnlocks() == 255){
+			context.view.game.addAchievement(R.string.achievement_bonus_exploiter);
+		}
 		ToastSystem.showBonusToast(displayBonusComplete, bonusReward);
 	}
 	
