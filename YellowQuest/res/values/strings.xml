@@ -75,6 +75,16 @@
     <string name="power_teleport_unlock">Finding a conveyor platform has made you consider teleporting!</string>
     <string name="power_up_unlock">Using a green platform has made you realise the secrets of rising up!</string>
     <string name="power_time_unlock">Using time mode has made you realise you need to stop time!</string>
+    <string name="power_doublejump_unlock">You have come so far. During your quest, scientists invented doublejumping!</string>
+    <string name="power_stick_unlock">The sticky platform has gifted its powers to you!</string>
+    <string name="power_doublejump_upgrade">Upgrade: Merges the doublejump button with the jump button</string>
+    <string name="power_stick_upgrade">Upgrade? You cannot upgrade the sticky power!</string>
+    <string name="power_doublejump_warn">Upgrade doublejump power to level %1$d?</string>
+    <string name="power_stick_warn">You try to upgrade the sticky power, but it cannot be upgraded</string>
+    <string name="power_doublejump">Double Jump %1$s</string>
+    <string name="power_stick">Sticky</string>
+    <string name="power_doublejump_desc">Allows a second jump in midair</string>
+    <string name="power_stick_desc">Allows you to stick to the side and bottom of platforms</string>
     <string name="tip_empty">There should be a tip here. Where is it?</string>
     <string name="tip_modes">Have you tried the buttons at the top right yet?</string>
     <string name="tip_powers">There are six powers to unlock. Can you unlock them all?</string>

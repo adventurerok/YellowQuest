@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.ithinkrok.yellowquest.*;
+import com.ithinkrok.yellowquest.entity.EntityPlatform;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
 import com.ithinkrok.yellowquest.entity.power.*;
 import com.ithinkrok.yellowquest.entity.trait.*;
@@ -154,6 +155,15 @@ public class PowerInfo {
 					@Override
 					public Power createPower(EntityPlayer player, int upgradeLevel) {
 						return new PowerLife(player, upgradeLevel);
+					}
+				}));
+		data.add(new PowerInfo("doublejump", EntityPlatform.PAINT_BLUE.getColor(), 12000, 60000,
+				R.string.power_doublejump, R.string.power_doublejump_desc, R.string.power_doublejump_upgrade, 2,
+				R.string.power_doublejump_warn, 6, R.string.power_doublejump_unlock, R.drawable.unlock_doublejump, 6).setCreator(new PowerCreator() {
+					
+					@Override
+					public Power createPower(EntityPlayer player, int upgradeLevel) {
+						return new PowerDoubleJump(player, upgradeLevel);
 					}
 				}));
 

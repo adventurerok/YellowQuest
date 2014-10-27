@@ -11,8 +11,8 @@ public class EntityPlatform extends Entity {
 	
 	private static ArrayList<Trait> _visibleTraits = new ArrayList<Trait>();
 
-	private static final Paint PAINT_BLUE = new Paint();
-	private static final Paint PAINT_WHITE = new Paint();
+	public static final Paint PAINT_BLUE = new Paint();
+	public static final Paint PAINT_WHITE = new Paint();
 	
 	public boolean revealed = true;
 	

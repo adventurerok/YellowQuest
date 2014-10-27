@@ -10,8 +10,7 @@ import android.widget.Toast;
 import com.ithinkrok.yellowquest.Arrow.Direction;
 import com.ithinkrok.yellowquest.challenge.Stat;
 import com.ithinkrok.yellowquest.entity.*;
-import com.ithinkrok.yellowquest.entity.power.PowerTimeStop;
-import com.ithinkrok.yellowquest.entity.power.PowerTroll;
+import com.ithinkrok.yellowquest.entity.power.*;
 import com.ithinkrok.yellowquest.entity.trait.*;
 import com.ithinkrok.yellowquest.ui.PowerInfo;
 import com.ithinkrok.yellowquest.util.Box;
@@ -1121,11 +1120,16 @@ public class YellowQuest {
 		}
 		if (this.player.x_velocity > maxSpeed)
 			this.player.x_velocity = maxSpeed;
-		if (doJump() && this.player.onGround) {
-			this.player.y_velocity = jump * player.getJumpMultiplier() + player.getJumpIncrease() + 0.25;
-			gameData.statTracker.addStat(getContext(), Stat.JUMPS, 1);
-			player.onGround = false;
-			timerStarted = true;
+		if (doJump())
+			if(this.player.onGround) {
+				this.player.y_velocity = jump * player.getJumpMultiplier() + player.getJumpIncrease() + 0.25;
+				gameData.statTracker.addStat(getContext(), Stat.JUMPS, 1);
+				player.onGround = false;
+				timerStarted = true;
+			} else if(player.getPower() instanceof PowerDoubleJump){
+				if(((PowerDoubleJump)player.getPower()).doSecondJump()){
+					((PowerDoubleJump)player.getPower()).powerButtonPressed();
+				}
 		}
 		
 		if(!goingLeft && wasGoingLeft && !goingRight){
@@ -1152,10 +1156,13 @@ public class YellowQuest {
 			PowerInfo.getData("time").unlock(getContext());
 		}
 
-		String pName = gameData.getNextPower();
-		if (pName == null || pName.trim().isEmpty())
-			return;
-		player.setPower(PowerInfo.getData(pName).newInstance(player, gameData.getPowerUpgradeLevel(pName)));
+//		String pName = gameData.getNextPower();
+//		if (pName == null || pName.trim().isEmpty())
+//			return;
+//		player.setPower(PowerInfo.getData(pName).newInstance(player, gameData.getPowerUpgradeLevel(pName)));
+		
+		player.setPower(PowerInfo.getData("doublejump").newInstance(player, gameData.getPowerUpgradeLevel("doublejump")));
+		
 		gameData.setNextPower("");
 		canvas.getActivity().saveData();
 	}
