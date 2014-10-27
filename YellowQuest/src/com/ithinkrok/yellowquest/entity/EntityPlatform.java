@@ -48,6 +48,8 @@ public class EntityPlatform extends Entity {
 	        		game.addAchievement(R.string.achievement_up_up_and_away);
 	        	} else if(("life").equals(game.level.bonusType)){
 	        		game.addAchievement(R.string.achievement_sacrifice);
+	        	} else if("time".equals(game.level.bonusType)){
+	        		game.addAchievement(R.string.achievement_frozen_time);
 	        	}
 	        }
 	        

@@ -84,6 +84,18 @@ public class PowerInfo {
 		context.getGameData().addPowerUnlock(powerNum);
 		//context.view.game.toastText(displayUnlock);
 		ToastSystem.showUnlockToast(displayIcon, displayUnlock);
+		
+		unlockNewAchievements(context);
+	}
+	
+	public static void unlockNewAchievements(MainActivity context){
+		int count = 0;
+		for(int d = 0; d < getPowerCount(); ++d){
+			if(context.getGameData().hasPowerUnlock(d)) ++count;
+		}
+		
+		if(count >= 4) context.view.game.addAchievement(R.string.achievement_the_unlocker);
+		if(count >= 8) context.view.game.addAchievement(R.string.achievement_omnipotent);
 	}
 
 	private static ArrayList<PowerInfo> data = new ArrayList<PowerInfo>();

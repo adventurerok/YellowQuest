@@ -213,6 +213,8 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 				context.saveData();
 				notifyDataSetChanged();
 				context.updateScorePointCounter();
+				
+				context.view.game.addAchievement(R.string.achievement_time_for_an_upgrade);
 			}
 		});
 		

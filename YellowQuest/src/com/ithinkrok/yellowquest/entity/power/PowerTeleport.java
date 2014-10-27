@@ -2,6 +2,7 @@ package com.ithinkrok.yellowquest.entity.power;
 
 import android.util.Log;
 
+import com.ithinkrok.yellowquest.R;
 import com.ithinkrok.yellowquest.entity.EntityPlatform;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
 import com.ithinkrok.yellowquest.entity.trait.TraitConveyor;
@@ -53,6 +54,8 @@ public class PowerTeleport extends Power {
 		
 		if(dist < 10000){
 			player.teleport(0, 2100);
+			
+			player.game.addAchievement(R.string.achievement_wormhole);
 			
 			cooling = cooldown;
 		} else {

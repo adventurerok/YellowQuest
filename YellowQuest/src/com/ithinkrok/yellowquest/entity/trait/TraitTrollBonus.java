@@ -39,8 +39,8 @@ public class TraitTrollBonus extends TraitTroll {
 		}
 		
 		player.teleport(0, 2100);
-		
 		player.game.gameOver = new GameOver(3, R.string.code_inputted, player.game.getContext());
+		player.game.addAchievement(R.string.achievement_arrows);
 	}
 
 }

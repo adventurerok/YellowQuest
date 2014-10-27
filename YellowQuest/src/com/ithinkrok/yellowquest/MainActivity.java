@@ -185,6 +185,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		powerAdapter = new PowerAdapter(this);
 		levelsAdapter = new LevelsAdapter(this);
 		
+		PowerInfo.unlockNewAchievements(this);
+		
 		AppRater.app_launched(this);
 	}
 	
@@ -379,6 +381,9 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			gameData.subtractScorePoints(levelsAdapter.price(level));
 			view.game.setGameMode(shadowMode, timeMode);
 			loadGameView(level);
+			
+			view.game.addAchievement(R.string.achievement_headstart);
+			
 			String sub = getString(R.string.scorepoints_subtracted);
 			sub = String.format(sub, levelsAdapter.price(level));
 			ToastSystem.showTextToast(sub);
