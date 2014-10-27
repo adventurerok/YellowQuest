@@ -166,13 +166,23 @@
     <string name="new_rank">Rank %1$d</string>
     <string name="rank_up">Rank up! You are now rank %1$d</string>
     
-    <string name="jumped_over_boxes">Jumped over %1$d of %2$d boxes!</string>
-    <string name="jump_over_boxes">Jump over %1$d boxes %2$s</string>
-    <string name="right_side_flagging">Right side flagged %1$d of %2$d times!</string>
-    <string name="right_side_flag">Collide with the right side of the flag %1$d times %2$s</string>
+    <string name="progress_jump_over_boxes">Jumped over %1$d of %2$d boxes!</string>
+    <string name="challenge_jump_over_boxes">Jump over %1$d boxes %2$s</string>
+    <string name="progress_right_side_flag">Right side flagged %1$d of %2$d times!</string>
+    <string name="challenge_right_side_flag">Collide with the right side of the flag %1$d times %2$s</string>
+    <string name="fail_go_left">You went left</string>
+    <string name="fail_died">You died</string>
+    <string name="fail_died_x">You died %1$d times</string>
+    <string name="fail_jumped_over_boxes">You jumped over a box</string>
+    <string name="fail_jumped_over_boxes_x">You jumped over %1$d boxes</string>
+    <string name="fail_jumped">You jumped</string>
+    <string name="fail_jumped_x">You jumped %1$d times</string>
+    <string name="fail_leveled_up">You got to the next level</string>
     <string name="challenge_complete">Challenge Complete!</string>
     <string name="new_challenge">New Challenge:</string>
     <string name="challenge_info">Challenge: %1$s</string>
+    <string name="challenge_failed">Challenge Failed!</string>
+    <string name="challenge_restarted">Challenge restarted:</string>
     
     <string name="in_game">in 1 game</string>
     <string name="in_level">in 1 level</string>

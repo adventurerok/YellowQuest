@@ -8,13 +8,11 @@ import android.content.Context;
 public class BasicChallenge extends Challenge {
 	
 	
-	StatType type;
 	int target;
 	int step;
 
 	public BasicChallenge(StatTracker tracker, Stat stat, StatType type, int target) {
-		super(tracker, stat);
-		this.type = type;
+		super(tracker, stat, type);
 		this.target = target;
 		
 		if(target > 20 && (target % 10) == 0) step = 10;
@@ -29,8 +27,7 @@ public class BasicChallenge extends Challenge {
 	
 
 	public BasicChallenge(StatTracker tracker, Stat stat, StatType type, int target, int step) {
-		super(tracker, stat);
-		this.type = type;
+		super(tracker, stat, type);
 		this.target = target;
 		this.step = step;
 	}

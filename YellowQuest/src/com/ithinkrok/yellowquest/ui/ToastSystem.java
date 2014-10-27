@@ -246,8 +246,20 @@ public class ToastSystem {
 
 	}
 
+	public static void showChallengeCompleteToast(int iconRes, String text){
+		showChallengeMessageToast(iconRes, R.string.challenge_complete, text);
+	}
+	
+	public static void showChallengeFailedToast(int iconRes, String text){
+		showChallengeMessageToast(iconRes, R.string.challenge_failed, text);
+	}
+	
+	public static void showChallengeRestartedToast(int iconRes, String text){
+		showChallengeMessageToast(iconRes, R.string.challenge_restarted, text);
+	}
+	
 	@SuppressLint("InflateParams")
-	public static void showChallengeCompleteToast(int iconRes, String text) {
+	public static void showChallengeMessageToast(int iconRes, int message, String text) {
 		View layout;
 		
 		if(layoutAchievements[posAchievements] != null) layout = layoutAchievements[posAchievements];
@@ -262,7 +274,7 @@ public class ToastSystem {
 		icon.setImageDrawable(context.loadDrawable(iconRes));
 
 		TextView name = (TextView) layout.findViewById(R.id.achievement_name);
-		name.setText(R.string.challenge_complete);
+		name.setText(message);
 
 		TextView desc = (TextView) layout.findViewById(R.id.achievement_desc);
 		desc.setText(text);

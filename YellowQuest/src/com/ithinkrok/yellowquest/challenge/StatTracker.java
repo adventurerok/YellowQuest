@@ -28,12 +28,41 @@ public class StatTracker {
 			this.type = type;
 			this.target = target;
 		}
+		
 
 
 
 		@Override
 		public Challenge createChallenge(StatTracker tracker) {
 			return new BasicChallenge(tracker, stat, type, target);
+		}
+		
+	}
+	
+	public static class WithoutChallengeInfo implements ChallengeInfo{
+		
+		private Stat stat;
+		private StatType type;
+		private int target;
+		private Stat limited;
+		private int limit;
+		
+		
+
+		public WithoutChallengeInfo(Stat stat, StatType type, int target, Stat limited, int limit) {
+			super();
+			this.stat = stat;
+			this.type = type;
+			this.target = target;
+			this.limited = limited;
+			this.limit = limit;
+		}
+
+
+
+		@Override
+		public Challenge createChallenge(StatTracker tracker) {
+			return new WithoutChallenge(tracker, stat, type, target, limited, limit);
 		}
 		
 	}
@@ -81,6 +110,7 @@ public class StatTracker {
 		}
 		
 		challenges.add(new BasicChallengeInfo(Stat.JUMP_OVER_BOXES, StatType.CHALLENGE, 25));
+		challenges.add(new WithoutChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME,  5, Stat.LEFT_DISTANCE, 0));
 		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.CHALLENGE, 5));
 		
 	}

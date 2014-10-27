@@ -8,15 +8,13 @@ import android.content.Context;
 public class WithoutChallenge extends Challenge {
 	
 	
-	StatType type;
 	int target;
 	int step;
 	Stat limited;
 	int limit;
 
 	public WithoutChallenge(StatTracker tracker, Stat stat, StatType type, int target, Stat limited, int limit) {
-		super(tracker, stat);
-		this.type = type;
+		super(tracker, stat, type);
 		this.target = target;
 		this.limited = limited;
 		this.limit = limit;
@@ -33,8 +31,7 @@ public class WithoutChallenge extends Challenge {
 	
 
 	public WithoutChallenge(StatTracker tracker, Stat stat, StatType type, int target, int step, Stat limited, int limit) {
-		super(tracker, stat);
-		this.type = type;
+		super(tracker, stat, type);
 		this.target = target;
 		this.step = step;
 		this.limited = limited;
@@ -54,7 +51,7 @@ public class WithoutChallenge extends Challenge {
 		int lat = tracker.getStat(limited, type);
 		if(lat > limit){
 			if(gained == limited && lat - increase <= limit){
-				//show some kind of challenge failed thing
+				if(limit == 0) ToastSystem.showChallengeFailedToast(getIconResource(), context.getString(gained.fail0));
 			}
 			return;
 		}
@@ -92,6 +89,7 @@ public class WithoutChallenge extends Challenge {
 		progress = String.format(progress, tracker.getStat(stat, type), target);
 		return progress;
 	}
+	
 
 
 	

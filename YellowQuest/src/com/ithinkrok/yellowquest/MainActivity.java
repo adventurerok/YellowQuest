@@ -205,6 +205,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		loadDrawable(R.drawable.achievement_unlocker);
 		loadDrawable(R.drawable.achievement_omnipotent);
 		loadDrawable(R.drawable.achievement_headstart);
+		loadDrawable(R.drawable.achievement_bonus_exploiter);
 		
 		loadDrawable(R.drawable.unlock_backwards);
 		loadDrawable(R.drawable.unlock_bounce);
@@ -213,6 +214,8 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		loadDrawable(R.drawable.unlock_teleport);
 		loadDrawable(R.drawable.unlock_time_stop);
 		loadDrawable(R.drawable.unlock_up);
+		loadDrawable(R.drawable.unlock_doublejump);
+		loadDrawable(R.drawable.unlock_stick);
 		
 		loadDrawable(R.drawable.bonus_bounce);
 		loadDrawable(R.drawable.bonus_life);
@@ -220,10 +223,14 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		loadDrawable(R.drawable.bonus_teleport);
 		loadDrawable(R.drawable.bonus_time_stop);
 		loadDrawable(R.drawable.bonus_troll);
+		loadDrawable(R.drawable.bonus_doublejump);
+		loadDrawable(R.drawable.bonus_stick);
 		
 		loadDrawable(R.drawable.challenge_dont_go_left);
 		loadDrawable(R.drawable.challenge_dont_go_right);
 		loadDrawable(R.drawable.challenge_level_up);
+		loadDrawable(R.drawable.challenge_failed);
+		loadDrawable(R.drawable.challenge_restart);
 		
 		loadDrawable(R.drawable.new_hiscore);
 	}

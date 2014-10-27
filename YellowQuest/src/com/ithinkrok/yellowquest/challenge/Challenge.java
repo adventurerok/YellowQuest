@@ -1,5 +1,7 @@
 package com.ithinkrok.yellowquest.challenge;
 
+import com.ithinkrok.yellowquest.ui.ToastSystem;
+
 import android.content.Context;
 
 
@@ -9,13 +11,14 @@ public abstract class Challenge {
 
 	public Stat stat;
 	
+	public StatType type;
 	
 	
-	
-	public Challenge(StatTracker tracker, Stat stat) {
+	public Challenge(StatTracker tracker, Stat stat, StatType type) {
 		super();
 		this.tracker = tracker;
 		this.stat = stat;
+		this.type = type;
 	}
 
 
@@ -35,12 +38,16 @@ public abstract class Challenge {
 		return stat == this.stat;
 	}
 	
-	public void completeLevel(Context context){
-		
+	public void completeLevel(Context context) {
+		if(type == StatType.LEVEL){
+			ToastSystem.showChallengeRestartedToast(getIconResource(), getTitleText(context));
+		}
 	}
 	
-	public void lostLife(Context context){
-		
+	public void lostLife(Context context) {
+		if(type == StatType.LIFE){
+			ToastSystem.showChallengeRestartedToast(getIconResource(), getTitleText(context));
+		}
 	}
 	
 	public void gameOver(Context context){
