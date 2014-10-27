@@ -52,6 +52,9 @@ public abstract class Entity {
 	public boolean remove = false;
 	public Box box = new Box(-16, 84, 16, 116);
 	
+	public boolean collisionHorizontal = false;
+	public boolean collisionVertical = false;
+	
 	private boolean isPlayer = false;
 
 	public Entity(YellowQuest game, EntityType type) {
@@ -157,7 +160,10 @@ public abstract class Entity {
 		}
 		this.x = (this.box.sx + this.box.ex) / 2;
 		this.y = (this.box.sy + this.box.ey) / 2;
-		// this.onGround = (yc < yv && yc < 0.0d);
+		
+		 collisionHorizontal =xv != xc;
+		 collisionVertical = yv != yc;
+		
 		this.onGround = (yc < yv) || (this.onGround && yc == 0);
 		if (yv < 0)
 			this.fallDist -= yv;

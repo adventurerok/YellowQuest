@@ -7,8 +7,15 @@ import com.ithinkrok.yellowquest.entity.power.*;
 import android.graphics.Paint;
 
 public class EntityPlayer extends Entity {
+	
 
 	public static final Paint PAINT_YELLOW = new Paint();
+	
+	public boolean gravity = true;
+	
+	public EntityPlatform sticking = null;
+	
+	public boolean sticky = false;
 
 	static {
 		PAINT_YELLOW.setColor(0xffffff00);
@@ -29,6 +36,7 @@ public class EntityPlayer extends Entity {
 	
 	public void setPower(Power power) {
 		this.power = power;
+		sticky = hasPower("stick");
 	}
 
 	@Override
@@ -48,19 +56,31 @@ public class EntityPlayer extends Entity {
 				aSlip = alt;
 		}
 		this.x_velocity *= aSlip;
-		if (this.y_velocity > 0 && game.doingJump) {
-			this.y_velocity += BoxMath.JUMP_GRAVITY;
-		} else {
-			this.y_velocity += BoxMath.FALL_GRAVITY;
+		if(gravity){
+			if (this.y_velocity > 0 && game.doingJump) {
+				this.y_velocity += BoxMath.JUMP_GRAVITY;
+			} else {
+				this.y_velocity += BoxMath.FALL_GRAVITY;
+			}
+	
+			if (this.y_velocity < BoxMath.FALL_VELOCITY_MAX)
+				this.y_velocity = BoxMath.FALL_VELOCITY_MAX;
 		}
-
-		if (this.y_velocity < BoxMath.FALL_VELOCITY_MAX)
-			this.y_velocity = BoxMath.FALL_VELOCITY_MAX;
 
 		if (this.intersecting != null && !this.box.intersects(this.intersecting.box))
 			this.intersecting = null;
 		double oldx = x;
+		
+		//_oldIntersect = this.intersecting;
+		
 		this.move(this.x_velocity, this.y_velocity);
+		
+		if(lastIntersected != null && intersecting == null){
+			//if(_oldIntersect.box.intersects(this.box)) intersecting = _oldIntersect;
+			if(lastIntersected.box.intersects(this.box)) intersecting = lastIntersected;
+		}
+		//_oldIntersect = null;
+		
 		if(oldx > x){
 			game.gameData.statTracker.addStat(game.getContext(), Stat.LEFT_DISTANCE, (int)(oldx - x));
 		}
