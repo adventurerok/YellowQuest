@@ -1,7 +1,6 @@
 package com.ithinkrok.yellowquest.entity.power;
 
 import android.graphics.Paint;
-import android.util.Log;
 
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
 
