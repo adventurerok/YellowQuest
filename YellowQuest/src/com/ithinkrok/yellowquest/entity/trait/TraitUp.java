@@ -28,12 +28,12 @@ public class TraitUp extends Trait {
 	
 	@Override
 	public void intersectsPlayer(EntityPlayer player) {
-		if(stickBonusMode && player.x > parent.x) return;
+		if(stickBonusMode && player.y > parent.y) return;
 		if(parent.timeOnPlatform == 0){
-			if(player.hasPower("up") && "up".equals(player.game.level.bonusType)){
+			if(player.hasPower("up") && "up".equals(parent.bonusType)){
 				maxUpTime = maxUpTime / (5 + ((PowerUp)player.getPower()).up);
-			} else if(player.hasPower("stick") && "stick".equals(player.game.level.bonusType)){
-				// do nothing
+			} else if(player.hasPower("stick") && "stick".equals(parent.bonusType)){
+				
 			} else maxUpTime = 200;
 		}
 		if(parent.timeOnPlatform < maxUpTime) parent.y_velocity = 5; // 45 ups

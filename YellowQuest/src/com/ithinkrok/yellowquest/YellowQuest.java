@@ -658,14 +658,15 @@ public class YellowQuest {
 			
 			//generateBonusBoxes(-30, 2000);
 		} else if(level.bonusType.equals("stick")){
-			int mx = (int) level.lastBoxType.x + 20 + random(100);
-			int my = (int) (90 + level.lastBoxType.y) + random(20);
+			int mx = (int) level.lastBoxType.x + 50 + random(200);
+			int my = (int) (110 + level.lastBoxType.y) + random(20);
 			
-			generateBonusBoxes(bgenX + 150, bgenY + 1400);
 			
 			bgenX -= (ent.x - mx);
 			bgenY -= 100;
 			ent.teleport(mx, my);
+			
+			generateBonusBoxes((int)(ent.box.ex + 20), (int)(ent.box.ey + 1500));
 			
 			TraitUp upTrait = new TraitUp(ent);
 			TraitDown downTrait = new TraitDown(ent);
@@ -674,7 +675,7 @@ public class YellowQuest {
 			upTrait.stickBonusMode = true;
 			downTrait.stickBonusMode = true;
 			
-			upTrait.maxUpTime = 250;
+			upTrait.maxUpTime = 350;
 			
 			ent.bonusType = "stick";
 			

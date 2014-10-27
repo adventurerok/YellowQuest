@@ -27,7 +27,7 @@ public class TraitDown extends Trait {
 	
 	@Override
 	public void intersectsPlayer(EntityPlayer player) {
-		if(stickBonusMode && player.x < parent.x) return;
+		if(stickBonusMode && player.y < parent.y) return;
 		
 		parent.y_velocity = -5;
 		goingDown = true;
@@ -60,6 +60,7 @@ public class TraitDown extends Trait {
 	
 	@Override
 	public void aiUpdate() {
+		if(stickBonusMode) return;
 		if(goingDown) ++downTicks;
 		if(downTicks > 200){
 			parent.remove = true;

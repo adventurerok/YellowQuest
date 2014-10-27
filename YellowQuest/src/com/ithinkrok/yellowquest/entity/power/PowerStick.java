@@ -45,7 +45,7 @@ public class PowerStick extends Power {
 			xcollision = true;
 		} else xcollision = false;
 		if(player.box.ey == player.intersecting.box.sy){
-			player.x_velocity = 0;
+			if(player.collisionVertical) player.x_velocity = 0;
 			if(player.game.doingJump && !player.game.wasDoingJump){
 				player.move(0, -1);
 				player.gravity = true;
