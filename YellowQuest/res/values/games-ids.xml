@@ -25,6 +25,9 @@ Save this file as res/values/games-ids.xml in your project.
   <string name="achievement_wormhole">CgkIzO3xja4REAIQEg</string>
   <string name="achievement_frozen_time">CgkIzO3xja4REAIQEw</string>
   <string name="achievement_arrows">CgkIzO3xja4REAIQFA</string>
+  <string name="achievement_fall_breaking_jump">CgkIzO3xja4REAIQGg</string>
+  <string name="achievement_rising_bat">CgkIzO3xja4REAIQGQ</string>
+  <string name="achievement_bonus_exploiter">CgkIzO3xja4REAIQGA</string>
   <string name="leaderboard_yellowquest_hiscores">CgkIzO3xja4REAIQCg</string>
   <string name="leaderboard_yellowquest_ranks">CgkIzO3xja4REAIQCw</string>
 </resources>

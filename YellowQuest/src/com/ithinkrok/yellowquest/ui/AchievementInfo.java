@@ -66,7 +66,13 @@ public class AchievementInfo {
 		info.put(context.getString(R.string.achievement_frozen_time), new AchievementInfo(R.drawable.bonus_time_stop,
 				R.string.achievement_frozen_time_name, R.string.achievement_frozen_time_desc,1500));
 		info.put(context.getString(R.string.achievement_arrows), new AchievementInfo(R.drawable.bonus_troll,
-				R.string.achievement_arrows_name, R.string.achievement_arrows_desc,20000));
+				R.string.achievement_arrows_name, R.string.achievement_arrows_desc,10000));
+		info.put(context.getString(R.string.achievement_fall_breaking_jump), new AchievementInfo(R.drawable.bonus_doublejump,
+				R.string.achievement_fall_breaking_jump_name, R.string.achievement_fall_breaking_jump_desc,5000));
+		info.put(context.getString(R.string.achievement_rising_bat), new AchievementInfo(R.drawable.bonus_stick,
+				R.string.achievement_rising_bat_name, R.string.achievement_rising_bat_desc,5000));
+		info.put(context.getString(R.string.achievement_bonus_exploiter), new AchievementInfo(R.drawable.achievement_bonus_exploiter,
+				R.string.achievement_bonus_exploiter_name, R.string.achievement_bonus_exploiter_desc,25000));
 
 	}
 

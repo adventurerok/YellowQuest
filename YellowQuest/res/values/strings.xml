@@ -133,6 +133,9 @@
     <string name="achievement_unlocker_name">The Unlocker</string>
     <string name="achievement_omnipotent_name">Omnipotent</string>
     <string name="achievement_headstart_name">Headstart</string>
+    <string name="achievement_fall_breaking_jump_name">Fall-breaking Jump</string>
+    <string name="achievement_rising_bat_name">Rising Bat</string>
+    <string name="achievement_bonus_exploiter_name">Bonus Exploiter</string>
     
     <string name="achievement_easy_desc">Complete level 3</string>
     <string name="achievement_medium_desc">Complete level 6</string>
@@ -154,6 +157,9 @@
     <string name="achievement_unlocker_desc">Unlock 4 powers</string>
     <string name="achievement_omnipotent_desc">Unlock all 8 powers</string>
     <string name="achievement_headstart_desc">Start a game on level 2 or above</string>
+    <string name="achievement_fall_breaking_jump_desc">Access a bonus area using the double jump power</string>
+    <string name="achievement_rising_bat_desc">Access a bonus area using the sticky power</string>
+    <string name="achievement_bonus_exploiter_desc">Complete each power\'s bonus level</string>
     
     <string name="new_hiscore">New Hiscore: %1$d</string>
     <string name="old_hiscore">That\'s an increase of %1$d on your old hiscore of %2$d!</string>
