@@ -40,7 +40,7 @@ public class PowerDoubleJump extends Power {
 		
 		if(dist < 20000){
 			player.fallDist = 0;
-			player.game.generateBonusBoxes(player.game.doubleX - 40, player.game.doubleY - 500);
+			player.game.generateBonusBoxes(player.game.doubleX - 40, player.game.doubleY - 600);
 		}
 	}
 	

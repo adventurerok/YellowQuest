@@ -1181,12 +1181,12 @@ public class YellowQuest {
 			PowerInfo.getData("time").unlock(getContext());
 		}
 
-		String pName = gameData.getNextPower();
-		if (pName == null || pName.trim().isEmpty())
-			return;
-		player.setPower(PowerInfo.getData(pName).newInstance(player, gameData.getPowerUpgradeLevel(pName)));
+//		String pName = gameData.getNextPower();
+//		if (pName == null || pName.trim().isEmpty())
+//			return;
+//		player.setPower(PowerInfo.getData(pName).newInstance(player, gameData.getPowerUpgradeLevel(pName)));
 		
-//		player.setPower(PowerInfo.getData("doublejump").newInstance(player, gameData.getPowerUpgradeLevel("doublejump")));
+		player.setPower(PowerInfo.getData("stick").newInstance(player, gameData.getPowerUpgradeLevel("doublejump")));
 		
 		gameData.setNextPower("");
 		canvas.getActivity().saveData();
