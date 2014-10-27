@@ -69,7 +69,7 @@ public class ToastSystem {
 		TextView reward = (TextView) layout.findViewById(R.id.achievement_reward);
 		String rewardText = context.getText(R.string.ach_reward).toString();
 		String rewardNum = BoxMath.formatNumber(achievement.reward);
-		rewardText = String.format(rewardText, rewardNum);
+		rewardText = StringFormatter.format(rewardText, rewardNum);
 		reward.setText(rewardText);
 
 		Toast toast = new Toast(context);
@@ -121,7 +121,7 @@ public class ToastSystem {
 		TextView reward = (TextView) layout.findViewById(R.id.achievement_reward);
 		String rewardText = context.getText(R.string.ach_reward).toString();
 		String rewardNum = BoxMath.formatNumber(bonusReward);
-		rewardText = String.format(rewardText, rewardNum);
+		rewardText = StringFormatter.format(rewardText, rewardNum);
 		reward.setText(rewardText);
 
 		Toast toast = new Toast(context);
@@ -184,10 +184,10 @@ public class ToastSystem {
 		icon.setImageDrawable(context.loadDrawable(R.drawable.new_hiscore));
 
 		TextView name = (TextView) layout.findViewById(R.id.achievement_name);
-		name.setText(String.format(context.getString(R.string.new_hiscore), current));
+		name.setText(StringFormatter.format(context.getString(R.string.new_hiscore), current));
 
 		TextView desc = (TextView) layout.findViewById(R.id.achievement_desc);
-		desc.setText(String.format(context.getString(R.string.old_hiscore), current - old, old));
+		desc.setText(StringFormatter.format(context.getString(R.string.old_hiscore), current - old, old));
 
 		TextView reward = (TextView) layout.findViewById(R.id.achievement_reward);
 		reward.setText("");
@@ -278,6 +278,8 @@ public class ToastSystem {
 
 		TextView desc = (TextView) layout.findViewById(R.id.achievement_desc);
 		desc.setText(text);
+		
+		//if(text.length())
 
 		TextView reward = (TextView) layout.findViewById(R.id.achievement_reward);
 		reward.setText("");
@@ -312,10 +314,10 @@ public class ToastSystem {
 		icon.setImageDrawable(context.loadDrawable(R.drawable.new_hiscore));
 
 		TextView name = (TextView) layout.findViewById(R.id.achievement_name);
-		name.setText(String.format(context.getString(R.string.new_rank), rank));
+		name.setText(StringFormatter.format(context.getString(R.string.new_rank), rank));
 
 		TextView desc = (TextView) layout.findViewById(R.id.achievement_desc);
-		desc.setText(String.format(context.getString(R.string.rank_up), rank));
+		desc.setText(StringFormatter.format(context.getString(R.string.rank_up), rank));
 
 		TextView reward = (TextView) layout.findViewById(R.id.achievement_reward);
 		reward.setText("");

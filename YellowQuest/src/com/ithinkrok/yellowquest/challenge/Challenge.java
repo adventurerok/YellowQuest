@@ -1,8 +1,8 @@
 package com.ithinkrok.yellowquest.challenge;
 
-import com.ithinkrok.yellowquest.ui.ToastSystem;
-
 import android.content.Context;
+
+import com.ithinkrok.yellowquest.ui.ToastSystem;
 
 
 public abstract class Challenge {

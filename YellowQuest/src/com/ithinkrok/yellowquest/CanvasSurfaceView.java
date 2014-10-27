@@ -4,9 +4,6 @@ import static android.view.MotionEvent.*;
 
 import java.util.*;
 
-import com.ithinkrok.yellowquest.util.Box;
-import com.ithinkrok.yellowquest.util.Vector2;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -15,6 +12,9 @@ import android.os.Build;
 import android.support.v4.view.MotionEventCompat;
 import android.util.Log;
 import android.view.*;
+
+import com.ithinkrok.yellowquest.util.Box;
+import com.ithinkrok.yellowquest.util.Vector2;
 
 public class CanvasSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 

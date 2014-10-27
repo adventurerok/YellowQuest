@@ -129,11 +129,6 @@ public class GameData {
 			return true;
 
 		addScorePoints(info.reward);
-//		String text = context.getString(R.string.achievement_reward);
-//		text = String.format(text, info.reward);
-//		Toast t = Toast.makeText(context, text, Toast.LENGTH_SHORT);
-//		t.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, (int) (context.view.width * 0.05), (int) (context.view.height * 0.1));
-//		t.show();
 
 		return true;
 	}
@@ -191,7 +186,7 @@ public class GameData {
 		if (res < score) {
 			setInt(hash, score);
 			String text = context.getString(R.string.hiscore_beat);
-			text = String.format(text, score);
+			text = StringFormatter.format(text, score);
 			
 			ToastSystem.showHiscoreToast(score, res);
 			

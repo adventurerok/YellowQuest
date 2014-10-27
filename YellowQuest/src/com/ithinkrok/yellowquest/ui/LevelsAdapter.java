@@ -1,13 +1,13 @@
 package com.ithinkrok.yellowquest.ui;
 
-import com.ithinkrok.yellowquest.*;
-
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.view.*;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.ithinkrok.yellowquest.*;
 
 public class LevelsAdapter extends BaseAdapter implements OnClickListener {
 	
@@ -68,7 +68,7 @@ public class LevelsAdapter extends BaseAdapter implements OnClickListener {
 		
 		TextView name = (TextView) view.findViewById(R.id.level_name);
 		String text = context.getString(R.string.level_x);
-		text = String.format(text, position + 2);
+		text = StringFormatter.format(text, position + 2);
 		name.setText(text);
 		
 		TextView select = (TextView) view.findViewById(R.id.level_select);

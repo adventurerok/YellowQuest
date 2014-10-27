@@ -92,7 +92,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 		icon.setImageResource(chal.getIconResource());
 		
 		String titleText = chal.getTitleText(context);
-		titleText = String.format(context.getString(R.string.challenge_info), titleText);
+		titleText = StringFormatter.format(context.getString(R.string.challenge_info), titleText);
 		title.setText(titleText);
 		
 		progress.setText(chal.getProgressText(context));
@@ -158,7 +158,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 		String lvl = "";
 		int lvlNum = context.getGameData().getPowerUpgradeLevel(info.name);
 		if(lvlNum > 0) lvl = Integer.toString(lvlNum + 1);
-		displayName = String.format(displayName, lvl);
+		displayName = StringFormatter.format(displayName, lvl);
 		
 		power_name.setText(displayName);
 		power_buy.setText(BoxMath.formatNumber(info.buyCost));
@@ -196,7 +196,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 	public void showUpgradeDialog(final PowerInfo info){
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		String msg = context.getString(info.warnInfo);
-		msg = String.format(msg, context.getGameData().getPowerUpgradeLevel(info.name) + 2);
+		msg = StringFormatter.format(msg, context.getGameData().getPowerUpgradeLevel(info.name) + 2);
 		builder.setMessage(msg);
 		builder.setPositiveButton(R.string.upgrade, new DialogInterface.OnClickListener() {
 			

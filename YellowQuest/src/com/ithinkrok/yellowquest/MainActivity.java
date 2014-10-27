@@ -392,7 +392,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			view.game.addAchievement(R.string.achievement_headstart);
 			
 			String sub = getString(R.string.scorepoints_subtracted);
-			sub = String.format(sub, levelsAdapter.price(level));
+			sub = StringFormatter.format(sub, levelsAdapter.price(level));
 			ToastSystem.showTextToast(sub);
 			levelsAdapter.selected = -1;
 			break;
@@ -592,7 +592,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			int hiscore = gameData.getHiScore();
 			int previous = gameData.getPreviousScore();
 			String text = getString(R.string.hiscore_x_previous_y);
-			text = String.format(text, hiscore, previous);
+			text = StringFormatter.format(text, hiscore, previous);
 			play_score.setText(text);
 		} else {
 			play_score.setText(R.string.no_powers);

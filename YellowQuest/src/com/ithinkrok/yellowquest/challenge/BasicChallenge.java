@@ -1,8 +1,9 @@
 package com.ithinkrok.yellowquest.challenge;
 
-import com.ithinkrok.yellowquest.ui.ToastSystem;
-
 import android.content.Context;
+
+import com.ithinkrok.yellowquest.StringFormatter;
+import com.ithinkrok.yellowquest.ui.ToastSystem;
 
 
 public class BasicChallenge extends Challenge {
@@ -56,7 +57,7 @@ public class BasicChallenge extends Challenge {
 		String title = "";
 		if(stat.title == 0) return title;
 		title = context.getString(stat.title);
-		title = String.format(title, target, suffix, "");
+		title = StringFormatter.format(title, target, suffix, "", "");
 		return title;
 	}
 
@@ -65,7 +66,7 @@ public class BasicChallenge extends Challenge {
 		String progress = "";
 		if(stat.progress == 0) return progress;
 		progress = context.getString(stat.progress);
-		progress = String.format(progress, tracker.getStat(stat, type), target);
+		progress = StringFormatter.format(progress, tracker.getStat(stat, type), target);
 		return progress;
 	}
 

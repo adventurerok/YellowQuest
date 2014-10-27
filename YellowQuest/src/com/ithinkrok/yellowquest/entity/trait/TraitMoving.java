@@ -2,7 +2,8 @@ package com.ithinkrok.yellowquest.entity.trait;
 
 import android.graphics.Paint;
 
-import com.ithinkrok.yellowquest.entity.*;
+import com.ithinkrok.yellowquest.entity.EntityPlatform;
+import com.ithinkrok.yellowquest.entity.EntityPlayer;
 
 public class TraitMoving extends Trait {
 	

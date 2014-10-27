@@ -1,10 +1,10 @@
 package com.ithinkrok.yellowquest.entity;
 
+import android.graphics.Paint;
+
 import com.ithinkrok.yellowquest.*;
 import com.ithinkrok.yellowquest.challenge.Stat;
-import com.ithinkrok.yellowquest.entity.power.*;
-
-import android.graphics.Paint;
+import com.ithinkrok.yellowquest.entity.power.Power;
 
 public class EntityPlayer extends Entity {
 	

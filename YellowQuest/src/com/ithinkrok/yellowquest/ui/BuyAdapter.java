@@ -15,8 +15,7 @@ import android.util.Log;
 import android.view.*;
 import android.widget.*;
 
-import com.ithinkrok.yellowquest.MainActivity;
-import com.ithinkrok.yellowquest.R;
+import com.ithinkrok.yellowquest.*;
 
 public class BuyAdapter extends BaseAdapter implements View.OnClickListener {
 
@@ -231,7 +230,7 @@ public class BuyAdapter extends BaseAdapter implements View.OnClickListener {
 								context.getGameData().addScorePoints(reward);
 								context.saveData();
 								String text = context.getString(R.string.achievement_reward);
-								text = String.format(text, reward);
+								text = StringFormatter.format(text, reward);
 								toast(text);
 							}
 						});
