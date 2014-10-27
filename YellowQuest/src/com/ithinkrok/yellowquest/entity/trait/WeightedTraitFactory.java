@@ -24,7 +24,7 @@ public class WeightedTraitFactory {
 
 		@Override
 		public int getWeight(EntityPlatform parent, int level) {
-			return level > 1 ? 10 : 0;
+			return level > 1 ? 100 : 0;
 		}
 
 		@Override
@@ -43,7 +43,7 @@ public class WeightedTraitFactory {
 
 		@Override
 		public int getWeight(EntityPlatform parent, int level) {
-			return 20;
+			return 200;
 		}
 
 		@Override
@@ -62,7 +62,7 @@ public class WeightedTraitFactory {
 
 		@Override
 		public int getWeight(EntityPlatform parent, int level) {
-			return level > 8 ? 4 : 0;
+			return level > 8 ? 40 : 0;
 		}
 
 		@Override
@@ -82,7 +82,7 @@ public class WeightedTraitFactory {
 		@Override
 		public int getWeight(EntityPlatform parent, int level) {
 			if(parent.hasTrait("down") || parent.hasTrait("bounce")) return 0;
-			return level > 0 ? 10 : 0;
+			return level > 0 ? 100 : 0;
 		}
 
 		@Override
@@ -102,7 +102,7 @@ public class WeightedTraitFactory {
 		@Override
 		public int getWeight(EntityPlatform parent, int level) {
 			if(parent.hasTrait("up")) return 0;
-			return level > 2 ? 10 : 0;
+			return level > 2 ? 100 : 0;
 		}
 
 		@Override
@@ -122,8 +122,8 @@ public class WeightedTraitFactory {
 		@Override
 		public int getWeight(EntityPlatform parent, int level) {
 			if(parent.hasTrait("up")) return 0;
-			if(level == 5) return 15;
-			return level > 4 ? 10 : 0;
+			if(level == 5) return 150;
+			return level > 4 ? 100 : 0;
 		}
 
 		@Override
@@ -143,8 +143,8 @@ public class WeightedTraitFactory {
 		@Override
 		public int getWeight(EntityPlatform parent, int level) {
 			if(parent.hasTrait("boost")) return level > 11 ? 5 : 0;
-			if(level == 6) return 15;
-			return level > 5 ? 10 : 0;
+			if(level == 6) return 150;
+			return level > 5 ? 100 : 0;
 		}
 
 		@Override
@@ -165,13 +165,33 @@ public class WeightedTraitFactory {
 		@Override
 		public int getWeight(EntityPlatform parent, int level) {
 			if(parent.hasTrait("boost")) return level > 11 ? 5 : 0;
-			if(level == 8) return 11;
-			return level > 7 ? 10 : 0;
+			if(level == 8) return 110;
+			return level > 7 ? 100 : 0;
 		}
 
 		@Override
 		public String getName() {
 			return "boost";
+		}
+		
+	}
+	
+	private static class WeightStick implements Weight {
+
+		@Override
+		public Trait create(EntityPlatform parent) {
+			return new TraitStick(parent);
+		}
+
+		@Override
+		public int getWeight(EntityPlatform parent, int level) {
+			if(level < 5) return 0;
+			return 8;
+		}
+
+		@Override
+		public String getName() {
+			return "stick";
 		}
 		
 	}
@@ -187,6 +207,7 @@ public class WeightedTraitFactory {
 		weights.add(new WeightBounce());
 		weights.add(new WeightConveyor());
 		weights.add(new WeightBoost());
+		weights.add(new WeightStick());
 	}
 	
 	public static EntityPlatform randomPlatform(YellowQuest game){
