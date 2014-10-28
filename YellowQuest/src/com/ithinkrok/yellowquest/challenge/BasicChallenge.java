@@ -17,7 +17,14 @@ public class BasicChallenge extends Challenge {
 		super(tracker, stat, type);
 		this.target = target;
 		
-		if(target > 20 && (target % 10) == 0) step = 10;
+		if(target > 5999) step = 2000;
+		else if(target > 2999) step = 1000;
+		else if(target > 1499) step = 500;
+		else if(target > 599) step = 200;
+		else if(target > 299) step = 100;
+		else if(target > 149) step = 50;
+		else if(target > 59) step = 20;
+		else if(target > 20 && (target % 10) == 0) step = 10;
 		else if(target > 5 && (target % 5) == 0) step = 5;
 		else if(target > 15 && target % 8 == 0) step = target / 8;
 		else if(target > 9 && target % 4 == 0) step = target / 4;
