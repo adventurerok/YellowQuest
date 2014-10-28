@@ -639,8 +639,9 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		if(gameData.getPowerUnlocks() != 0){
 			int hiscore = gameData.getHiScore();
 			int previous = gameData.getPreviousScore();
+			int rank = gameData.getPlayerRank();
 			String text = getString(R.string.hiscore_x_previous_y);
-			text = StringFormatter.format(text, hiscore, previous);
+			text = StringFormatter.format(text, hiscore, previous, rank);
 			play_score.setText(text);
 		} else {
 			play_score.setText(R.string.no_powers);

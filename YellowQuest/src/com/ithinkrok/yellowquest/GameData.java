@@ -150,7 +150,15 @@ public class GameData {
 	}
 	
 	public void setPlayerRank(int val){
+		if(val <= getPlayerRank()) return;
 		setInt(hash("player_rank"), val);
+		
+		client = context.getApiClient();
+		if (client != null && client.isConnected()) {
+			Games.Leaderboards.submitScore(client, context.getString(R.string.leaderboard_yellowquest_ranks),
+					val);
+			setInt(hash("rank_uploaded"), val);
+		}
 	}
 	
 	public int getChallengesToRank(){
@@ -204,10 +212,18 @@ public class GameData {
 		if(client == null || !client.isConnected()) return;
 		int offline = getInt(hash("score_total"), 0);
 		int online = getInt(hash("score_uploaded"), 0);
-		if(offline <= online) return;
-		Games.Leaderboards.submitScore(client, context.getString(R.string.leaderboard_yellowquest_hiscores),
-				offline);
-		setInt(hash("score_uploaded"), offline);
+		if(offline > online) {
+			Games.Leaderboards.submitScore(client, context.getString(R.string.leaderboard_yellowquest_hiscores),
+					offline);
+			setInt(hash("score_uploaded"), offline);
+		}
+		offline = getInt(hash("player_rank"), 0);
+		online = getInt(hash("rank_uploaded"), 0);
+		if(offline > online) {
+			Games.Leaderboards.submitScore(client, context.getString(R.string.leaderboard_yellowquest_ranks),
+					offline);
+			setInt(hash("rank_uploaded"), offline);
+		}
 	}
 	
 
