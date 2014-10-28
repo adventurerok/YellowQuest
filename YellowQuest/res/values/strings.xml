@@ -189,6 +189,7 @@
     <string name="challenge_info">Challenge: {0}</string>
     <string name="challenge_failed">Challenge Failed!</string>
     <string name="challenge_restarted">Challenge restarted:</string>
+    <string name="with_power">with the {0} power</string>
     
     <string name="in_game">in 1 game</string>
     <string name="in_level">in 1 level</string>

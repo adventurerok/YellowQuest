@@ -3,6 +3,7 @@ package com.ithinkrok.yellowquest.challenge;
 import android.content.Context;
 
 import com.ithinkrok.yellowquest.StringFormatter;
+import com.ithinkrok.yellowquest.ui.PowerInfo;
 import com.ithinkrok.yellowquest.ui.ToastSystem;
 
 
@@ -48,8 +49,8 @@ public class WithoutChallenge extends Challenge {
 
 	@Override
 	public void update(Context context, Stat gained, int increase) {
-		int current = tracker.getStat(stat, type);
-		int lat = tracker.getStat(limited, type);
+		int current = tracker.getStat(stat, type, power);
+		int lat = tracker.getStat(limited, type, power);
 		if(lat > limit){
 			if(gained == limited && lat - increase <= limit){
 				if(limit == 0) ToastSystem.showChallengeFailedToast(getIconResource(), context.getString(gained.fail0));
@@ -83,8 +84,10 @@ public class WithoutChallenge extends Challenge {
 		}
 		String title = "";
 		if(stat.title == 0) return title;
+		String with = "";
+		if(power != null) with = PowerInfo.getData(power).getWithText(context);
 		title = context.getString(stat.title);
-		title = StringFormatter.format(title, target, suffix, without, "");
+		title = StringFormatter.format(title, target, suffix, without, with);
 		return title;
 	}
 

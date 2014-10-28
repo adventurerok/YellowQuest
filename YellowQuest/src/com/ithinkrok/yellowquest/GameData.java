@@ -13,8 +13,7 @@ import com.google.android.gms.games.Games;
 import com.google.android.gms.games.achievement.Achievements;
 import com.google.android.gms.games.achievement.Achievements.UpdateAchievementResult;
 import com.ithinkrok.yellowquest.challenge.StatTracker;
-import com.ithinkrok.yellowquest.ui.AchievementInfo;
-import com.ithinkrok.yellowquest.ui.ToastSystem;
+import com.ithinkrok.yellowquest.ui.*;
 
 public class GameData {
 	
@@ -58,6 +57,15 @@ public class GameData {
 		setInt(id, getInt(id, 0) + add);
 	}
 	
+	public void addStatPower(String stat, int add, String power){
+		long id = hash("stat_" + stat);
+		setInt(id, getInt(id, 0) + add);
+		id = hash("cstat_" + stat);
+		setInt(id, getInt(id, 0) + add);
+		id = hash(power + "_cstat_" + stat);
+		setInt(id, getInt(id, 0) + add);
+	}
+	
 	public int getStat(String stat){
 		return getInt(hash("stat_" + stat), 0);
 	}
@@ -75,6 +83,9 @@ public class GameData {
 	public int resetStatChallenge(String stat){
 		int old = getStatChallenge(stat);
 		setInt(hash("cstat_" + stat), 0);
+		for(int d = 0; d < PowerInfo.getPowerCount(); ++d){
+			setInt(hash(PowerInfo.getData(d).getName() + "_cstat_" + stat), 0);
+		}
 		return old;
 	}
 	
@@ -97,6 +108,10 @@ public class GameData {
 	
 	public int getStatChallenge(String stat){
 		return getInt(hash("cstat_" + stat), 0);
+	}
+	
+	public int getStatChallengePower(String stat, String power){
+		return getInt(hash(power + "_cstat_" + stat), 0);
 	}
 
 

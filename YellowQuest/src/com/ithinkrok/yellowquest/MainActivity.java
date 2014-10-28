@@ -25,6 +25,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 import com.google.example.games.basegameutils.BaseGameActivity;
+import com.ithinkrok.yellowquest.entity.EntityPlayer;
 import com.ithinkrok.yellowquest.ui.*;
 
 public class MainActivity extends BaseGameActivity implements View.OnClickListener {
@@ -128,6 +129,14 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	
 	
 	private SparseArray<Drawable> preloadedDrawables = new SparseArray<Drawable>();
+	
+	public YellowQuest getGame(){
+		return view.game;
+	}
+	
+	public EntityPlayer getPlayer(){
+		return view.game.player;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

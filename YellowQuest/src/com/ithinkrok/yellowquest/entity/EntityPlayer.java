@@ -38,6 +38,11 @@ public class EntityPlayer extends Entity {
 		this.power = power;
 		sticky = hasPower("stick");
 	}
+	
+	public String getPowerName(){
+		if(power == null) return null;
+		else return power.getName();
+	}
 
 	@Override
 	public void update() {

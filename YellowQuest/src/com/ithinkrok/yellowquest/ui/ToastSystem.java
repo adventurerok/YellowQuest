@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.*;
+import android.widget.RelativeLayout.LayoutParams;
 
 import com.ithinkrok.yellowquest.*;
 import com.ithinkrok.yellowquest.MainActivity.GameState;
@@ -279,7 +280,11 @@ public class ToastSystem {
 		TextView desc = (TextView) layout.findViewById(R.id.achievement_desc);
 		desc.setText(text);
 		
-		//if(text.length())
+		if(text.length() > 80){
+			RelativeLayout.LayoutParams params = (LayoutParams) desc.getLayoutParams();
+			params.width = 350;
+			desc.setLayoutParams(params);
+		}
 
 		TextView reward = (TextView) layout.findViewById(R.id.achievement_reward);
 		reward.setText("");

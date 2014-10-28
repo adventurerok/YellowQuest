@@ -13,6 +13,8 @@ public abstract class Challenge {
 	
 	public StatType type;
 	
+	public String power = null; // can only be used if type = game/level/life
+	
 	
 	public Challenge(StatTracker tracker, Stat stat, StatType type) {
 		super();
