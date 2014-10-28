@@ -204,8 +204,16 @@ public class GameData {
 				setInt(hash("score_uploaded"), score);
 			}
 			return true;
-		} else
+		} else{
+			client = context.getApiClient();
+			if (client != null && client.isConnected()) {
+				//still in for daily or weekly hiscores
+				Games.Leaderboards.submitScore(client, context.getString(R.string.leaderboard_yellowquest_hiscores),
+						score);
+				//dont set the uploaded score, as this could be less
+			}
 			return false;
+		}
 	}
 	
 	public void updateOnlineHiScore(){

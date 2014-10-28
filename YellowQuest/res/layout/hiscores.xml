@@ -18,7 +18,7 @@
 
     <LinearLayout 
         android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:orientation="vertical">
@@ -32,6 +32,12 @@
         <Button
             android:id="@+id/hiscores_rank"
             android:text="@string/leaderboard_ranks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        
+        <Button
+            android:id="@+id/hiscores_shadowtime"
+            android:text="@string/leaderboard_shadowtime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         

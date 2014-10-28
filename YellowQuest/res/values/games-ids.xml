@@ -30,4 +30,5 @@ Save this file as res/values/games-ids.xml in your project.
   <string name="achievement_bonus_exploiter">CgkIzO3xja4REAIQGA</string>
   <string name="leaderboard_yellowquest_hiscores">CgkIzO3xja4REAIQCg</string>
   <string name="leaderboard_yellowquest_ranks">CgkIzO3xja4REAIQCw</string>
+  <string name="leaderboard_yellowquest_shadowtime_hiscores">CgkIzO3xja4REAIQGw</string>
 </resources>

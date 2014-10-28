@@ -73,6 +73,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	
 	private TextView hiscores_scores;
 	private TextView hiscores_ranks;
+	private TextView hiscores_shadowtime;
 	private TextView hiscores_back;
 
 	public IInAppBillingService buyService;
@@ -488,6 +489,27 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(getApiClient(),
 					getString(R.string.leaderboard_yellowquest_ranks)), 1);
 			break;
+		case R.id.hiscores_shadowtime:
+			if (getApiClient() == null || !getApiClient().isConnected()) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setMessage(R.string.cant_connect_to_google);
+				builder.setTitle(R.string.cant_view_achievements);
+				builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+
+					}
+				});
+				AlertDialog dialog = builder.create();
+				dialog.show();
+				return;
+			}
+			gameData.updateOnlineHiScore();
+			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(getApiClient(),
+					getString(R.string.leaderboard_yellowquest_shadowtime_hiscores)), 1);
+			break;
 		case R.id.menu_settings:
 			loadSettingsView();
 			break;
@@ -726,10 +748,12 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		
 		hiscores_scores = (TextView) findViewById(R.id.hiscores_score);
 		hiscores_ranks = (TextView) findViewById(R.id.hiscores_rank);
+		hiscores_shadowtime = (TextView) findViewById(R.id.hiscores_shadowtime);
 		hiscores_back = (TextView) findViewById(R.id.hiscores_back);
 		
 		hiscores_scores.setOnClickListener(this);
 		hiscores_ranks.setOnClickListener(this);
+		hiscores_shadowtime.setOnClickListener(this);
 		hiscores_back.setOnClickListener(this);
 	}
 
