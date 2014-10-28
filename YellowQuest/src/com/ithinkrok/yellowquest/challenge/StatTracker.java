@@ -71,9 +71,6 @@ public class StatTracker {
 	
 	public MainActivity context;
 	
-	public StatTracker(MainActivity context){
-		this.context = context;
-	}
 
 	public void completeLevel(MainActivity context) {
 		if (currentChallenge == null)
@@ -113,9 +110,10 @@ public class StatTracker {
 
 	public Challenge currentChallenge;
 
-	public StatTracker(GameData gameData) {
+	public StatTracker(GameData gameData, MainActivity context) {
 		super();
 		this.gameData = gameData;
+		this.context = context;
 	}
 
 	public void loaded() {
@@ -206,9 +204,9 @@ public class StatTracker {
 		String power = context.getPlayer().getPowerName();
 
 		if (power != null)
-			gameData.addStatPower(stat.name(), add, power);
+			addStatPower(stat.name(), add, power);
 		else
-			gameData.addStat(stat.name(), add);
+			addStat(stat.name(), add);
 
 		if (currentChallenge != null && currentChallenge.isTracking(stat)) {
 			if (currentChallenge.power != null && !currentChallenge.power.equals(power))

@@ -43,28 +43,19 @@ public class GameData {
 
 	private LongSparseArray<Object> data = new LongSparseArray<Object>();
 	
-	public StatTracker statTracker = new StatTracker(this);
+	public StatTracker statTracker;
 
 	public GameData(MainActivity context) {
 		super();
 		this.context = context;
+		this.statTracker = new StatTracker(this, context);
 	}
 	
 	public void addStat(String stat, int add){
 		long id = hash("stat_" + stat);
 		setInt(id, getInt(id, 0) + add);
-		id = hash("cstat_" + stat);
-		setInt(id, getInt(id, 0) + add);
 	}
 	
-	public void addStatPower(String stat, int add, String power){
-		long id = hash("stat_" + stat);
-		setInt(id, getInt(id, 0) + add);
-		id = hash("cstat_" + stat);
-		setInt(id, getInt(id, 0) + add);
-		id = hash(power + "_cstat_" + stat);
-		setInt(id, getInt(id, 0) + add);
-	}
 	
 	public int getStat(String stat){
 		return getInt(hash("stat_" + stat), 0);
