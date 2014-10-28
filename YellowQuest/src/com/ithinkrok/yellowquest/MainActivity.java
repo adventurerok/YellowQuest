@@ -33,7 +33,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	public static final boolean DEBUG = false;
 
 	public static enum GameState {
-		MENU, SETTINGS, PLAY, GAME, BUY, LEVELS;
+		MENU, SETTINGS, PLAY, GAME, BUY, LEVELS, HISCORES;
 	}
 
 	public GameState state;
@@ -70,6 +70,10 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private TextView levels_back;
 	private TextView levels_play;
 	private ListView levels_list;
+	
+	private TextView hiscores_scores;
+	private TextView hiscores_ranks;
+	private TextView hiscores_back;
 
 	public IInAppBillingService buyService;
 	public Intent buyIntent;
@@ -438,6 +442,9 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			startActivityForResult(Games.Achievements.getAchievementsIntent(getApiClient()), 1);
 			break;
 		case R.id.menu_leaderboards:
+			loadHiscoresView();
+			break;
+		case R.id.hiscores_score:
 			if (getApiClient() == null || !getApiClient().isConnected()) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.setMessage(R.string.cant_connect_to_google);
@@ -457,6 +464,27 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			gameData.updateOnlineHiScore();
 			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(getApiClient(),
 					getString(R.string.leaderboard_yellowquest_hiscores)), 1);
+			break;
+		case R.id.hiscores_rank:
+			if (getApiClient() == null || !getApiClient().isConnected()) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setMessage(R.string.cant_connect_to_google);
+				builder.setTitle(R.string.cant_view_achievements);
+				builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+
+					}
+				});
+				AlertDialog dialog = builder.create();
+				dialog.show();
+				return;
+			}
+			gameData.updateOnlineHiScore();
+			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(getApiClient(),
+					getString(R.string.leaderboard_yellowquest_ranks)), 1);
 			break;
 		case R.id.menu_settings:
 			loadSettingsView();
@@ -486,6 +514,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			break;
 		case R.id.play_back:
 		case R.id.settings_back:
+		case R.id.hiscores_back:
 			loadMenuView();
 			break;
 		case R.id.sign_in_button:
@@ -684,6 +713,19 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	
 	public void loadGameView(){
 		loadGameView(0);
+	}
+	
+	public void loadHiscoresView(){
+		state = GameState.HISCORES;
+		setContentView(R.layout.hiscores);
+		
+		hiscores_scores = (TextView) findViewById(R.id.hiscores_score);
+		hiscores_ranks = (TextView) findViewById(R.id.hiscores_rank);
+		hiscores_back = (TextView) findViewById(R.id.hiscores_back);
+		
+		hiscores_scores.setOnClickListener(this);
+		hiscores_ranks.setOnClickListener(this);
+		hiscores_back.setOnClickListener(this);
 	}
 
 	public void loadGameView(int level) {
