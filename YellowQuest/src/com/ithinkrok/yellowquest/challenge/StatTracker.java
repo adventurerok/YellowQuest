@@ -348,7 +348,7 @@ public class StatTracker {
 	public void completeChallenge() {
 		int rank = gameData.getPlayerRank();
 		int ctr = gameData.getChallengesToRank();
-		if(ctr == -1) ctr = rank / 10;
+		if(ctr <= 0) ctr = (rank / 10) + 1;
 		ctr -= 1;
 		if(ctr == 0){
 			gameData.setPlayerRank(++rank);

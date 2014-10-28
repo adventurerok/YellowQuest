@@ -277,6 +277,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	@Override
 	protected void onPause() {
 		paused = true;
+		if(state == GameState.PLAY && play_ad != null) play_ad.pause();
 		view.clearTouches();
 		super.onPause();
 		if (audioEnabled)
@@ -341,6 +342,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 	@Override
 	protected void onResume() {
+		if(state == GameState.PLAY && play_ad != null) play_ad.resume();
 		super.onResume();
 		if (audioEnabled && !screenOff)
 			media.start();
@@ -647,6 +649,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		if(gameData.hasMadePurchase()){
 			play_ad.setVisibility(View.GONE);
 		} else {
+			play_ad.resume();
 			AdRequest request = new AdRequest.Builder().build();
 			//play_ad.setAdSize(AdSize.BANNER);
 			//play_ad.setAdUnitId("ca-app-pub-3997067583457090/3896801162");
@@ -712,6 +715,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	}
 	
 	public void loadGameView(){
+		if(play_ad != null) play_ad.pause();
 		loadGameView(0);
 	}
 	
