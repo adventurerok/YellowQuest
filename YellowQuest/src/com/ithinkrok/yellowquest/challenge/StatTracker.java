@@ -23,6 +23,7 @@ public class StatTracker {
 		private StatType type;
 		private int target;
 		private String power;
+		private boolean shadow, time;
 
 		public BasicChallengeInfo(Stat stat, StatType type, int target, String power) {
 			super();
@@ -31,11 +32,23 @@ public class StatTracker {
 			this.target = target;
 			this.power = power;
 		}
+		
+		public BasicChallengeInfo(Stat stat, StatType type, int target, String power, boolean shadow, boolean time) {
+			super();
+			this.stat = stat;
+			this.type = type;
+			this.target = target;
+			this.power = power;
+			this.shadow = shadow;
+			this.time = time;
+		}
 
 		@Override
 		public Challenge createChallenge(StatTracker tracker) {
 			Challenge c = new BasicChallenge(tracker, stat, type, target);
 			c.power = power;
+			c.shadow = shadow;
+			c.time = time;
 			return c;
 		}
 
@@ -49,6 +62,7 @@ public class StatTracker {
 		private Stat limited;
 		private int limit;
 		private String power;
+		private boolean shadow, time;
 
 		public WithoutChallengeInfo(Stat stat, StatType type, int target, Stat limited, int limit, String power) {
 			super();
@@ -59,11 +73,25 @@ public class StatTracker {
 			this.limit = limit;
 			this.power = power;
 		}
+		
+		public WithoutChallengeInfo(Stat stat, StatType type, int target, Stat limited, int limit, String power, boolean shadow, boolean time) {
+			super();
+			this.stat = stat;
+			this.type = type;
+			this.target = target;
+			this.limited = limited;
+			this.limit = limit;
+			this.power = power;
+			this.shadow = shadow;
+			this.time = time;
+		}
 
 		@Override
 		public Challenge createChallenge(StatTracker tracker) {
 			Challenge c = new WithoutChallenge(tracker, stat, type, target, limited, limit);
 			c.power = power;
+			c.shadow = shadow;
+			c.time = time;
 			return c;
 		}
 
@@ -126,6 +154,7 @@ public class StatTracker {
 			statNames.add(s.name());
 		}
 
+		//00 - 
 		challenges.add(new BasicChallengeInfo(Stat.SCORE, StatType.GAME, 1000, null));
 		challenges.add(new BasicChallengeInfo(Stat.JUMP_OVER_BOXES, StatType.CHALLENGE, 15, null));
 		challenges.add(new BasicChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 5, null));
@@ -136,16 +165,55 @@ public class StatTracker {
 		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.CHALLENGE, 3, null));
 		challenges.add(new BasicChallengeInfo(Stat.SCORE, StatType.GAME, 3000, null));
 		challenges.add(new BasicChallengeInfo(Stat.BONUS, StatType.GAME, 2, null));
+		
+		//10
 		challenges.add(new BasicChallengeInfo(Stat.JUMP_OVER_BOXES, StatType.GAME, 15, "bounce"));
 		challenges.add(new WithoutChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 3, Stat.JUMP_OVER_BOXES, 0, null));
 		challenges.add(new BasicChallengeInfo(Stat.POWER_SAVE, StatType.GAME, 2, "teleport"));
 		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.LIFE, 2, null));
+		challenges.add(new BasicChallengeInfo(Stat.SCORE, StatType.LIFE, 3000, null));
 		challenges.add(new WithoutChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 5, Stat.LEFT_DISTANCE, 0, null));
 		challenges.add(new BasicChallengeInfo(Stat.UP, StatType.LIFE, 5000, null));
+		challenges.add(new BasicChallengeInfo(Stat.BONUS, StatType.CHALLENGE, 1, null, true, false));
 		challenges.add(new BasicChallengeInfo(Stat.JUMP_OVER_BOXES, StatType.LEVEL, 8, null));
 		challenges.add(new WithoutChallengeInfo(Stat.COMPLETE_LEVEL, StatType.CHALLENGE, 1, Stat.JUMPS, 0, null));
+		
+		//20
 		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.GAME, 3, null));
 		challenges.add(new BasicChallengeInfo(Stat.SCORE, StatType.GAME, 5000, null));
+		challenges.add(new BasicChallengeInfo(Stat.COMPLETE_LEVEL, StatType.LIFE, 3, null, false, true));
+		challenges.add(new BasicChallengeInfo(Stat.JUMP_OVER_BOXES, StatType.LIFE, 15, null));
+		challenges.add(new BasicChallengeInfo(Stat.POWER_SAVE, StatType.CHALLENGE, 10, "stick"));
+		challenges.add(new BasicChallengeInfo(Stat.BONUS, StatType.CHALLENGE, 1, null, false, true));
+		challenges.add(new BasicChallengeInfo(Stat.SCORE, StatType.LEVEL, 1000, null));
+		challenges.add(new BasicChallengeInfo(Stat.UP, StatType.LIFE, 1000, "up", false, true));
+		challenges.add(new BasicChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 7, null));
+		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.CHALLENGE, 10, null));
+		
+		//30
+		challenges.add(new BasicChallengeInfo(Stat.BONUS, StatType.LIFE, 2, null));
+		challenges.add(new BasicChallengeInfo(Stat.COMPLETE_LEVEL, StatType.LIFE, 5, "troll"));
+		challenges.add(new BasicChallengeInfo(Stat.JUMP_OVER_BOXES, StatType.GAME, 25, "bounce"));
+		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.LIFE, 2, null, false, true));
+		challenges.add(new BasicChallengeInfo(Stat.BONUS, StatType.CHALLENGE, 1, "life"));
+		challenges.add(new BasicChallengeInfo(Stat.POWER_SAVE, StatType.GAME, 2, "teleport", false, true));
+		challenges.add(new WithoutChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 7, Stat.LEFT_DISTANCE, 0, null));
+		challenges.add(new WithoutChallengeInfo(Stat.SCORE, StatType.LIFE, 3000, Stat.JUMP_OVER_BOXES, 0, null));
+		challenges.add(new BasicChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 5, "stick"));
+		challenges.add(new BasicChallengeInfo(Stat.BONUS, StatType.CHALLENGE, 1, "troll"));
+		
+		//40
+		challenges.add(new BasicChallengeInfo(Stat.BONUS, StatType.LIFE, 2, null, true, false));
+		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.GAME, 5, null));
+		challenges.add(new WithoutChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 4, Stat.JUMP_OVER_BOXES, 0, null, false, true));
+		challenges.add(new BasicChallengeInfo(Stat.JUMP_OVER_BOXES, StatType.LEVEL, 10, null));
+		challenges.add(new BasicChallengeInfo(Stat.SCORE, StatType.GAME, 9000, null));
+		challenges.add(new BasicChallengeInfo(Stat.BONUS, StatType.GAME, 1, "life", true, false));
+		challenges.add(new BasicChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 9, null));
+		challenges.add(new BasicChallengeInfo(Stat.BONUS, StatType.CHALLENGE, 1, "doublejump"));
+		challenges.add(new BasicChallengeInfo(Stat.COMPLETE_LEVEL, StatType.LIFE, 6, null));
+		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.LIFE, 3, null));
+		
 
 	}
 
@@ -202,11 +270,13 @@ public class StatTracker {
 		currentLevel.put(stat.name(), old + add);
 
 		String power = context.getPlayer().getPowerName();
+		boolean shadow = context.getGame().shadowMode();
+		boolean time = context.getGame().timeMode();
 
 		if (power != null)
-			addStatPower(stat.name(), add, power);
+			addStatPowerMode(stat.name(), add, power, shadow, time);
 		else
-			addStat(stat.name(), add);
+			addStatMode(stat.name(), add, shadow, time);
 
 		if (currentChallenge != null && currentChallenge.isTracking(stat)) {
 			if (currentChallenge.power != null && !currentChallenge.power.equals(power))
@@ -217,16 +287,24 @@ public class StatTracker {
 	}
 
 	public int getStat(Stat stat, StatType type) {
-		return getStat(stat, type, null);
+		return getStat(stat, type, null, false, false);
 	}
 	
-	public int getStat(Stat stat, StatType type, String power) {
+	public int getStat(Stat stat, StatType type, String power){
+		return getStat(stat, type, power, false, false);
+	}
+	
+	public int getStat(Stat stat, StatType type, boolean shadow, boolean time){
+		return getStat(stat, type, null, shadow, time);
+	}
+	
+	public int getStat(Stat stat, StatType type, String power, boolean shadow, boolean time) {
 		switch (type) {
 		case TOTAL:
 			return gameData.getStat(stat.name());
 		case CHALLENGE:
-			if(power == null) return getStatChallenge(stat.name());
-			else return getStatChallengePower(stat.name(), power);
+			if(power == null) return getStatChallenge(stat.name(), shadow, time);
+			else return getStatChallengePower(stat.name(), power, shadow, time);
 		case GAME:
 			return getIntFromMap(currentGame, stat.name());
 		case LEVEL:
@@ -351,26 +429,88 @@ public class StatTracker {
 		editor.apply();
 	}
 	
-	public int getStatChallenge(String stat){
+	private int getStatChallenge(String stat, boolean shadow, boolean time){
+		if(shadow){
+			if(time){
+				return getInt(hash("shatim_cstat_" + stat), 0);
+			}
+			return getInt(hash("sha_cstat_" + stat), 0);
+		}
+		if(time){
+			return getInt(hash("tim_cstat_" + stat), 0);
+		}
 		return getInt(hash("cstat_" + stat), 0);
 	}
 	
-	public int getStatChallengePower(String stat, String power){
+	private int getStatChallengePower(String stat, String power, boolean shadow, boolean time){
+		if(shadow){
+			if(time){
+				return getInt(hash("shatim_" + power + "_cstat_" + stat), 0);
+			}
+			return getInt(hash("sha_" + power + "_cstat_" + stat), 0);
+		}
+		if(time){
+			return getInt(hash("tim_" + power + "_cstat_" + stat), 0);
+		}
 		return getInt(hash(power + "_cstat_" + stat), 0);
 	}
 	
-	public void addStat(String stat, int add){
+//	private void addStat(String stat, int add){
+//		gameData.addStat(stat, add);
+//		long id = hash("cstat_" + stat);
+//		setInt(id, getInt(id, 0) + add);
+//	}
+//	
+//	private void addStatPower(String stat, int add, String power){
+//		gameData.addStat(stat, add);
+//		long id = hash("cstat_" + stat);
+//		setInt(id, getInt(id, 0) + add);
+//		id = hash(power + "_cstat_" + stat);
+//		setInt(id, getInt(id, 0) + add);
+//	}
+	
+	private void addStatMode(String stat, int add, boolean shadow, boolean time){
 		gameData.addStat(stat, add);
 		long id = hash("cstat_" + stat);
 		setInt(id, getInt(id, 0) + add);
+		if(shadow){
+			if(time){
+				id = hash("shatim_cstat_" + stat);
+				setInt(id, getInt(id, 0) + add);
+			}
+			id = hash("sha_cstat_" + stat);
+			setInt(id, getInt(id, 0) + add);
+		}
+		if(time){
+			id = hash("tim_cstat_" + stat);
+			setInt(id, getInt(id, 0) + add);
+		}
 	}
 	
-	public void addStatPower(String stat, int add, String power){
+	private void addStatPowerMode(String stat, int add, String power, boolean shadow, boolean time){
 		gameData.addStat(stat, add);
 		long id = hash("cstat_" + stat);
 		setInt(id, getInt(id, 0) + add);
 		id = hash(power + "_cstat_" + stat);
 		setInt(id, getInt(id, 0) + add);
+		if(shadow){
+			if(time){
+				id = hash("shatim_cstat_" + stat);
+				setInt(id, getInt(id, 0) + add);
+				id = hash("shatim_" + power + "_cstat_" + stat);
+				setInt(id, getInt(id, 0) + add);
+			}
+			id = hash("sha_cstat_" + stat);
+			setInt(id, getInt(id, 0) + add);
+			id = hash("sha_" + power + "_cstat_" + stat);
+			setInt(id, getInt(id, 0) + add);
+		}
+		if(time){
+			id = hash("tim_cstat_" + stat);
+			setInt(id, getInt(id, 0) + add);
+			id = hash("tim_" + power + "_cstat_" + stat);
+			setInt(id, getInt(id, 0) + add);
+		}
 	}
 
 }

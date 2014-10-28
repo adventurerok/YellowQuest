@@ -109,6 +109,7 @@
     <string name="tap_anywhere_to_play">Tap anywhere to start playing</string>
     <string name="ach_icon">Achievement icon</string>
     <string name="ach_reward">+ {0} SP</string>
+    <string name="score_reward">+ {0} score</string>
     <string name="level_select">Level</string>
     <string name="scorepoints_subtracted">{0} SP subtracted</string>
     

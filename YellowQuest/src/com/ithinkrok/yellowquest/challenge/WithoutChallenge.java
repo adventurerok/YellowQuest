@@ -49,8 +49,8 @@ public class WithoutChallenge extends Challenge {
 
 	@Override
 	public void update(Context context, Stat gained, int increase) {
-		int current = tracker.getStat(stat, type, power);
-		int lat = tracker.getStat(limited, type, power);
+		int current = tracker.getStat(stat, type, power, shadow, time);
+		int lat = tracker.getStat(limited, type, power, shadow, time);
 		if(lat > limit){
 			if(gained == limited && lat - increase <= limit){
 				if(limit == 0) ToastSystem.showChallengeFailedToast(getIconResource(), context.getString(gained.fail0));
@@ -86,8 +86,9 @@ public class WithoutChallenge extends Challenge {
 		if(stat.title == 0) return title;
 		String with = "";
 		if(power != null) with = PowerInfo.getData(power).getWithText(context);
+		String mode = getGameModeText(context);
 		title = context.getString(stat.title);
-		title = StringFormatter.format(title, target, suffix, without, with);
+		title = StringFormatter.format(title, target, suffix, without, with, mode);
 		return title;
 	}
 
@@ -96,7 +97,7 @@ public class WithoutChallenge extends Challenge {
 		String progress = "";
 		if(stat.progress == 0) return progress;
 		progress = context.getString(stat.progress);
-		progress = StringFormatter.format(progress, tracker.getStat(stat, type), target);
+		progress = StringFormatter.format(progress, tracker.getStat(stat, type, power, shadow, time), target);
 		return progress;
 	}
 	

@@ -2,7 +2,6 @@ package com.ithinkrok.yellowquest.challenge;
 
 import android.content.Context;
 
-import com.ithinkrok.yellowquest.MainActivity;
 import com.ithinkrok.yellowquest.R;
 import com.ithinkrok.yellowquest.ui.ToastSystem;
 
@@ -65,15 +64,15 @@ public abstract class Challenge {
 		
 	}
 	
-	public String getGameModeText(MainActivity context){
+	public String getGameModeText(Context context){
 		if(shadow){
 			if(time){
-				return context.getString(R.string.on_shadowtime_mode);
+				return context.getString(R.string.on_shadowtime_mode) + " ";
 			} else {
-				return context.getString(R.string.on_shadow_mode);
+				return context.getString(R.string.on_shadow_mode) + " ";
 			}
 		} else if(time){
-			return context.getString(R.string.on_time_mode);
+			return context.getString(R.string.on_time_mode) + " ";
 		}
 		return "";
 	}

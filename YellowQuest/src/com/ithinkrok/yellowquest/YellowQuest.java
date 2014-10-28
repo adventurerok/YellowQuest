@@ -232,6 +232,7 @@ public class YellowQuest {
 	}
 
 	public void drawArrow(CanvasSurfaceView rend, float x, float y, Paint paint, Direction dir) {
+		if(shadow) paint = PAINT_GAMEOVER;
 		switch (dir) {
 		case UP:
 			drawUpArrow(rend, x, y, paint);
@@ -1054,7 +1055,7 @@ public class YellowQuest {
 					((PowerTimeStop)player.getPower()).resetTimers();
 				}
 				PowerInfo.getData(level.bonusType).showBonusComplete(getContext());
-				gameData.addScorePoints(PowerInfo.getData(level.bonusType).bonusReward);
+				addScore(PowerInfo.getData(level.bonusType).bonusReward);
 				levelUp();
 			}
 			

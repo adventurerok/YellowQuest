@@ -120,7 +120,7 @@ public class ToastSystem {
 		desc.setText(bonusText);
 
 		TextView reward = (TextView) layout.findViewById(R.id.achievement_reward);
-		String rewardText = context.getText(R.string.ach_reward).toString();
+		String rewardText = context.getText(R.string.score_reward).toString();
 		String rewardNum = BoxMath.formatNumber(bonusReward);
 		rewardText = StringFormatter.format(rewardText, rewardNum);
 		reward.setText(rewardText);
