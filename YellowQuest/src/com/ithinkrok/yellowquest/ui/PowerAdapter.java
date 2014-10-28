@@ -263,7 +263,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 			if(info.name.equals(nextPower)){
 				context.getGameData().setNextPower("");
 				context.getGameData().setScorePoints(totalSp);
-				context.getGameData().save(context.getSettings().edit());
+				context.saveAll();
 			} else {
 				if(info.buyCost > totalSp){
 					Toast.makeText(context, R.string.not_enough, Toast.LENGTH_SHORT).show();
@@ -271,7 +271,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 				}
 				context.getGameData().setNextPower(info.name);
 				context.getGameData().setScorePoints(totalSp - info.buyCost);
-				context.getGameData().save(context.getSettings().edit());
+				context.saveAll();
 			}
 			break;
 		case R.id.power_upgrade:

@@ -129,7 +129,7 @@ public class PowerInfo {
 	}
 	
 	public String getWithText(Context context){
-		return StringFormatter.format(context.getString(R.string.with_power), context.getString(displayName)) + " ";
+		return StringFormatter.format(context.getString(R.string.with_power), StringFormatter.format(context.getString(displayName))) + " ";
 	}
 
 	public static void unlockNewAchievements(MainActivity context) {

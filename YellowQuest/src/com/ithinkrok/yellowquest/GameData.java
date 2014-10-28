@@ -80,14 +80,6 @@ public class GameData {
 		setInt(hash("highest_level"), level);
 	}
 	
-	public int resetStatChallenge(String stat){
-		int old = getStatChallenge(stat);
-		setInt(hash("cstat_" + stat), 0);
-		for(int d = 0; d < PowerInfo.getPowerCount(); ++d){
-			setInt(hash(PowerInfo.getData(d).getName() + "_cstat_" + stat), 0);
-		}
-		return old;
-	}
 	
 	public int getChallengeNum(){
 		return getInt(hash("challenge_num"), 0);
@@ -106,13 +98,7 @@ public class GameData {
 		setInt(hash("challenges_done"), getCompletedChallenges() + 1);
 	}
 	
-	public int getStatChallenge(String stat){
-		return getInt(hash("cstat_" + stat), 0);
-	}
 	
-	public int getStatChallengePower(String stat, String power){
-		return getInt(hash(power + "_cstat_" + stat), 0);
-	}
 
 
 	public boolean addAchievement(String achievement) {
@@ -365,7 +351,7 @@ public class GameData {
 		return getScorePoints() >= amount;
 	}
 
-	public void load(SharedPreferences prefs) {
+	public void load(SharedPreferences prefs, SharedPreferences challenges) {
 		Map<String, ?> data = prefs.getAll();
 		for (Entry<String, ?> e : data.entrySet()) {
 			if (e.getValue() == null)
@@ -384,11 +370,32 @@ public class GameData {
 			}
 		}
 		
-		statTracker.loaded();
+		statTracker.load(challenges);
 	}
 
 	
-	public void save(Editor editor) {
+	public void save(Editor editor, Editor challenges) {
+		editor.putInt("sv", 1);
+		Object obj;
+		Integer i;
+		Long l;
+		for (int d = 0; d < data.size(); ++d) {
+			obj = data.valueAt(d);
+			if (obj instanceof Integer) {
+				i = (Integer) obj;
+				editor.putInt("data_" + data.keyAt(d), i);
+			} else if (obj instanceof Long) {
+				l = (Long) obj;
+				editor.putLong("data_" + data.keyAt(d), l);
+			} else if (obj instanceof String) {
+				editor.putString("data_" + data.keyAt(d), (String) obj);
+			}
+		}
+		editor.apply();
+		statTracker.save(challenges);
+	}
+	
+	public void saveOnly(Editor editor){
 		editor.putInt("sv", 1);
 		Object obj;
 		Integer i;

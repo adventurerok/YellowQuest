@@ -117,6 +117,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 	private boolean screenOff = false;
 
 	private SharedPreferences settings;
+	private SharedPreferences challenges;
 
 	private PowerAdapter powerAdapter;
 	private BuyAdapter buyAdapter;
@@ -152,9 +153,10 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		gameData = new GameData(this);
 
 		settings = getSharedPreferences("com.ithinkrok.yellowquest", Context.MODE_PRIVATE);
+		challenges = getSharedPreferences("challenge", Context.MODE_PRIVATE);
 		rateSettings = getSharedPreferences("rate_app", 0);
 
-		gameData.load(settings);
+		gameData.load(settings, challenges);
 
 		buyIntent = new Intent("com.android.vending.billing.InAppBillingService.BIND");
 		buyIntent.setPackage("com.android.vending");
@@ -198,6 +200,11 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		
 		AppRater.app_launched(this);
 	}
+	
+	public void saveAll(){
+		gameData.save(settings.edit(), challenges.edit());
+	}
+	
 	
 	public void preloadDrawables(){
 		loadDrawable(R.drawable.achievement_almost);
@@ -283,7 +290,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			
 			@Override
 			public void run() {
-				gameData.save(settings.edit());
+				gameData.saveOnly(settings.edit());
 			}
 		});
 	}
@@ -298,6 +305,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 
 	@Override
 	protected void onDestroy() {
+		saveAll();
 		if(screenReciever.registered){
 			unregisterReceiver(screenReciever);
 			screenReciever.registered = false;
@@ -368,7 +376,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 		gameData.updateOnlineHiScore();
 		gameData.addOfflineAchievements();
 		try{
-			gameData.save(settings.edit());
+			gameData.saveOnly(settings.edit());
 		} catch(Exception e){}
 	}
 

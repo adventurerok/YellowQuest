@@ -1,9 +1,12 @@
 package com.ithinkrok.yellowquest.challenge;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
+import java.util.Map.Entry;
 
-import com.google.android.gms.internal.bs;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.support.v4.util.LongSparseArray;
+
 import com.ithinkrok.yellowquest.GameData;
 import com.ithinkrok.yellowquest.MainActivity;
 
@@ -65,6 +68,12 @@ public class StatTracker {
 		}
 
 	}
+	
+	public MainActivity context;
+	
+	public StatTracker(MainActivity context){
+		this.context = context;
+	}
 
 	public void completeLevel(MainActivity context) {
 		if (currentChallenge == null)
@@ -125,8 +134,8 @@ public class StatTracker {
 		challenges.add(new BasicChallengeInfo(Stat.UP, StatType.CHALLENGE, 500, "up"));
 		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.CHALLENGE, 1, null));
 		challenges.add(new BasicChallengeInfo(Stat.BONUS, StatType.CHALLENGE, 3, null));
-		challenges.add(new BasicChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 5, "bounce"));
-		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.CHALLENGE, 5, null));
+		challenges.add(new BasicChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 3, "bounce"));
+		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.CHALLENGE, 3, null));
 		challenges.add(new BasicChallengeInfo(Stat.SCORE, StatType.GAME, 3000, null));
 		challenges.add(new BasicChallengeInfo(Stat.BONUS, StatType.GAME, 2, null));
 		challenges.add(new BasicChallengeInfo(Stat.JUMP_OVER_BOXES, StatType.GAME, 15, "bounce"));
@@ -173,9 +182,7 @@ public class StatTracker {
 
 	public void resetChallenge() {
 		resetGame();
-		for (String s : statNames) {
-			gameData.resetStatChallenge(s);
-		}
+		data.clear();
 	}
 
 	public void addStat(MainActivity context, Stat stat, int add) {
@@ -220,8 +227,8 @@ public class StatTracker {
 		case TOTAL:
 			return gameData.getStat(stat.name());
 		case CHALLENGE:
-			if(power == null) gameData.getStatChallenge(stat.name());
-			else return gameData.getStatChallengePower(stat.name(), power);
+			if(power == null) return getStatChallenge(stat.name());
+			else return getStatChallengePower(stat.name(), power);
 		case GAME:
 			return getIntFromMap(currentGame, stat.name());
 		case LEVEL:
@@ -266,6 +273,106 @@ public class StatTracker {
 		resetChallenge();
 
 		gameData.completeChallenge();
+	}
+	
+	private static final int MOD = 1436763197;
+	
+	public static long hash(String string) {
+		long h = 1125899906842597L; // prime
+		int len = string.length();
+
+		for (int i = 0; i < len; i++) {
+			h = 31 * h + string.charAt(i);
+		}
+		return h;
+	}
+	
+	private LongSparseArray<Object> data = new LongSparseArray<Object>();
+	
+	private void setInt(long key, int val) {
+		data.put(key, val);
+		data.put(~key, val ^ MOD);
+	}
+	
+	private int getInt(long key, int cheat) {
+		Object o1 = data.get(key);
+		if (o1 == null || !(o1 instanceof Integer))
+			return cheat;
+		Object o2 = data.get(~key);
+		if (o2 == null || !(o2 instanceof Integer))
+			return cheat;
+		int i1 = (Integer) o1;
+		int i2 = (Integer) o2;
+		if ((i1 ^ MOD) == i2)
+			return i1;
+		else
+			return cheat;
+	}
+	
+	public void load(SharedPreferences prefs) {
+		Map<String, ?> data = prefs.getAll();
+		for (Entry<String, ?> e : data.entrySet()) {
+			if (e.getValue() == null)
+				continue;
+			if (!e.getKey().startsWith("data_"))
+				continue;
+			long key = Long.parseLong(e.getKey().substring(5));
+			if (e.getValue() instanceof Integer) {
+				int value = ((Number) e.getValue()).intValue();
+				this.data.put(key, value);
+			} else if (e.getValue() instanceof Long) {
+				long value = ((Number) e.getValue()).longValue();
+				this.data.put(key, value);
+			} else if (e.getValue() instanceof String) {
+				this.data.put(key, (String) e.getValue());
+			}
+		}
+		
+		loaded();
+		
+	}
+	
+	public void save(Editor editor) {
+		editor.clear();
+		editor.putInt("sv", 1);
+		Object obj;
+		Integer i;
+		Long l;
+		for (int d = 0; d < data.size(); ++d) {
+			obj = data.valueAt(d);
+			if (obj instanceof Integer) {
+				i = (Integer) obj;
+				editor.putInt("data_" + data.keyAt(d), i);
+			} else if (obj instanceof Long) {
+				l = (Long) obj;
+				editor.putLong("data_" + data.keyAt(d), l);
+			} else if (obj instanceof String) {
+				editor.putString("data_" + data.keyAt(d), (String) obj);
+			}
+		}
+		editor.apply();
+	}
+	
+	public int getStatChallenge(String stat){
+		return getInt(hash("cstat_" + stat), 0);
+	}
+	
+	public int getStatChallengePower(String stat, String power){
+		return getInt(hash(power + "_cstat_" + stat), 0);
+	}
+	
+	public void addStat(String stat, int add){
+		gameData.addStat(stat, add);
+		long id = hash("cstat_" + stat);
+		setInt(id, getInt(id, 0) + add);
+	}
+	
+	public void addStatPower(String stat, int add, String power){
+		gameData.addStat(stat, add);
+		long id = hash("cstat_" + stat);
+		setInt(id, getInt(id, 0) + add);
+		id = hash(power + "_cstat_" + stat);
+		setInt(id, getInt(id, 0) + add);
 	}
 
 }

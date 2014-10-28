@@ -2,6 +2,8 @@ package com.ithinkrok.yellowquest.challenge;
 
 import android.content.Context;
 
+import com.ithinkrok.yellowquest.MainActivity;
+import com.ithinkrok.yellowquest.R;
 import com.ithinkrok.yellowquest.ui.ToastSystem;
 
 
@@ -14,6 +16,9 @@ public abstract class Challenge {
 	public StatType type;
 	
 	public String power = null; // can only be used if type = game/level/life
+	
+	public boolean shadow = false;
+	public boolean time = false;
 	
 	
 	public Challenge(StatTracker tracker, Stat stat, StatType type) {
@@ -58,5 +63,18 @@ public abstract class Challenge {
 	
 	public void loadGame(Context context){
 		
+	}
+	
+	public String getGameModeText(MainActivity context){
+		if(shadow){
+			if(time){
+				return context.getString(R.string.on_shadowtime_mode);
+			} else {
+				return context.getString(R.string.on_shadow_mode);
+			}
+		} else if(time){
+			return context.getString(R.string.on_time_mode);
+		}
+		return "";
 	}
 }
