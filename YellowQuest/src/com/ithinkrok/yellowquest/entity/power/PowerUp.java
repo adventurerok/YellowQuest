@@ -1,5 +1,6 @@
 package com.ithinkrok.yellowquest.entity.power;
 
+import com.ithinkrok.yellowquest.challenge.Stat;
 import com.ithinkrok.yellowquest.entity.EntityPlatform;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
 import com.ithinkrok.yellowquest.entity.trait.TraitUp;
@@ -29,6 +30,10 @@ public class PowerUp extends Power {
 		player.move(0, up);
 		player.onGround = true;
 		player.intersecting.move(0, up);
+		
+		if(player.intersecting.timeOnPlatform % 20 == 0 && player.intersecting.timeOnPlatform != 0){
+			player.game.gameData.statTracker.addStat(player.game.getContext(), Stat.UP, 20 * up);
+		}
 	}
 
 }

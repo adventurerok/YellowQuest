@@ -166,6 +166,8 @@
     <string name="new_rank">Rank {0}</string>
     <string name="rank_up">Rank up! You are now rank {0}</string>
     
+    <string name="challenge_up">Rise up {0} units {3}{1} {2}</string>
+    <string name="progress_up">Risen up {0} out of {1} units</string>
     <string name="challenge_score">Earn a score of {0} {3}{1} {2}</string>
     <string name="progress_score">You have earned a score of {0} out of {1}</string>
     <string name="fail_score_x">You scored more than {0}</string>

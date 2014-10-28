@@ -2,6 +2,7 @@ package com.ithinkrok.yellowquest.entity.trait;
 
 import android.graphics.Paint;
 
+import com.ithinkrok.yellowquest.challenge.Stat;
 import com.ithinkrok.yellowquest.entity.EntityPlatform;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
 import com.ithinkrok.yellowquest.entity.power.PowerUp;
@@ -31,12 +32,17 @@ public class TraitUp extends Trait {
 		if(stickBonusMode && player.y > parent.y) return;
 		if(parent.timeOnPlatform == 0){
 			if(player.hasPower("up") && "up".equals(parent.bonusType)){
-				maxUpTime = maxUpTime / (5 + ((PowerUp)player.getPower()).up);
+				maxUpTime = maxUpTime / (5 + ((PowerUp)player.getPower()).up) + 1;
 			} else if(player.hasPower("stick") && "stick".equals(parent.bonusType)){
-				
-			} else maxUpTime = 200;
+				maxUpTime += 1;
+			} else maxUpTime = 201;
 		}
-		if(parent.timeOnPlatform < maxUpTime) parent.y_velocity = 5; // 45 ups
+		if(parent.timeOnPlatform < maxUpTime){
+			parent.y_velocity = 5; // 45 ups
+			if(parent.timeOnPlatform % 20 == 0 && parent.timeOnPlatform != 0){
+				parent.game.gameData.statTracker.addStat(parent.game.getContext(), Stat.UP, 100);
+			}
+		}
 		else if(parent.timeOnPlatform == maxUpTime){
 			parent.y_velocity = 0;
 			parent.timeOnPlatform += 500;
