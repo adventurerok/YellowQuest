@@ -992,6 +992,9 @@ public class YellowQuest {
 
 	public void gameOver() {
 		gameData.addHiScore(score);
+		if(timed && shadow){
+			gameData.addHiScoreShadowTime(score);
+		}
 		getContext().saveAll();
 		this.reload();
 	}

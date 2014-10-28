@@ -216,6 +216,39 @@ public class GameData {
 		}
 	}
 	
+	public boolean addHiScoreShadowTime(int score) {
+		if (score < 1)
+			return false;
+		setInt(hash("shatim_score_previous"), score);
+		String base = "shatim_score_total";
+		long hash = hash(base);
+		int res = getInt(hash, 0);
+		if (res < score) {
+			setInt(hash, score);
+			String text = context.getString(R.string.hiscore_beat);
+			text = StringFormatter.format(text, score);
+			
+			ToastSystem.showHiscoreToast(score, res);
+			
+			client = context.getApiClient();
+			if (client != null && client.isConnected()) {
+				Games.Leaderboards.submitScore(client, context.getString(R.string.leaderboard_yellowquest_hiscores),
+						score);
+				setInt(hash("shatim_score_uploaded"), score);
+			}
+			return true;
+		} else{
+			client = context.getApiClient();
+			if (client != null && client.isConnected()) {
+				//still in for daily or weekly hiscores
+				Games.Leaderboards.submitScore(client, context.getString(R.string.leaderboard_yellowquest_hiscores),
+						score);
+				//dont set the uploaded score, as this could be less
+			}
+			return false;
+		}
+	}
+	
 	public void updateOnlineHiScore(){
 		if(client == null || !client.isConnected()) return;
 		int offline = getInt(hash("score_total"), 0);
@@ -224,6 +257,13 @@ public class GameData {
 			Games.Leaderboards.submitScore(client, context.getString(R.string.leaderboard_yellowquest_hiscores),
 					offline);
 			setInt(hash("score_uploaded"), offline);
+		}
+		offline = getInt(hash("shatim_score_total"), 0);
+		online = getInt(hash("shatim_score_uploaded"), 0);
+		if(offline > online) {
+			Games.Leaderboards.submitScore(client, context.getString(R.string.leaderboard_yellowquest_shadowtime_hiscores),
+					offline);
+			setInt(hash("shatim_score_uploaded"), offline);
 		}
 		offline = getInt(hash("player_rank"), 0);
 		online = getInt(hash("rank_uploaded"), 0);
