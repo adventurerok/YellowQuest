@@ -166,21 +166,21 @@
     <string name="new_rank">Rank {0}</string>
     <string name="rank_up">Rank up! You are now rank {0}</string>
     
-    <string name="challenge_up">Rise up {0} units {3}{1} {2}</string>
+    <string name="challenge_up">Rise up {0} units {4}{3}{1} {2}</string>
     <string name="progress_up">Risen up {0} out of {1} units</string>
-    <string name="challenge_score">Earn a score of {0} {3}{1} {2}</string>
+    <string name="challenge_score">Earn a score of {0} {4}{3}{1} {2}</string>
     <string name="progress_score">You have earned a score of {0} out of {1}</string>
     <string name="fail_score_x">You scored more than {0}</string>
     <string name="without_score_x">without scoring more than {0}</string>
     <string name="without_bonus">without using a bonus area</string>
     <string name="fail_bonus">You accessed a bonus area</string>
-    <string name="challenge_bonus">Access {0} bonus areas {3}{1} {2}</string>
+    <string name="challenge_bonus">Access {0} bonus areas {4}{3}{1} {2}</string>
     <string name="progress_bonus">Accessed {0} out of {1} bonus areas!</string>
     <string name="progress_jump_over_boxes">Jumped over {0} of {1} boxes!</string>
-    <string name="challenge_jump_over_boxes">Jump over {0} boxes {3}{1} {2}</string>
+    <string name="challenge_jump_over_boxes">Jump over {0} boxes {4}{3}{1} {2}</string>
     <string name="progress_right_side_flag">Right side flagged {0} of {1} times!</string>
-    <string name="challenge_right_side_flag">Collide with the right side of the flag {0} times {3}{1} {2}</string>
-    <string name="challenge_level_up">Level up {0} times {3}{1} {2}</string>
+    <string name="challenge_right_side_flag">Collide with the right side of the flag {0} times {4}{3}{1} {2}</string>
+    <string name="challenge_level_up">Level up {0} times {4}{3}{1} {2}</string>
     <string name="progress_level_up">Leveled up {0} of {1} times!</string>
     <string name="fail_go_left">You went left</string>
     <string name="without_go_left">without going left</string>
@@ -200,6 +200,9 @@
     <string name="challenge_failed">Challenge Failed!</string>
     <string name="challenge_restarted">Challenge restarted:</string>
     <string name="with_power">with the {0} power</string>
+    <string name="on_shadow_mode">on shadow mode</string>
+    <string name="on_time_mode">on time mode</string>
+    <string name="on_shadowtime_mode">on shadowtime mode</string>
     
     <string name="in_game">in 1 game</string>
     <string name="in_level">in 1 level</string>

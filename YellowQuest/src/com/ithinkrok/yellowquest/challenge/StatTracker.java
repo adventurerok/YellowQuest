@@ -3,6 +3,7 @@ package com.ithinkrok.yellowquest.challenge;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.google.android.gms.internal.bs;
 import com.ithinkrok.yellowquest.GameData;
 import com.ithinkrok.yellowquest.MainActivity;
 
@@ -118,10 +119,26 @@ public class StatTracker {
 			statNames.add(s.name());
 		}
 
+		challenges.add(new BasicChallengeInfo(Stat.SCORE, StatType.GAME, 1000, null));
 		challenges.add(new BasicChallengeInfo(Stat.JUMP_OVER_BOXES, StatType.CHALLENGE, 15, null));
 		challenges.add(new BasicChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 5, null));
+		challenges.add(new BasicChallengeInfo(Stat.UP, StatType.CHALLENGE, 500, "up"));
 		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.CHALLENGE, 1, null));
 		challenges.add(new BasicChallengeInfo(Stat.BONUS, StatType.CHALLENGE, 3, null));
+		challenges.add(new BasicChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 5, "bounce"));
+		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.CHALLENGE, 5, null));
+		challenges.add(new BasicChallengeInfo(Stat.SCORE, StatType.GAME, 3000, null));
+		challenges.add(new BasicChallengeInfo(Stat.BONUS, StatType.GAME, 2, null));
+		challenges.add(new BasicChallengeInfo(Stat.JUMP_OVER_BOXES, StatType.GAME, 15, "bounce"));
+		challenges.add(new WithoutChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 3, Stat.JUMP_OVER_BOXES, 0, null));
+		challenges.add(new BasicChallengeInfo(Stat.POWER_SAVE, StatType.GAME, 2, "teleport"));
+		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.LIFE, 2, null));
+		challenges.add(new WithoutChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 5, Stat.LEFT_DISTANCE, 0, null));
+		challenges.add(new BasicChallengeInfo(Stat.UP, StatType.LIFE, 5000, null));
+		challenges.add(new BasicChallengeInfo(Stat.JUMP_OVER_BOXES, StatType.LEVEL, 8, null));
+		challenges.add(new WithoutChallengeInfo(Stat.COMPLETE_LEVEL, StatType.CHALLENGE, 1, Stat.JUMPS, 0, null));
+		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.GAME, 3, null));
+		challenges.add(new BasicChallengeInfo(Stat.SCORE, StatType.GAME, 5000, null));
 
 	}
 
