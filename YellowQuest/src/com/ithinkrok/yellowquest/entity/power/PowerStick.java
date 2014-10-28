@@ -2,6 +2,7 @@ package com.ithinkrok.yellowquest.entity.power;
 
 import android.graphics.Paint;
 
+import com.ithinkrok.yellowquest.challenge.Stat;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
 
 public class PowerStick extends Power {
@@ -36,6 +37,9 @@ public class PowerStick extends Power {
 		}
 		sticking = true;
 		if(player.collisionHorizontal){
+			if(player.timeOnPlatform == 0){
+				player.game.gameData.statTracker.addStat(player.game.getContext(), Stat.POWER_SAVE, 1);
+			}
 			syv = player.y_velocity;
 			player.y_velocity = 0;
 		}
@@ -45,7 +49,10 @@ public class PowerStick extends Power {
 			xcollision = true;
 		} else xcollision = false;
 		if(player.box.ey == player.intersecting.box.sy){
-			if(player.collisionVertical) player.x_velocity = 0;
+			if(player.collisionVertical){
+				if(player.timeOnPlatform == 0) player.game.gameData.statTracker.addStat(player.game.getContext(), Stat.POWER_SAVE, 1);
+				player.x_velocity = 0;
+			}
 			if(player.game.doingJump && !player.game.wasDoingJump){
 				player.move(0, -1);
 				player.gravity = true;

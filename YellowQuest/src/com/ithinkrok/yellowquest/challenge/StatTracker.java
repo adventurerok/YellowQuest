@@ -18,17 +18,21 @@ public class StatTracker {
 		private Stat stat;
 		private StatType type;
 		private int target;
+		private String power;
 
-		public BasicChallengeInfo(Stat stat, StatType type, int target) {
+		public BasicChallengeInfo(Stat stat, StatType type, int target, String power) {
 			super();
 			this.stat = stat;
 			this.type = type;
 			this.target = target;
+			this.power = power;
 		}
 
 		@Override
 		public Challenge createChallenge(StatTracker tracker) {
-			return new BasicChallenge(tracker, stat, type, target);
+			Challenge c = new BasicChallenge(tracker, stat, type, target);
+			c.power = power;
+			return c;
 		}
 
 	}
@@ -40,19 +44,23 @@ public class StatTracker {
 		private int target;
 		private Stat limited;
 		private int limit;
+		private String power;
 
-		public WithoutChallengeInfo(Stat stat, StatType type, int target, Stat limited, int limit) {
+		public WithoutChallengeInfo(Stat stat, StatType type, int target, Stat limited, int limit, String power) {
 			super();
 			this.stat = stat;
 			this.type = type;
 			this.target = target;
 			this.limited = limited;
 			this.limit = limit;
+			this.power = power;
 		}
 
 		@Override
 		public Challenge createChallenge(StatTracker tracker) {
-			return new WithoutChallenge(tracker, stat, type, target, limited, limit);
+			Challenge c = new WithoutChallenge(tracker, stat, type, target, limited, limit);
+			c.power = power;
+			return c;
 		}
 
 	}
@@ -110,9 +118,10 @@ public class StatTracker {
 			statNames.add(s.name());
 		}
 
-		challenges.add(new BasicChallengeInfo(Stat.JUMP_OVER_BOXES, StatType.CHALLENGE, 25));
-		challenges.add(new WithoutChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 5, Stat.LEFT_DISTANCE, 0));
-		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.CHALLENGE, 5));
+		challenges.add(new BasicChallengeInfo(Stat.JUMP_OVER_BOXES, StatType.CHALLENGE, 15, null));
+		challenges.add(new BasicChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 5, null));
+		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.CHALLENGE, 1, null));
+		challenges.add(new BasicChallengeInfo(Stat.BONUS, StatType.CHALLENGE, 5, null));
 
 	}
 

@@ -9,8 +9,9 @@ public enum Stat{
 	JUMPS(R.drawable.achievement_jumpman, 0, 0, R.string.fail_jumped, R.string.fail_jumped_x, R.string.without_jumping, 0), //Tracked
 	LEFT_DISTANCE(R.drawable.challenge_dont_go_right, 0, 0, R.string.fail_go_left, 0, R.string.without_go_left, 0), //Tracked
 	DEATHS(R.drawable.achievement_big_failure, 0, 0, R.string.fail_died, R.string.fail_died_x, R.string.without_dying, 0), //Tracked
-	BONUS(R.drawable.achievement_bonus_time, 0, 0, 0, 0, 0, 0),
-	TELEPORT_SAVE(R.drawable.bonus_teleport, 0, 0, 0, 0, 0, 0);
+	BONUS(R.drawable.achievement_bonus_time, R.string.challenge_bonus, R.string.progress_bonus, R.string.fail_bonus, 0, R.string.without_bonus, 0),
+	POWER_SAVE(R.drawable.bonus_teleport, 0, 0, 0, 0, 0, 0),
+	SCORE(R.drawable.challenge_level_up, R.string.challenge_score, R.string.progress_score, 0, R.string.fail_score_x, 0, R.string.without_score_x);
 	
 	public int icon;
 	public int title; // %1$d is number you have to do, %2$s is StatType suffix

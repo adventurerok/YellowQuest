@@ -3,6 +3,7 @@ package com.ithinkrok.yellowquest.entity.power;
 import android.util.Log;
 
 import com.ithinkrok.yellowquest.R;
+import com.ithinkrok.yellowquest.challenge.Stat;
 import com.ithinkrok.yellowquest.entity.EntityPlatform;
 import com.ithinkrok.yellowquest.entity.EntityPlayer;
 import com.ithinkrok.yellowquest.entity.trait.TraitConveyor;
@@ -66,6 +67,11 @@ public class PowerTeleport extends Power {
 			
 			int tx = (int) box.x;
 			int ty = (int) (box.box.ey + 32);
+			
+			if(player.y < box.box.sy - 200){
+				player.game.gameData.statTracker.addStat(player.game.getContext(), Stat.POWER_SAVE, 1);
+			}
+			
 			player.teleport(tx, ty);
 			cooling = cooldown;
 		}

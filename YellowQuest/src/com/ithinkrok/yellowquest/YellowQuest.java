@@ -181,6 +181,7 @@ public class YellowQuest {
 	public void addScore(int score) {
 		this.score += score;
 		this.levelScore += score;
+		gameData.statTracker.addStat(getContext(), Stat.SCORE, score);
 	}
 
 	public void setFullSizeLeftButton(boolean fullSizeLeftButton) {
@@ -811,15 +812,16 @@ public class YellowQuest {
 				mult = 15;
 		} else if (timed)
 			mult = 20;
-		addScore((level.number + 1) * mult);
+		int addScore = (level.number + 1) * mult;
 		if (timed) {
 			int seconds = ((TIMER_MAX - timer) / TIMER_SECOND);
 			seconds = Math.min(seconds, 5);
-			addScore(seconds * 75);
+			addScore += seconds * 75;
 		} else {
-			addScore(((TIMER_MAX - timer) / TIMER_SECOND));
+			addScore += ((TIMER_MAX - timer) / TIMER_SECOND);
 		}
 
+		addScore(addScore);
 		gameData.addScore(level.number + 1, levelScore);
 
 		if (Math.abs(player.box.sx - level.finalBox.box.ex) < 1) {

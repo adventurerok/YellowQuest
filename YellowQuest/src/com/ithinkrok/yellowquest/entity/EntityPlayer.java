@@ -107,13 +107,14 @@ public class EntityPlayer extends Entity {
 					boxMult = 20;
 				else if (game.shadowMode())
 					boxMult = 15;
-				game.addScore(skipped * boxMult);
+				int scoreAdd = skipped * boxMult;
 				--skipped;
 				if(skipped > 0) game.gameData.statTracker.addStat(game.getContext(), Stat.JUMP_OVER_BOXES, skipped);
 				while (skipped > 0) {
-					game.addScore(skipped * 10);
+					scoreAdd += skipped * 10;
 					--skipped;
 				}
+				game.addScore(scoreAdd);
 				game.playerBox = this.intersecting.boxNumber;
 
 			}
