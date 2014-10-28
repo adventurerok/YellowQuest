@@ -70,6 +70,12 @@
     <item type="id" name="level"/>
     <item type="id" name="level_name"/>
     <item type="id" name="level_select"/>
+    <item type="id" name="hiscores"/>
+    <item type="id" name="hiscores_back"/>
+    <item type="id" name="hiscores_title"/>
+    <item type="id" name="hiscores_linear"/>
+    <item type="id" name="hiscores_score"/>
+    <item type="id" name="hiscores_rank"/>
     
 
 </resources>
