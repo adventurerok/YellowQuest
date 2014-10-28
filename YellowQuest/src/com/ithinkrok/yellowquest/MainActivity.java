@@ -746,7 +746,7 @@ public class MainActivity extends BaseGameActivity implements View.OnClickListen
 			else loadMenuView();
 		} else if (state == GameState.BUY || state == GameState.LEVELS) {
 			loadPlayView();
-		} else if (state == GameState.SETTINGS || state == GameState.PLAY) {
+		} else if (state == GameState.SETTINGS || state == GameState.PLAY || state == GameState.HISCORES) {
 			loadMenuView();
 		} else
 			super.onBackPressed();

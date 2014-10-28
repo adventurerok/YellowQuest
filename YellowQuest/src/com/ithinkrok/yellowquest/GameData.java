@@ -89,7 +89,6 @@ public class GameData {
 		setInt(hash("challenges_done"), getCompletedChallenges() + 1);
 	}
 	
-	
 
 
 	public boolean addAchievement(String achievement) {
@@ -152,6 +151,14 @@ public class GameData {
 	
 	public void setPlayerRank(int val){
 		setInt(hash("player_rank"), val);
+	}
+	
+	public int getChallengesToRank(){
+		return getInt(hash("challenges_to_rank"), -1);
+	}
+	
+	public void setChallengesToRank(int ctr){
+		setInt(hash("challenges_to_rank"), ctr);
 	}
 	
 	public boolean hasPowerUnlock(int power){

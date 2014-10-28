@@ -9,6 +9,7 @@ import android.support.v4.util.LongSparseArray;
 
 import com.ithinkrok.yellowquest.GameData;
 import com.ithinkrok.yellowquest.MainActivity;
+import com.ithinkrok.yellowquest.ui.ToastSystem;
 
 public class StatTracker {
 
@@ -345,10 +346,22 @@ public class StatTracker {
 	}
 
 	public void completeChallenge() {
+		int rank = gameData.getPlayerRank();
+		int ctr = gameData.getChallengesToRank();
+		if(ctr == -1) ctr = rank / 10;
+		ctr -= 1;
+		if(ctr == 0){
+			gameData.setPlayerRank(++rank);
+			ToastSystem.showRankToast(rank);
+			ctr = rank / 10;
+		}
+		gameData.setChallengesToRank(ctr);
+		
 		currentChallenge = null;
 		resetChallenge();
 
 		gameData.completeChallenge();
+		
 	}
 	
 	private static final int MOD = 1436763197;
