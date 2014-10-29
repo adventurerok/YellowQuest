@@ -125,6 +125,12 @@ public class StatTracker {
 			return;
 		if (currentChallenge.power != null && !context.getPlayer().hasPower(currentChallenge.power))
 			return;
+		
+		boolean shadow = context.getGame().shadowMode();
+		boolean time = context.getGame().timeMode();
+		
+		if(currentChallenge.shadow && !shadow || currentChallenge.time && !time) return;
+		
 		currentChallenge.completeLevel(context);
 	}
 
@@ -133,6 +139,12 @@ public class StatTracker {
 			return;
 		if (currentChallenge.power != null && !context.getPlayer().hasPower(currentChallenge.power))
 			return;
+		
+		boolean shadow = context.getGame().shadowMode();
+		boolean time = context.getGame().timeMode();
+		
+		if(currentChallenge.shadow && !shadow || currentChallenge.time && !time) return;
+		
 		currentChallenge.lostLife(context);
 	}
 
@@ -141,6 +153,12 @@ public class StatTracker {
 			return;
 		if (currentChallenge.power != null && !context.getPlayer().hasPower(currentChallenge.power))
 			return;
+		
+		boolean shadow = context.getGame().shadowMode();
+		boolean time = context.getGame().timeMode();
+		
+		if(currentChallenge.shadow && !shadow || currentChallenge.time && !time) return;
+		
 		currentChallenge.gameOver(context);
 	}
 
@@ -149,6 +167,12 @@ public class StatTracker {
 			return;
 		if (currentChallenge.power != null && !context.getPlayer().hasPower(currentChallenge.power))
 			return;
+		
+		boolean shadow = context.getGame().shadowMode();
+		boolean time = context.getGame().timeMode();
+		
+		if(currentChallenge.shadow && !shadow || currentChallenge.time && !time) return;
+		
 		currentChallenge.loadGame(context);
 	}
 
@@ -306,6 +330,7 @@ public class StatTracker {
 		if (currentChallenge != null && currentChallenge.isTracking(stat)) {
 			if (currentChallenge.power != null && !currentChallenge.power.equals(power))
 				return;
+			if(currentChallenge.shadow && !shadow || currentChallenge.time && !time) return;
 			currentChallenge.update(context, stat, add);
 		}
 
