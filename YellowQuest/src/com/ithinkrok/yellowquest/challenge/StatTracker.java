@@ -15,7 +15,7 @@ public class StatTracker {
 
 	private static interface ChallengeInfo {
 
-		public Challenge createChallenge(StatTracker tracker);
+		public Challenge createChallenge(StatTracker tracker, int cycle);
 	}
 
 	public static class BasicChallengeInfo implements ChallengeInfo {
@@ -45,11 +45,15 @@ public class StatTracker {
 		}
 
 		@Override
-		public Challenge createChallenge(StatTracker tracker) {
-			Challenge c = new BasicChallenge(tracker, stat, type, target);
+		public Challenge createChallenge(StatTracker tracker, int cycle) {
+			BasicChallenge c = new BasicChallenge(tracker, stat, type, target);
 			c.power = power;
 			c.shadow = shadow;
 			c.time = time;
+			if(cycle > 0){
+				if(c.target == 1) c.target += (int)(cycle * 0.5);
+				else c.target += cycle;
+			}
 			return c;
 		}
 
@@ -88,11 +92,15 @@ public class StatTracker {
 		}
 
 		@Override
-		public Challenge createChallenge(StatTracker tracker) {
-			Challenge c = new WithoutChallenge(tracker, stat, type, target, limited, limit);
+		public Challenge createChallenge(StatTracker tracker, int cycle) {
+			WithoutChallenge c = new WithoutChallenge(tracker, stat, type, target, limited, limit);
 			c.power = power;
 			c.shadow = shadow;
 			c.time = time;
+			if(cycle > 0){
+				if(c.target == 1) c.target += (int)(cycle * 0.5);
+				else c.target += cycle;
+			}
 			return c;
 		}
 
@@ -321,7 +329,7 @@ public class StatTracker {
 		if (currentChallenge != null)
 			return;
 		int cNum = gameData.getChallengeNum();
-		currentChallenge = challenges.get(cNum % challenges.size()).createChallenge(this);
+		currentChallenge = challenges.get(cNum % challenges.size()).createChallenge(this, cNum / challenges.size());
 	}
 
 	public void nextChallenge(boolean reward) {

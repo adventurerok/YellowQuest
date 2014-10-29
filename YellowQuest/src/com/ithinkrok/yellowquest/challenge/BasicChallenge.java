@@ -10,8 +10,8 @@ import com.ithinkrok.yellowquest.ui.ToastSystem;
 public class BasicChallenge extends Challenge {
 	
 	
-	int target;
-	int step;
+	public int target;
+	public int step;
 
 	public BasicChallenge(StatTracker tracker, Stat stat, StatType type, int target) {
 		super(tracker, stat, type);

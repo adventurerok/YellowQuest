@@ -418,12 +418,13 @@ android.support.v4.util.LongSparseArray -> android.support.v4.b.e:
     long[] mKeys -> c
     java.lang.Object[] mValues -> d
     int mSize -> e
-    android.support.v4.util.LongSparseArray clone() -> b
+    android.support.v4.util.LongSparseArray clone() -> c
     java.lang.Object get(long) -> a
     void put(long,java.lang.Object) -> a
     int size() -> a
     long keyAt(int) -> a
     java.lang.Object valueAt(int) -> b
+    void clear() -> b
     java.lang.String toString() -> toString
     java.lang.Object clone() -> clone
 android.support.v4.util.MapCollections -> android.support.v4.b.f:
@@ -620,16 +621,21 @@ com.google.ads.mediation.MediationInterstitialAdapter -> com.google.a.a.c:
     void requestInterstitialAd$732d5d79() -> d
     void showInterstitial() -> e
 com.google.ads.mediation.MediationServerParameters -> com.google.a.a.d:
-    com.ithinkrok.yellowquest.entity.EntityPlatform parent -> a
-    android.graphics.Paint color -> b
+    com.ithinkrok.yellowquest.challenge.StatTracker tracker -> a
+    com.ithinkrok.yellowquest.challenge.Stat stat -> b
+    com.ithinkrok.yellowquest.challenge.StatType type -> c
+    java.lang.String power -> d
+    boolean shadow -> e
+    boolean time -> f
     void load(java.util.Map) -> a
-    java.lang.String getName() -> a
-    int getIndex() -> b
-    void intersectsPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
-    void noPlayer$289415d5() -> c
-    void aiUpdate() -> d
-    void install() -> e
-    double getMaxYPos() -> f
+    int getIconResource() -> a
+    java.lang.String getTitleText(android.content.Context) -> a
+    java.lang.String getProgressText(android.content.Context) -> b
+    void update(android.content.Context,com.ithinkrok.yellowquest.challenge.Stat,int) -> a
+    boolean isTracking(com.ithinkrok.yellowquest.challenge.Stat) -> a
+    void completeLevel(android.content.Context) -> c
+    void lostLife(android.content.Context) -> d
+    java.lang.String getGameModeText(android.content.Context) -> e
 com.google.ads.mediation.MediationServerParameters$MappingException -> com.google.a.a.e:
 com.google.ads.mediation.MediationServerParameters$Parameter -> com.google.a.a.f:
     java.lang.String name() -> a
@@ -850,6 +856,7 @@ com.google.android.gms.ads.identifier.AdvertisingIdClient -> com.google.android.
     java.lang.String P() -> v
     java.lang.String Q() -> w
     java.lang.String R() -> x
+    java.lang.String format(java.lang.String,java.lang.Object[]) -> a
 com.google.android.gms.ads.identifier.AdvertisingIdClient$Info -> com.google.android.gms.ads.a.b:
     java.lang.String kz -> a
     boolean kA -> b
@@ -1018,11 +1025,14 @@ com.google.android.gms.common.api.GoogleApiClient$Builder -> com.google.android.
 com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks -> com.google.android.gms.common.api.g:
     void onConnected(android.os.Bundle) -> a
     void onConnectionSuspended(int) -> a
-com.google.android.gms.common.api.Releasable -> com.google.android.gms.common.api.h:
+com.google.android.gms.common.api.PendingResult -> com.google.android.gms.common.api.h:
+    void setResultCallback(com.google.android.gms.common.api.ResultCallback) -> a
+com.google.android.gms.common.api.Releasable -> com.google.android.gms.common.api.i:
     void release() -> a
-com.google.android.gms.common.api.Result -> com.google.android.gms.common.api.i:
+com.google.android.gms.common.api.Result -> com.google.android.gms.common.api.j:
     com.google.android.gms.common.api.Status getStatus() -> b
-com.google.android.gms.common.api.Scope -> com.google.android.gms.common.api.j:
+com.google.android.gms.common.api.ResultCallback -> com.google.android.gms.common.api.k:
+com.google.android.gms.common.api.Scope -> com.google.android.gms.common.api.l:
     java.lang.String Em -> a
     java.lang.String eP() -> a
 com.google.android.gms.common.api.Status -> com.google.android.gms.common.api.Status:
@@ -1044,44 +1054,51 @@ com.google.android.gms.common.api.Status -> com.google.android.gms.common.api.St
     int describeContents() -> describeContents
     void writeToParcel(android.os.Parcel,int) -> writeToParcel
     com.google.android.gms.common.api.Status getStatus() -> b
-com.google.android.gms.common.api.StatusCreator -> com.google.android.gms.common.api.k:
+com.google.android.gms.common.api.StatusCreator -> com.google.android.gms.common.api.m:
     com.google.android.gms.common.api.Status createFromParcel(android.os.Parcel) -> a
     void a(com.google.android.gms.common.api.Status,android.os.Parcel,int) -> a
     java.lang.Object[] newArray(int) -> newArray
     java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
-com.google.android.gms.common.api.a$a -> com.google.android.gms.common.api.l:
+com.google.android.gms.common.api.a$a -> com.google.android.gms.common.api.n:
     java.lang.Object Dp -> a
     com.google.android.gms.common.api.a$c Dq -> b
     java.util.concurrent.CountDownLatch kK -> c
     java.util.ArrayList Dr -> d
-    android.support.v4.app.FragmentManager$OnBackStackChangedListener Ds$732c96e2 -> e
+    com.google.android.gms.common.api.ResultCallback Ds -> e
     com.google.android.gms.common.api.Result Dt -> f
     boolean Du -> g
     boolean Dv -> h
     boolean Dw -> i
     com.google.android.gms.internal.hg Dx -> j
     com.google.android.gms.common.api.Result c(com.google.android.gms.common.api.Status) -> a
-    boolean isReady() -> b
+    boolean isReady() -> c
+    com.google.android.gms.common.api.Result eC() -> d
+    void setResultCallback(com.google.android.gms.common.api.ResultCallback) -> a
     void cancel() -> a
+    boolean isCanceled() -> e
     void b(com.google.android.gms.common.api.Result) -> a
+    void eD() -> b
     void c(com.google.android.gms.common.api.Result) -> b
     void a(com.google.android.gms.common.api.a$c) -> a
     void a(java.lang.Object) -> a
     void a(com.google.android.gms.common.api.a$a) -> a
-com.google.android.gms.common.api.a$b -> com.google.android.gms.common.api.m:
+com.google.android.gms.common.api.a$b -> com.google.android.gms.common.api.o:
     com.google.android.gms.common.api.Api$c Dn -> a
     com.google.android.gms.common.api.c$a Dy -> b
-    com.google.android.gms.common.api.Api$c eB() -> b
+    com.google.android.gms.common.api.Api$c eB() -> c
     void b(com.google.android.gms.common.api.Api$a) -> a
     void m(com.google.android.gms.common.api.Status) -> b
     void a(com.google.android.gms.common.api.c$a) -> a
     void a(com.google.android.gms.common.api.Api$a) -> b
+    void eD() -> b
     void a(android.os.RemoteException) -> a
-com.google.android.gms.common.api.a$c -> com.google.android.gms.common.api.n:
+com.google.android.gms.common.api.a$c -> com.google.android.gms.common.api.p:
+    void a(com.google.android.gms.common.api.ResultCallback,com.google.android.gms.common.api.Result) -> a
+    void eH() -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.google.android.gms.common.api.a$d -> com.google.android.gms.common.api.o:
+com.google.android.gms.common.api.a$d -> com.google.android.gms.common.api.q:
     void a(java.lang.Object) -> a
-com.google.android.gms.common.api.c -> com.google.android.gms.common.api.p:
+com.google.android.gms.common.api.c -> com.google.android.gms.common.api.r:
     java.util.concurrent.locks.Lock DQ -> c
     java.util.concurrent.locks.Condition DR -> d
     com.google.android.gms.internal.hc DS -> e
@@ -1125,27 +1142,28 @@ com.google.android.gms.common.api.c -> com.google.android.gms.common.api.p:
     int i(com.google.android.gms.common.api.c) -> i
     com.google.android.gms.common.ConnectionResult a(com.google.android.gms.common.api.c,com.google.android.gms.common.ConnectionResult) -> a
     int c(com.google.android.gms.common.api.c,int) -> c
-com.google.android.gms.common.api.c$2 -> com.google.android.gms.common.api.q:
+com.google.android.gms.common.api.c$2 -> com.google.android.gms.common.api.s:
     com.google.android.gms.common.api.c Ek -> a
     void onConnected(android.os.Bundle) -> a
     void onConnectionSuspended(int) -> a
-com.google.android.gms.common.api.c$3 -> com.google.android.gms.common.api.r:
+com.google.android.gms.common.api.c$3 -> com.google.android.gms.common.api.t:
     com.google.android.gms.common.api.c Ek -> a
     boolean eO() -> b_
     boolean isConnected() -> c
     android.os.Bundle ef() -> a_
-com.google.android.gms.common.api.c$4 -> com.google.android.gms.common.api.s:
+com.google.android.gms.common.api.c$4 -> com.google.android.gms.common.api.u:
     com.google.android.gms.common.api.Api$b El -> a
     com.google.android.gms.common.api.c Ek -> b
     void onConnectionFailed(com.google.android.gms.common.ConnectionResult) -> a
-com.google.android.gms.common.api.c$a -> com.google.android.gms.common.api.t:
+com.google.android.gms.common.api.c$a -> com.google.android.gms.common.api.v:
     com.google.android.gms.common.api.c Ek -> a
-com.google.android.gms.common.api.c$b -> com.google.android.gms.common.api.u:
+    void b(com.google.android.gms.common.api.c$c) -> a
+com.google.android.gms.common.api.c$b -> com.google.android.gms.common.api.w:
     com.google.android.gms.common.api.c Ek -> a
     void handleMessage(android.os.Message) -> handleMessage
-com.google.android.gms.common.api.c$c -> com.google.android.gms.common.api.v:
+com.google.android.gms.common.api.c$c -> com.google.android.gms.common.api.x:
     void cancel() -> a
-    com.google.android.gms.common.api.Api$c eB() -> b
+    com.google.android.gms.common.api.Api$c eB() -> c
     void b(com.google.android.gms.common.api.Api$a) -> a
     void m(com.google.android.gms.common.api.Status) -> b
     void a(com.google.android.gms.common.api.c$a) -> a
@@ -2478,7 +2496,7 @@ com.google.android.gms.games.Games -> com.google.android.gms.games.c:
     com.google.android.gms.games.leaderboard.Leaderboards Leaderboards -> e
     com.google.android.gms.games.request.Requests Requests -> f
     com.google.android.gms.games.internal.GamesClientImpl c(com.google.android.gms.common.api.GoogleApiClient) -> a
-    android.support.v4.content.Loader$OnLoadCompleteListener signOut$3946365(com.google.android.gms.common.api.GoogleApiClient) -> b
+    com.google.android.gms.common.api.PendingResult signOut(com.google.android.gms.common.api.GoogleApiClient) -> b
 com.google.android.gms.games.Games$1 -> com.google.android.gms.games.d:
     int getPriority() -> a
     com.google.android.gms.common.api.Api$a a$8d4fd08(android.content.Context,android.os.Looper,com.google.android.gms.internal.gy,java.lang.Object,com.google.android.gms.common.api.GoogleApiClient$ConnectionCallbacks,com.google.android.gms.common.GooglePlayServicesClient$OnConnectionFailedListener) -> a
@@ -2604,6 +2622,7 @@ com.google.android.gms.games.Players -> com.google.android.gms.games.p:
 com.google.android.gms.games.achievement.Achievements -> com.google.android.gms.games.a.a:
     android.content.Intent getAchievementsIntent(com.google.android.gms.common.api.GoogleApiClient) -> a
     void unlock(com.google.android.gms.common.api.GoogleApiClient,java.lang.String) -> a
+    com.google.android.gms.common.api.PendingResult unlockImmediate(com.google.android.gms.common.api.GoogleApiClient,java.lang.String) -> b
 com.google.android.gms.games.event.Events -> com.google.android.gms.games.b.a:
 com.google.android.gms.games.internal.AbstractGamesCallbacks -> com.google.android.gms.games.internal.a:
     void d(int,java.lang.String) -> a
@@ -2710,16 +2729,22 @@ com.google.android.gms.games.internal.GamesClientImpl -> com.google.android.gms.
     void a(int,android.os.IBinder,android.os.Bundle) -> a
     android.os.IInterface x(android.os.IBinder) -> a
 com.google.android.gms.games.internal.GamesClientImpl$1 -> com.google.android.gms.games.internal.c:
-com.google.android.gms.games.internal.GamesClientImpl$SignOutCompleteBinderCallbacks -> com.google.android.gms.games.internal.d:
+com.google.android.gms.games.internal.GamesClientImpl$AchievementUpdatedBinderCallback -> com.google.android.gms.games.internal.d:
+    com.google.android.gms.common.api.a$d yR -> a
+    void e(int,java.lang.String) -> b
+com.google.android.gms.games.internal.GamesClientImpl$SignOutCompleteBinderCallbacks -> com.google.android.gms.games.internal.e:
     com.google.android.gms.common.api.a$d yR -> a
     void dT() -> a
+com.google.android.gms.games.internal.GamesClientImpl$UpdateAchievementResultImpl -> com.google.android.gms.games.internal.f:
+    com.google.android.gms.common.api.Status yz -> a
+    com.google.android.gms.common.api.Status getStatus() -> b
 com.google.android.gms.games.internal.GamesDowngradeableSafeParcel -> com.google.android.gms.games.internal.GamesDowngradeableSafeParcel:
     boolean c(java.lang.Integer) -> b
-com.google.android.gms.games.internal.GamesLog -> com.google.android.gms.games.internal.e:
+com.google.android.gms.games.internal.GamesLog -> com.google.android.gms.games.internal.g:
     com.google.android.gms.internal.hf OV -> a
     void j(java.lang.String,java.lang.String) -> a
     void k(java.lang.String,java.lang.String) -> b
-com.google.android.gms.games.internal.IGamesCallbacks -> com.google.android.gms.games.internal.f:
+com.google.android.gms.games.internal.IGamesCallbacks -> com.google.android.gms.games.internal.h:
     void d(int,java.lang.String) -> a
     void c(com.google.android.gms.common.data.DataHolder) -> a
     void e(int,java.lang.String) -> b
@@ -2790,11 +2815,11 @@ com.google.android.gms.games.internal.IGamesCallbacks -> com.google.android.gms.
     void N(com.google.android.gms.common.data.DataHolder) -> L
     void O(com.google.android.gms.common.data.DataHolder) -> M
     void f(int,android.os.Bundle) -> e
-com.google.android.gms.games.internal.IGamesCallbacks$Stub -> com.google.android.gms.games.internal.g:
+com.google.android.gms.games.internal.IGamesCallbacks$Stub -> com.google.android.gms.games.internal.i:
     com.google.android.gms.games.internal.IGamesCallbacks ai(android.os.IBinder) -> a
     android.os.IBinder asBinder() -> asBinder
     boolean onTransact(int,android.os.Parcel,android.os.Parcel,int) -> onTransact
-com.google.android.gms.games.internal.IGamesCallbacks$Stub$Proxy -> com.google.android.gms.games.internal.h:
+com.google.android.gms.games.internal.IGamesCallbacks$Stub$Proxy -> com.google.android.gms.games.internal.j:
     android.os.IBinder kq -> a
     android.os.IBinder asBinder() -> asBinder
     void d(int,java.lang.String) -> a
@@ -2867,7 +2892,7 @@ com.google.android.gms.games.internal.IGamesCallbacks$Stub$Proxy -> com.google.a
     void N(com.google.android.gms.common.data.DataHolder) -> L
     void O(com.google.android.gms.common.data.DataHolder) -> M
     void f(int,android.os.Bundle) -> e
-com.google.android.gms.games.internal.IGamesService -> com.google.android.gms.games.internal.i:
+com.google.android.gms.games.internal.IGamesService -> com.google.android.gms.games.internal.k:
     void q(long) -> a
     void a(com.google.android.gms.games.internal.IGamesCallbacks) -> a
     java.lang.String ho() -> a
@@ -3053,10 +3078,10 @@ com.google.android.gms.games.internal.IGamesService -> com.google.android.gms.ga
     android.content.Intent a(int[]) -> a
     android.content.Intent aU(java.lang.String) -> i
     void b(com.google.android.gms.games.internal.IGamesCallbacks,java.lang.String,java.lang.String,int,boolean,boolean) -> b
-com.google.android.gms.games.internal.IGamesService$Stub -> com.google.android.gms.games.internal.j:
+com.google.android.gms.games.internal.IGamesService$Stub -> com.google.android.gms.games.internal.l:
     com.google.android.gms.games.internal.IGamesService aj(android.os.IBinder) -> a
     boolean onTransact(int,android.os.Parcel,android.os.Parcel,int) -> onTransact
-com.google.android.gms.games.internal.IGamesService$Stub$Proxy -> com.google.android.gms.games.internal.k:
+com.google.android.gms.games.internal.IGamesService$Stub$Proxy -> com.google.android.gms.games.internal.m:
     android.os.IBinder kq -> a
     android.os.IBinder asBinder() -> asBinder
     void q(long) -> a
@@ -3244,7 +3269,7 @@ com.google.android.gms.games.internal.IGamesService$Stub$Proxy -> com.google.and
     android.content.Intent a(int[]) -> a
     android.content.Intent aU(java.lang.String) -> i
     void b(com.google.android.gms.games.internal.IGamesCallbacks,java.lang.String,java.lang.String,int,boolean,boolean) -> b
-com.google.android.gms.games.internal.PopupManager -> com.google.android.gms.games.internal.l:
+com.google.android.gms.games.internal.PopupManager -> com.google.android.gms.games.internal.n:
     com.google.android.gms.games.internal.GamesClientImpl OY -> a
     com.google.android.gms.games.internal.PopupManager$PopupLocationInfo OZ -> b
     com.google.android.gms.games.internal.PopupManager a(com.google.android.gms.games.internal.GamesClientImpl,int) -> a
@@ -3253,7 +3278,7 @@ com.google.android.gms.games.internal.PopupManager -> com.google.android.gms.gam
     void hL() -> a
     android.os.Bundle hM() -> b
     android.os.IBinder hN() -> c
-com.google.android.gms.games.internal.PopupManager$PopupLocationInfo -> com.google.android.gms.games.internal.m:
+com.google.android.gms.games.internal.PopupManager$PopupLocationInfo -> com.google.android.gms.games.internal.o:
     android.os.IBinder Pa -> a
     int gravity -> g
     int Pb -> b
@@ -3262,7 +3287,7 @@ com.google.android.gms.games.internal.PopupManager$PopupLocationInfo -> com.goog
     int right -> e
     int bottom -> f
     android.os.Bundle hO() -> a
-com.google.android.gms.games.internal.PopupManager$PopupManagerHCMR1 -> com.google.android.gms.games.internal.n:
+com.google.android.gms.games.internal.PopupManager$PopupManagerHCMR1 -> com.google.android.gms.games.internal.p:
     java.lang.ref.WeakReference Pc -> c
     boolean Nv -> d
     void cl(int) -> a
@@ -3275,18 +3300,22 @@ com.google.android.gms.games.internal.PopupManager$PopupManagerHCMR1 -> com.goog
 com.google.android.gms.games.internal.api.AchievementsImpl -> com.google.android.gms.games.internal.a.a:
     android.content.Intent getAchievementsIntent(com.google.android.gms.common.api.GoogleApiClient) -> a
     void unlock(com.google.android.gms.common.api.GoogleApiClient,java.lang.String) -> a
+    com.google.android.gms.common.api.PendingResult unlockImmediate(com.google.android.gms.common.api.GoogleApiClient,java.lang.String) -> b
 com.google.android.gms.games.internal.api.AchievementsImpl$4 -> com.google.android.gms.games.internal.a.b:
     java.lang.String Pi -> a
     void a(com.google.android.gms.common.api.Api$a) -> b
-com.google.android.gms.games.internal.api.AchievementsImpl$UpdateImpl -> com.google.android.gms.games.internal.a.c:
+com.google.android.gms.games.internal.api.AchievementsImpl$5 -> com.google.android.gms.games.internal.a.c:
+    java.lang.String Pi -> a
+    void a(com.google.android.gms.common.api.Api$a) -> b
+com.google.android.gms.games.internal.api.AchievementsImpl$UpdateImpl -> com.google.android.gms.games.internal.a.d:
     com.google.android.gms.common.api.Result c(com.google.android.gms.common.api.Status) -> a
-com.google.android.gms.games.internal.api.AchievementsImpl$UpdateImpl$1 -> com.google.android.gms.games.internal.a.d:
+com.google.android.gms.games.internal.api.AchievementsImpl$UpdateImpl$1 -> com.google.android.gms.games.internal.a.e:
     com.google.android.gms.common.api.Status yJ -> a
     com.google.android.gms.common.api.Status getStatus() -> b
-com.google.android.gms.games.internal.api.LeaderboardsImpl -> com.google.android.gms.games.internal.a.e:
+com.google.android.gms.games.internal.api.LeaderboardsImpl -> com.google.android.gms.games.internal.a.f:
     android.content.Intent getLeaderboardIntent(com.google.android.gms.common.api.GoogleApiClient,java.lang.String) -> a
     void submitScore(com.google.android.gms.common.api.GoogleApiClient,java.lang.String,long) -> a
-com.google.android.gms.games.internal.api.QuestsImpl -> com.google.android.gms.games.internal.a.f:
+com.google.android.gms.games.internal.api.QuestsImpl -> com.google.android.gms.games.internal.a.g:
 com.google.android.gms.games.internal.events.EventIncrementCache -> com.google.android.gms.games.internal.b.a:
     java.lang.Object Rm -> a
 com.google.android.gms.games.internal.events.EventIncrementManager -> com.google.android.gms.games.internal.b.b:
@@ -6799,7 +6828,20 @@ com.ithinkrok.yellowquest.AppRater$2 -> com.ithinkrok.yellowquest.c:
 com.ithinkrok.yellowquest.AppRater$3 -> com.ithinkrok.yellowquest.d:
     android.content.SharedPreferences$Editor val$editor -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.ithinkrok.yellowquest.BoxMath -> com.ithinkrok.yellowquest.e:
+com.ithinkrok.yellowquest.Arrow -> com.ithinkrok.yellowquest.e:
+    float x -> a
+    float y -> b
+    com.ithinkrok.yellowquest.Arrow$Direction dir -> c
+    android.graphics.Paint paint -> d
+com.ithinkrok.yellowquest.Arrow$Direction -> com.ithinkrok.yellowquest.f:
+    com.ithinkrok.yellowquest.Arrow$Direction UP -> a
+    com.ithinkrok.yellowquest.Arrow$Direction DOWN -> b
+    com.ithinkrok.yellowquest.Arrow$Direction BACKWARDS -> c
+    com.ithinkrok.yellowquest.Arrow$Direction FORWARDS -> d
+    com.ithinkrok.yellowquest.Arrow$Direction CIRCLE -> e
+    com.ithinkrok.yellowquest.Arrow$Direction[] ENUM$VALUES -> f
+    com.ithinkrok.yellowquest.Arrow$Direction[] values() -> a
+com.ithinkrok.yellowquest.BoxMath -> com.ithinkrok.yellowquest.g:
     double JUMP_GRAVITY -> a
     double FALL_GRAVITY -> b
     double FALL_VELOCITY_MAX -> c
@@ -6807,7 +6849,7 @@ com.ithinkrok.yellowquest.BoxMath -> com.ithinkrok.yellowquest.e:
     java.lang.String formatNumberWithoutSuffix(int) -> a
     double maxJumpHeight(double) -> a
     java.lang.String formatNumber(int) -> b
-com.ithinkrok.yellowquest.CanvasSurfaceView -> com.ithinkrok.yellowquest.f:
+com.ithinkrok.yellowquest.CanvasSurfaceView -> com.ithinkrok.yellowquest.h:
     com.ithinkrok.yellowquest.util.Vector2 currentTouch -> j
     com.ithinkrok.yellowquest.CanvasThread _thread -> k
     int width -> a
@@ -6827,7 +6869,6 @@ com.ithinkrok.yellowquest.CanvasSurfaceView -> com.ithinkrok.yellowquest.f:
     int scaledX -> h
     int scaledY -> i
     void setReversed(boolean) -> a
-    int floor(float) -> a
     void fillRect(float,float,float,float,android.graphics.Paint) -> a
     com.ithinkrok.yellowquest.MainActivity getActivity() -> a
     void onDraw(android.graphics.Canvas) -> onDraw
@@ -6841,55 +6882,75 @@ com.ithinkrok.yellowquest.CanvasSurfaceView -> com.ithinkrok.yellowquest.f:
     boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
     void clearTouches() -> f
     boolean touchInBox(com.ithinkrok.yellowquest.util.Box) -> a
-com.ithinkrok.yellowquest.CanvasThread -> com.ithinkrok.yellowquest.g:
+com.ithinkrok.yellowquest.CanvasThread -> com.ithinkrok.yellowquest.i:
     android.view.SurfaceHolder _surfaceHolder -> a
     com.ithinkrok.yellowquest.CanvasSurfaceView _panel -> b
     boolean _run -> c
     boolean _pause -> d
     void setRunning(boolean) -> a
     void run() -> run
-com.ithinkrok.yellowquest.GameData -> com.ithinkrok.yellowquest.h:
-    int UNIQUE -> a
-    com.ithinkrok.yellowquest.MainActivity context -> b
-    com.google.android.gms.common.api.GoogleApiClient client -> c
-    android.support.v4.util.LongSparseArray data -> d
-    long hash(java.lang.String) -> c
-    boolean addAchievement(java.lang.String,int) -> a
-    int getPowerUnlocks() -> a
-    void addPowerUnlock(int) -> a
-    boolean hasPowerUnlock(int) -> b
-    void setMadePurchase() -> b
-    boolean hasMadePurchase() -> c
-    boolean addHiScore(int) -> c
-    void updateOnlineHiScore() -> d
-    void addOfflineAchievements() -> e
+com.ithinkrok.yellowquest.GameData -> com.ithinkrok.yellowquest.j:
+    int UNIQUE -> b
+    com.ithinkrok.yellowquest.MainActivity context -> c
+    com.google.android.gms.common.api.GoogleApiClient client -> d
+    android.support.v4.util.LongSparseArray data -> e
+    com.ithinkrok.yellowquest.challenge.StatTracker statTracker -> a
+    long hash(java.lang.String) -> e
+    void addStat(java.lang.String,int) -> a
+    int getStat(java.lang.String) -> a
+    int getHighestLevel() -> a
+    void setHighestLevel(int) -> a
+    int getChallengeNum() -> b
+    void completeChallenge() -> c
+    boolean addAchievement(java.lang.String) -> b
+    int getPowerUnlocks() -> d
+    int getBonusUnlocks() -> e
+    void addPowerUnlock(int) -> b
+    void addBonusUnlock(int) -> c
+    int getPlayerRank() -> f
+    void setPlayerRank(int) -> d
+    int getChallengesToRank() -> g
+    void setChallengesToRank(int) -> e
+    boolean hasPowerUnlock(int) -> f
+    void setMadePurchase() -> h
+    boolean hasMadePurchase() -> i
+    boolean addHiScore(int) -> g
+    boolean addHiScoreShadowTime(int) -> h
+    void updateOnlineHiScore() -> j
+    void addOfflineAchievements() -> k
     boolean addScore(int,int) -> a
-    void addScorePoints(int) -> d
-    void setScorePoints(int) -> e
-    long getAchievementHash(java.lang.String) -> d
-    int getHiScore() -> f
+    void addScorePoints(int) -> i
+    void setScorePoints(int) -> j
+    long getAchievementHash(java.lang.String) -> f
+    int getHiScore() -> l
     int getInt(long,int) -> a
-    java.lang.String getNextPower() -> g
-    int getPowerUpgradeLevel(java.lang.String) -> a
-    int getPreviousScore() -> h
-    int getScorePoints() -> i
-    void load(android.content.SharedPreferences) -> a
-    void save(android.content.SharedPreferences$Editor) -> a
+    java.lang.String getNextPower() -> m
+    int getPowerUpgradeLevel(java.lang.String) -> c
+    int getPreviousScore() -> n
+    int getScorePoints() -> o
+    void load(android.content.SharedPreferences,android.content.SharedPreferences) -> a
+    void save(android.content.SharedPreferences$Editor,android.content.SharedPreferences$Editor) -> a
+    void saveOnly(android.content.SharedPreferences$Editor) -> a
     void setInt(long,int) -> b
-    void setNextPower(java.lang.String) -> b
+    void setNextPower(java.lang.String) -> d
     void setPowerUpgradeLevel(java.lang.String,int) -> b
-    boolean subtractScorePoints(int) -> f
-com.ithinkrok.yellowquest.GameOver -> com.ithinkrok.yellowquest.i:
+    boolean subtractScorePoints(int) -> k
+com.ithinkrok.yellowquest.GameData$1 -> com.ithinkrok.yellowquest.k:
+com.ithinkrok.yellowquest.GameOver -> com.ithinkrok.yellowquest.l:
     int time -> a
     int type -> b
     java.lang.String message -> c
-com.ithinkrok.yellowquest.Level -> com.ithinkrok.yellowquest.j:
+com.ithinkrok.yellowquest.Level -> com.ithinkrok.yellowquest.m:
     com.ithinkrok.yellowquest.entity.EntityPlatform lastBoxType -> a
     int size -> b
     int number -> c
     com.ithinkrok.yellowquest.entity.Entity finalBox -> d
+    int bonusPosition -> e
+    java.lang.String bonusType -> f
+    com.ithinkrok.yellowquest.Level bonusLevel -> g
+    boolean isBonus -> h
 com.ithinkrok.yellowquest.MainActivity -> com.ithinkrok.yellowquest.MainActivity:
-    com.ithinkrok.yellowquest.MainActivity$GameState state -> m
+    com.ithinkrok.yellowquest.MainActivity$GameState state -> e
     com.ithinkrok.yellowquest.GameData gameData -> n
     android.widget.TextView menu_play -> o
     android.view.View menu -> p
@@ -6913,217 +6974,381 @@ com.ithinkrok.yellowquest.MainActivity -> com.ithinkrok.yellowquest.MainActivity
     android.widget.TextView buy_money -> H
     android.widget.TextView buy_back -> I
     android.widget.ListView buy_list -> J
-    com.android.vending.billing.IInAppBillingService buyService -> e
-    android.content.Intent buyIntent -> K
-    boolean passedOne -> f
-    com.ithinkrok.yellowquest.YellowQuest gameHolder -> g
-    boolean buyConnected -> h
-    boolean usedDifferentModes -> i
-    android.content.ServiceConnection buyConnection -> L
-    com.ithinkrok.yellowquest.ui.PowerAdapter powerAdapter -> M
-    com.ithinkrok.yellowquest.CanvasSurfaceView view -> j
-    android.media.AudioManager am -> N
-    android.media.MediaPlayer media -> O
-    android.media.AudioManager$OnAudioFocusChangeListener audioListener -> P
-    boolean audioEnabled -> Q
+    android.widget.TextView play_level -> K
+    android.widget.TextView levels_money -> L
+    android.widget.TextView levels_back -> M
+    android.widget.TextView levels_play -> N
+    android.widget.ListView levels_list -> O
+    android.widget.TextView hiscores_scores -> P
+    android.widget.TextView hiscores_ranks -> Q
+    android.widget.TextView hiscores_shadowtime -> R
+    android.widget.TextView hiscores_back -> S
+    com.android.vending.billing.IInAppBillingService buyService -> f
+    android.content.Intent buyIntent -> T
+    boolean passedOne -> g
+    com.ithinkrok.yellowquest.YellowQuest gameHolder -> h
+    boolean buyConnected -> i
+    boolean usedDifferentModes -> j
+    android.content.ServiceConnection buyConnection -> U
+    com.ithinkrok.yellowquest.CanvasSurfaceView view -> V
+    android.media.AudioManager am -> W
+    android.media.MediaPlayer media -> X
+    android.media.MediaPlayer mediaNormal -> Y
+    android.media.MediaPlayer mediaTime -> Z
+    android.media.AudioManager$OnAudioFocusChangeListener audioListener -> aa
+    boolean audioEnabled -> ab
     boolean fullSizeLeftButton -> k
-    boolean shadowMode -> R
-    boolean timeMode -> S
-    boolean paused -> T
-    boolean screenOff -> U
-    android.content.SharedPreferences settings -> V
-    com.ithinkrok.yellowquest.ui.BuyAdapter buyAdapter -> W
-    com.ithinkrok.yellowquest.ScreenReceiver screenReciever -> X
+    boolean shadowMode -> ac
+    boolean timeMode -> ad
+    boolean paused -> ae
+    boolean screenOff -> af
+    android.content.SharedPreferences settings -> ag
+    android.content.SharedPreferences challenges -> ah
+    com.ithinkrok.yellowquest.ui.PowerAdapter powerAdapter -> ai
+    com.ithinkrok.yellowquest.ui.BuyAdapter buyAdapter -> aj
+    com.ithinkrok.yellowquest.ui.LevelsAdapter levelsAdapter -> ak
+    com.ithinkrok.yellowquest.ScreenReceiver screenReciever -> al
     android.content.SharedPreferences rateSettings -> l
-    boolean enableTips -> Y
-    int[] $SWITCH_TABLE$com$ithinkrok$yellowquest$MainActivity$GameState -> Z
+    boolean enableTips -> m
+    android.util.SparseArray preloadedDrawables -> am
+    int[] $SWITCH_TABLE$com$ithinkrok$yellowquest$MainActivity$GameState -> an
+    com.ithinkrok.yellowquest.YellowQuest getGame() -> h
+    com.ithinkrok.yellowquest.entity.EntityPlayer getPlayer() -> i
     void onCreate(android.os.Bundle) -> onCreate
-    void setPassedOne() -> h
+    void saveAll() -> j
+    android.graphics.drawable.Drawable loadDrawable(int) -> b
+    void setPassedOne() -> k
     void onPause() -> onPause
-    void saveData() -> i
-    android.content.SharedPreferences getSettings() -> j
-    com.ithinkrok.yellowquest.GameData getGameData() -> k
+    void saveData() -> l
+    android.content.SharedPreferences getSettings() -> m
+    com.ithinkrok.yellowquest.GameData getGameData() -> n
     void onDestroy() -> onDestroy
     com.google.android.gms.common.api.GoogleApiClient getApiClient() -> d
-    void screenOff() -> l
+    void screenOff() -> o
     void onResume() -> onResume
-    void screenOn() -> m
+    void screenOn() -> p
     void onSignInFailed() -> f_
     void onSignInSucceeded() -> b
     void onClick(android.view.View) -> onClick
-    void loadMenuView() -> n
-    void loadPlayView() -> o
-    void loadSettingsView() -> s
-    void loadBuyView() -> t
-    void loadGameView() -> u
+    void loadMenuView() -> q
+    void loadPlayView() -> r
+    void loadSettingsView() -> x
+    void loadBuyView() -> y
+    void loadGameView() -> z
+    void loadGameView(int) -> c
     void onBackPressed() -> onBackPressed
-    void audioStart() -> v
-    void invalidateUI() -> p
-    void updateScorePointCounter() -> q
-    void checkPurchases() -> r
+    android.media.MediaPlayer getMedia() -> s
+    void audioChange() -> A
+    void audioStart() -> B
+    void audioStop() -> t
+    void invalidateUI() -> u
+    void updateScorePointCounter() -> v
+    void checkPurchases() -> w
     void onActivityResult(int,int,android.content.Intent) -> onActivityResult
     com.ithinkrok.yellowquest.ui.BuyAdapter access$0(com.ithinkrok.yellowquest.MainActivity) -> a
     void access$1(com.ithinkrok.yellowquest.MainActivity,com.ithinkrok.yellowquest.ui.BuyAdapter) -> a
     com.ithinkrok.yellowquest.GameData access$2(com.ithinkrok.yellowquest.MainActivity) -> b
     android.content.SharedPreferences access$3(com.ithinkrok.yellowquest.MainActivity) -> c
-    android.media.MediaPlayer access$4(com.ithinkrok.yellowquest.MainActivity) -> d
-    android.media.AudioManager access$5(com.ithinkrok.yellowquest.MainActivity) -> e
-    void access$6(com.ithinkrok.yellowquest.MainActivity,android.media.MediaPlayer) -> a
-    int[] $SWITCH_TABLE$com$ithinkrok$yellowquest$MainActivity$GameState() -> w
-com.ithinkrok.yellowquest.MainActivity$1 -> com.ithinkrok.yellowquest.k:
+    int[] $SWITCH_TABLE$com$ithinkrok$yellowquest$MainActivity$GameState() -> C
+com.ithinkrok.yellowquest.MainActivity$1 -> com.ithinkrok.yellowquest.n:
     com.ithinkrok.yellowquest.MainActivity this$0 -> a
     void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
     void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
-com.ithinkrok.yellowquest.MainActivity$2 -> com.ithinkrok.yellowquest.l:
+com.ithinkrok.yellowquest.MainActivity$2 -> com.ithinkrok.yellowquest.o:
     com.ithinkrok.yellowquest.MainActivity this$0 -> a
     void run() -> run
-com.ithinkrok.yellowquest.MainActivity$3 -> com.ithinkrok.yellowquest.m:
+com.ithinkrok.yellowquest.MainActivity$3 -> com.ithinkrok.yellowquest.p:
     void onClick(android.content.DialogInterface,int) -> onClick
-com.ithinkrok.yellowquest.MainActivity$4 -> com.ithinkrok.yellowquest.n:
+com.ithinkrok.yellowquest.MainActivity$4 -> com.ithinkrok.yellowquest.q:
     void onClick(android.content.DialogInterface,int) -> onClick
-com.ithinkrok.yellowquest.MainActivity$5 -> com.ithinkrok.yellowquest.o:
+com.ithinkrok.yellowquest.MainActivity$5 -> com.ithinkrok.yellowquest.r:
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.ithinkrok.yellowquest.MainActivity$6 -> com.ithinkrok.yellowquest.s:
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.ithinkrok.yellowquest.MainActivity$7 -> com.ithinkrok.yellowquest.t:
     com.ithinkrok.yellowquest.MainActivity this$0 -> a
     void onAudioFocusChange(int) -> onAudioFocusChange
-com.ithinkrok.yellowquest.MainActivity$6 -> com.ithinkrok.yellowquest.p:
+com.ithinkrok.yellowquest.MainActivity$8 -> com.ithinkrok.yellowquest.u:
     com.ithinkrok.yellowquest.MainActivity this$0 -> a
     void run() -> run
-com.ithinkrok.yellowquest.MainActivity$GameState -> com.ithinkrok.yellowquest.q:
+com.ithinkrok.yellowquest.MainActivity$GameState -> com.ithinkrok.yellowquest.v:
     com.ithinkrok.yellowquest.MainActivity$GameState MENU -> a
     com.ithinkrok.yellowquest.MainActivity$GameState SETTINGS -> b
-    com.ithinkrok.yellowquest.MainActivity$GameState SETUP -> c
+    com.ithinkrok.yellowquest.MainActivity$GameState PLAY -> c
     com.ithinkrok.yellowquest.MainActivity$GameState GAME -> d
     com.ithinkrok.yellowquest.MainActivity$GameState BUY -> e
-    com.ithinkrok.yellowquest.MainActivity$GameState[] ENUM$VALUES -> f
+    com.ithinkrok.yellowquest.MainActivity$GameState LEVELS -> f
+    com.ithinkrok.yellowquest.MainActivity$GameState HISCORES -> g
+    com.ithinkrok.yellowquest.MainActivity$GameState[] ENUM$VALUES -> h
     com.ithinkrok.yellowquest.MainActivity$GameState[] values() -> a
-com.ithinkrok.yellowquest.ScreenReceiver -> com.ithinkrok.yellowquest.r:
+com.ithinkrok.yellowquest.ScreenReceiver -> com.ithinkrok.yellowquest.w:
     java.lang.ref.WeakReference activity -> c
     android.content.IntentFilter filter -> a
     boolean registered -> b
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.ithinkrok.yellowquest.YellowQuest -> com.ithinkrok.yellowquest.s:
-    android.graphics.Paint PAINT_RED -> m
-    android.graphics.Paint PAINT_BROWN -> n
-    android.graphics.Paint PAINT_STATS -> o
+com.ithinkrok.yellowquest.YellowQuest -> com.ithinkrok.yellowquest.x:
+    com.ithinkrok.yellowquest.entity.Entity _iterEntity -> z
+    android.graphics.Paint PAINT_RED -> A
+    android.graphics.Paint PAINT_BROWN -> B
+    android.graphics.Paint PAINT_BROWNER -> C
+    android.graphics.Paint PAINT_STATS -> D
     android.graphics.Paint PAINT_GAMEOVER -> a
-    android.graphics.Paint PAINT_BUTTON -> p
-    android.graphics.Paint PAINT_COOLDOWN -> q
+    android.graphics.Paint PAINT_BUTTON -> E
+    android.graphics.Paint PAINT_COOLDOWN -> F
     int BOX_BUFFER -> b
-    long randomSeed -> r
-    com.ithinkrok.yellowquest.GameData gameData -> s
-    com.ithinkrok.yellowquest.MainActivity activity -> t
-    com.ithinkrok.yellowquest.GameOver gameOver -> c
-    com.ithinkrok.yellowquest.Level level -> d
-    java.util.ArrayList boxes -> e
-    com.ithinkrok.yellowquest.entity.EntityPlayer player -> f
-    int nextBox -> g
-    int playerBox -> h
-    int playerLives -> i
-    int timer -> j
-    int totalTimer -> u
-    int bgenX -> k
-    int bgenY -> l
-    int bgenYMax -> v
-    int bgenYMin -> w
-    com.ithinkrok.yellowquest.CanvasSurfaceView canvas -> x
-    int lastWidth -> y
-    int lastHeight -> z
-    boolean lastFullSizedLeft -> A
-    com.ithinkrok.yellowquest.util.Box leftButton -> B
-    com.ithinkrok.yellowquest.util.Box rightButton -> C
-    com.ithinkrok.yellowquest.util.Box jumpButton -> D
-    com.ithinkrok.yellowquest.util.Box leftButtonR -> E
-    com.ithinkrok.yellowquest.util.Box rightButtonR -> F
-    com.ithinkrok.yellowquest.util.Box powerButton -> G
-    boolean shadow -> H
-    boolean timed -> I
-    int tPos -> J
-    boolean timerStarted -> K
-    int score -> L
-    int levelScore -> M
-    boolean display -> N
-    boolean reverse -> O
-    com.ithinkrok.yellowquest.util.Box coolBox -> P
-    boolean wasPowerPressed -> Q
-    boolean fullSizeLeftButton -> R
-    void addAchievement(int,int) -> a
-    com.ithinkrok.yellowquest.entity.EntityPlatform getPlatform(int) -> a
-    void addScore(int) -> b
+    long randomSeed -> G
+    com.ithinkrok.yellowquest.GameData gameData -> c
+    com.ithinkrok.yellowquest.MainActivity activity -> H
+    com.ithinkrok.yellowquest.GameOver gameOver -> d
+    com.ithinkrok.yellowquest.Level level -> e
+    java.util.ArrayList boxes -> f
+    java.util.ArrayList arrows -> g
+    com.ithinkrok.yellowquest.entity.EntityPlayer player -> h
+    int nextBox -> i
+    int playerBox -> j
+    int playerLives -> k
+    int timer -> l
+    int totalTimer -> I
+    int bgenX -> m
+    int bgenY -> n
+    int bgenYMax -> J
+    int bgenYMin -> K
+    com.ithinkrok.yellowquest.CanvasSurfaceView canvas -> L
+    boolean givenBonusStat -> o
+    int lifeBonusNum -> M
+    boolean isTimeStopped -> p
+    boolean generatingBonus -> N
+    int lastWidth -> O
+    int lastHeight -> P
+    boolean lastFullSizedLeft -> Q
+    com.ithinkrok.yellowquest.util.Box leftButton -> R
+    com.ithinkrok.yellowquest.util.Box rightButton -> S
+    com.ithinkrok.yellowquest.util.Box jumpButton -> T
+    com.ithinkrok.yellowquest.util.Box leftButtonR -> U
+    com.ithinkrok.yellowquest.util.Box rightButtonR -> V
+    com.ithinkrok.yellowquest.util.Box powerButton -> W
+    boolean shadow -> X
+    boolean timed -> Y
+    int tPos -> Z
+    boolean timerStarted -> aa
+    int score -> ab
+    int levelScore -> ac
+    boolean display -> ad
+    boolean reverse -> q
+    com.ithinkrok.yellowquest.util.Box coolBox -> ae
+    boolean wasPowerPressed -> af
+    boolean fullSizeLeftButton -> ag
+    int teleportX -> r
+    int teleportY -> s
+    boolean generateUpOnly -> ah
+    boolean wasGoingLeft -> ai
+    boolean wasGoingRight -> aj
+    boolean goingLeft -> ak
+    boolean goingRight -> al
+    java.util.LinkedList movementSequence -> t
+    boolean movementSequenceChanged -> u
+    boolean doingJump -> v
+    boolean wasDoingJump -> w
+    int doubleX -> x
+    int doubleY -> y
+    int[] $SWITCH_TABLE$com$ithinkrok$yellowquest$Arrow$Direction -> am
+    void addAchievement(int) -> a
+    com.ithinkrok.yellowquest.entity.EntityPlatform getPlatform(int) -> b
+    void addScore(int) -> c
     void setFullSizeLeftButton(boolean) -> a
     void createButtons(com.ithinkrok.yellowquest.CanvasSurfaceView) -> a
-    boolean doJump() -> a
+    void drawArrow(com.ithinkrok.yellowquest.CanvasSurfaceView,float,float,android.graphics.Paint,com.ithinkrok.yellowquest.Arrow$Direction) -> a
     void draw(com.ithinkrok.yellowquest.CanvasSurfaceView) -> b
     void drawBox(com.ithinkrok.yellowquest.util.Box) -> a
     void drawBox(com.ithinkrok.yellowquest.util.Box,android.graphics.Paint) -> a
-    void generateBoxes(int) -> e
-    void load() -> b
-    com.ithinkrok.yellowquest.MainActivity getContext() -> c
-    int random(int) -> c
-    void reload() -> d
+    void generateBonusBoxes(int,int) -> a
+    void generateBoxBonus(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
+    void generateBoxes(int) -> f
+    void levelUp() -> i
+    void load() -> a
+    void loadLevel(int) -> d
+    void nextLevel() -> j
+    com.ithinkrok.yellowquest.MainActivity getContext() -> b
+    int random(int) -> e
+    void reload() -> c
+    void restartLevel() -> k
     void setGameMode(boolean,boolean) -> a
-    boolean shadowMode() -> e
+    boolean shadowMode() -> d
     void statsText(com.ithinkrok.yellowquest.CanvasSurfaceView,java.lang.String) -> a
-    boolean timeMode() -> f
-    void gameOver() -> g
-    void update() -> h
-    void loadData() -> i
+    boolean timeMode() -> e
+    void gameOver() -> f
+    void update() -> g
+    void updateEntities() -> l
+    void loadData() -> h
     void setDisplaying(boolean) -> b
-    void toastText(int) -> d
     void setCanvas(com.ithinkrok.yellowquest.CanvasSurfaceView) -> c
-com.ithinkrok.yellowquest.entity.Entity -> com.ithinkrok.yellowquest.a.a:
-    java.util.ArrayList test -> t
-    com.ithinkrok.yellowquest.util.Box exp -> u
-    com.ithinkrok.yellowquest.YellowQuest game -> a
-    com.ithinkrok.yellowquest.entity.Entity$EntityType type -> b
-    int entityPos -> c
-    int boxNumber -> d
-    android.graphics.Paint color -> e
-    boolean collidable -> v
-    double slip -> f
-    double accel -> g
-    double jump -> h
-    com.ithinkrok.yellowquest.entity.Entity intersecting -> i
-    double x -> j
-    double y -> k
-    double width -> l
-    double height -> m
-    double x_velocity -> n
-    double y_velocity -> o
-    boolean onGround -> p
-    double fallDist -> q
-    boolean remove -> r
-    com.ithinkrok.yellowquest.util.Box box -> s
+    int[] $SWITCH_TABLE$com$ithinkrok$yellowquest$Arrow$Direction() -> m
+com.ithinkrok.yellowquest.challenge.BasicChallenge -> com.ithinkrok.yellowquest.a.a:
+    int target -> g
+    int step -> h
+    void update(android.content.Context,com.ithinkrok.yellowquest.challenge.Stat,int) -> a
+    java.lang.String getTitleText(android.content.Context) -> a
+    java.lang.String getProgressText(android.content.Context) -> b
+com.ithinkrok.yellowquest.challenge.Stat -> com.ithinkrok.yellowquest.a.b:
+    com.ithinkrok.yellowquest.challenge.Stat RIGHT_SIDE_FLAG -> a
+    com.ithinkrok.yellowquest.challenge.Stat JUMP_OVER_BOXES -> b
+    com.ithinkrok.yellowquest.challenge.Stat COMPLETE_LEVEL -> c
+    com.ithinkrok.yellowquest.challenge.Stat JUMPS -> d
+    com.ithinkrok.yellowquest.challenge.Stat LEFT_DISTANCE -> e
+    com.ithinkrok.yellowquest.challenge.Stat DEATHS -> f
+    com.ithinkrok.yellowquest.challenge.Stat BONUS -> g
+    com.ithinkrok.yellowquest.challenge.Stat POWER_SAVE -> h
+    com.ithinkrok.yellowquest.challenge.Stat SCORE -> i
+    com.ithinkrok.yellowquest.challenge.Stat UP -> j
+    int icon -> k
+    int title -> l
+    int progress -> m
+    int fail0 -> n
+    int without0 -> o
+    int withoutMany -> p
+    com.ithinkrok.yellowquest.challenge.Stat[] ENUM$VALUES -> q
+    com.ithinkrok.yellowquest.challenge.Stat[] values() -> a
+com.ithinkrok.yellowquest.challenge.StatTracker -> com.ithinkrok.yellowquest.a.c:
+    java.util.ArrayList challenges -> b
+    java.util.ArrayList statNames -> c
+    com.google.ads.mediation.MediationServerParameters currentChallenge$3cbc0e69 -> a
+    com.ithinkrok.yellowquest.GameData gameData -> d
+    java.util.HashMap currentGame -> e
+    java.util.HashMap currentLife -> f
+    java.util.HashMap currentLevel -> g
+    android.support.v4.util.LongSparseArray data -> h
+    int[] $SWITCH_TABLE$com$ithinkrok$yellowquest$challenge$StatType -> i
+    void completeLevel(com.ithinkrok.yellowquest.MainActivity) -> a
+    void lostLife(com.ithinkrok.yellowquest.MainActivity) -> b
+    void gameOver(com.ithinkrok.yellowquest.MainActivity) -> c
+    void loadGame(com.ithinkrok.yellowquest.MainActivity) -> d
+    int getIntFromMap(java.util.HashMap,java.lang.String) -> a
+    void resetLevel() -> a
+    void resetLife() -> b
+    void resetGame() -> c
+    void addStat(com.ithinkrok.yellowquest.MainActivity,com.ithinkrok.yellowquest.challenge.Stat,int) -> a
+    int getStat(com.ithinkrok.yellowquest.challenge.Stat,com.ithinkrok.yellowquest.challenge.StatType,java.lang.String,boolean,boolean) -> a
+    void generateChallenge() -> d
+    void completeChallenge() -> e
+    long hash(java.lang.String) -> a
+    void setInt(long,int) -> a
+    int getInt(long,int) -> b
+    void load(android.content.SharedPreferences) -> a
+    void save(android.content.SharedPreferences$Editor) -> a
+    int[] $SWITCH_TABLE$com$ithinkrok$yellowquest$challenge$StatType() -> f
+com.ithinkrok.yellowquest.challenge.StatTracker$BasicChallengeInfo -> com.ithinkrok.yellowquest.a.d:
+    com.ithinkrok.yellowquest.challenge.Stat stat -> a
+    com.ithinkrok.yellowquest.challenge.StatType type -> b
+    int target -> c
+    java.lang.String power -> d
+    boolean shadow -> e
+    boolean time -> f
+    com.google.ads.mediation.MediationServerParameters createChallenge$766b8c60(com.ithinkrok.yellowquest.challenge.StatTracker) -> a
+com.ithinkrok.yellowquest.challenge.StatTracker$ChallengeInfo -> com.ithinkrok.yellowquest.a.e:
+    com.google.ads.mediation.MediationServerParameters createChallenge$766b8c60(com.ithinkrok.yellowquest.challenge.StatTracker) -> a
+com.ithinkrok.yellowquest.challenge.StatTracker$WithoutChallengeInfo -> com.ithinkrok.yellowquest.a.f:
+    com.ithinkrok.yellowquest.challenge.Stat stat -> a
+    com.ithinkrok.yellowquest.challenge.StatType type -> b
+    int target -> c
+    com.ithinkrok.yellowquest.challenge.Stat limited -> d
+    int limit -> e
+    java.lang.String power -> f
+    boolean shadow -> g
+    boolean time -> h
+    com.google.ads.mediation.MediationServerParameters createChallenge$766b8c60(com.ithinkrok.yellowquest.challenge.StatTracker) -> a
+com.ithinkrok.yellowquest.challenge.StatType -> com.ithinkrok.yellowquest.a.g:
+    com.ithinkrok.yellowquest.challenge.StatType TOTAL -> a
+    com.ithinkrok.yellowquest.challenge.StatType CHALLENGE -> b
+    com.ithinkrok.yellowquest.challenge.StatType GAME -> c
+    com.ithinkrok.yellowquest.challenge.StatType LEVEL -> d
+    com.ithinkrok.yellowquest.challenge.StatType LIFE -> e
+    int suffix -> f
+    com.ithinkrok.yellowquest.challenge.StatType[] ENUM$VALUES -> g
+    com.ithinkrok.yellowquest.challenge.StatType[] values() -> a
+com.ithinkrok.yellowquest.challenge.WithoutChallenge -> com.ithinkrok.yellowquest.a.h:
+    int target -> g
+    int step -> h
+    com.ithinkrok.yellowquest.challenge.Stat limited -> i
+    int limit -> j
+    boolean isTracking(com.ithinkrok.yellowquest.challenge.Stat) -> a
+    void update(android.content.Context,com.ithinkrok.yellowquest.challenge.Stat,int) -> a
+    java.lang.String getTitleText(android.content.Context) -> a
+    java.lang.String getProgressText(android.content.Context) -> b
+com.ithinkrok.yellowquest.entity.Entity -> com.ithinkrok.yellowquest.b.a:
+    com.ithinkrok.yellowquest.entity.Entity _ting -> E
+    com.ithinkrok.yellowquest.entity.Entity _closest -> F
+    java.util.ArrayList test -> G
+    com.ithinkrok.yellowquest.util.Box exp -> H
+    int timeOnPlatform -> a
+    java.lang.String bonusType -> b
+    int bonusData -> c
+    int timeSinceIntercept -> d
+    boolean isVisible -> e
+    com.ithinkrok.yellowquest.Arrow relativeArrow -> f
+    com.ithinkrok.yellowquest.YellowQuest game -> g
+    com.ithinkrok.yellowquest.entity.Entity$EntityType type -> h
+    int entityPos -> i
+    int boxNumber -> j
+    android.graphics.Paint color -> k
+    boolean collidable -> l
+    double slip -> m
+    double accel -> n
+    double jump -> o
+    com.ithinkrok.yellowquest.entity.Entity intersecting -> p
+    com.ithinkrok.yellowquest.entity.Entity lastIntersected -> q
+    com.ithinkrok.yellowquest.entity.Entity oldIntersected -> r
+    double x -> s
+    double y -> t
+    double width -> u
+    double height -> v
+    double x_velocity -> w
+    double y_velocity -> x
+    boolean onGround -> y
+    double fallDist -> z
+    boolean remove -> A
+    com.ithinkrok.yellowquest.util.Box box -> B
+    boolean collisionHorizontal -> C
+    boolean collisionVertical -> D
+    boolean isPlayer -> I
     com.ithinkrok.yellowquest.entity.Entity calcBounds(double,double,double,double) -> a
-    void move(double,double) -> a
+    com.ithinkrok.yellowquest.entity.Entity teleport(double,double) -> a
+    void move(double,double) -> b
     void reset() -> a
     void update() -> b
     void draw(com.ithinkrok.yellowquest.CanvasSurfaceView) -> a
-com.ithinkrok.yellowquest.entity.Entity$EntityType -> com.ithinkrok.yellowquest.a.b:
+com.ithinkrok.yellowquest.entity.Entity$EntityType -> com.ithinkrok.yellowquest.b.b:
     com.ithinkrok.yellowquest.entity.Entity$EntityType PLAYER -> a
     com.ithinkrok.yellowquest.entity.Entity$EntityType PLATFORM -> b
     com.ithinkrok.yellowquest.entity.Entity$EntityType OBJECT -> c
-com.ithinkrok.yellowquest.entity.EntityPlatform -> com.ithinkrok.yellowquest.a.c:
-    android.graphics.Paint PAINT_BLUE -> u
-    android.graphics.Paint PAINT_WHITE -> v
-    boolean revealed -> w
-    com.google.ads.mediation.MediationServerParameters[] traits$6a539a90 -> t
+com.ithinkrok.yellowquest.entity.EntityPlatform -> com.ithinkrok.yellowquest.b.c:
+    java.util.ArrayList _visibleTraits -> I
+    android.graphics.Paint PAINT_BLUE -> E
+    android.graphics.Paint PAINT_WHITE -> J
+    boolean revealed -> K
+    boolean isBonus -> F
+    boolean drawPowersBelow -> G
+    com.ithinkrok.yellowquest.entity.trait.Trait[] traits -> H
     void update() -> b
     void install() -> c
     boolean hasTrait(java.lang.String) -> a
+    com.ithinkrok.yellowquest.entity.trait.Trait getTrait(java.lang.String) -> b
     double getMaxYWithJump() -> d
     void draw(com.ithinkrok.yellowquest.CanvasSurfaceView) -> a
-com.ithinkrok.yellowquest.entity.EntityPlayer -> com.ithinkrok.yellowquest.a.d:
-    android.graphics.Paint PAINT_YELLOW -> t
-    com.ithinkrok.yellowquest.entity.power.Power power -> u
+com.ithinkrok.yellowquest.entity.EntityPlayer -> com.ithinkrok.yellowquest.b.d:
+    android.graphics.Paint PAINT_YELLOW -> E
+    boolean gravity -> F
+    com.ithinkrok.yellowquest.entity.power.Power power -> G
     boolean hasPower(java.lang.String) -> a
     void setPower(com.ithinkrok.yellowquest.entity.power.Power) -> a
+    java.lang.String getPowerName() -> c
     void update() -> b
-    float getAccelMultiplier() -> c
-    float getJumpMultiplier() -> d
-    float getAccelIncrease() -> e
-    float getJumpIncrease() -> f
+    float getAccelMultiplier() -> d
+    float getJumpMultiplier() -> e
+    float getAccelIncrease() -> f
+    float getJumpIncrease() -> g
     void draw(com.ithinkrok.yellowquest.CanvasSurfaceView) -> a
-    com.ithinkrok.yellowquest.entity.power.Power getPower() -> g
-com.ithinkrok.yellowquest.entity.power.Power -> com.ithinkrok.yellowquest.a.a.a:
+    com.ithinkrok.yellowquest.entity.power.Power getPower() -> h
+com.ithinkrok.yellowquest.entity.power.Power -> com.ithinkrok.yellowquest.b.a.a:
     int upgradeLevel -> a
     com.ithinkrok.yellowquest.entity.EntityPlayer player -> b
     float jumpMultiplier -> e
@@ -7142,13 +7367,27 @@ com.ithinkrok.yellowquest.entity.power.Power -> com.ithinkrok.yellowquest.a.a.a:
     float cooldownPercent() -> g
     void powerButtonPressed() -> h
     android.graphics.Paint getCooldownPaint() -> i
-com.ithinkrok.yellowquest.entity.power.PowerBounce -> com.ithinkrok.yellowquest.a.a.b:
+com.ithinkrok.yellowquest.entity.power.PowerBounce -> com.ithinkrok.yellowquest.b.a.b:
     void update(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
     java.lang.String getName() -> e
-com.ithinkrok.yellowquest.entity.power.PowerLife -> com.ithinkrok.yellowquest.a.a.c:
+com.ithinkrok.yellowquest.entity.power.PowerDoubleJump -> com.ithinkrok.yellowquest.b.a.c:
+    boolean usedJump -> e
+    void update(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
+    java.lang.String getName() -> e
+    boolean showPowerButton() -> f
+    void powerButtonPressed() -> h
+    boolean doSecondJump() -> j
+com.ithinkrok.yellowquest.entity.power.PowerLife -> com.ithinkrok.yellowquest.b.a.d:
     java.lang.String getName() -> e
     void update(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
-com.ithinkrok.yellowquest.entity.power.PowerTeleport -> com.ithinkrok.yellowquest.a.a.d:
+com.ithinkrok.yellowquest.entity.power.PowerStick -> com.ithinkrok.yellowquest.b.a.e:
+    android.graphics.Paint PAINT_STICK -> e
+    double syv -> f
+    boolean sticking -> g
+    boolean xcollision -> h
+    void update(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
+    java.lang.String getName() -> e
+com.ithinkrok.yellowquest.entity.power.PowerTeleport -> com.ithinkrok.yellowquest.b.a.f:
     int cooldown -> e
     int cooling -> f
     java.lang.String getName() -> e
@@ -7156,7 +7395,7 @@ com.ithinkrok.yellowquest.entity.power.PowerTeleport -> com.ithinkrok.yellowques
     boolean showPowerButton() -> f
     void update(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
     void powerButtonPressed() -> h
-com.ithinkrok.yellowquest.entity.power.PowerTimeStop -> com.ithinkrok.yellowquest.a.a.e:
+com.ithinkrok.yellowquest.entity.power.PowerTimeStop -> com.ithinkrok.yellowquest.b.a.g:
     android.graphics.Paint PAINT_TIME_STOP -> e
     int stopTime -> f
     int cooldown -> g
@@ -7168,111 +7407,163 @@ com.ithinkrok.yellowquest.entity.power.PowerTimeStop -> com.ithinkrok.yellowques
     float cooldownPercent() -> g
     android.graphics.Paint getCooldownPaint() -> i
     java.lang.String getName() -> e
-com.ithinkrok.yellowquest.entity.power.PowerTroll -> com.ithinkrok.yellowquest.a.a.f:
+    void backwardsTimer() -> j
+    void resetTimers() -> k
+com.ithinkrok.yellowquest.entity.power.PowerTroll -> com.ithinkrok.yellowquest.b.a.h:
     boolean enabled -> e
     java.lang.String getName() -> e
     boolean showPowerButton() -> f
     void powerButtonPressed() -> h
     boolean isEnabled() -> j
-com.ithinkrok.yellowquest.entity.power.PowerUp -> com.ithinkrok.yellowquest.a.a.g:
+com.ithinkrok.yellowquest.entity.power.PowerUp -> com.ithinkrok.yellowquest.b.a.i:
     int up -> e
     java.lang.String getName() -> e
     void update(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
-com.ithinkrok.yellowquest.entity.trait.TraitBoost -> com.ithinkrok.yellowquest.a.b.a:
-    android.graphics.Paint PAINT_FABDAD -> c
-    void install() -> e
-    java.lang.String getName() -> a
-    int getIndex() -> b
-com.ithinkrok.yellowquest.entity.trait.TraitBounce -> com.ithinkrok.yellowquest.a.b.b:
-    android.graphics.Paint PAINT_MAGENTA -> c
-    boolean powerUnlock -> d
-    void intersectsPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
-    java.lang.String getName() -> a
-    int getIndex() -> b
-    void install() -> e
-com.ithinkrok.yellowquest.entity.trait.TraitConveyor -> com.ithinkrok.yellowquest.a.b.c:
-    android.graphics.Paint PAINT_GREY -> c
-    boolean powerUnlock -> d
-    void intersectsPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
-    java.lang.String getName() -> a
-    int getIndex() -> b
-com.ithinkrok.yellowquest.entity.trait.TraitDown -> com.ithinkrok.yellowquest.a.b.d:
-    android.graphics.Paint PAINT_RED -> c
-    void intersectsPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
-    java.lang.String getName() -> a
-    int getIndex() -> b
-    void install() -> e
-com.ithinkrok.yellowquest.entity.trait.TraitMoving -> com.ithinkrok.yellowquest.a.b.e:
-    android.graphics.Paint PAINT_ORANGE -> c
-    boolean ymode -> d
-    boolean enabled -> e
-    int aiMaxTime -> f
-    int aiTimer -> g
-    int aiDir -> h
-    boolean stopOnPlayer -> i
-    boolean startNoPlayer -> j
-    java.lang.String getName() -> a
-    void intersectsPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
-    void noPlayer$289415d5() -> c
-    void aiUpdate() -> d
-    void install() -> e
-    int getIndex() -> b
-    double getMaxYPos() -> f
-com.ithinkrok.yellowquest.entity.trait.TraitTroll -> com.ithinkrok.yellowquest.a.b.f:
-    android.graphics.Paint PAINT_TROLL -> c
-    boolean powerUnlock -> d
+com.ithinkrok.yellowquest.entity.trait.Trait -> com.ithinkrok.yellowquest.b.b.a:
+    com.ithinkrok.yellowquest.entity.EntityPlatform parent -> a
+    android.graphics.Paint color -> b
+    boolean isVisible -> c
+    boolean remove -> d
     java.lang.String getName() -> a
     int getIndex() -> b
     void intersectsPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
-com.ithinkrok.yellowquest.entity.trait.TraitUp -> com.ithinkrok.yellowquest.a.b.g:
-    android.graphics.Paint PAINT_GREEN -> c
-    boolean powerUnlock -> d
-    void intersectsPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
-    void noPlayer$289415d5() -> c
-    void install() -> e
+    void noPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> b
+    void aiUpdate() -> c
+    void install() -> d
+    double getMaxYPos() -> e
+com.ithinkrok.yellowquest.entity.trait.TraitBoost -> com.ithinkrok.yellowquest.b.b.b:
+    android.graphics.Paint PAINT_FABDAD -> e
+    void install() -> d
     java.lang.String getName() -> a
     int getIndex() -> b
-    double getMaxYPos() -> f
-com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory -> com.ithinkrok.yellowquest.a.b.h:
+com.ithinkrok.yellowquest.entity.trait.TraitBounce -> com.ithinkrok.yellowquest.b.b.c:
+    android.graphics.Paint PAINT_MAGENTA -> e
+    boolean powerUnlock -> f
+    void intersectsPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
+    java.lang.String getName() -> a
+    int getIndex() -> b
+    void install() -> d
+com.ithinkrok.yellowquest.entity.trait.TraitConveyor -> com.ithinkrok.yellowquest.b.b.d:
+    android.graphics.Paint PAINT_GREY -> e
+    boolean powerUnlock -> f
+    void intersectsPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
+    java.lang.String getName() -> a
+    int getIndex() -> b
+com.ithinkrok.yellowquest.entity.trait.TraitDown -> com.ithinkrok.yellowquest.b.b.e:
+    android.graphics.Paint PAINT_RED -> f
+    int downTicks -> g
+    boolean goingDown -> h
+    boolean stickBonusMode -> e
+    void intersectsPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
+    void aiUpdate() -> c
+    java.lang.String getName() -> a
+    int getIndex() -> b
+    void install() -> d
+com.ithinkrok.yellowquest.entity.trait.TraitExtraLife -> com.ithinkrok.yellowquest.b.b.f:
+    void intersectsPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
+    java.lang.String getName() -> a
+    int getIndex() -> b
+com.ithinkrok.yellowquest.entity.trait.TraitMoving -> com.ithinkrok.yellowquest.b.b.g:
+    android.graphics.Paint PAINT_ORANGE -> e
+    boolean ymode -> f
+    boolean enabled -> g
+    int aiMaxTime -> h
+    int aiTimer -> i
+    int aiDir -> j
+    boolean stopOnPlayer -> k
+    boolean startNoPlayer -> l
+    java.lang.String getName() -> a
+    void intersectsPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
+    void noPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> b
+    void aiUpdate() -> c
+    void install() -> d
+    int getIndex() -> b
+    double getMaxYPos() -> e
+com.ithinkrok.yellowquest.entity.trait.TraitStick -> com.ithinkrok.yellowquest.b.b.h:
+    double syv -> e
+    boolean xcollision -> f
+    void intersectsPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
+    void noPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> b
+    java.lang.String getName() -> a
+    int getIndex() -> b
+com.ithinkrok.yellowquest.entity.trait.TraitTimeHidden -> com.ithinkrok.yellowquest.b.b.i:
+    void intersectsPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
+    void aiUpdate() -> c
+    void install() -> d
+    java.lang.String getName() -> a
+    int getIndex() -> b
+com.ithinkrok.yellowquest.entity.trait.TraitTroll -> com.ithinkrok.yellowquest.b.b.j:
+    android.graphics.Paint PAINT_TROLL -> e
+    boolean powerUnlock -> f
+    java.lang.String getName() -> a
+    int getIndex() -> b
+    void intersectsPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
+com.ithinkrok.yellowquest.entity.trait.TraitTrollBonus -> com.ithinkrok.yellowquest.b.b.k:
+    boolean[] sequence -> f
+    void intersectsPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
+com.ithinkrok.yellowquest.entity.trait.TraitUp -> com.ithinkrok.yellowquest.b.b.l:
+    android.graphics.Paint PAINT_GREEN -> e
+    boolean powerUnlock -> h
+    int maxUpTime -> f
+    boolean stickBonusMode -> g
+    void intersectsPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> a
+    void noPlayer(com.ithinkrok.yellowquest.entity.EntityPlayer) -> b
+    void install() -> d
+    java.lang.String getName() -> a
+    int getIndex() -> b
+    double getMaxYPos() -> e
+com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory -> com.ithinkrok.yellowquest.b.b.m:
     java.util.ArrayList weights -> a
     com.ithinkrok.yellowquest.entity.EntityPlatform randomPlatform(com.ithinkrok.yellowquest.YellowQuest) -> a
-com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$Weight -> com.ithinkrok.yellowquest.a.b.i:
-    com.google.ads.mediation.MediationServerParameters create$1a4f3648(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
+com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$Weight -> com.ithinkrok.yellowquest.b.b.n:
+    com.ithinkrok.yellowquest.entity.trait.Trait create(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
     int getWeight(com.ithinkrok.yellowquest.entity.EntityPlatform,int) -> a
     java.lang.String getName() -> a
-com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$WeightBoost -> com.ithinkrok.yellowquest.a.b.j:
-    com.google.ads.mediation.MediationServerParameters create$1a4f3648(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
+com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$WeightBoost -> com.ithinkrok.yellowquest.b.b.o:
+    com.ithinkrok.yellowquest.entity.trait.Trait create(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
     int getWeight(com.ithinkrok.yellowquest.entity.EntityPlatform,int) -> a
     java.lang.String getName() -> a
-com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$WeightBounce -> com.ithinkrok.yellowquest.a.b.k:
-    com.google.ads.mediation.MediationServerParameters create$1a4f3648(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
+com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$WeightBounce -> com.ithinkrok.yellowquest.b.b.p:
+    com.ithinkrok.yellowquest.entity.trait.Trait create(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
     int getWeight(com.ithinkrok.yellowquest.entity.EntityPlatform,int) -> a
     java.lang.String getName() -> a
-com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$WeightConveyor -> com.ithinkrok.yellowquest.a.b.l:
-    com.google.ads.mediation.MediationServerParameters create$1a4f3648(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
+com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$WeightConveyor -> com.ithinkrok.yellowquest.b.b.q:
+    com.ithinkrok.yellowquest.entity.trait.Trait create(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
     int getWeight(com.ithinkrok.yellowquest.entity.EntityPlatform,int) -> a
     java.lang.String getName() -> a
-com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$WeightDown -> com.ithinkrok.yellowquest.a.b.m:
-    com.google.ads.mediation.MediationServerParameters create$1a4f3648(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
+com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$WeightDown -> com.ithinkrok.yellowquest.b.b.r:
+    com.ithinkrok.yellowquest.entity.trait.Trait create(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
     int getWeight(com.ithinkrok.yellowquest.entity.EntityPlatform,int) -> a
     java.lang.String getName() -> a
-com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$WeightMoving -> com.ithinkrok.yellowquest.a.b.n:
-    com.google.ads.mediation.MediationServerParameters create$1a4f3648(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
+com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$WeightMoving -> com.ithinkrok.yellowquest.b.b.s:
+    com.ithinkrok.yellowquest.entity.trait.Trait create(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
     int getWeight(com.ithinkrok.yellowquest.entity.EntityPlatform,int) -> a
     java.lang.String getName() -> a
-com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$WeightNone -> com.ithinkrok.yellowquest.a.b.o:
-    com.google.ads.mediation.MediationServerParameters create$1a4f3648(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
+com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$WeightNone -> com.ithinkrok.yellowquest.b.b.t:
+    com.ithinkrok.yellowquest.entity.trait.Trait create(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
     int getWeight(com.ithinkrok.yellowquest.entity.EntityPlatform,int) -> a
     java.lang.String getName() -> a
-com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$WeightTroll -> com.ithinkrok.yellowquest.a.b.p:
-    com.google.ads.mediation.MediationServerParameters create$1a4f3648(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
+com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$WeightStick -> com.ithinkrok.yellowquest.b.b.u:
+    com.ithinkrok.yellowquest.entity.trait.Trait create(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
     int getWeight(com.ithinkrok.yellowquest.entity.EntityPlatform,int) -> a
     java.lang.String getName() -> a
-com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$WeightUp -> com.ithinkrok.yellowquest.a.b.q:
-    com.google.ads.mediation.MediationServerParameters create$1a4f3648(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
+com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$WeightTroll -> com.ithinkrok.yellowquest.b.b.v:
+    com.ithinkrok.yellowquest.entity.trait.Trait create(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
     int getWeight(com.ithinkrok.yellowquest.entity.EntityPlatform,int) -> a
     java.lang.String getName() -> a
-com.ithinkrok.yellowquest.ui.BuyAdapter -> com.ithinkrok.yellowquest.ui.a:
+com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory$WeightUp -> com.ithinkrok.yellowquest.b.b.w:
+    com.ithinkrok.yellowquest.entity.trait.Trait create(com.ithinkrok.yellowquest.entity.EntityPlatform) -> a
+    int getWeight(com.ithinkrok.yellowquest.entity.EntityPlatform,int) -> a
+    java.lang.String getName() -> a
+com.ithinkrok.yellowquest.ui.AchievementInfo -> com.ithinkrok.yellowquest.ui.a:
+    java.util.HashMap info -> e
+    int icon -> a
+    int name -> b
+    int description -> c
+    int reward -> d
+    void load(android.content.Context) -> a
+    com.ithinkrok.yellowquest.ui.AchievementInfo getAchievement(java.lang.String) -> a
+com.ithinkrok.yellowquest.ui.BuyAdapter -> com.ithinkrok.yellowquest.ui.b:
     java.util.ArrayList items -> b
     java.util.HashMap rewards -> c
     java.lang.String[] prices -> d
@@ -7293,37 +7584,47 @@ com.ithinkrok.yellowquest.ui.BuyAdapter -> com.ithinkrok.yellowquest.ui.a:
     java.lang.String[] access$1() -> e
     java.lang.String[] access$2() -> f
     java.util.HashMap access$3() -> g
-com.ithinkrok.yellowquest.ui.BuyAdapter$1 -> com.ithinkrok.yellowquest.ui.b:
+com.ithinkrok.yellowquest.ui.BuyAdapter$1 -> com.ithinkrok.yellowquest.ui.c:
     com.ithinkrok.yellowquest.ui.BuyAdapter this$0 -> a
     android.os.Bundle val$querySkus -> b
     void run() -> run
-com.ithinkrok.yellowquest.ui.BuyAdapter$2 -> com.ithinkrok.yellowquest.ui.c:
+com.ithinkrok.yellowquest.ui.BuyAdapter$2 -> com.ithinkrok.yellowquest.ui.d:
     com.ithinkrok.yellowquest.ui.BuyAdapter this$0 -> a
     void run() -> run
-com.ithinkrok.yellowquest.ui.BuyAdapter$3 -> com.ithinkrok.yellowquest.ui.d:
+com.ithinkrok.yellowquest.ui.BuyAdapter$3 -> com.ithinkrok.yellowquest.ui.e:
     com.ithinkrok.yellowquest.ui.BuyAdapter this$0 -> a
     void run() -> run
-com.ithinkrok.yellowquest.ui.BuyAdapter$4 -> com.ithinkrok.yellowquest.ui.e:
+com.ithinkrok.yellowquest.ui.BuyAdapter$4 -> com.ithinkrok.yellowquest.ui.f:
     com.ithinkrok.yellowquest.ui.BuyAdapter this$0 -> a
     int val$resId -> b
     void run() -> run
-com.ithinkrok.yellowquest.ui.BuyAdapter$5 -> com.ithinkrok.yellowquest.ui.f:
+com.ithinkrok.yellowquest.ui.BuyAdapter$5 -> com.ithinkrok.yellowquest.ui.g:
     com.ithinkrok.yellowquest.ui.BuyAdapter this$0 -> a
     java.lang.String val$toastText -> b
     void run() -> run
-com.ithinkrok.yellowquest.ui.BuyAdapter$6 -> com.ithinkrok.yellowquest.ui.g:
+com.ithinkrok.yellowquest.ui.BuyAdapter$6 -> com.ithinkrok.yellowquest.ui.h:
     com.ithinkrok.yellowquest.ui.BuyAdapter this$0 -> a
     java.lang.String val$purchaseToken -> b
     java.lang.String val$productId -> c
     void run() -> run
     com.ithinkrok.yellowquest.ui.BuyAdapter access$0(com.ithinkrok.yellowquest.ui.BuyAdapter$6) -> a
-com.ithinkrok.yellowquest.ui.BuyAdapter$6$1 -> com.ithinkrok.yellowquest.ui.h:
+com.ithinkrok.yellowquest.ui.BuyAdapter$6$1 -> com.ithinkrok.yellowquest.ui.i:
     com.ithinkrok.yellowquest.ui.BuyAdapter$6 this$1 -> a
     int val$reward -> b
     void run() -> run
 com.ithinkrok.yellowquest.ui.DisableButton -> com.ithinkrok.yellowquest.ui.DisableButton:
     void setEnabled(boolean) -> setEnabled
-com.ithinkrok.yellowquest.ui.PowerAdapter -> com.ithinkrok.yellowquest.ui.i:
+com.ithinkrok.yellowquest.ui.LevelsAdapter -> com.ithinkrok.yellowquest.ui.j:
+    int[] totalBoxes -> b
+    com.ithinkrok.yellowquest.MainActivity context -> c
+    int selected -> a
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    long getItemId(int) -> getItemId
+    int price(int) -> a
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    void onClick(android.view.View) -> onClick
+com.ithinkrok.yellowquest.ui.PowerAdapter -> com.ithinkrok.yellowquest.ui.k:
     com.ithinkrok.yellowquest.MainActivity context -> a
     java.lang.String expanded -> b
     java.util.ArrayList showing -> c
@@ -7334,56 +7635,106 @@ com.ithinkrok.yellowquest.ui.PowerAdapter -> com.ithinkrok.yellowquest.ui.i:
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
     void setView$400f2bde() -> b
     void onClick(android.view.View) -> onClick
-com.ithinkrok.yellowquest.ui.PowerAdapter$1 -> com.ithinkrok.yellowquest.ui.j:
+com.ithinkrok.yellowquest.ui.PowerAdapter$1 -> com.ithinkrok.yellowquest.ui.l:
     com.ithinkrok.yellowquest.ui.PowerAdapter this$0 -> a
     com.ithinkrok.yellowquest.ui.PowerInfo val$info -> b
     void onClick(android.content.DialogInterface,int) -> onClick
-com.ithinkrok.yellowquest.ui.PowerAdapter$2 -> com.ithinkrok.yellowquest.ui.k:
+com.ithinkrok.yellowquest.ui.PowerAdapter$2 -> com.ithinkrok.yellowquest.ui.m:
     void onClick(android.content.DialogInterface,int) -> onClick
-com.ithinkrok.yellowquest.ui.PowerInfo -> com.ithinkrok.yellowquest.ui.l:
-    int[] mult -> j
+com.ithinkrok.yellowquest.ui.PowerInfo -> com.ithinkrok.yellowquest.ui.n:
+    int[] mult -> k
     java.lang.String name -> a
     int color -> b
     int buyCost -> c
-    int upgradeCost -> k
+    int upgradeCost -> l
     int displayName -> d
     int displayInfo -> e
     int displayUpgradeInfo -> f
     int maxUpgrade -> g
     int warnInfo -> h
-    int powerNum -> l
+    int powerNum -> m
     int displayUnlock -> i
-    com.ithinkrok.yellowquest.ui.PowerInfo$PowerCreator creator -> m
-    java.util.ArrayList data -> n
-    java.util.HashMap named -> o
+    int displayIcon -> n
+    int minBonusLevel -> o
+    com.ithinkrok.yellowquest.ui.PowerInfo$PowerCreator creator -> p
+    int displayBonusComplete -> q
+    int bonusReward -> j
+    java.util.ArrayList data -> r
+    java.util.HashMap named -> s
+    com.ithinkrok.yellowquest.ui.PowerInfo setCosts(int,int) -> a
+    com.ithinkrok.yellowquest.ui.PowerInfo setInfo(int,int) -> b
+    com.ithinkrok.yellowquest.ui.PowerInfo setUpgradeInfo(int,int,int) -> a
+    com.ithinkrok.yellowquest.ui.PowerInfo setBonusInfo(int,int,int) -> b
+    com.ithinkrok.yellowquest.ui.PowerInfo setUnlockInfo(int,int) -> c
     com.ithinkrok.yellowquest.entity.power.Power newInstance(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
     int upgradeCost(int) -> a
+    java.lang.String getName() -> a
     void unlock(com.ithinkrok.yellowquest.MainActivity) -> a
+    void showBonusComplete(com.ithinkrok.yellowquest.MainActivity) -> b
+    java.lang.String getWithText(android.content.Context) -> a
+    void unlockNewAchievements(com.ithinkrok.yellowquest.MainActivity) -> c
+    com.ithinkrok.yellowquest.ui.PowerInfo generateBonus(com.ithinkrok.yellowquest.YellowQuest) -> a
     com.ithinkrok.yellowquest.ui.PowerInfo getData(int) -> b
     int buyCost(java.lang.String) -> a
+    int getPowerCount() -> b
     com.ithinkrok.yellowquest.ui.PowerInfo getData(java.lang.String) -> b
-com.ithinkrok.yellowquest.ui.PowerInfo$1 -> com.ithinkrok.yellowquest.ui.m:
+com.ithinkrok.yellowquest.ui.PowerInfo$1 -> com.ithinkrok.yellowquest.ui.o:
     com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
-com.ithinkrok.yellowquest.ui.PowerInfo$2 -> com.ithinkrok.yellowquest.ui.n:
+com.ithinkrok.yellowquest.ui.PowerInfo$2 -> com.ithinkrok.yellowquest.ui.p:
     com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
-com.ithinkrok.yellowquest.ui.PowerInfo$3 -> com.ithinkrok.yellowquest.ui.o:
+com.ithinkrok.yellowquest.ui.PowerInfo$3 -> com.ithinkrok.yellowquest.ui.q:
     com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
-com.ithinkrok.yellowquest.ui.PowerInfo$4 -> com.ithinkrok.yellowquest.ui.p:
+com.ithinkrok.yellowquest.ui.PowerInfo$4 -> com.ithinkrok.yellowquest.ui.r:
     com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
-com.ithinkrok.yellowquest.ui.PowerInfo$5 -> com.ithinkrok.yellowquest.ui.q:
+com.ithinkrok.yellowquest.ui.PowerInfo$5 -> com.ithinkrok.yellowquest.ui.s:
     com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
-com.ithinkrok.yellowquest.ui.PowerInfo$6 -> com.ithinkrok.yellowquest.ui.r:
+com.ithinkrok.yellowquest.ui.PowerInfo$6 -> com.ithinkrok.yellowquest.ui.t:
     com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
-com.ithinkrok.yellowquest.ui.PowerInfo$PowerCreator -> com.ithinkrok.yellowquest.ui.s:
+com.ithinkrok.yellowquest.ui.PowerInfo$7 -> com.ithinkrok.yellowquest.ui.u:
     com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
-com.ithinkrok.yellowquest.ui.Tip -> com.ithinkrok.yellowquest.ui.t:
+com.ithinkrok.yellowquest.ui.PowerInfo$8 -> com.ithinkrok.yellowquest.ui.v:
+    com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
+com.ithinkrok.yellowquest.ui.PowerInfo$PowerCreator -> com.ithinkrok.yellowquest.ui.w:
+    com.ithinkrok.yellowquest.entity.power.Power createPower(com.ithinkrok.yellowquest.entity.EntityPlayer,int) -> a
+com.ithinkrok.yellowquest.ui.Tip -> com.ithinkrok.yellowquest.ui.x:
     java.util.HashMap tipMessages -> a
     java.util.ArrayList tips -> b
+    java.util.ArrayList check -> c
+    java.util.Random rand -> d
+    java.lang.String lastShown -> e
+    java.lang.String name -> f
     int getTipMessage(java.lang.String) -> a
-com.ithinkrok.yellowquest.ui.Tip$TipMode -> com.ithinkrok.yellowquest.ui.u:
-com.ithinkrok.yellowquest.ui.Tip$TipPower -> com.ithinkrok.yellowquest.ui.v:
-com.ithinkrok.yellowquest.ui.Tip$TipRate -> com.ithinkrok.yellowquest.ui.w:
-com.ithinkrok.yellowquest.util.Box -> com.ithinkrok.yellowquest.b.a:
+    java.lang.String getTip(com.ithinkrok.yellowquest.MainActivity) -> a
+    boolean canShow(com.ithinkrok.yellowquest.MainActivity) -> b
+com.ithinkrok.yellowquest.ui.Tip$TipMode -> com.ithinkrok.yellowquest.ui.y:
+    boolean canShow(com.ithinkrok.yellowquest.MainActivity) -> b
+com.ithinkrok.yellowquest.ui.Tip$TipPower -> com.ithinkrok.yellowquest.ui.z:
+    boolean canShow(com.ithinkrok.yellowquest.MainActivity) -> b
+com.ithinkrok.yellowquest.ui.Tip$TipRate -> com.ithinkrok.yellowquest.ui.A:
+    boolean canShow(com.ithinkrok.yellowquest.MainActivity) -> b
+com.ithinkrok.yellowquest.ui.ToastSystem -> com.ithinkrok.yellowquest.ui.B:
+    com.ithinkrok.yellowquest.MainActivity context -> a
+    android.view.View[] layoutAchievements -> b
+    android.view.View[] layoutProgress -> c
+    android.view.View[] layoutUnlocks -> d
+    int posAchievements -> e
+    int posProgress -> f
+    int posUnlocks -> g
+    void setContext(com.ithinkrok.yellowquest.MainActivity) -> a
+    void showTextToast(int) -> a
+    void showTextToast(java.lang.String) -> a
+    void showAchievementToast(com.ithinkrok.yellowquest.ui.AchievementInfo) -> a
+    void showBonusToast(int,int) -> a
+    void generateCache() -> a
+    void showHiscoreToast(int,int) -> b
+    void showChallengeProgressToast(int,java.lang.String,double) -> a
+    void showChallengeCompleteToast(int,java.lang.String) -> a
+    void showChallengeFailedToast(int,java.lang.String) -> b
+    void showChallengeRestartedToast(int,java.lang.String) -> c
+    void showChallengeMessageToast(int,int,java.lang.String) -> a
+    void showRankToast(int) -> b
+    void showUnlockToast(int,int) -> c
+com.ithinkrok.yellowquest.util.Box -> com.ithinkrok.yellowquest.c.a:
     double sx -> a
     double sy -> b
     double ex -> c
@@ -7391,6 +7742,6 @@ com.ithinkrok.yellowquest.util.Box -> com.ithinkrok.yellowquest.b.a:
     void set(double,double,double,double) -> a
     com.ithinkrok.yellowquest.util.Box move(double,double,com.ithinkrok.yellowquest.util.Box) -> a
     boolean intersects(com.ithinkrok.yellowquest.util.Box) -> a
-com.ithinkrok.yellowquest.util.Vector2 -> com.ithinkrok.yellowquest.b.b:
+com.ithinkrok.yellowquest.util.Vector2 -> com.ithinkrok.yellowquest.c.b:
     double x -> a
     double y -> b

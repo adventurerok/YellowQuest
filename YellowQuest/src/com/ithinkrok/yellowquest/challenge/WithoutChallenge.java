@@ -10,10 +10,10 @@ import com.ithinkrok.yellowquest.ui.ToastSystem;
 public class WithoutChallenge extends Challenge {
 	
 	
-	int target;
-	int step;
-	Stat limited;
-	int limit;
+	public int target;
+	public int step;
+	public Stat limited;
+	public int limit;
 
 	public WithoutChallenge(StatTracker tracker, Stat stat, StatType type, int target, Stat limited, int limit) {
 		super(tracker, stat, type);
