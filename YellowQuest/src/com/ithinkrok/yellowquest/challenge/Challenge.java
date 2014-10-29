@@ -19,6 +19,8 @@ public abstract class Challenge {
 	public boolean shadow = false;
 	public boolean time = false;
 	
+	public int skipCost = 0;
+	
 	
 	public Challenge(StatTracker tracker, Stat stat, StatType type) {
 		super();

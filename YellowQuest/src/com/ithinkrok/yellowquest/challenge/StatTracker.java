@@ -25,6 +25,7 @@ public class StatTracker {
 		private int target;
 		private String power;
 		private boolean shadow, time;
+		private int skipCost;
 
 		public BasicChallengeInfo(Stat stat, StatType type, int target, String power) {
 			super();
@@ -32,6 +33,7 @@ public class StatTracker {
 			this.type = type;
 			this.target = target;
 			this.power = power;
+			skipCost = skippingCost;
 		}
 		
 		public BasicChallengeInfo(Stat stat, StatType type, int target, String power, boolean shadow, boolean time) {
@@ -42,6 +44,7 @@ public class StatTracker {
 			this.power = power;
 			this.shadow = shadow;
 			this.time = time;
+			skipCost = skippingCost;
 		}
 
 		@Override
@@ -50,6 +53,7 @@ public class StatTracker {
 			c.power = power;
 			c.shadow = shadow;
 			c.time = time;
+			c.skipCost = skipCost;
 			if(cycle > 0){
 				if(c.target == 1) c.target += (int)(cycle * 0.5);
 				else c.target += cycle;
@@ -58,6 +62,8 @@ public class StatTracker {
 		}
 
 	}
+	
+	private static int skippingCost = 3000;
 
 	public static class WithoutChallengeInfo implements ChallengeInfo {
 
@@ -68,6 +74,7 @@ public class StatTracker {
 		private int limit;
 		private String power;
 		private boolean shadow, time;
+		private int skipCost;
 
 		public WithoutChallengeInfo(Stat stat, StatType type, int target, Stat limited, int limit, String power) {
 			super();
@@ -77,6 +84,7 @@ public class StatTracker {
 			this.limited = limited;
 			this.limit = limit;
 			this.power = power;
+			skipCost = skippingCost;
 		}
 		
 		public WithoutChallengeInfo(Stat stat, StatType type, int target, Stat limited, int limit, String power, boolean shadow, boolean time) {
@@ -89,6 +97,7 @@ public class StatTracker {
 			this.power = power;
 			this.shadow = shadow;
 			this.time = time;
+			skipCost = skippingCost;
 		}
 
 		@Override
@@ -97,7 +106,9 @@ public class StatTracker {
 			c.power = power;
 			c.shadow = shadow;
 			c.time = time;
+			c.skipCost = skipCost;
 			if(cycle > 0){
+				c.skipCost *= 1.2 * cycle;
 				if(c.target == 1) c.target += (int)(cycle * 0.5);
 				else c.target += cycle;
 			}
@@ -164,6 +175,7 @@ public class StatTracker {
 		}
 
 		//00 - 
+		skippingCost = 3000;
 		challenges.add(new BasicChallengeInfo(Stat.SCORE, StatType.GAME, 1000, null));
 		challenges.add(new BasicChallengeInfo(Stat.JUMP_OVER_BOXES, StatType.CHALLENGE, 15, null));
 		challenges.add(new BasicChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 5, null));
@@ -176,6 +188,7 @@ public class StatTracker {
 		challenges.add(new BasicChallengeInfo(Stat.BONUS, StatType.GAME, 2, null));
 		
 		//10
+		skippingCost = 6000;
 		challenges.add(new BasicChallengeInfo(Stat.JUMP_OVER_BOXES, StatType.GAME, 15, "bounce"));
 		challenges.add(new WithoutChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 3, Stat.JUMP_OVER_BOXES, 0, null));
 		challenges.add(new BasicChallengeInfo(Stat.POWER_SAVE, StatType.GAME, 2, "teleport"));
@@ -188,6 +201,7 @@ public class StatTracker {
 		challenges.add(new WithoutChallengeInfo(Stat.COMPLETE_LEVEL, StatType.CHALLENGE, 1, Stat.JUMPS, 0, null));
 		
 		//20
+		skippingCost = 9000;
 		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.GAME, 3, null));
 		challenges.add(new BasicChallengeInfo(Stat.SCORE, StatType.GAME, 5000, null));
 		challenges.add(new BasicChallengeInfo(Stat.COMPLETE_LEVEL, StatType.LIFE, 3, null, false, true));
@@ -200,6 +214,7 @@ public class StatTracker {
 		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.CHALLENGE, 10, null));
 		
 		//30
+		skippingCost = 13000;
 		challenges.add(new BasicChallengeInfo(Stat.BONUS, StatType.LIFE, 2, null));
 		challenges.add(new BasicChallengeInfo(Stat.COMPLETE_LEVEL, StatType.LIFE, 5, "troll"));
 		challenges.add(new BasicChallengeInfo(Stat.JUMP_OVER_BOXES, StatType.GAME, 25, "bounce"));
@@ -212,6 +227,7 @@ public class StatTracker {
 		challenges.add(new BasicChallengeInfo(Stat.BONUS, StatType.CHALLENGE, 1, "troll"));
 		
 		//40
+		skippingCost = 20000;
 		challenges.add(new BasicChallengeInfo(Stat.BONUS, StatType.LIFE, 2, null, true, false));
 		challenges.add(new BasicChallengeInfo(Stat.RIGHT_SIDE_FLAG, StatType.GAME, 5, null));
 		challenges.add(new WithoutChallengeInfo(Stat.COMPLETE_LEVEL, StatType.GAME, 4, Stat.JUMP_OVER_BOXES, 0, null, false, true));
