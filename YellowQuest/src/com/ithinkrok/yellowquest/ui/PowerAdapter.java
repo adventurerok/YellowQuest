@@ -99,7 +99,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 		}
 		title.setText(titleText);
 		
-		skip.setText(StringFormatter.format(context.getString(R.string.skip_cost), chal.skipCost));
+		skip.setText(StringFormatter.format(context.getString(R.string.skip_cost), BoxMath.formatNumberWithoutSuffix(chal.skipCost)));
 		skip.setTag("!");
 		skip.setOnClickListener(this);
 		

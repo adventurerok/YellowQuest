@@ -55,6 +55,7 @@ public class StatTracker {
 			c.time = time;
 			c.skipCost = skipCost;
 			if(cycle > 0){
+				c.skipCost = (int) (c.skipCost * (Math.pow(1.2, cycle)));
 				if(c.target == 1) c.target += (int)(cycle * 0.5);
 				else c.target += c.step * cycle;
 			}
@@ -108,7 +109,7 @@ public class StatTracker {
 			c.time = time;
 			c.skipCost = skipCost;
 			if(cycle > 0){
-				c.skipCost *= 1.2 * cycle;
+				c.skipCost = (int) (c.skipCost * (Math.pow(1.2, cycle)));
 				if(c.target == 1) c.target += (int)(cycle * 0.5);
 				else c.target += c.step * cycle;
 			}
