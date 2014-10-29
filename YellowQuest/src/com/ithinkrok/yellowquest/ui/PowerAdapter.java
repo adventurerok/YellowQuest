@@ -97,6 +97,8 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 		title.setText(titleText);
 		
 		skip.setText(StringFormatter.format(context.getString(R.string.skip_cost), chal.skipCost));
+		skip.setTag("!");
+		skip.setOnClickListener(this);
 		
 		progress.setText(chal.getProgressText(context));
 		
@@ -248,6 +250,8 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 		if(name.startsWith("#")){
 			onTipClick(v, name);
 			return;
+		} else if(name.startsWith("!")){
+			onChallengeClick();
 		}
 		PowerInfo info = PowerInfo.getData(name);
 		switch (v.getId()) {
@@ -288,6 +292,41 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 
 		notifyDataSetChanged();
 		context.updateScorePointCounter();
+	}
+
+	private void onChallengeClick() {
+		final int cost = context.getGameData().statTracker.currentChallenge.skipCost;
+		if(context.getGameData().getScorePoints() < cost){
+			ToastSystem.showTextToast(R.string.not_enough);
+			return;
+		}
+		
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		String msg = context.getString(R.string.skip_warn);
+		msg = StringFormatter.format(msg, cost);
+		builder.setMessage(msg);
+		builder.setPositiveButton(R.string.skip, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				GameData data = context.getGameData();
+				data.subtractScorePoints(cost);
+				data.statTracker.skipChallenge();
+				ToastSystem.showTextToast(R.string.challenge_skipped);
+				context.loadPlayView();
+			}
+		});
+		
+		builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				//do nothing
+			}
+		});
+		
+		builder.create().show();
 	}
 
 }

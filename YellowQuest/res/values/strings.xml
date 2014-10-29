@@ -237,6 +237,9 @@
     <string name="bonus_area_doublejump">You completed a double jump power bonus</string>
     <string name="bonus_area_sticky">You completed a sticky power bonus</string>
     
+    <string name="skip">Skip</string>
     <string name="skip_cost">Skip ({0} SP)</string>
+    <string name="skip_warn">Skip this challenge? It will cost {0} SP</string>
+    <string name="challenge_skipped">Challenge skipped! You now have a new challenge</string>
 
 </resources>
