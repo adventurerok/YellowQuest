@@ -94,6 +94,9 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 		
 		String titleText = chal.getTitleText(context);
 		titleText = StringFormatter.format(context.getString(R.string.challenge_info), titleText);
+		if(titleText.length() > 50){
+			title.setTextAppearance(context, R.style.RelSmaller);
+		}
 		title.setText(titleText);
 		
 		skip.setText(StringFormatter.format(context.getString(R.string.skip_cost), chal.skipCost));
@@ -311,7 +314,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				GameData data = context.getGameData();
-				data.subtractScorePoints(cost);
+				//data.subtractScorePoints(cost);
 				data.statTracker.skipChallenge();
 				ToastSystem.showTextToast(R.string.challenge_skipped);
 				context.loadPlayView();

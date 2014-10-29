@@ -171,6 +171,8 @@
     <string name="new_rank">Rank {0}</string>
     <string name="rank_up">Rank up! You are now rank {0}</string>
     
+    <string name="challenge_power_save">Save yourself with a power {0} times {4}{3}{1} {2}</string>
+    <string name="progress_power_save">Saved yourself {0} out of {1} times</string>
     <string name="challenge_up">Rise up {0} units {4}{3}{1} {2}</string>
     <string name="progress_up">Risen up {0} out of {1} units</string>
     <string name="challenge_score">Earn a score of {0} {4}{3}{1} {2}</string>
