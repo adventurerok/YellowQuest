@@ -88,12 +88,15 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 		ImageView icon = (ImageView) row.findViewById(R.id.challenge_icon);
 		TextView title = (TextView) row.findViewById(R.id.challenge_title);
 		TextView progress = (TextView) row.findViewById(R.id.challenge_text);
+		TextView skip = (TextView) row.findViewById(R.id.challenge_skip);
 		
 		icon.setImageResource(chal.getIconResource());
 		
 		String titleText = chal.getTitleText(context);
 		titleText = StringFormatter.format(context.getString(R.string.challenge_info), titleText);
 		title.setText(titleText);
+		
+		skip.setText(StringFormatter.format(context.getString(R.string.skip_cost), chal.skipCost));
 		
 		progress.setText(chal.getProgressText(context));
 		

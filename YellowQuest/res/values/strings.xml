@@ -236,5 +236,7 @@
     <string name="bonus_area_life">You completed an extra life power bonus</string>
     <string name="bonus_area_doublejump">You completed a double jump power bonus</string>
     <string name="bonus_area_sticky">You completed a sticky power bonus</string>
+    
+    <string name="skip_cost">Skip ({0} SP)</string>
 
 </resources>

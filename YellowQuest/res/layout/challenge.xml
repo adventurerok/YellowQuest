@@ -40,6 +40,15 @@
         android:layout_toEndOf="@+id/challenge_icon"
         android:layout_toRightOf="@+id/challenge_icon"
         android:text="@string/tip_empty" />
+    
+    <Button 
+        android:id="@+id/challenge_skip"
+        android:text="@string/skip_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"/>
 
 
 </RelativeLayout>
