@@ -402,6 +402,7 @@ public class StatTracker {
 		ctr -= 1;
 		if(ctr == 0){
 			gameData.setPlayerRank(++rank);
+			gameData.addScorePoints(((rank / 10) + 1) * 1000);
 			ToastSystem.showRankToast(rank);
 			ctr = rank / 10;
 		}

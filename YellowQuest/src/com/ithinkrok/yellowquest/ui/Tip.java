@@ -19,6 +19,8 @@ public abstract class Tip {
 		new TipRate();
 		new TipPower();
 		new TipMode();
+		new TipAlways("hiscores", R.string.tip_hiscores);
+		new TipAlways("weekly", R.string.tip_weekly);
 	}
 	
 	public static int getTipMessage(String name){
@@ -57,6 +59,20 @@ public abstract class Tip {
 		this.message = message;
 		tipMessages.put(name, message);
 		tips.add(this);
+	}
+	
+	private static class TipAlways extends Tip {
+
+		public TipAlways(String name, int message) {
+			super(name, message);
+			
+		}
+
+		@Override
+		public boolean canShow(MainActivity context) {
+			return true;
+		}
+		
 	}
 	
 	private static class TipRate extends Tip {

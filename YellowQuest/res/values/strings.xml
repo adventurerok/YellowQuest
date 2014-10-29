@@ -93,6 +93,8 @@
     <string name="tip_modes">Have you tried the buttons at the top right yet?</string>
     <string name="tip_powers">There are six powers to unlock. Can you unlock them all?</string>
     <string name="tip_rate">Have you rated the app yet? We would love to hear what you have to say about it!</string>
+    <string name="tip_hiscores">Ranks have their own hiscores, so you can compare your rank to others!</string>
+    <string name="tip_weekly">Can\'t get the overall hiscore? Try for the daily or weekly one!</string>
     <string name="shadow_off">Shadow mode disabled</string>
     <string name="shadow_on">Shadow mode enabled</string>
     <string name="time_off">Timer challenge mode disabled</string>

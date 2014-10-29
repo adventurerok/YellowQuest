@@ -325,7 +325,9 @@ public class ToastSystem {
 		desc.setText(StringFormatter.format(context.getString(R.string.rank_up), rank));
 
 		TextView reward = (TextView) layout.findViewById(R.id.achievement_reward);
-		reward.setText("");
+		String text = context.getString(R.string.ach_reward);
+		text = StringFormatter.format(text, ((rank / 10) + 1) * 1000);
+		reward.setText(text);
 
 		Toast toast = new Toast(context);
 		toast.setView(layout);
