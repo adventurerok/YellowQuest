@@ -56,7 +56,7 @@ public class StatTracker {
 			c.skipCost = skipCost;
 			if(cycle > 0){
 				if(c.target == 1) c.target += (int)(cycle * 0.5);
-				else c.target += cycle;
+				else c.target += c.step * cycle;
 			}
 			return c;
 		}
@@ -110,7 +110,7 @@ public class StatTracker {
 			if(cycle > 0){
 				c.skipCost *= 1.2 * cycle;
 				if(c.target == 1) c.target += (int)(cycle * 0.5);
-				else c.target += cycle;
+				else c.target += c.step * cycle;
 			}
 			return c;
 		}

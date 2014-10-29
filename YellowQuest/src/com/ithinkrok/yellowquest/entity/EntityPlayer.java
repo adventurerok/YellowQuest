@@ -167,5 +167,11 @@ public class EntityPlayer extends Entity {
 	public Power getPower() {
 		return power;
 	}
+	
+	@Override
+	public void reset() {
+		this.gravity = true;
+		super.reset();
+	}
 
 }

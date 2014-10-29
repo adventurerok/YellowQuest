@@ -37,9 +37,9 @@ public class PowerStick extends Power {
 		}
 		sticking = true;
 		if(player.collisionHorizontal){
-			if(player.timeOnPlatform == 0){
+			if(player.intersecting.timeOnPlatform < 2){
 				player.game.gameData.statTracker.addStat(player.game.getContext(), Stat.POWER_SAVE, 1);
-				++player.timeOnPlatform;
+				//++player.intersecting.timeOnPlatform;
 			}
 			syv = player.y_velocity;
 			player.y_velocity = 0;
@@ -51,9 +51,9 @@ public class PowerStick extends Power {
 		} else xcollision = false;
 		if(player.box.ey == player.intersecting.box.sy){
 			if(player.collisionVertical){
-				if(player.timeOnPlatform == 0){
+				if(player.intersecting.timeOnPlatform < 2){
 					player.game.gameData.statTracker.addStat(player.game.getContext(), Stat.POWER_SAVE, 1);
-					++player.timeOnPlatform;
+					//++player.timeOnPlatform;
 				}
 				player.x_velocity = 0;
 			}
