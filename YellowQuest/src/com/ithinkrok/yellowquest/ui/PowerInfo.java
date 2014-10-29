@@ -44,10 +44,6 @@ public class PowerInfo {
 	public PowerInfo setCosts(int buyCost, int upgradeCost) {
 		this.buyCost = buyCost;
 		this.upgradeCost = upgradeCost;
-
-		// TODO change
-		this.buyCost = 1;
-		this.upgradeCost = 1;
 		return this;
 	}
 

@@ -314,7 +314,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				GameData data = context.getGameData();
-				//data.subtractScorePoints(cost);
+				data.subtractScorePoints(cost);
 				data.statTracker.skipChallenge();
 				ToastSystem.showTextToast(R.string.challenge_skipped);
 				context.loadPlayView();
