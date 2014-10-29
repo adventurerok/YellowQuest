@@ -225,14 +225,10 @@ public class GameData {
 		int res = getInt(hash, 0);
 		if (res < score) {
 			setInt(hash, score);
-			String text = context.getString(R.string.hiscore_beat);
-			text = StringFormatter.format(text, score);
-			
-			ToastSystem.showHiscoreToast(score, res);
 			
 			client = context.getApiClient();
 			if (client != null && client.isConnected()) {
-				Games.Leaderboards.submitScore(client, context.getString(R.string.leaderboard_yellowquest_hiscores),
+				Games.Leaderboards.submitScore(client, context.getString(R.string.leaderboard_yellowquest_shadowtime_hiscores),
 						score);
 				setInt(hash("shatim_score_uploaded"), score);
 			}
@@ -241,7 +237,7 @@ public class GameData {
 			client = context.getApiClient();
 			if (client != null && client.isConnected()) {
 				//still in for daily or weekly hiscores
-				Games.Leaderboards.submitScore(client, context.getString(R.string.leaderboard_yellowquest_hiscores),
+				Games.Leaderboards.submitScore(client, context.getString(R.string.leaderboard_yellowquest_shadowtime_hiscores),
 						score);
 				//dont set the uploaded score, as this could be less
 			}
