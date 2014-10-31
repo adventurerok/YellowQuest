@@ -19,8 +19,8 @@ public abstract class Tip {
 		new TipRate();
 		new TipPower();
 		new TipMode();
-		new TipAlways("hiscores", R.string.tip_hiscores);
-		new TipAlways("weekly", R.string.tip_weekly);
+		new TipAlways("#hiscores", R.string.tip_hiscores);
+		new TipAlways("#weekly", R.string.tip_weekly);
 	}
 	
 	public static int getTipMessage(String name){

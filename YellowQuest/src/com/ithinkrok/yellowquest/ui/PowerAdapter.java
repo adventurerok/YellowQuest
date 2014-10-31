@@ -129,6 +129,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 	
 	public View getPowerView(String name, View convertView, ViewGroup parent){
 		PowerInfo info = PowerInfo.getData(name);
+		if(info == null) throw new RuntimeException("Power invalid");
 		boolean using = info.name.equals(context.getGameData().getNextPower());
 		View row = null;
 		if (convertView != null) {

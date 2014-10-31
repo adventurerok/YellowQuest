@@ -4585,9 +4585,9 @@ com.ithinkrok.yellowquest.CanvasThread:
 com.ithinkrok.yellowquest.GameData:
     private static final int MOD
     137:138:public void setPowerUnlocks(int)
-    373:375:public int getScore(int)
-    401:404:public int getTime(int)
-    413:413:public boolean hasScorePoints(int)
+    369:371:public int getScore(int)
+    397:400:public int getTime(int)
+    409:409:public boolean hasScorePoints(int)
 com.ithinkrok.yellowquest.MainActivity:
     public static final boolean DEBUG
     215:257:public void preloadDrawables()
@@ -4631,11 +4631,10 @@ com.ithinkrok.yellowquest.challenge.Stat:
     1:1:public static com.ithinkrok.yellowquest.challenge.Stat valueOf(java.lang.String)
 com.ithinkrok.yellowquest.challenge.StatTracker:
     private static final int MOD
-    291:291:public int getStat(com.ithinkrok.yellowquest.challenge.Stat,com.ithinkrok.yellowquest.challenge.StatType)
-    295:295:public int getStat(com.ithinkrok.yellowquest.challenge.Stat,com.ithinkrok.yellowquest.challenge.StatType,java.lang.String)
-    299:299:public int getStat(com.ithinkrok.yellowquest.challenge.Stat,com.ithinkrok.yellowquest.challenge.StatType,boolean,boolean)
-    328:338:public void nextChallenge(boolean)
-    341:346:public void skipChallenge()
+    341:341:public int getStat(com.ithinkrok.yellowquest.challenge.Stat,com.ithinkrok.yellowquest.challenge.StatType)
+    345:345:public int getStat(com.ithinkrok.yellowquest.challenge.Stat,com.ithinkrok.yellowquest.challenge.StatType,java.lang.String)
+    349:349:public int getStat(com.ithinkrok.yellowquest.challenge.Stat,com.ithinkrok.yellowquest.challenge.StatType,boolean,boolean)
+    378:388:public void nextChallenge(boolean)
 com.ithinkrok.yellowquest.challenge.StatType:
     1:1:public static com.ithinkrok.yellowquest.challenge.StatType valueOf(java.lang.String)
 com.ithinkrok.yellowquest.challenge.WithoutChallenge:
@@ -4655,8 +4654,8 @@ com.ithinkrok.yellowquest.entity.trait.WeightedTraitFactory:
 com.ithinkrok.yellowquest.ui.AchievementInfo:
     84:84:public static com.ithinkrok.yellowquest.ui.AchievementInfo getAchievement(android.content.Context,int)
 com.ithinkrok.yellowquest.ui.PowerInfo:
-    111:111:public int getIndex()
-    264:264:public static int buyCost(int)
+    107:107:public int getIndex()
+    260:260:public static int buyCost(int)
 com.ithinkrok.yellowquest.ui.ToastSystem:
     13:13:public ToastSystem()
     143:154:public static void releaseCache()
