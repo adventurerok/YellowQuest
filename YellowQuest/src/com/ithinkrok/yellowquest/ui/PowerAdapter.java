@@ -90,7 +90,7 @@ public class PowerAdapter extends BaseAdapter implements View.OnClickListener {
 		TextView progress = (TextView) row.findViewById(R.id.challenge_text);
 		TextView skip = (TextView) row.findViewById(R.id.challenge_skip);
 		
-		icon.setImageResource(chal.getIconResource());
+		icon.setImageDrawable(context.loadDrawable(chal.getIconResource()));
 		
 		String titleText = chal.getTitleText(context);
 		titleText = StringFormatter.format(context.getString(R.string.challenge_info), titleText);

@@ -237,12 +237,14 @@ public class EntityPlatform extends Entity {
 		float yp = (float) (box.sy - game.player.y + rend.height / 2);
 		if (xp > rend.scaledWidth || yp > rend.scaledHeight) {
 			_visibleTraits.clear();
+			if(boxNumber < game.playerBox + 1) remove = true;
 			return;
 		}
 		float w = (float) (box.ex - box.sx);
 		float h = (float) (box.ey - box.sy);
 		if ((xp + w) < rend.scaledX || (yp + h) < rend.scaledY) {
 			_visibleTraits.clear();
+			if(boxNumber < game.playerBox + 1) remove = true;
 			return;
 		}
 		rend.fillRect(xp, yp, w, h, paint);
