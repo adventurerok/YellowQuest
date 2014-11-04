@@ -66,6 +66,14 @@ public class EntityPlatform extends Entity {
 
 			// game.player.intersecting = this;
 			revealed = true;
+			if(game.playerBox - boxNumber < 20 && game.playerBox - boxNumber > 2){
+				if (game.playerLives > 1) {
+					game.playerLives -= 1;
+					game.gameOver = new GameOver(2, R.string.level_failed, game.getContext());
+				} else {
+					game.gameOver = new GameOver(0, R.string.dont_go_back, game.getContext());
+				}
+			}
 			this.intersectsPlayer(game.player);
 			++timeOnPlatform;
 

@@ -230,6 +230,7 @@
     <string name="you_were_trapped">You were trapped</string>
     <string name="i_couldnt_help">I couldn\'t help you</string>
     <string name="i_feel_so_sorry">I feel so sorry</string>
+    <string name="dont_go_back">Don\'t go backwards</string>
     
     <string name="bonus_area_complete">Bonus Area Complete!</string>
     <string name="bonus_area_up">You completed an upwards power bonus</string>
